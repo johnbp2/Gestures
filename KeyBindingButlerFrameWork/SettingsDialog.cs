@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JohnBPearson.KeyBindingButler.Model;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -16,6 +17,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         public SettingsDialog()
         {
             InitializeComponent();
+          
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -27,8 +29,21 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
                 Properties.Settings.Default.MinimizeToTray = rbMinimizeToTrayOn.Checked;
             Properties.Settings.Default.ServantName = tbServantName.Text;
+            ToastOptions toastOpt;
+            if(System.Enum.TryParse(cbToastOptions.SelectedItem.ToString(), out toastOpt))
+            {
 
+
+                Properties.Settings.Default.ToastOption = ((int)toastOpt);
+            }
+            else
+            {
+                System.Diagnostics.Debugger.Log(10,"butler", cbToastOptions.SelectedItem.ToString());
+
+            }
+            // Properties.Settings.Default. = 
             Properties.Settings.Default.Save();
+            this.Close();
         }
 
         private void SettingsDialog_Load(object sender, EventArgs e)
@@ -41,7 +56,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             tbServantName.Text = Properties.Settings.Default.ServantName;
             popupNotifier1.ContentText = $"{tbServantName.Text} has saved your settings you can close settings dialog now";
-
+            cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;  
 
             // "2011-03-21 13:26";
          //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));

@@ -32,6 +32,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.popupNotifier1 = new Tulpep.NotificationWindow.PopupNotifier();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,18 +42,36 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.lblMinimizeToTray = new System.Windows.Forms.Label();
             this.rbMinimizeToTrayOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.rbMinimizeToTrayOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.tbServantName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbToastOptions = new System.Windows.Forms.ComboBox();
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.popupNotifier1 = new Tulpep.NotificationWindow.PopupNotifier();
-            this.tbServantName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.transparentPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // popupNotifier1
+            // 
+            this.popupNotifier1.AnimationDuration = 2000;
+            this.popupNotifier1.AnimationInterval = 200;
+            this.popupNotifier1.ContentFont = new System.Drawing.Font("Tahoma", 8F);
+            this.popupNotifier1.ContentHoverColor = System.Drawing.SystemColors.Highlight;
+            this.popupNotifier1.ContentText = null;
+            this.popupNotifier1.Image = ((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));
+            this.popupNotifier1.IsRightToLeft = false;
+            this.popupNotifier1.OptionsMenu = null;
+            this.popupNotifier1.Size = new System.Drawing.Size(400, 100);
+            this.popupNotifier1.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
+            this.popupNotifier1.TitleText = null;
             // 
             // transparentFlowPanel1
             // 
@@ -76,14 +96,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.tableLayoutPanel1.Controls.Add(this.lblMinimizeToTray, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.rbMinimizeToTrayOn, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.rbMinimizeToTrayOff, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbServantName, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbServantName, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbToastOptions, 1, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(258, 219);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -162,6 +186,50 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.rbMinimizeToTrayOff.Text = "off";
             this.rbMinimizeToTrayOff.UseVisualStyleBackColor = true;
             // 
+            // tbServantName
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.tbServantName, 2);
+            this.tbServantName.Location = new System.Drawing.Point(90, 77);
+            this.tbServantName.Name = "tbServantName";
+            this.tbServantName.Size = new System.Drawing.Size(165, 20);
+            this.tbServantName.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1, 75);
+            this.label2.Margin = new System.Windows.Forms.Padding(1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 18);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Name your man servant";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 52);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Toast Options";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // cbToastOptions
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.cbToastOptions, 2);
+            this.cbToastOptions.FormattingEnabled = true;
+            this.cbToastOptions.Items.AddRange(new object[] {
+            "All",
+            "Save",
+            "Hotkey",
+            "None"});
+            this.cbToastOptions.Location = new System.Drawing.Point(90, 47);
+            this.cbToastOptions.Name = "cbToastOptions";
+            this.cbToastOptions.Size = new System.Drawing.Size(165, 21);
+            this.cbToastOptions.TabIndex = 12;
+            // 
             // transparentPanel1
             // 
             this.transparentPanel1.Controls.Add(this.btnSave);
@@ -191,43 +259,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // popupNotifier1
-            // 
-            this.popupNotifier1.AnimationDuration = 2000;
-            this.popupNotifier1.AnimationInterval = 200;
-            this.popupNotifier1.ContentFont = new System.Drawing.Font("Tahoma", 8F);
-            this.popupNotifier1.ContentHoverColor = System.Drawing.SystemColors.Highlight;
-            this.popupNotifier1.ContentText = null;
-            this.popupNotifier1.Image = ((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));
-            this.popupNotifier1.IsRightToLeft = false;
-            this.popupNotifier1.OptionsMenu = null;
-            this.popupNotifier1.Size = new System.Drawing.Size(400, 100);
-            this.popupNotifier1.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
-            this.popupNotifier1.TitleText = null;
-            // 
-            // tbServantName
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tbServantName, 2);
-            this.tbServantName.Location = new System.Drawing.Point(90, 47);
-            this.tbServantName.Name = "tbServantName";
-            this.tbServantName.Size = new System.Drawing.Size(165, 20);
-            this.tbServantName.TabIndex = 8;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1, 45);
-            this.label2.Margin = new System.Windows.Forms.Padding(1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 26);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Name your man servant";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,11 +268,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.Name = "SettingsDialog";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsDialog_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.transparentFlowPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.transparentPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,7 +292,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private Controls.AdvancedRadioButton rbMinimizeToTrayOff;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private Tulpep.NotificationWindow.PopupNotifier popupNotifier1;
-        private System.Windows.Forms.TextBox tbServantName;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbServantName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbToastOptions;
     }
 }

@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using System;
+using System.CodeDom;
 using System.CodeDom.Compiler;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
 using System.Data;
@@ -24,14 +27,14 @@ namespace JohnBPearson.com.Utility
             const int Delimiter = 25;
 
 
-            public Resurrect()
+            internal Resurrect()
             {
             }
         
         }
 
         private IKeyBoundDataList _parent;
-        public Parser(KeyAndDataStringLiterals strings, IKeyBoundDataList parent)
+        internal Parser(KeyAndDataStringLiterals strings, IKeyBoundDataList parent)
         {
 
             this._valuesString = strings.Values;
@@ -48,22 +51,21 @@ namespace JohnBPearson.com.Utility
 
         private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> _items;
 
-        public List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> Items
+        internal List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> Items
         {
             get
             {
                 if (this._items == null)
                 {
                     this.setParsed();
-                }
-                return this._items;
+                }                return this._items;
             }
             private set { this._items = value; }
         }
 
         private List<string> _keys;
 
-        public List<string> Keys
+        internal List<string> Keys
         {
             get
             {
@@ -80,6 +82,23 @@ namespace JohnBPearson.com.Utility
         {
             this._items = this.parse();
 
+        }
+
+        internal static IEnumerable<string> parseStringToList(string value, char delim)
+        {
+            var list = new List<string>();
+
+            if (value.Contains(delim))
+            {
+                var arr = new List<char>();
+                    arr.Add(delim);
+                    
+                  list.AddRange(  value.Split(arr.ToArray(), StringSplitOptions.None));
+                return list;
+            }
+
+
+            throw new ArgumentException(string.Concat( delim, " was not found in  ", value));
         }
 
         private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> parse()

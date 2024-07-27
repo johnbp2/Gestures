@@ -28,13 +28,16 @@ namespace JohnBPearson.KeyBindingButler.Model
         public virtual string Value
         {
             get { return _value; }
-            set
+             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
-                {
-                    this._value = value;
-                }
-            }
+            _value = value; }   
+        //private    set
+        //    {
+        //        if (!string.IsNullOrWhiteSpace(value))
+        //        {
+        //            this._value = value;
+        //        }
+        //    }
         }
 
         public string Delimiter

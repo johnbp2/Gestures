@@ -4,7 +4,9 @@ namespace JohnBPearson.KeyBindingButler.Model
 {
     public interface IBaseData :IEquatable<IBaseData>
     {
-        string Value { get; set; }
+        string Value {
+            get;
+        }
 
        // bool Equals(IBaseData other);    
         string GetDeliminated();

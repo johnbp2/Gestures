@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{45ED5872-A9F3-497C-8A12-753D1A22A9F2}</ProjectGuid>
+    <ProjectGuid>{BD8772B8-C584-4B74-848C-9928A215770B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JohnBPearson.KeyBindingButler.Model</RootNamespace>
-    <AssemblyName>JohnBPearson.KeyBindingButler.Model</AssemblyName>
+    <RootNamespace>JohnBPearson.Cypher</RootNamespace>
+    <AssemblyName>JohnBPearson.Cypher</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -39,42 +39,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tulpep.NotificationWindow">
-      <HintPath>..\TheButlerFramework\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeyBinding\BaseData.cs" />
-    <Compile Include="KeyBinding\EncryptedData.cs" />
-    <Compile Include="KeyBinding\IKeyBoundDataList.cs" />
-    <Compile Include="KeyBinding\KeyAndDataStringLiterals.cs" />
-    <Compile Include="KeyBinding\KeyBoundDataList.cs" />
-    <Compile Include="KeyBinding\ValueObject.cs" />
-    <Compile Include="ButlerBase.cs" />
-    <Compile Include="KeyBinding\Data.cs" />
-    <Compile Include="DataAccess\JsonToObject.cs" />
-    <Compile Include="KeyBinding\Description.cs" />
-    <Compile Include="KeyBinding\DescriptionValue.cs" />
-    <Compile Include="KeyBinding\IBaseData.cs" />
-    <Compile Include="KeyBinding\IKeyBoundData.cs" />
-    <Compile Include="KeyBinding\KeyboardKey.cs" />
-    <Compile Include="KeyBindButler.cs" />
-    <Compile Include="KeyBinding\KeyBoundData.cs" />
-    <Compile Include="DataAccess\OneStringParser.cs" />
-    <Compile Include="Processes\CommandProcess.cs" />
+    <Compile Include="AesCypher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataAccess\Parser.cs" />
-    <Compile Include="SettingToList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheButlerFramework\JohnBPearson.KeyBindingButler.Common\JohnBPearson.KeyBindingButler.Common.csproj">
-      <Project>{2844508a-f28b-4d3d-a974-aaf26291981a}</Project>
-      <Name>JohnBPearson.KeyBindingButler.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheButlerFramework\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
-      <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
-      <Name>JohnBPearson.Cypher</Name>
-    </ProjectReference>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

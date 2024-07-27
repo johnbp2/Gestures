@@ -12,7 +12,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -148,6 +148,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ToastOption {
+            get {
+                return ((int)(this["ToastOption"]));
+            }
+            set {
+                this["ToastOption"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("dir||||||||||||||||||pushd c:\\|||||||s")]
         public string BindableCommands {
             get {
@@ -167,6 +179,30 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
             }
             set {
                 this["Descriptions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pwd|password|pw")]
+        public string parseListToFindPassword {
+            get {
+                return ((string)(this["parseListToFindPassword"]));
+            }
+            set {
+                this["parseListToFindPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool stringProtection {
+            get {
+                return ((bool)(this["stringProtection"]));
+            }
+            set {
+                this["stringProtection"] = value;
             }
         }
     }

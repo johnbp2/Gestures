@@ -46,7 +46,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         //    //  return this._items;
         //}
 
-        public KeyAndDataStringLiterals PrepareDataForSave()
+        public KeyAndDataStringLiterals PrepareDataForSave(string encryptionFlags, bool encrypt)
         {
 
             var values = new StringBuilder();
@@ -54,7 +54,19 @@ namespace JohnBPearson.KeyBindingButler.Model
             int count = 0;
             foreach (var item in _items)
             {//if (item.IsDirty) count++;                        
-
+                var data = item.Data.Value;
+                if (encrypt)
+                {
+                    var list = new SettingToList(encryptionFlags).List;
+                    foreach (var compare in list)
+                    {
+                        if (item.Description.Value.Contains(compare))
+                        {
+                            data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
+                            break;
+                        }
+                    }
+                }
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(item.Data.GetDeliminated());
                 if(item.ObjectState == ObjectState.Mutated)

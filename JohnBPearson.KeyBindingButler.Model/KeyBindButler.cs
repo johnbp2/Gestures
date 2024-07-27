@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +8,34 @@ using JohnBPearson.com.Utility;
 namespace JohnBPearson.KeyBindingButler.Model
 {
 
+    public enum ToastOptions
+    {
+    All,
+    Save,
+    Hotkey,
+    None
+    }
+
+
+
+   
+
+
     public class KeyBindingButler : ButlerBase
     {
 
         private Parser _userSettingsParser;
         private List<IKeyBoundData> _items = new List<IKeyBoundData>();
 
-        public KeyBindingButler(KeyAndDataStringLiterals strings, string hisName) : base(hisName)
+        public KeyBindingButler(KeyAndDataStringLiterals strings, string hisName, IKeyBoundDataList dataList = null) : base(hisName)
         {
-            this._userSettingsParser = new Parser(strings);
-            this._items = this._userSettingsParser.Items;
 
+            if(dataList != null)
+            {
+
+                this._userSettingsParser = new Parser(strings, dataList);
+                this._items = this._userSettingsParser.Items;
+            }
         }
 
         public IEnumerable<string> Keys
@@ -58,4 +75,3 @@ namespace JohnBPearson.KeyBindingButler.Model
     }
 }
 
-*/

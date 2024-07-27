@@ -35,11 +35,20 @@
     <Setting Name="LastBoundKeyPressed" Type="System.String" Scope="User">
       <Value Profile="(Default)">p</Value>
     </Setting>
+    <Setting Name="ToastOption" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
     <Setting Name="BindableCommands" Type="System.String" Scope="User">
       <Value Profile="(Default)">dir||||||||||||||||||pushd c:\|||||||s</Value>
     </Setting>
     <Setting Name="Descriptions" Type="System.String" Scope="User">
       <Value Profile="(Default)">test|||||||||||||||||||||||||</Value>
+    </Setting>
+    <Setting Name="parseListToFindPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pwd|password|pw</Value>
+    </Setting>
+    <Setting Name="stringProtection" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

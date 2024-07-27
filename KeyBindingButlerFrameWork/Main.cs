@@ -13,6 +13,7 @@ using System.Linq;
 using JohnBPearson.Windows.Forms.KeyBindingButler.Properties;
 using Windows.Media.Protection.PlayReady;
 using Windows.UI.Xaml.Controls;
+using System.ComponentModel.Design;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -72,7 +73,20 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
     
         public void hotKeyCallBack(IKeyBoundData item)
         {
-            System.Windows.Clipboard.SetText(item.Data.Value);
+            var data = item.Data.Value;
+            if (Properties.Settings.Default.stringProtection)
+            {
+                var list = new SettingToList(Properties.Settings.Default.parseListToFindPassword).List;
+                foreach (var compare in list)
+                {
+                    if (item.Description.Value.Contains(compare))
+                    {
+                        data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
+                           break;
+                    }
+                }
+            }
+            System.Windows.Clipboard.SetText(data);
            
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
@@ -80,7 +94,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
-            base.notify($"Sir your data: {item.Description.Value}", "Is in the clipboard");
+            base.notify($"Sir your data: {item.Description.Value}", "Is in the clipboard", false ,ToastOptions.Hotkey);
           //  messages.raiseEvent(key, item);
         }
 
@@ -91,10 +105,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
         {
             var index = 0;
+            GlobalHotKey.removeAllRegistration();
             foreach (var item in keys)
             {
 
-
+                
                 var sb = new StringBuilder();
                 sb.Append(Properties.Settings.Default.KeyBindingModifiers);
                 sb.Append(item.KeyAsChar);
@@ -159,38 +174,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-            //this.presenter.executeAutoSave((DataRowView)this.cbHotkey1.SelectedItem, (DataRowView)this.cbHotkey2.SelectedItem, new object(),
-            // new object());
-          //  if (Properties.Settings.Default.autoSave == true | overrideAutoSaveSetting)
-            //{
-                //if (this.presenter != null)
-                
-                  var result =  this.presenter.executeAutoSave(overrideAutoSaveSetting);
+                  var result =  this.presenter.executeAutoSave(overrideAutoSaveSetting, Properties.Settings.Default.parseListToFindPassword, Properties.Settings.Default.stringProtection);
                     if (result == 0)
                     {
 
-                Bitmap bmp = new Bitmap(@".\Butler.png");
-
-                var popupNotifier = Notification.Create(Properties.Settings.Default.ServantName, "Saved", bmp);
                 
-                //((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));1
-                using (popupNotifier as IDisposable)
-                        {
-                        
-                            popupNotifier.Popup();
-                    
-                        }
+                    base.notify(Properties.Settings.Default.ServantName, "Saved", false, ToastOptions.Save);
 
                         FlashWindow.TrayAndWindow(this); 
                     }
                 
 
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("Did not save");
-                }
-
-            //}
+            
         }
 
         private void updateUIByKey(char key) {
@@ -223,8 +218,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         }
 
         private void Main_Resize(object sender, EventArgs e)
-        {
-            //if the form is minimized  
+        { 
+                //if the form is minimized  
             //hide it from the task bar  
             //and show the system tray icon (represented by the NotifyIcon control)  
             if (this.WindowState == FormWindowState.Minimized && Properties.Settings.Default.MinimizeToTray)
@@ -354,6 +349,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private void tbDesc_Leave(object sender, EventArgs e)
         {
             updateKeyBoundData("", tbDesc.Text);
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            this.registerHotKeys(this.presenter.HotKeyValues);
         }
     }
 }
