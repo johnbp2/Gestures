@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Colore.Data;
 using Windows.Networking.Sockets;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
@@ -16,8 +18,24 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         [STAThread]
         static void Main()
         {
+
+            ////string original = "PASSWORD";
+            ////using(AesManaged myAes = new AesManaged())
+            ////{
+            ////    Encrypt the string to an array of bytes.
+            ////    byte[] encrypted = JohnBPearson.Cypher.Aes.AesCypher.EncryptStringToBytes_Aes(original, myAes.Key, myAes.IV);
+            ////    var str = System.Text.Encoding.Default.GetString(encrypted);
+
+            ////    Decrypt the bytes to a string.
+            ////    string roundtrip = JohnBPearson.Cypher.Aes.AesCypher.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
+
+            ////    Display the original data and the decrypted data.
+            ////    Console.WriteLine("Original:   {0}", original);
+            ////    Console.WriteLine("Encrypted:  {0}", str);
+            ////    Console.WriteLine("Round Trip: {0}", roundtrip);
+            ////}
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+                Application.SetCompatibleTextRenderingDefault(false);
 
             // Add handler for UI thread exceptions
             Application.ThreadException += new ThreadExceptionEventHandler(UIThreadException);

@@ -45,16 +45,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
             this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.templatedLabel1 = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
             this.transparentPanel2 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
+            this.btnReload = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblGuildAd = new System.Windows.Forms.Label();
             this.tbValue = new System.Windows.Forms.TextBox();
-            this.elementHost2 = new System.Windows.Forms.Integration.ElementHost();
-            this.test1 = new JohnBPearson.Windows.Forms.Controls.test();
-            this.btnReload = new System.Windows.Forms.Button();
-            this.lblDescription = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.transparentFlowPanel1.SuspendLayout();
             this.transparentPanel2.SuspendLayout();
@@ -92,7 +90,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -157,6 +155,16 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.templatedLabel1.Template = null;
             this.templatedLabel1.TemplateValues = null;
             // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblDescription.Location = new System.Drawing.Point(3, 92);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(104, 24);
+            this.lblDescription.TabIndex = 6;
+            this.lblDescription.Text = "Description";
+            // 
             // tbDesc
             // 
             this.tbDesc.Location = new System.Drawing.Point(3, 119);
@@ -180,6 +188,17 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.transparentPanel2.Name = "transparentPanel2";
             this.transparentPanel2.Size = new System.Drawing.Size(573, 203);
             this.transparentPanel2.TabIndex = 1;
+            // 
+            // btnReload
+            // 
+            this.btnReload.Enabled = false;
+            this.btnReload.Location = new System.Drawing.Point(406, -2);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(97, 32);
+            this.btnReload.TabIndex = 6;
+            this.btnReload.Text = "Refresh";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnCopy
             // 
@@ -225,36 +244,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.tbValue.TabStop = false;
             this.tbValue.Leave += new System.EventHandler(this.tbValue_Leave);
             // 
-            // elementHost2
-            // 
-            this.elementHost2.Location = new System.Drawing.Point(339, 55);
-            this.elementHost2.Name = "elementHost2";
-            this.elementHost2.Size = new System.Drawing.Size(200, 100);
-            this.elementHost2.TabIndex = 9;
-            this.elementHost2.Text = "elementHost2";
-            this.elementHost2.Visible = false;
-            this.elementHost2.Child = this.test1;
-            // 
-            // btnReload
-            // 
-            this.btnReload.Enabled = false;
-            this.btnReload.Location = new System.Drawing.Point(406, -2);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(97, 32);
-            this.btnReload.TabIndex = 6;
-            this.btnReload.Text = "Refresh";
-            this.btnReload.UseVisualStyleBackColor = true;
-            // 
-            // lblDescription
-            // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblDescription.Location = new System.Drawing.Point(3, 92);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(104, 24);
-            this.lblDescription.TabIndex = 6;
-            this.lblDescription.Text = "Description";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -264,7 +253,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(584, 428);
-            this.Controls.Add(this.elementHost2);
             this.Controls.Add(this.transparentFlowPanel1);
             this.Controls.Add(this.transparentPanel2);
             this.Controls.Add(this.menuStrip1);
@@ -312,10 +300,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private System.Windows.Forms.Button btnCopy;
         private TemplatedLabel templatedLabel1;
         private System.Windows.Forms.TextBox tbDesc;
-        private System.Windows.Forms.Integration.ElementHost elementHost2;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Button btnReload;
-        private test test1;
     }
 }
 

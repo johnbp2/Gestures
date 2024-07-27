@@ -28,6 +28,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             // BaseForm
             // 
+            this.Load += new System.EventHandler(this.form_load);
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "BaseForm";
             this.ResumeLayout(false);

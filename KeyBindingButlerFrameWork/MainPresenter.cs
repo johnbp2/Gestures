@@ -32,9 +32,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             registerHotKeys(keyBoundValueList.Items);
         }
         
-        public int executeAutoSave(bool overrideAutoSaveSetting)
+        public int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt)
         {
-            var strings = this.keyBoundValueList.PrepareDataForSave();
+            var strings = this.keyBoundValueList.PrepareDataForSave(encryptionFlags, encrypt);
             Properties.Settings.Default.BindableValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
             Properties.Settings.Default.Save();
@@ -112,7 +112,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
     {
         T Form { get; }
 
-        int executeAutoSave(bool overrideAutoSaveSetting);
+        int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
     }
 
 

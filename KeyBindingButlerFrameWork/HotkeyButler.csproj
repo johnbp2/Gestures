@@ -181,8 +181,8 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.1.3</Version>
     </PackageReference>
-    <PackageReference Include="Sharprompt">
-      <Version>2.4.5</Version>
+    <PackageReference Include="System.Text.Json">
+      <Version>4.7.2</Version>
     </PackageReference>
     <PackageReference Include="Tulpep.NotificationWindow">
       <Version>1.1.38</Version>
@@ -222,6 +222,10 @@
     <ProjectReference Include="..\JohnBPearson.Windows.Interop\JohnBPearson.Windows.Interop.csproj">
       <Project>{c2eb5a3e-9528-47cd-bb07-b0f924239a77}</Project>
       <Name>JohnBPearson.Windows.Interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheButlerFramework\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
+      <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
+      <Name>JohnBPearson.Cypher</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
