@@ -81,7 +81,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 {
                     if (item.Description.Value.Contains(compare))
                     {
-                        data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
+                        data = Cypher.Aes.AesCypher.UnlockString(data);
                            break;
                     }
                 }
@@ -102,30 +102,30 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
 
-        private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
-        {
-            var index = 0;
-            GlobalHotKey.removeAllRegistration();
-            foreach (var item in keys)
-            {
+        //private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
+        //{
+        //    var index = 0;
+        //    GlobalHotKey.removeAllRegistration();
+        //    foreach (var item in keys)
+        //    {
 
                 
-                var sb = new StringBuilder();
-                sb.Append(Properties.Settings.Default.KeyBindingModifiers);
-                sb.Append(item.KeyAsChar);
-                var del = new KeyBindCallBack(hotKeyCallBack);
-                    GlobalHotKey.RegisterHotKey(sb.ToString(), item , del);
+        //        var sb = new StringBuilder();
+        //        sb.Append(Properties.Settings.Default.KeyBindingModifiers);
+        //        sb.Append(item.KeyAsChar);
+        //        var del = new KeyBindCallBack(hotKeyCallBack);
+        //            GlobalHotKey.RegisterHotKey(sb.ToString(), item , del);
 
 
 
 
 
-                index++;
-            }
-               }
+        //        index++;
+        //    }
+        //       }
 
         
-
+        //9
         private void bindDropDownKeyValues()
         {
 
@@ -154,12 +154,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.menuItemIcon.Index = 0;
             this.menuItemIcon.Text = "E&xit";
             this.menuItemIcon.Click += new System.EventHandler(this.menuItemIcon_Click);
-
-    
-
-      
-
- 
 
             // The ContextMenu property sets the menu that will
             // appear when the systray icon is right clicked.
@@ -246,7 +240,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            this.registerHotKeys(this.presenter.HotKeyValues);
+            this.presenter.RefreshData();
 
 
             
@@ -353,7 +347,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            this.registerHotKeys(this.presenter.HotKeyValues);
+            this.presenter.RefreshData();
+            base.notify(Properties.Settings.Default.ServantName, "Refreshed", false, ToastOptions.None);
         }
     }
 }
