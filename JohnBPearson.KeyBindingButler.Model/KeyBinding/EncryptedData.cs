@@ -12,7 +12,7 @@ namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
 
         public EncryptedData(IKeyBoundData parent, string value): base(value, parent)
         {
-            var cyphered = JohnBPearson.Cypher.Aes.AesCypher.SecureString(value);
+            var cyphered = JohnBPearson.Cypher.Aes.AesCypher.LockString(value);
         }
         private string _value = string.Empty;
             public override string Value

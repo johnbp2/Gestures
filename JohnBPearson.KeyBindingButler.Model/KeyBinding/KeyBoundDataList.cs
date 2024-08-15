@@ -62,13 +62,13 @@ namespace JohnBPearson.KeyBindingButler.Model
                     {
                         if (item.Description.Value.Contains(compare))
                         {
-                            data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
+                            data = Cypher.Aes.AesCypher.LockString(item.Description.Value);
                             break;
                         }
                     }
                 }
                 descriptions.Append(item.Description.GetDeliminated());
-                values.Append(item.Data.GetDeliminated());
+                values.Append(BaseData.GetDeliminatedData(data));
                 if(item.ObjectState == ObjectState.Mutated)
                 {
                     count++;

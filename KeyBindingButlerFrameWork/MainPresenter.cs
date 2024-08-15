@@ -68,10 +68,21 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         }
 
+
+
         public IKeyBoundData findKeyBoundValue(string keyValue)
         {
           return  this.HotKeyValues.ToList<IKeyBoundData>().Find((item) => { return item.Key.Value == keyValue; });
 
+        }
+
+        public void RefreshData()
+        {
+            
+            this.LoadHotKeyValues();
+
+            GlobalHotKey.removeAllRegistration();
+            this.registerHotKeys(this.HotKeyValues);
         }
         private KeyBoundDataList LoadHotKeyValues()
         {
@@ -86,6 +97,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
         {
+            GlobalHotKey.removeAllRegistration();
+
             var index = 0;
             foreach (var item in keys)
             {

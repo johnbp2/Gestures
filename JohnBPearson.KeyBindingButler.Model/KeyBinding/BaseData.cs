@@ -24,7 +24,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
 
-        private string _value = "";
+        private  string _value = "";
         public virtual string Value
         {
             get { return _value; }
@@ -40,21 +40,21 @@ namespace JohnBPearson.KeyBindingButler.Model
         //    }
         }
 
-        public string Delimiter
+        public static string Delimiter
         {
-            get { return _delimiter; }
+            get { return BaseData._delimiter; }
             private set
             {
                 if (!String.IsNullOrWhiteSpace(value))
                 {
-                    this._delimiter = value;
+                    _delimiter = value;
                 }
             }
         }
 
 
 
-        private string _delimiter = "|";
+        private static string _delimiter = "|";
 
         public override string ToString()
         {
@@ -63,6 +63,10 @@ namespace JohnBPearson.KeyBindingButler.Model
         public string GetDeliminated()
         {
             return string.Concat(Value, Delimiter);
+        }
+        public static string GetDeliminatedData(string Data)
+        {
+            return string.Concat(Data, Delimiter);
         }
         public string GetDelimiter()
         {

@@ -148,7 +148,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // templatedLabel1
             // 
             this.templatedLabel1.AutoSize = true;
-            this.templatedLabel1.Location = new System.Drawing.Point(3, 68);
+            this.templatedLabel1.Location = new System.Drawing.Point(3, 57);
             this.templatedLabel1.Name = "templatedLabel1";
             this.templatedLabel1.Size = new System.Drawing.Size(0, 24);
             this.templatedLabel1.TabIndex = 10;
@@ -159,7 +159,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblDescription.Location = new System.Drawing.Point(3, 92);
+            this.lblDescription.Location = new System.Drawing.Point(3, 81);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(104, 24);
             this.lblDescription.TabIndex = 6;
@@ -167,7 +167,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             // tbDesc
             // 
-            this.tbDesc.Location = new System.Drawing.Point(3, 119);
+            this.tbDesc.Location = new System.Drawing.Point(3, 108);
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(248, 32);
