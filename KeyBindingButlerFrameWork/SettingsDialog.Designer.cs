@@ -49,6 +49,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
