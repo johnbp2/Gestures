@@ -9,13 +9,14 @@ namespace JohnBPearson.Cypher.Aes
 
         public static string SecureString(string s)
         {
-            using(AesManaged myAes = new AesManaged())
-            {
-                byte[] encrypted = EncryptStringToBytes_Aes(s, myAes.Key, myAes.IV);
-                var str = System.Text.Encoding.Default.GetString(encrypted);
+            return "";
+           //System.Text.Encoder           //using(AesManaged myAes = new AesManaged())
+            //{
+            //    byte[] encrypted = EncryptStringToBytes_Aes(s, myAes.Key, myAes.IV);
+            //    var str = System.Text.Encoding.Default.GetString(encrypted);
 
-                return str;
-            }
+            //    return str;
+            //}
         }
 
         public static string UnlockString(string s)

@@ -41,7 +41,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 System.Diagnostics.Debugger.Log(10,"butler", cbToastOptions.SelectedItem.ToString());
 
             }
-            // Properties.Settings.Default. = 
+            Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;        // Properties.Settings.Default. = 
             Properties.Settings.Default.Save();
             this.Close();
         }
@@ -56,8 +56,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             tbServantName.Text = Properties.Settings.Default.ServantName;
             popupNotifier1.ContentText = $"{tbServantName.Text} has saved your settings you can close settings dialog now";
-            cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;  
+            cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;
 
+            if (Properties.Settings.Default.FlashWindow)
+            {
+                rbFlashOn.Checked = true;
+            }
+            else { rbFlashOff.Checked = true; }
             // "2011-03-21 13:26";
          //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
             popupNotifier1.TitleText = Properties.Settings.Default.ServantName;

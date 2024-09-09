@@ -36,6 +36,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.popupNotifier1 = new Tulpep.NotificationWindow.PopupNotifier();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rbFlashOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbFlashOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.rbAutoSaveOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.rbAutoSaveOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
@@ -49,7 +52,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -91,6 +93,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.rbFlashOn, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.rbFlashOff, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbAutoSaveOn, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.rbAutoSaveOff, 2, 0);
@@ -112,6 +117,43 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(258, 219);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1, 115);
+            this.label4.Margin = new System.Windows.Forms.Padding(1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "flash window";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // rbFlashOn
+            // 
+            this.rbFlashOn.AutoSize = true;
+            this.rbFlashOn.GroupName = "flash";
+            this.rbFlashOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
+            this.rbFlashOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbFlashOn.Location = new System.Drawing.Point(90, 117);
+            this.rbFlashOn.Name = "rbFlashOn";
+            this.rbFlashOn.Size = new System.Drawing.Size(38, 17);
+            this.rbFlashOn.TabIndex = 14;
+            this.rbFlashOn.Text = "on";
+            this.rbFlashOn.UseVisualStyleBackColor = true;
+            // 
+            // rbFlashOff
+            // 
+            this.rbFlashOff.AutoSize = true;
+            this.rbFlashOff.GroupName = "flash";
+            this.rbFlashOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
+            this.rbFlashOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbFlashOff.Location = new System.Drawing.Point(175, 117);
+            this.rbFlashOff.Name = "rbFlashOff";
+            this.rbFlashOff.Size = new System.Drawing.Size(38, 17);
+            this.rbFlashOff.TabIndex = 15;
+            this.rbFlashOff.Text = "off";
+            this.rbFlashOff.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -297,5 +339,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private System.Windows.Forms.TextBox tbServantName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbToastOptions;
+        private System.Windows.Forms.Label label4;
+        private AdvancedRadioButton rbFlashOn;
+        private AdvancedRadioButton rbFlashOff;
     }
 }

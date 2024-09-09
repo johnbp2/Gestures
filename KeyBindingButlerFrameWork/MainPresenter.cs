@@ -84,9 +84,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         }
 
 
-        private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
+        public void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
         {
             var index = 0;
+            GlobalHotKey.removeAllRegistration();
+            var result = new StringBuilder();
             foreach (var item in keys)
             {
 
@@ -94,9 +96,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 var sb = new StringBuilder();
                 sb.Append(Properties.Settings.Default.KeyBindingModifiers);
                 sb.Append(item.KeyAsChar);
-                var callBack = new KeyBindCallBack(_main.hotKeyCallBack);
-                GlobalHotKey.RegisterHotKey(sb.ToString(), item, callBack);
-
+                var del = new KeyBindCallBack(this._main.hotKeyCallBack);
+                GlobalHotKey.RegisterHotKey(sb.ToString(), item, del);
+                result.Append($"{item.Key}, ");
 
 
 
@@ -111,10 +113,15 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
     public interface IPresenter<T>
     {
         T Form { get; }
-
+         IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> HotKeyValues { get; }
         int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
-    }
 
+        void updateItem(IKeyBoundData oldItem, string newData, string description);
+
+
+        IKeyBoundData findKeyBoundValue(string keyValue);
+    }
+    
 
 
 

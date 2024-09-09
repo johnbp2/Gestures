@@ -185,24 +185,36 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("pwd|password|pw")]
-        public string parseListToFindPassword {
+        public string ParseListToFindPassword {
             get {
-                return ((string)(this["parseListToFindPassword"]));
+                return ((string)(this["ParseListToFindPassword"]));
             }
             set {
-                this["parseListToFindPassword"] = value;
+                this["ParseListToFindPassword"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool stringProtection {
+        public bool StringProtection {
             get {
-                return ((bool)(this["stringProtection"]));
+                return ((bool)(this["StringProtection"]));
             }
             set {
-                this["stringProtection"] = value;
+                this["StringProtection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FlashWindow {
+            get {
+                return ((bool)(this["FlashWindow"]));
+            }
+            set {
+                this["FlashWindow"] = value;
             }
         }
     }
