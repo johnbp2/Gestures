@@ -7,7 +7,7 @@ namespace JohnBPearson.Cypher.Aes
     public class AesCypher
     {
 
-        public static string SecureString(string s)
+        public static string LockString(string s)
         {
             return "";
            //System.Text.Encoder           //using(AesManaged myAes = new AesManaged())
@@ -24,7 +24,7 @@ namespace JohnBPearson.Cypher.Aes
             using(AesManaged myAes = new AesManaged())
             {
 
-                byte[] decrypted = System.Text.Encoding.Default.GetBytes(s);
+                byte[] decrypted = System.Text.Encoding.UTF8.GetBytes(s);
                 return DecryptStringFromBytes_Aes(decrypted, myAes.Key, myAes.IV);
             }
             }
@@ -77,7 +77,11 @@ namespace JohnBPearson.Cypher.Aes
                         using(StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                         {
                             //Write all data to the stream.
-                            swEncrypt.Write(plainText);
+                            foreach (var item in plainText.ToCharArray())
+                            {
+                                swEncrypt.Write(item);
+                            }
+                          
                         }
                         encrypted = msEncrypt.ToArray();
                     }
@@ -122,7 +126,10 @@ namespace JohnBPearson.Cypher.Aes
 
                             // Read the decrypted bytes from the decrypting stream
                             // and place them in a string.
-                            plaintext = srDecrypt.ReadToEnd();
+                            if (srDecrypt.BaseStream.CanRead)
+                            {
+                                plaintext = srDecrypt.ReadToEnd();
+                            }
                         }
                     }
                 }
