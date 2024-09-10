@@ -164,7 +164,7 @@ namespace JohnBPearson.KeyBindingButler.Model
                     
         }
 
-        public void Update(string newValue, string newDescription = "")
+        public void Update(string newValue, string newDescription)
         {
             if (this.Data.Value != newValue)
             {

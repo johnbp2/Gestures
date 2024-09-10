@@ -44,11 +44,14 @@
     <Setting Name="Descriptions" Type="System.String" Scope="User">
       <Value Profile="(Default)">test|||||||||||||||||||||||||</Value>
     </Setting>
-    <Setting Name="parseListToFindPassword" Type="System.String" Scope="User">
+    <Setting Name="ParseListToFindPassword" Type="System.String" Scope="User">
       <Value Profile="(Default)">pwd|password|pw</Value>
     </Setting>
-    <Setting Name="stringProtection" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+    <Setting Name="StringProtection" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FlashWindow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

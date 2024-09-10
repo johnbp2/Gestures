@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,12 +50,10 @@
     <Compile Include="KeyBinding\IKeyBoundDataList.cs" />
     <Compile Include="KeyBinding\KeyAndDataStringLiterals.cs" />
     <Compile Include="KeyBinding\KeyBoundDataList.cs" />
-    <Compile Include="KeyBinding\ValueObject.cs" />
     <Compile Include="ButlerBase.cs" />
     <Compile Include="KeyBinding\Data.cs" />
     <Compile Include="DataAccess\JsonToObject.cs" />
     <Compile Include="KeyBinding\Description.cs" />
-    <Compile Include="KeyBinding\DescriptionValue.cs" />
     <Compile Include="KeyBinding\IBaseData.cs" />
     <Compile Include="KeyBinding\IKeyBoundData.cs" />
     <Compile Include="KeyBinding\KeyboardKey.cs" />

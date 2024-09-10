@@ -20,21 +20,19 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
     public partial class Main : BaseForm
     {
 
-
         #region private fields
         private JohnBPearson.Windows.Forms.Controls.NotBetterButton btnTest;
         private DataTable keyIndexTable;
-        //  private string hotkeyModifiers = Properties.Settings.Default.HotkeyModifiers;
-       // private Parser userSettingsHelper;
+        //  private string hotkeyModifiers = Properties.Settings.Def
 
-    private MainPresenter presenter;
+        private MainPresenter presenter;
         private JohnBPearson.KeyBindingButler.Model.IKeyBoundData currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
- 
 
-        public string selectedKeyBoundValue
+
+        private string selectedKeyBoundValue
         {
             get { if (cbHotkeySelection.SelectedItem != null) {
                     return cbHotkeySelection.SelectedItem as string;
@@ -43,8 +41,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 {
                     return null;
                 }
-                }
-    
+            }
+
         }
 
         //  private IPresenter<Form> presenter;
@@ -58,74 +56,70 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             //this.presenter = presenter;
             //this.presenter.Form = this;
             //this.keyBoundValueList.Items;]
-          
+
             this.setupTryIconMenu();
         }
 
 
-       
+
 
 
         #region private methods
 
 
 
-    
+
         public void hotKeyCallBack(IKeyBoundData item)
         {
             var data = item.Data.Value;
-            if (Properties.Settings.Default.stringProtection)
+            if (Properties.Settings.Default.StringProtection)
             {
-                var list = new SettingToList(Properties.Settings.Default.parseListToFindPassword).List;
+                var list = new SettingToList(Properties.Settings.Default.ParseListToFindPassword).List;
                 foreach (var compare in list)
                 {
                     if (item.Description.Value.Contains(compare))
                     {
-                        data = Cypher.Aes.AesCypher.UnlockString(data);
-                           break;
+                        data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
+                        break;
                     }
                 }
             }
             System.Windows.Clipboard.SetText(data);
-           
+
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
             updateUIByKey(item.Key.Key);
 
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
-            base.notify($"Sir your data: {item.Description.Value}", "Is in the clipboard", false ,ToastOptions.Hotkey);
-          //  messages.raiseEvent(key, item);
+            base.notify($"Sir your data: {item.Description.Value}", "Is in the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
+            //  messages.raiseEvent(key, item);
         }
 
 
 
+        private void CopyValueToClipBoard(IKeyBoundData data)
+        {
 
+            System.Windows.Clipboard.SetText(data.Data.Value);
+
+            this.lblKey.ClearAndReplace(data.Key.Value.ToLower());
+            this.cbHotkeySelection.SelectedItem = data.Key.Value.ToLower();
+            updateUIByKey(data.Key.Key);
+
+            Settings.Default.LastBoundKeyPressed = data.Key.Value;
+            Settings.Default.Save();
+
+        }
 
         //private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
         //{
-        //    var index = 0;
-        //    GlobalHotKey.removeAllRegistration();
-        //    foreach (var item in keys)
-        //    {
-
-                
-        //        var sb = new StringBuilder();
-        //        sb.Append(Properties.Settings.Default.KeyBindingModifiers);
-        //        sb.Append(item.KeyAsChar);
-        //        var del = new KeyBindCallBack(hotKeyCallBack);
-        //            GlobalHotKey.RegisterHotKey(sb.ToString(), item , del);
+           
+        //    base.notify("Registered keys complete!", $"Registered keys: {result}", false, ToastOptions.All);
+        //}
 
 
 
-
-
-        //        index++;
-        //    }
-        //       }
-
-        
-        //9
         private void bindDropDownKeyValues()
         {
 
@@ -134,14 +128,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.cbHotkeySelection.Items.Clear();
             this.cbHotkeySelection.DataSource = this.presenter.Keys;
             //1  var currentHotKeyGuildAd = Properties.Settings.Default.UserHotKeyGuildAd.ToString();
-       
-      
+
+
 
         }
 
 
-        
-        private void setupTryIconMenu()        {
+
+        private void setupTryIconMenu() {
             this.components = new System.ComponentModel.Container();
             this.contextMenuIcon = new System.Windows.Forms.ContextMenu();
             this.menuItemIcon = new System.Windows.Forms.MenuItem();
@@ -154,6 +148,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.menuItemIcon.Index = 0;
             this.menuItemIcon.Text = "E&xit";
             this.menuItemIcon.Click += new System.EventHandler(this.menuItemIcon_Click);
+
+
+
+
+
+
 
             // The ContextMenu property sets the menu that will
             // appear when the systray icon is right clicked.
@@ -168,18 +168,21 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-                  var result =  this.presenter.executeAutoSave(overrideAutoSaveSetting, Properties.Settings.Default.parseListToFindPassword, Properties.Settings.Default.stringProtection);
-                    if (result == 0)
-                    {
+            var result = this.presenter.executeAutoSave(overrideAutoSaveSetting, Properties.Settings.Default.ParseListToFindPassword, Properties.Settings.Default.StringProtection);
+            if (result == 0)
+            {
 
-                
-                    base.notify(Properties.Settings.Default.ServantName, "Saved", false, ToastOptions.Save);
 
-                        FlashWindow.TrayAndWindow(this); 
-                    }
-                
+                base.notify(Properties.Settings.Default.ServantName, "Saved", Properties.Settings.Default.FlashWindow, ToastOptions.Save);
 
-            
+                if (Properties.Settings.Default.FlashWindow)
+                {
+                    FlashWindow.TrayAndWindow(this);
+                }
+            }
+
+
+
         }
 
         private void updateUIByKey(char key) {
@@ -212,8 +215,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         }
 
         private void Main_Resize(object sender, EventArgs e)
-        { 
-                //if the form is minimized  
+        {     //if the form is minimized  
             //hide it from the task bar  
             //and show the system tray icon (represented by the NotifyIcon control)  
             if (this.WindowState == FormWindowState.Minimized && Properties.Settings.Default.MinimizeToTray)
@@ -225,6 +227,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             {
                 this.ShowInTaskbar = true;
             }
+      
             //  this.Size = new Size()
         }
 
@@ -240,15 +243,15 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            this.presenter.RefreshData();
+            this.presenter.registerHotKeys(this.presenter.HotKeyValues);
 
 
-            
+
             this.bindDropDownKeyValues();
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.TemplateValues.Add("a");
-        
-          
+
+
 
         }
 
@@ -257,9 +260,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         {
             if (this.selectedKeyBoundValue != null) {
                 var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue);
-              
+
                 this.presenter.updateItem(itemToUpdate, tbValue.Text, itemToUpdate.Description.Value);
-         
+
             }
         }
 
@@ -288,14 +291,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         }
 
-     
+
 
         private void cbHotkeySelection_SelectedValueChanged(object sender, EventArgs e)
         {
             if (this.selectedKeyBoundValue != null)
             {
                 this.updateUIByKey(this.selectedKeyBoundValue.ToCharArray()[0]);
-              
+
             }
 
             this.lblKey.ClearAndReplace(cbHotkeySelection.Text);
@@ -327,18 +330,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             var control = (System.Windows.Forms.ComboBox)sender;
             //if (control.Text.Length == 1)
             //{
-                   this.updateUIByKey(control.Text.ToCharArray()[0]);
+            this.updateUIByKey(control.Text.ToCharArray()[0]);
             //  }
             this.lblKey.ClearAndReplace(cbHotkeySelection.Text);
         }
-       
+
 
         private void tbDesc_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        #endregion
+
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
@@ -347,8 +350,26 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            this.presenter.RefreshData();
-            base.notify(Properties.Settings.Default.ServantName, "Refreshed", false, ToastOptions.None);
+            this.presenter.registerHotKeys(this.presenter.HotKeyValues);
         }
-    }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (this.cbHotkeySelection.SelectedIndex > -1)
+            {
+                var item = this.cbHotkeySelection.Items[this.cbHotkeySelection.SelectedIndex];
+                if (item != null) {
+                var ikbv = this.presenter.findKeyBoundValue(item.ToString());
+                    this.CopyValueToClipBoard(ikbv);
+                }
+                //this.CropValueToClipBoard();
+            }
+
+
+
+
+            #endregion
+        }
+
+    } 
 }
