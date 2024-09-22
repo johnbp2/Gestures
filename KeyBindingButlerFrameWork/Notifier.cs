@@ -7,14 +7,14 @@ using Tulpep.NotificationWindow;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
-    internal class Notifier
+    public static class Notifier
     {
 
-        private PopupNotifier notifier = new PopupNotifier();
+     
 
         
 
-        internal void notify(System.Windows.Forms.Form window, string title = "", string content ="", bool flash = false, ToastOptions toastType = ToastOptions.None)
+      public  static void notify(System.Windows.Forms.Form window, string title = "", string content ="", bool flash = false, ToastOptions toastType = ToastOptions.None)
         {
             if (toastType == ToastOptions.None)
             {

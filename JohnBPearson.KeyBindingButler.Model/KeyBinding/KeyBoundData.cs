@@ -48,10 +48,18 @@ namespace JohnBPearson.KeyBindingButler.Model
                 }
             }
         }
-     
 
 
-        public char KeyAsChar
+
+
+        private JohnBPearson.KeyBindingButler.Model.KeyBinding.EncryptedData _secured;
+
+        public KeyBinding.EncryptedData Secured
+        {
+            get { return this._secured; }
+        }
+
+         public char KeyAsChar
         {
             get
             {

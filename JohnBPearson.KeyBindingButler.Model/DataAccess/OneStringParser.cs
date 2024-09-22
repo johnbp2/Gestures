@@ -86,7 +86,7 @@ namespace JohnBPearson.KeyBindingButler.Model
                     {
                        data = keyValue[1];
                     }
-                    var pair = KeyBoundData.Create(parent, keyValue[0].ToCharArray()[0], data);
+                    var pair = KeyBoundData.Create(3, keyValue[0].ToCharArray()[0], data);
                     if(this.Keys == null)
                     {
                         this.Keys = new List<string>();

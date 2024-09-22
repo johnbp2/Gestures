@@ -14,6 +14,7 @@ using JohnBPearson.Windows.Forms.KeyBindingButler.Properties;
 using Windows.Media.Protection.PlayReady;
 using Windows.UI.Xaml.Controls;
 using System.ComponentModel.Design;
+using Windows.Web;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -52,6 +53,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.presenter = presenter;
             presenter.Form = this;
             InitializeComponent();
+            
             // var reminderForm = new Reminders();
             //this.presenter = presenter;
             //this.presenter.Form = this;

@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.CodeDom;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
+using JohnBPearson.Cypher;
 using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.KeyBindingButler.Model.KeyBinding;
 using JohnBPearson.Windows.Interop;
 
 
@@ -25,9 +29,23 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         public Main Form { get { return this._main; }  set { this._main = value; } }
 
 
-        public void updateItem(IKeyBoundData oldItem, string newData, string description)
+        public void updateItem(IKeyBoundData oldItem, string newData, string description,bool isSecured)
         {
-            oldItem.Update(newData, description);
+            string dataValue = string.Empty;
+           
+            if (oldItem.GetType() == typeof(EncryptedData))
+            {
+                dataValue = Base64Url.Encode(newData);
+            }
+            else if(isSecured)
+            {
+                oldItem =  new JohnBPearson.KeyBindingButler.Model.KeyBinding.EncryptedData(oldItem.pat
+            }
+            else
+            {
+                dataValue = newData;
+            }
+            oldItem.Update(dataValue, description);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(keyBoundValueList.Items);
         }
