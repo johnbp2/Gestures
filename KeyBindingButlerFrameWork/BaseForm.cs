@@ -27,32 +27,34 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
         protected void notify(string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.None)
-        {
-            if(toastType == ToastOptions.None)
-            {
-                return;
-            }
+       {
+
+            Notifier.notify(this, title, content, flash, toastType);
+        //    if (toastType == ToastOptions.None)
+        //    {
+        //        return;
+        //    }
 
 
-            if(Properties.Settings.Default.ToastOption == ((int)toastType) || Properties.Settings.Default.ToastOption == (int)ToastOptions.All)
-            {
-                Bitmap bmp = new Bitmap(@".\Butler.png");
+        //    if (Properties.Settings.Default.ToastOption == ((int)toastType) || Properties.Settings.Default.ToastOption == (int)ToastOptions.All)
+        //    {
+        //        Bitmap bmp = new Bitmap(@".\Butler.png");
 
-                var popupNotifier = Notification.Create(title, content, bmp);
+        //        var popupNotifier = Notification.Create(title, content, bmp);
 
-                //((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));1
-                using(popupNotifier as IDisposable)
-                {
+        //        //((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));1
+        //        using (popupNotifier as IDisposable)
+        //        {
 
-                    popupNotifier.Popup();
+        //            popupNotifier.Popup();
 
-                }
-                if(flash)
-                {
-                    FlashWindow.TrayAndWindow(this);
-                }
-            }
-        }
+        //        }
+        //        if (flash)
+        //        {
+        //            FlashWindow.TrayAndWindow(this);
+        //        }
+        //    }
+       }
     }
 
     }

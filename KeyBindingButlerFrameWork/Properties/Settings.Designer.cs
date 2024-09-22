@@ -217,5 +217,55 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
                 this["FlashWindow"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"Data Source=your_database.db;Version=3;\"")]
+        public string connectionString {
+            get {
+                return ((string)(this["connectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>true</string>
+  <string>false</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string>false</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection isSecured {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["isSecured"]));
+            }
+            set {
+                this["isSecured"] = value;
+            }
+        }
     }
 }

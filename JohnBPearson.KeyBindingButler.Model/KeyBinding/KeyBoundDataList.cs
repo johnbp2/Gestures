@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using JohnBPearson.com.Utility;
@@ -55,12 +56,12 @@ namespace JohnBPearson.KeyBindingButler.Model
             foreach (var item in _items)
             {//if (item.IsDirty) count++;                        
                 var data = item.Data.Value;
-                if (encrypt)
+                if (encrypt)2
                 {
                     var list = new SettingToList(encryptionFlags).List;
                     foreach (var compare in list)
                     {
-                        if (item.Description.Value.Contains(compare))
+                        if ()
                         {
                             data = Cypher.Aes.AesCypher.LockString(item.Description.Value);
                             break;
