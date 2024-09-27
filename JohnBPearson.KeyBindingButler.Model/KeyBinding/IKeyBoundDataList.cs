@@ -7,7 +7,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         IEnumerable<IKeyBoundData> Items { get; }
         IEnumerable<string> Keys { get; }
 
-        KeyAndDataStringLiterals PrepareDataForSave(string encryptionFlags, bool encrypt);
+        KeyAndDataStringLiterals PrepareDataForSave();
         string PrepareDataToSaveAsOneSetting();
     }
 }

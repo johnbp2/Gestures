@@ -74,18 +74,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         public void hotKeyCallBack(IKeyBoundData item)
         {
             var data = item.Data.Value;
-            if (Properties.Settings.Default.StringProtection)
-            {
-                var list = new SettingToList(Properties.Settings.Default.ParseListToFindPassword).List;
-                foreach (var compare in list)
-                {
-                    if (item.Description.Value.Contains(compare))
-                    {
-                        data = Cypher.Aes.AesCypher.UnlockString(item.Description.Value);
-                        break;
-                    }
-                }
-            }
+         
             System.Windows.Clipboard.SetText(data);
 
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
@@ -263,7 +252,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             if (this.selectedKeyBoundValue != null) {
                 var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue);
 
-                this.presenter.updateItem(itemToUpdate, tbValue.Text, itemToUpdate.Description.Value);
+                this.presenter.updateItem(itemToUpdate, tbValue.Text, itemToUpdate.Description.Value, this.cbSecure.Checked);
 
             }
         }
@@ -308,7 +297,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void tbValue_Leave(object sender, EventArgs e)
         {
-            updateKeyBoundData(tbValue.Text, "");
+            updateKeyBoundData(tbValue.Text, tbValue.Text);
         }
 
         private void updateKeyBoundData(string newValue, string newDescription)
@@ -317,7 +306,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             {
                 var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue);
 
-                this.presenter.updateItem(itemToUpdate, newValue, newDescription);
+                this.presenter.updateItem(itemToUpdate, newValue, newDescription, cbSecure.Checked);
 
             }
         }
@@ -347,7 +336,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
-            updateKeyBoundData("", tbDesc.Text);
+            updateKeyBoundData(tbValue.Text, tbDesc.Text);
         }
 
         private void btnReload_Click(object sender, EventArgs e)

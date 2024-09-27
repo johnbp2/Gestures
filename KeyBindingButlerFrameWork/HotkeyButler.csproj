@@ -232,10 +232,6 @@
       <Project>{c2eb5a3e-9528-47cd-bb07-b0f924239a77}</Project>
       <Name>JohnBPearson.Windows.Interop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheButlerFramework\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
-      <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
-      <Name>JohnBPearson.Cypher</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="butler.png">
@@ -243,6 +239,7 @@
     </Content>
     <Content Include="Icon1.ico" />
     <Content Include="icons8-butler-48.ico" />
+    <None Include="Resources\Clipboard_09-26-2024_01.png" />
     <None Include="Resources\butler.png" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>

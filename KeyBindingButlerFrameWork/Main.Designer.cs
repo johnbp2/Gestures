@@ -43,22 +43,23 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
-            this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.templatedLabel1 = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
+            this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
-            this.tbValue = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbSecure = new System.Windows.Forms.CheckBox();
             this.transparentFlowPanel2 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.tbValue = new System.Windows.Forms.TextBox();
             this.transparentFlowPanel3 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.transparentFlowPanel4 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.menuStrip1.SuspendLayout();
             this.transparentFlowPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.transparentFlowPanel2.SuspendLayout();
             this.transparentFlowPanel3.SuspendLayout();
+            this.transparentFlowPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -78,7 +79,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(587, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
+            this.menuStrip1.Size = new System.Drawing.Size(850, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,7 +89,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
@@ -101,7 +103,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 22);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // settingsToolStripMenuItem
@@ -118,11 +120,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.transparentFlowPanel1.Controls.Add(this.cbHotkeySelection);
             this.transparentFlowPanel1.Controls.Add(this.lblDescription);
             this.transparentFlowPanel1.Controls.Add(this.tbDesc);
+            this.transparentFlowPanel1.Controls.Add(this.cbSecure);
             this.transparentFlowPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.transparentFlowPanel1.Location = new System.Drawing.Point(6, 6);
             this.transparentFlowPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.transparentFlowPanel1.Name = "transparentFlowPanel1";
-            this.transparentFlowPanel1.Size = new System.Drawing.Size(321, 168);
+            this.transparentFlowPanel1.Size = new System.Drawing.Size(453, 229);
             this.transparentFlowPanel1.TabIndex = 2;
             // 
             // lblKey
@@ -137,27 +140,29 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.lblKey.Template = null;
             this.lblKey.TemplateValues = ((System.Collections.Generic.List<string>)(resources.GetObject("lblKey.TemplateValues")));
             // 
+            // templatedLabel1
+            // 
+            this.templatedLabel1.AutoSize = true;
+            this.templatedLabel1.Location = new System.Drawing.Point(13, 24);
+            this.templatedLabel1.Margin = new System.Windows.Forms.Padding(13, 0, 3, 0);
+            this.templatedLabel1.MinimumSize = new System.Drawing.Size(27, 7);
+            this.templatedLabel1.Name = "templatedLabel1";
+            this.templatedLabel1.Size = new System.Drawing.Size(27, 24);
+            this.templatedLabel1.TabIndex = 10;
+            this.templatedLabel1.Template = null;
+            this.templatedLabel1.TemplateValues = null;
+            // 
             // cbHotkeySelection
             // 
             this.cbHotkeySelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHotkeySelection.FormattingEnabled = true;
-            this.cbHotkeySelection.Location = new System.Drawing.Point(6, 54);
-            this.cbHotkeySelection.Margin = new System.Windows.Forms.Padding(6);
+            this.cbHotkeySelection.Location = new System.Drawing.Point(6, 49);
+            this.cbHotkeySelection.Margin = new System.Windows.Forms.Padding(6, 1, 6, 0);
             this.cbHotkeySelection.Name = "cbHotkeySelection";
-            this.cbHotkeySelection.Size = new System.Drawing.Size(218, 32);
+            this.cbHotkeySelection.Size = new System.Drawing.Size(106, 32);
             this.cbHotkeySelection.TabIndex = 0;
             this.cbHotkeySelection.TextUpdate += new System.EventHandler(this.cbHotkeySelection_TextUpdate);
             this.cbHotkeySelection.SelectedValueChanged += new System.EventHandler(this.cbHotkeySelection_SelectedValueChanged);
-            // 
-            // templatedLabel1
-            // 
-            this.templatedLabel1.AutoSize = true;
-            this.templatedLabel1.Location = new System.Drawing.Point(3, 24);
-            this.templatedLabel1.Name = "templatedLabel1";
-            this.templatedLabel1.Size = new System.Drawing.Size(0, 24);
-            this.templatedLabel1.TabIndex = 10;
-            this.templatedLabel1.Template = null;
-            this.templatedLabel1.TemplateValues = null;
             // 
             // lblDescription
             // 
@@ -174,44 +179,57 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.tbDesc.Location = new System.Drawing.Point(3, 108);
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
-            this.tbDesc.Size = new System.Drawing.Size(248, 32);
+            this.tbDesc.Size = new System.Drawing.Size(309, 68);
             this.tbDesc.TabIndex = 7;
             this.tbDesc.TextChanged += new System.EventHandler(this.tbDesc_TextChanged);
             this.tbDesc.Leave += new System.EventHandler(this.tbDesc_Leave);
             // 
+            // cbSecure
+            // 
+            this.cbSecure.AutoSize = true;
+            this.cbSecure.Location = new System.Drawing.Point(2, 181);
+            this.cbSecure.Margin = new System.Windows.Forms.Padding(2);
+            this.cbSecure.Name = "cbSecure";
+            this.cbSecure.Size = new System.Drawing.Size(100, 28);
+            this.cbSecure.TabIndex = 11;
+            this.cbSecure.Text = "Secure?";
+            this.cbSecure.UseVisualStyleBackColor = true;
+            // 
+            // transparentFlowPanel2
+            // 
+            this.transparentFlowPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.transparentFlowPanel2.Controls.Add(this.tbValue);
+            this.transparentFlowPanel2.Controls.Add(this.transparentFlowPanel3);
+            this.transparentFlowPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.transparentFlowPanel2.Location = new System.Drawing.Point(3, 244);
+            this.transparentFlowPanel2.Name = "transparentFlowPanel2";
+            this.transparentFlowPanel2.Size = new System.Drawing.Size(682, 213);
+            this.transparentFlowPanel2.TabIndex = 3;
+            // 
             // tbValue
             // 
+            this.tbValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tbValue.BackColor = System.Drawing.SystemColors.Info;
             this.tbValue.Location = new System.Drawing.Point(0, 0);
             this.tbValue.Margin = new System.Windows.Forms.Padding(0);
+            this.tbValue.MaximumSize = new System.Drawing.Size(500, 335);
+            this.tbValue.MinimumSize = new System.Drawing.Size(9, 50);
             this.tbValue.Multiline = true;
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(363, 142);
+            this.tbValue.Size = new System.Drawing.Size(329, 93);
             this.tbValue.TabIndex = 0;
             this.tbValue.TabStop = false;
             this.tbValue.Leave += new System.EventHandler(this.tbValue_Leave);
             // 
-            // btnSave
+            // transparentFlowPanel3
             // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.btnSave.Location = new System.Drawing.Point(3, 78);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(80, 33);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(3, 39);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 33);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Reload";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnReload_Click);
+            this.transparentFlowPanel3.Controls.Add(this.button1);
+            this.transparentFlowPanel3.Controls.Add(this.button2);
+            this.transparentFlowPanel3.Controls.Add(this.btnSave);
+            this.transparentFlowPanel3.Location = new System.Drawing.Point(3, 96);
+            this.transparentFlowPanel3.Name = "transparentFlowPanel3";
+            this.transparentFlowPanel3.Size = new System.Drawing.Size(480, 100);
+            this.transparentFlowPanel3.TabIndex = 9;
             // 
             // button1
             // 
@@ -223,35 +241,36 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // flowLayoutPanel1
+            // button2
             // 
-            this.flowLayoutPanel1.Controls.Add(this.transparentFlowPanel1);
-            this.flowLayoutPanel1.Controls.Add(this.transparentFlowPanel2);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 27);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(575, 355);
-            this.flowLayoutPanel1.TabIndex = 9;
+            this.button2.Location = new System.Drawing.Point(89, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(80, 33);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Reload";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // transparentFlowPanel2
+            // btnSave
             // 
-            this.transparentFlowPanel2.Controls.Add(this.tbValue);
-            this.transparentFlowPanel2.Controls.Add(this.transparentFlowPanel3);
-            this.transparentFlowPanel2.Location = new System.Drawing.Point(3, 183);
-            this.transparentFlowPanel2.Name = "transparentFlowPanel2";
-            this.transparentFlowPanel2.Size = new System.Drawing.Size(552, 159);
-            this.transparentFlowPanel2.TabIndex = 3;
+            this.btnSave.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.btnSave.Location = new System.Drawing.Point(175, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(80, 33);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // transparentFlowPanel3
+            // transparentFlowPanel4
             // 
-            this.transparentFlowPanel3.Controls.Add(this.button1);
-            this.transparentFlowPanel3.Controls.Add(this.button2);
-            this.transparentFlowPanel3.Controls.Add(this.btnSave);
-            this.transparentFlowPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.transparentFlowPanel3.Location = new System.Drawing.Point(366, 3);
-            this.transparentFlowPanel3.Name = "transparentFlowPanel3";
-            this.transparentFlowPanel3.Size = new System.Drawing.Size(122, 139);
-            this.transparentFlowPanel3.TabIndex = 9;
+            this.transparentFlowPanel4.Controls.Add(this.transparentFlowPanel1);
+            this.transparentFlowPanel4.Controls.Add(this.transparentFlowPanel2);
+            this.transparentFlowPanel4.Location = new System.Drawing.Point(0, 27);
+            this.transparentFlowPanel4.Name = "transparentFlowPanel4";
+            this.transparentFlowPanel4.Size = new System.Drawing.Size(441, 474);
+            this.transparentFlowPanel4.TabIndex = 10;
             // 
             // Main
             // 
@@ -259,11 +278,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = global::JohnBPearson.Windows.Forms.KeyBindingButler.Properties.Resources.Clipboard_09_26_2024_01;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(587, 394);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(850, 496);
+            this.Controls.Add(this.transparentFlowPanel4);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -279,10 +299,10 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.menuStrip1.PerformLayout();
             this.transparentFlowPanel1.ResumeLayout(false);
             this.transparentFlowPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.transparentFlowPanel2.ResumeLayout(false);
             this.transparentFlowPanel2.PerformLayout();
             this.transparentFlowPanel3.ResumeLayout(false);
+            this.transparentFlowPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,8 +311,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         #endregion
 
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.TextBox tbValue;
-        private System.Windows.Forms.Button btnSave;
         private JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel transparentFlowPanel1;
         private System.Windows.Forms.ComboBox cbHotkeySelection;
        // private System.Windows.Forms.Button btnCopyGuildLog;
@@ -307,10 +325,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private TemplatedLabel templatedLabel1;
         private System.Windows.Forms.TextBox tbDesc;
         private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.CheckBox cbSecure;
+        private TransparentFlowPanel transparentFlowPanel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private TransparentFlowPanel transparentFlowPanel2;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox tbValue;
+        private TransparentFlowPanel transparentFlowPanel4;
         private TransparentFlowPanel transparentFlowPanel3;
     }
 }

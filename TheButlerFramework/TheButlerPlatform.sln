@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\butler.png = ..\butler.png
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheToolbarButler", "..\TheToolbarButler\TheToolbarButler.csproj", "{9749F84D-4FFF-4764-AF60-433722784C12}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.KeyBindingButler.Common", "JohnBPearson.KeyBindingButler.Common\JohnBPearson.KeyBindingButler.Common.csproj", "{2844508A-F28B-4D3D-A974-AAF26291981A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Butler.Test", "..\JohnBPearson.Butler.Test\JohnBPearson.Butler.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
@@ -52,10 +50,6 @@ Global
 		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9749F84D-4FFF-4764-AF60-433722784C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9749F84D-4FFF-4764-AF60-433722784C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9749F84D-4FFF-4764-AF60-433722784C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9749F84D-4FFF-4764-AF60-433722784C12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Release|Any CPU.ActiveCfg = Release|Any CPU

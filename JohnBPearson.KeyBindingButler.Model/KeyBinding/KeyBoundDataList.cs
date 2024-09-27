@@ -47,27 +47,25 @@ namespace JohnBPearson.KeyBindingButler.Model
         //    //  return this._items;
         //}
 
-        public KeyAndDataStringLiterals PrepareDataForSave(string encryptionFlags, bool encrypt)
+        public KeyAndDataStringLiterals PrepareDataForSave()
         {
 
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
             int count = 0;
             foreach (var item in _items)
-            {//if (item.IsDirty) count++;                        
-                var data = item.Data.Value;
-                if (encrypt)2
+
+            {
+                var data = string.Empty;
+                if (item.Secured != null)
                 {
-                    var list = new SettingToList(encryptionFlags).List;
-                    foreach (var compare in list)
-                    {
-                        if ()
-                        {
-                            data = Cypher.Aes.AesCypher.LockString(item.Description.Value);
-                            break;
-                        }
-                    }
+                    data = item.Secured.Secured;
                 }
+                else
+                {
+                data   = item.Data.Value;
+                }
+                
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseData.GetDeliminatedData(data));
                 if(item.ObjectState == ObjectState.Mutated)
