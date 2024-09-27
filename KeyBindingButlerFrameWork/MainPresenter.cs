@@ -1,14 +1,8 @@
-﻿using System.CodeDom;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using JohnBPearson.Cypher;
+using System.Windows.Input;
 using JohnBPearson.KeyBindingButler.Model;
 using JohnBPearson.KeyBindingButler.Model.KeyBinding;
 using JohnBPearson.Windows.Interop;
@@ -31,28 +25,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         public void updateItem(IKeyBoundData oldItem, string newData, string description,bool isSecured)
         {
-            string dataValue = string.Empty;
-           
-            if (oldItem.GetType() == typeof(EncryptedData))
-            {
-                dataValue = Base64Url.Encode(newData);
-            }
-            else if(isSecured)
-            {
-                oldItem =  new JohnBPearson.KeyBindingButler.Model.KeyBinding.EncryptedData(oldItem.pat
-            }
-            else
-            {
-                dataValue = newData;
-            }
-            oldItem.Update(dataValue, description);
+                          oldItem.Update(ref newData, description, isSecured);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(keyBoundValueList.Items);
         }
         
         public int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt)
         {
-            var strings = this.keyBoundValueList.PrepareDataForSave(encryptionFlags, encrypt);
+            var strings = this.keyBoundValueList.PrepareDataForSave();
             Properties.Settings.Default.BindableValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
             Properties.Settings.Default.Save();
@@ -147,7 +127,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
          IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> HotKeyValues { get; }
         int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
 
-        void updateItem(IKeyBoundData oldItem, string newData, string description);
+        void updateItem(IKeyBoundData oldItem, string newData, string description, bool isSecured);
 
 
         IKeyBoundData findKeyBoundValue(string keyValue);

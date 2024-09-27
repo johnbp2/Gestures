@@ -21,7 +21,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         Data Data { get; }
         Description Description { get; set; }
         char KeyAsChar { get; }
-        
+        KeyBinding.EncryptedData Secured { get; }
         ObjectState ObjectState { get; }
 
 
@@ -34,12 +34,13 @@ namespace JohnBPearson.KeyBindingButler.Model
       
 
 
-        void Update(string newValue, string newDescription);
+        void Update(ref string newValue, string newDescription,  bool isSecure = false);
         string GetDelimitated();
 
 
         bool setIfLastItem();
 
+    
 
     }
 

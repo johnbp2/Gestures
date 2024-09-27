@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JohnBPearson.KeyBindingButler.Model.KeyBinding;
+using System;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
@@ -25,7 +26,17 @@ namespace JohnBPearson.KeyBindingButler.Model
         }
         public Data Data
         {
-            get { return _data; }
+            get {
+
+                if (this._secured == null)
+                {
+                    return _data;
+                }else
+                {
+                  return  this._secured;
+
+                }
+            }
             private set
             {
                 if (value != this._data)
@@ -172,12 +183,16 @@ namespace JohnBPearson.KeyBindingButler.Model
                     
         }
 
-        public void Update(string newValue, string newDescription)
+        public void Update(ref string newValue, string newDescription, bool isSecure = false)
         {
-            if (this.Data.Value != newValue)
+            if (this.Data.Value != newValue && !isSecure)
             {
                 this.Data.Value = newValue;
                 this._objectState = ObjectState.Mutated;
+            }
+            else if(this.Data.Value != newValue || isSecure)
+            {
+                this.UpdateAddSecureString( newValue);
             }
             if (!string.IsNullOrWhiteSpace(newDescription))
             {
@@ -193,6 +208,13 @@ namespace JohnBPearson.KeyBindingButler.Model
                 return true;
             }
             return false;
+        }
+
+        public void UpdateAddSecureString(string newValue)
+        {
+            this._secured = EncryptedData.Cypher(this,  newValue);
+            newValue = string.Empty;
+            
         }
     }
 }

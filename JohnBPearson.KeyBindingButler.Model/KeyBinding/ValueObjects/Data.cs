@@ -14,7 +14,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         //private Data() {
             
         //} 
-        private Data(string value, IKeyBoundData parent) : base(value, parent) { 
+        protected Data(string value, IKeyBoundData parent) : base(value, parent) { 
      
         
         }
