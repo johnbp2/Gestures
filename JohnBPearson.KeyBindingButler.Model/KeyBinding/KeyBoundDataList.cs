@@ -12,7 +12,7 @@ namespace JohnBPearson.KeyBindingButler.Model
     {
 
         private Parser _userSettingsParser;
-        private List<IKeyBoundData> _items = new List<IKeyBoundData>();
+        private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
 
         public KeyBoundDataList(KeyAndDataStringLiterals strings)
@@ -33,14 +33,14 @@ namespace JohnBPearson.KeyBindingButler.Model
                 else return null;
             }
         }
-        public IEnumerable<IKeyBoundData> Items
+        public IEnumerable<IContainer> Items
         { get { return this._items; } }
 
         //public void Replace(IKeyBoundData newItem, IKeyBoundData oldItem)
         //{
 
 
-        //    var newKeyBoundValue = KeyBoundData.CreateForReplace(newItem.Data, oldItem);
+        //    var newKeyBoundValue = Container.CreateForReplace(newItem.Data, oldItem);
         //    var index = this._items.IndexOf(oldItem);
         //    this._items.RemoveAt(index);
         //    this._items[index] = newItem;
@@ -93,12 +93,12 @@ namespace JohnBPearson.KeyBindingButler.Model
             return sbOneString.ToString();
         }
 
-        private string buildSaveString(IKeyBoundData item)
+        private string buildSaveString(IContainer item)
         {
             return String.Concat(item.Key.GetDeliminated(), item.Data, KeyBoundDataList.deliminater);
         }
 
-        internal int findIndex(KeyBoundData searchItem)
+        internal int findIndex(Container searchItem)
         {
             return this._items.FindIndex((itemToCheck) => { return itemToCheck.Equals(searchItem); });
 

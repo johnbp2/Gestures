@@ -7,7 +7,7 @@ using System.Xml.Schema;
 
 namespace JohnBPearson.KeyBindingButler.Model
 {
-    public class KeyboardKey : BaseData
+    public class KeyInfo : BaseData
     {
 
         private char _key;
@@ -27,11 +27,11 @@ namespace JohnBPearson.KeyBindingButler.Model
             }
             set { _key = value; }
         }
-        protected KeyboardKey(IKeyBoundData parent) : base(parent)
+        protected KeyInfo(IContainer parent) : base(parent)
         {
 
         }
-        protected KeyboardKey(char key, IKeyBoundData parent) : base(key.ToString(), parent)
+        protected KeyInfo(char key, IContainer parent) : base(key.ToString(), parent)
         {
             this._key = key;
         }
@@ -68,9 +68,9 @@ namespace JohnBPearson.KeyBindingButler.Model
 
         }
 
-        public static KeyboardKey Create(char key, IKeyBoundData parent)
+        public static KeyInfo Create(char key, IContainer parent)
         {
-            return new KeyboardKey(key, parent);
+            return new KeyInfo(key, parent);
 
         }
     }

@@ -27,7 +27,7 @@ public class GlobalHotKey : IDisposable
 
  
 
-    public static bool RegisterHotKey(string aKeyGestureString, IKeyBoundData data, KeyBindCallBack callBack)
+    public static bool RegisterHotKey(string aKeyGestureString, JohnBPearson.KeyBindingButler.Model.IContainer data, KeyBindCallBack callBack)
     {
 
         var c = new KeyGestureConverter();
@@ -38,7 +38,7 @@ public class GlobalHotKey : IDisposable
         }
         return GlobalHotKey.RegisterHotKey(aKeyGesture.Modifiers, aKeyGesture.Key, data, callBack);
     }
-    private static bool RegisterHotKey(ModifierKeys modifier, Key key, IKeyBoundData data, KeyBindCallBack callBack)
+    private static bool RegisterHotKey(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.KeyBindingButler.Model.IContainer data, KeyBindCallBack callBack)
     {
         if (modifier == ModifierKeys.None)
         {
@@ -84,7 +84,7 @@ public class GlobalHotKey : IDisposable
         
     }
 
-    private static void ReplaceAdd(ModifierKeys modifier, Key key, IKeyBoundData data,  KeyBindCallBack callBack)
+    private static void ReplaceAdd(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.KeyBindingButler.Model.IContainer data,  KeyBindCallBack callBack)
     {
         if (registeredHotKeys.ContainsKey(data.Key.Value))
         {
@@ -159,7 +159,7 @@ public class GlobalHotKey : IDisposable
     private class HotKeyWithAction
     {
 
-        public HotKeyWithAction(ModifierKeys modifier, Key key, IKeyBoundData data, Action action = null, KeyBindCallBack callBack = null)
+        public HotKeyWithAction(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.KeyBindingButler.Model.IContainer data, Action action = null, KeyBindCallBack callBack = null)
         {
             Modifier = modifier;
             Key = key;
@@ -175,8 +175,8 @@ public class GlobalHotKey : IDisposable
         }
 
         public ModifierKeys Modifier { get; }
-        public Key Key { get; }
-        public IKeyBoundData Data { get; }
+        public System.Windows.Input.Key Key { get; }
+        public JohnBPearson.KeyBindingButler.Model.IContainer Data { get; }
         public Action Action { get; }
         public KeyBindCallBack CallBack { get; }
 
@@ -188,10 +188,10 @@ public class GlobalHotKey : IDisposable
 
     //private class HotKeyWithAction    {
 
-    //    public HotKeyWithAction(ModifierKeys modifier, Key key, string data, Action action = null, KeyBindCallBack callBack = null)
+    //    public HotKeyWithAction(ModifierKeys modifier, KeyInfo key, string data, Action action = null, KeyBindCallBack callBack = null)
     //    {
     //        Modifier = modifier;
-    //        Key = key;
+    //        KeyInfo = key;
     //        if (action != null)
     //        {
     //            Action = action;
@@ -204,7 +204,7 @@ public class GlobalHotKey : IDisposable
     //    }
 
     //    public ModifierKeys Modifier { get; }
-    //    public Key Key { get; }
+    //    public KeyInfo KeyInfo { get; }
     //    public IKeyBoundData Data { get;  } 
     //    public Action Action { get; }
     //    public KeyBindCallBack CallBack { get; }
@@ -237,9 +237,9 @@ public class GlobalHotKey : IDisposable
         public class HotKeyPressedEventArgs : EventArgs
         {
             private ModifierKeys _modifier;
-            private Key _key;
+            private System.Windows.Input.Key _key;
 
-            internal HotKeyPressedEventArgs(ModifierKeys modifier, Key key)
+            internal HotKeyPressedEventArgs(ModifierKeys modifier, System.Windows.Input.Key key)
             {
                 _modifier = modifier;
                 _key = key;
@@ -250,7 +250,7 @@ public class GlobalHotKey : IDisposable
                 get { return _modifier; }
             }
 
-            public Key Key
+            public System.Windows.Input.Key Key
             {
                 get { return _key; }
             }

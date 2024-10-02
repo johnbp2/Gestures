@@ -25,7 +25,7 @@ namespace JohnBPearson.KeyBindingButler.Model
     {
 
         private Parser _userSettingsParser;
-        private List<IKeyBoundData> _items = new List<IKeyBoundData>();
+        private List<IContainer> _items = new List<IContainer>();
 
         public KeyBindingButler(KeyAndDataStringLiterals strings, string hisName, IKeyBoundDataList dataList = null) : base(hisName)
         {
@@ -49,7 +49,7 @@ namespace JohnBPearson.KeyBindingButler.Model
                 else return null;
             }
         }
-        public IEnumerable<IKeyBoundData> Items
+        public IEnumerable<IContainer> Items
         { get { return this._items; } }
 
         

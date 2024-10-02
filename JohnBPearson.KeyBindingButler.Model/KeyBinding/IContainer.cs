@@ -17,7 +17,7 @@ namespace JohnBPearson.KeyBindingButler.Model
     }
     public interface IBase
     {
-        KeyboardKey Key { get; }
+        KeyInfo Key { get; }
         Data Data { get; }
         Description Description { get; set; }
         char KeyAsChar { get; }
@@ -26,7 +26,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
     }
-    public interface IKeyBoundData : System.IEquatable<IKeyBoundData>,                    IBase
+    public interface IContainer : System.IEquatable<IContainer>,                    IBase
     {
 
 
@@ -63,9 +63,9 @@ namespace JohnBPearson.KeyBindingButler.Model
 //        /// <param name="value"></param>
 //        /// <param name="item">the item to be replaced</param>
 //        ///// <returns></returns>
-//        //public static IKeyBoundData CreateForReplace(string key, string value, KeyBoundData item)
+//        //public static IKeyBoundData CreateForReplace(string key, string value, Container item)
 //        //{
-//        //    return KeyBoundData.KeyBoundDataBase Create(string key, string value)
+//        //    return Container.KeyBoundDataBase Create(string key, string value)
 //        //}
 //    }
 //}

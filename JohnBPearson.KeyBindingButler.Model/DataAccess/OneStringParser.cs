@@ -86,7 +86,7 @@
 //                    {
 //                       data = keyValue[1];
 //                    }
-//                    var pair = KeyBoundData.Create(, keyValue[0].ToCharArray()[0], data);
+//                    var pair = Container.Create(, keyValue[0].ToCharArray()[0], data);
 //                    if(this.Keys == null)
 //                    {
 //                        this.Keys = new List<string>();
@@ -110,7 +110,7 @@
 //            //    if (index < 26)
 //            //    {
 //            //        var value = valuesTyped[index];
-//            //        var hkv = JohnBPearson.KeyBindingButler.Model.KeyBoundData.Create(key[0], value);
+//            //        var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(key[0], value);
 //            //        resultList.Add(hkv);
 //            //        index++;
 //            //    }
@@ -141,7 +141,7 @@
 
 //                //}
 //                sbResult.Append(item.GetDelimitated());
-//                //tempKeys.Add(item.Key.ToString());
+//                //tempKeys.Add(item.KeyInfo.ToString());
 //                //tempValues.Add(item.Data.ToString());
 //            }
 //           // var strings = new KeyAndDataStringLiterals();

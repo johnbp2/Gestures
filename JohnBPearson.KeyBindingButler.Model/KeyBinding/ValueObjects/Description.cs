@@ -17,11 +17,11 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
 
-        protected Description(IKeyBoundData parent) : base(parent)
+        protected Description(IContainer parent) : base(parent)
             {
 
             }
-            protected Description(string description, IKeyBoundData parent) : base(description, parent)
+            protected Description(string description, IContainer parent) : base(description, parent)
             {
               
             }
@@ -34,7 +34,7 @@ namespace JohnBPearson.KeyBindingButler.Model
                
             }
 
-        public static Description Create(string description, IKeyBoundData parent)
+        public static Description Create(string description, IContainer parent)
         {
             return new Description(description, parent);
         }
