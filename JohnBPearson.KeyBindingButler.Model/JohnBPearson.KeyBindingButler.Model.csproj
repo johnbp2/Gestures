@@ -79,10 +79,10 @@
     <Compile Include="DataAccess\JsonToObject.cs" />
     <Compile Include="KeyBinding\ValueObjects\Description.cs" />
     <Compile Include="KeyBinding\ValueObjects\IBaseData.cs" />
-    <Compile Include="KeyBinding\IKeyBoundData.cs" />
-    <Compile Include="KeyBinding\ValueObjects\KeyboardKey.cs" />
+    <Compile Include="KeyBinding\IContainer.cs" />
+    <Compile Include="KeyBinding\ValueObjects\KeyInfo.cs" />
     <Compile Include="KeyBindButler.cs" />
-    <Compile Include="KeyBinding\KeyBoundData.cs" />
+    <Compile Include="KeyBinding\Container.cs" />
     <Compile Include="DataAccess\OneStringParser.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

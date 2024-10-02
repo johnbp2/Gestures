@@ -49,9 +49,9 @@ namespace JohnBPearson.com.Utility
         private string _valuesString;
         private string _descriptionString;
 
-        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> _items;
+        private List<JohnBPearson.KeyBindingButler.Model.IContainer> _items;
 
-        internal List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> Items
+        internal List<JohnBPearson.KeyBindingButler.Model.IContainer> Items
         {
             get
             {
@@ -101,10 +101,10 @@ namespace JohnBPearson.com.Utility
             throw new ArgumentException(string.Concat( delim, " was not found in  ", value));
         }
 
-        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> parse()
+        private List<JohnBPearson.KeyBindingButler.Model.IContainer> parse()
         {
             string[] delims = { delim };
-            var resultList = new List<IKeyBoundData>();
+            var resultList = new List<IContainer>();
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
             var letters = this._keysString.Split(delimChar).Clone();
             var values = this._valuesString.Split(delimChar);
@@ -117,7 +117,7 @@ namespace JohnBPearson.com.Utility
                 {
                     var value = values[index];
                     var des = descriptions[index];
-                    var hkv = JohnBPearson.KeyBindingButler.Model.KeyBoundData.Create(this._parent,key[0], value, des);
+                    var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(this._parent,key[0], value, des);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -149,7 +149,7 @@ namespace JohnBPearson.com.Utility
 
         private const string delim = "|";
         private const char delimChar = '|';
-        internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> items)
+        internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.KeyBindingButler.Model.IContainer> items)
         {
             var result = 0;
             var tempKeys = new List<string>();

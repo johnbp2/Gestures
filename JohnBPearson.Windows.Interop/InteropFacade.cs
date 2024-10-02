@@ -7,7 +7,7 @@ using JohnBPearson.KeyBindingButler.Model;
 namespace JohnBPearson.Windows.Interop
 {
 
-    public delegate void KeyBindCallBack(IKeyBoundData item);
+    public delegate void KeyBindCallBack(IContainer item);
     public class InteropFacade
     {
         public InteropFacade() { }

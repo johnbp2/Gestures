@@ -12,7 +12,7 @@ namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
     public class EncryptedData : Data
     {
 
-        private EncryptedData(IKeyBoundData parent, ref string value) : base(value,parent)
+        private EncryptedData(IContainer parent, ref string value) : base(value,parent)
         {
             this._secured = JohnBPearson.Cypher.Base64Url.Encode(value);
             value = null;
@@ -38,7 +38,7 @@ namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
             get { return this._secured; }    
                     }
 
-        public static EncryptedData Cypher(IKeyBoundData parent,  string value)
+        public static EncryptedData Cypher(IContainer parent,  string value)
         {    var instance = new EncryptedData(parent, ref value);
             value = null;
             return instance;

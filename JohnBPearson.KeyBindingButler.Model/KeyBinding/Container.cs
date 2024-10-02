@@ -13,13 +13,13 @@ namespace JohnBPearson.KeyBindingButler.Model
 {
 
 
-    public class KeyBoundData : IKeyBoundData
+    public class Container : IContainer
     {
         private Data _data;
        
-        private KeyboardKey _key;
+        private KeyInfo _key;
          internal IKeyBoundDataList _parent;
-        public KeyboardKey Key
+        public KeyInfo Key
         {
             get { return _key; }
             private set { _key = value; }
@@ -100,10 +100,10 @@ namespace JohnBPearson.KeyBindingButler.Model
             get { return this._objectState; }
         }
 
-        protected KeyBoundData()
+        protected Container()
         {
         }
-        protected KeyBoundData(char key, string value)
+        protected Container(char key, string value)
         {
             this.CreateKeyboardKey(key);
             this.CreateData(value);
@@ -115,7 +115,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
         private void CreateKeyboardKey(char key)
         {
-            Key = KeyboardKey.Create(key, this);
+            Key = KeyInfo.Create(key, this);
         }
 
         private void CreateDescription(string description)
@@ -123,7 +123,7 @@ namespace JohnBPearson.KeyBindingButler.Model
             Description =Description.Create(description, this);
         }
 
-        protected KeyBoundData(IKeyBoundDataList parent, char key, string value, string description)
+        protected Container(IKeyBoundDataList parent, char key, string value, string description)
         {
             this.CreateKeyboardKey(key);
             this.CreateData(value);
@@ -146,27 +146,27 @@ namespace JohnBPearson.KeyBindingButler.Model
         }
 
 
-        internal static KeyBoundData Create(IKeyBoundDataList parent, char key, string value, string description = "")
+        internal static Container Create(IKeyBoundDataList parent, char key, string value, string description = "")
         {
-            return new KeyBoundData(parent, key, value, description);
+            return new Container(parent, key, value, description);
         }
 
-        //internal static KeyBoundData CreateForReplace(Data newValue, IKeyBoundData oldItem)
+        //internal static Container CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
         //    if (!newValue.Equals(oldItem.Data))
         //    {
-        //        return new KeyBoundData(oldItem.Key.Key, newValue.Value);
+        //        return new Container(oldItem.KeyInfo.KeyInfo, newValue.Value);
         //    }
-        //    if (oldItem is KeyBoundData)
+        //    if (oldItem is Container)
         //    {
-        //        return (KeyBoundData)(oldItem);
+        //        return (Container)(oldItem);
         //    } else
         //    {
         //        throw new NotImplementedException();
         //    }
         //}
 
-        public bool Equals(KeyBoundData other)
+        public bool Equals(Container other)
         {
             if (this.Data == other.Data && this.KeyAsChar == other.KeyAsChar)
             {
@@ -201,7 +201,7 @@ namespace JohnBPearson.KeyBindingButler.Model
             }
         }
 
-        public bool Equals(IKeyBoundData other)
+        public bool Equals(IContainer other)
         {
             if (other.Data.Equals(this.Data))
             {

@@ -13,9 +13,9 @@ namespace JohnBPearson.KeyBindingButler.Model
 
     public abstract class BaseData : IEquatable<BaseData>, IBaseData
     {
-        protected IKeyBoundData _parent;
-        protected BaseData(IKeyBoundData parent) { this._parent = parent; }
-        protected BaseData(string value, IKeyBoundData parent)
+        protected IContainer _parent;
+        protected BaseData(IContainer parent) { this._parent = parent; }
+        protected BaseData(string value, IContainer parent)
         {
             if (value == null) value = string.Empty;
             this._value = value;

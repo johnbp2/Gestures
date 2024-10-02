@@ -4,7 +4,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 {
     public interface IKeyBoundDataList
     {
-        IEnumerable<IKeyBoundData> Items { get; }
+        IEnumerable<IContainer> Items { get; }
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();

@@ -17,11 +17,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             ////using(AesManaged myAes = new AesManaged())
             ////{
             ////    Encrypt the string to an array of bytes.
-            ////    byte[] encrypted = JohnBPearson.Cypher.Aes.AesCypher.EncryptStringToBytes_Aes(original, myAes.Key, myAes.IV);
+            ////    byte[] encrypted = JohnBPearson.Cypher.Aes.AesCypher.EncryptStringToBytes_Aes(original, myAes.KeyInfo, myAes.IV);
             ////    var str = System.Text.Encoding.Default.GetString(encrypted);
 
             ////    Decrypt the bytes to a string.
-            ////    string roundtrip = JohnBPearson.Cypher.Aes.AesCypher.DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
+            ////    string roundtrip = JohnBPearson.Cypher.Aes.AesCypher.DecryptStringFromBytes_Aes(encrypted, myAes.KeyInfo, myAes.IV);
 
             ////    Display the original data and the decrypted data.
             ////    Console.WriteLine("Original:   {0}", original);
@@ -45,7 +45,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 var main = new Main(new MainPresenter());
                 Application.Run(main);
             } else {
-                System.Windows.MessageBox.Show("Instance of the Key Binding Butler is already running!");
+                System.Windows.MessageBox.Show("Instance of the KeyInfo Binding Butler is already running!");
                 Application.Exit();
         } }
 

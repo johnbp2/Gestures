@@ -27,13 +27,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private JohnBPearson.KeyBindingButler.Model.IKeyBoundData currentItem;
+        private JohnBPearson.KeyBindingButler.Model.IContainer currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
 
 
-        private string selectedKeyBoundValue
+        private string selectedKey
         {
             get { if (cbHotkeySelection.SelectedItem != null) {
                     return cbHotkeySelection.SelectedItem as string;
@@ -71,7 +71,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
 
-        public void hotKeyCallBack(IKeyBoundData item)
+        public void hotKeyCallBack(IContainer item)
         {
             var data = item.Data.Value;
          
@@ -89,14 +89,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
 
-        private void CopyValueToClipBoard(IKeyBoundData data)
+        private void CopyValueToClipBoard(IContainer data)
         {
 
             System.Windows.Clipboard.SetText(data.Data.Value);
 
             this.lblKey.ClearAndReplace(data.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = data.Key.Value.ToLower();
-            updateUIByKey(data.Key.Key);
+            this.updateUIByKey(data.Key.Key);
 
             Settings.Default.LastBoundKeyPressed = data.Key.Value;
             Settings.Default.Save();
@@ -183,6 +183,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             tbDesc.Text = currentItem.Description.Value;
 
         }
+
         #endregion
 
 
@@ -249,10 +250,10 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void tbValue_TextChanged(object sender, EventArgs e)
         {
-            if (this.selectedKeyBoundValue != null) {
-                var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue);
+            if (this.selectedKey != null) {
+                var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKey);
 
-                this.presenter.updateItem(itemToUpdate, tbValue.Text, itemToUpdate.Description.Value, this.cbSecure.Checked);
+                this.presenter.updateContainer(tbValue.Text, itemToUpdate.Description.Value,this.selectedKey, this.cbSecure.Checked);
 
             }
         }
@@ -286,9 +287,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void cbHotkeySelection_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (this.selectedKeyBoundValue != null)
+            if (this.selectedKey != null)
             {
-                this.updateUIByKey(this.selectedKeyBoundValue.ToCharArray()[0]);
+                this.updateUIByKey(this.selectedKey.ToCharArray()[0]);
 
             }
 
@@ -297,25 +298,16 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void tbValue_Leave(object sender, EventArgs e)
         {
-            updateKeyBoundData(tbValue.Text, tbValue.Text);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, cbSecure.Checked);
         }
 
-        private void updateKeyBoundData(string newValue, string newDescription)
-        {
-            if (this.selectedKeyBoundValue != null)
-            {
-                var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue);
-
-                this.presenter.updateItem(itemToUpdate, newValue, newDescription, cbSecure.Checked);
-
-            }
-        }
+      
 
         private void cbHotkeySelection_TextUpdate(object sender, EventArgs e)
         {
-            if (this.selectedKeyBoundValue != null)
+            if (this.selectedKey != null)
             {
-                tbValue.Text = this.presenter.findKeyBoundValue(this.selectedKeyBoundValue.ToString()).Data.Value;
+                tbValue.Text = this.presenter.findKeyBoundValue(this.selectedKey.ToString()).Data.Value;
 
             }
             var control = (System.Windows.Forms.ComboBox)sender;
@@ -336,7 +328,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
-            updateKeyBoundData(tbValue.Text, tbDesc.Text);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbSecure.Checked);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -362,5 +354,10 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             #endregion
         }
 
+        private void cbSecure_CheckedChanged(object sender, EventArgs e)
+        {
+            this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey,this.cbSecure.Checked);
+            // private void updateKeyBoundData(string newValue, string newDescription)
+        }
     } 
 }

@@ -12,13 +12,17 @@ namespace JohnBPearson.Windows.Forms.Controls
     public class TemplatedLabel: System.Windows.Forms.Label
     {
 
-		private string _template;
+		private string _template = string.Empty;
 		
         [Browsable(true)]
         public string Template
 		{
 			get { return _template; }
-			set { _template = value;
+			set {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    _template = value;
+                }
 			if(TemplateValues != null && !string.IsNullOrWhiteSpace(_template))
 				{
 
