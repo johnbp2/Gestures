@@ -27,7 +27,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         private Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
 
-        public KeyBindingButler(KeyAndDataStringLiterals strings, string hisName, IKeyBoundDataList dataList = null) : base(hisName)
+        public KeyBindingButler(KeyAndDataStringLiterals strings, string hisName, IContainerList dataList = null) : base(hisName)
         {
 
             if(dataList != null)

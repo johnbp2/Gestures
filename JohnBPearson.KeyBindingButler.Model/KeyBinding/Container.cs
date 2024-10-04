@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Lifetime;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
@@ -18,7 +19,7 @@ namespace JohnBPearson.KeyBindingButler.Model
         private Data _data;
        
         private KeyInfo _key;
-         internal IKeyBoundDataList _parent;
+         internal IContainerList _parent;
         public KeyInfo Key
         {
             get { return _key; }
@@ -60,12 +61,19 @@ namespace JohnBPearson.KeyBindingButler.Model
             }
         }
 
+        private bool _isDataSecured;
+
+        public bool IsDataSecured
+        {
+            get { return _isDataSecured; }
+            set { _isDataSecured = value; }
+        }
 
 
 
-        private JohnBPearson.KeyBindingButler.Model.KeyBinding.EncryptedData _secured;
+        private JohnBPearson.KeyBindingButler.Model.KeyBinding.SecuredData _secured;
 
-        public KeyBinding.EncryptedData Secured
+        public KeyBinding.SecuredData Secured
         {
             get { return this._secured; }
         }
@@ -123,10 +131,16 @@ namespace JohnBPearson.KeyBindingButler.Model
             Description =Description.Create(description, this);
         }
 
-        protected Container(IKeyBoundDataList parent, char key, string value, string description)
+        protected Container(IContainerList parent, char key, string value, string description, bool secured)
         {
             this.CreateKeyboardKey(key);
-            this.CreateData(value);
+            if (secured) {
+                Data = SecuredData.Create(value, this);
+            }
+            else
+            {
+                this.CreateData(value);
+            }
            this.CreateDescription(description);
             this._parent = parent;
         }
@@ -146,9 +160,9 @@ namespace JohnBPearson.KeyBindingButler.Model
         }
 
 
-        internal static Container Create(IKeyBoundDataList parent, char key, string value, string description = "")
+        internal static Container Create(IContainerList parent, char key, string value, string description = "", bool secured = false)
         {
-            return new Container(parent, key, value, description);
+            return new Container(parent, key, value, description, secured);
         }
 
         //internal static Container CreateForReplace(Data newValue, IKeyBoundData oldItem)
@@ -176,23 +190,27 @@ namespace JohnBPearson.KeyBindingButler.Model
         }
    
 
-        [Obsolete("no mas")]
-        public string GetDelimitated()
-        {
-            return string.Concat(this._key.GetDeliminated(), this._data.ToString());
+        //[Obsolete("no mas")]
+        //public string GetDelimitated()
+        //{
+        //    return string.Concat(this._key.GetDeliminated(), this._data.ToString());
                     
-        }
+        //}
 
         public void Update(ref string newValue, string newDescription, bool isSecure = false)
         {
+
+            this._isDataSecured = isSecure;
             if (this.Data.Value != newValue && !isSecure)
             {
                 this.Data.Value = newValue;
                 this._objectState = ObjectState.Mutated;
+                
             }
             else if(this.Data.Value != newValue || isSecure)
             {
                 this.UpdateAddSecureString( newValue);
+                this._objectState = ObjectState.Mutated;
             }
             if (!string.IsNullOrWhiteSpace(newDescription))
             {
@@ -212,7 +230,8 @@ namespace JohnBPearson.KeyBindingButler.Model
 
         public void UpdateAddSecureString(string newValue)
         {
-            this._secured = EncryptedData.Cypher(this,  newValue);
+            this._secured = SecuredData.Create(this,  newValue);
+            this._isDataSecured = true;
             newValue = string.Empty;
             
         }

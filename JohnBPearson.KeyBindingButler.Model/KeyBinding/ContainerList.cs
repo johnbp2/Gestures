@@ -8,14 +8,14 @@ using JohnBPearson.com.Utility;
 
 namespace JohnBPearson.KeyBindingButler.Model
 {
-    public class KeyBoundDataList : IKeyBoundDataList
+    public class ContainerList : IContainerList
     {
 
         private Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
 
-        public KeyBoundDataList(KeyAndDataStringLiterals strings)
+        public ContainerList(KeyAndDataStringLiterals strings)
         {
             this._userSettingsParser = new Parser(strings, this);
             this._items = this._userSettingsParser.Items;
@@ -52,6 +52,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
+            var secured = new List<string>();
             int count = 0;
             foreach (var item in _items)
 
@@ -68,6 +69,7 @@ namespace JohnBPearson.KeyBindingButler.Model
                 
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseData.GetDeliminatedData(data));
+                secured.Add(item.IsDataSecured.ToString());
                 if(item.ObjectState == ObjectState.Mutated)
                 {
                     count++;
@@ -78,6 +80,7 @@ namespace JohnBPearson.KeyBindingButler.Model
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
+            result.Secured = secured;
             return result;
         }
 
@@ -95,7 +98,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
         private string buildSaveString(IContainer item)
         {
-            return String.Concat(item.Key.GetDeliminated(), item.Data, KeyBoundDataList.deliminater);
+            return String.Concat(item.Key.GetDeliminated(), item.Data, ContainerList.deliminater);
         }
 
         internal int findIndex(Container searchItem)

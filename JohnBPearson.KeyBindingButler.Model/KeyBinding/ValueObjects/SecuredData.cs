@@ -9,10 +9,10 @@ using Microsoft.SqlServer.Server;
 
 namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
 {
-    public class EncryptedData : Data
+    public class SecuredData : Data
     {
 
-        private EncryptedData(IContainer parent, ref string value) : base(value,parent)
+        protected SecuredData(IContainer parent, ref string value) : base(value,parent)
         {
             this._secured = JohnBPearson.Cypher.Base64Url.Encode(value);
             value = null;
@@ -34,12 +34,12 @@ namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
         }
 
         public string Secured
-        {
+        {   
             get { return this._secured; }    
                     }
 
-        public static EncryptedData Cypher(IContainer parent,  string value)
-        {    var instance = new EncryptedData(parent, ref value);
+        public static SecuredData Create(IContainer parent,  string value)
+        {    var instance = new SecuredData(parent, ref value);
             value = null;
             return instance;
         }

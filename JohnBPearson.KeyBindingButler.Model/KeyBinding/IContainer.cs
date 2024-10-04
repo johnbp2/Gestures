@@ -21,12 +21,12 @@ namespace JohnBPearson.KeyBindingButler.Model
         Data Data { get; }
         Description Description { get; set; }
         char KeyAsChar { get; }
-        KeyBinding.EncryptedData Secured { get; }
+        KeyBinding.SecuredData Secured { get; }
         ObjectState ObjectState { get; }
 
 
     }
-    public interface IContainer : System.IEquatable<IContainer>,                    IBase
+    public interface IContainer : System.IEquatable<IContainer>, IBase
     {
 
 
@@ -35,13 +35,12 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
         void Update(ref string newValue, string newDescription,  bool isSecure = false);
-        string GetDelimitated();
+       // string GetDelimitated();
 
 
         bool setIfLastItem();
 
-    
-
+   bool IsDataSecured { get; set; }
     }
 
 

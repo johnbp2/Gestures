@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -18,13 +19,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
     public class MainPresenter : IPresenter<Main>
     {
-        private JohnBPearson.KeyBindingButler.Model.KeyBoundDataList keyBoundValueList;
+        private JohnBPearson.KeyBindingButler.Model.ContainerList keyBoundValueList;
         private Main _main;
         public Main Form { get { return this._main; }  set { this._main = value; } }
 
 
         public void updateContainer(string newValue, string newDescription, string selectedKey, bool isSecured = false)
-        {
+            {
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
             if (itemToUpdate != null)
             {
@@ -48,6 +49,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             var strings = this.keyBoundValueList.PrepareDataForSave();
             Properties.Settings.Default.BindableValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
+            Properties.Settings.Default.isSecured.Clear();
+            Properties.Settings.Default.isSecured.AddRange(strings.Secured.ToArray());
             Properties.Settings.Default.Save();
             this.LoadHotKeyValues();
             GlobalHotKey.removeAllRegistration();
@@ -95,13 +98,16 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.HotKeyValues);
         }
-        private KeyBoundDataList LoadHotKeyValues()
+        private ContainerList LoadHotKeyValues()
         {
             var strings = new KeyAndDataStringLiterals();
             strings.Values = Properties.Settings.Default.BindableValues;
             strings.Keys = Properties.Settings.Default.BindableKeys;
             strings.Descriptions = Properties.Settings.Default.Descriptions;
-            this.keyBoundValueList = new JohnBPearson.KeyBindingButler.Model.KeyBoundDataList(strings);
+            string[] arr = new string[26];
+            Properties.Settings.Default.isSecured.CopyTo(arr, 0);
+            strings.Secured = arr.AsEnumerable<string>();
+            this.keyBoundValueList = new JohnBPearson.KeyBindingButler.Model.ContainerList(strings);
             return this.keyBoundValueList;
         }
 

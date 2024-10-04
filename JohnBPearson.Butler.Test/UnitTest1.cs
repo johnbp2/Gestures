@@ -19,7 +19,7 @@ namespace JohnBPearson.Butler.Test
 
            var testData = new KeyAndDataStringLiterals() { Descriptions = goodDescString,Keys= goodKeys, Values = goodDataString };
            
-            var lists = new KeyBoundDataList(testData);
+            var lists = new ContainerList(testData);
 
             var result = lists.Items;
 

@@ -8,9 +8,6 @@
     <Setting Name="KeyBindingModifiers" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Alt + Shift + </Value>
     </Setting>
-    <Setting Name="deprecated_hotkey1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">john.b.pearson</Value>
-    </Setting>
     <Setting Name="Reminder01" Type="System.String" Scope="User">
       <Value Profile="(Default)">Test</Value>
     </Setting>
@@ -90,6 +87,9 @@
   &lt;string /&gt;
   &lt;string&gt;false&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
