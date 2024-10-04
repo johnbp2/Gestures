@@ -43,18 +43,6 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("john.b.pearson")]
-        public string deprecated_hotkey1 {
-            get {
-                return ((string)(this["deprecated_hotkey1"]));
-            }
-            set {
-                this["deprecated_hotkey1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Test")]
         public string Reminder01 {
             get {
@@ -265,6 +253,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
             }
             set {
                 this["isSecured"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace JohnBPearson.KeyBindingButler.Model
 {
-    public interface IKeyBoundDataList
+    public interface IContainerList
     {
         IEnumerable<IContainer> Items { get; }
         IEnumerable<string> Keys { get; }

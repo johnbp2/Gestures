@@ -70,10 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KeyBinding\ValueObjects\BaseData.cs" />
-    <Compile Include="KeyBinding\ValueObjects\EncryptedData.cs" />
-    <Compile Include="KeyBinding\IKeyBoundDataList.cs" />
+    <Compile Include="KeyBinding\ValueObjects\SecuredData.cs" />
+    <Compile Include="KeyBinding\IContainerList.cs" />
     <Compile Include="KeyBinding\KeyAndDataStringLiterals.cs" />
-    <Compile Include="KeyBinding\KeyBoundDataList.cs" />
+    <Compile Include="KeyBinding\ContainerList.cs" />
     <Compile Include="ButlerBase.cs" />
     <Compile Include="KeyBinding\ValueObjects\Data.cs" />
     <Compile Include="DataAccess\JsonToObject.cs" />

@@ -9,9 +9,9 @@
 //{
 //    internal class OneStringParser
 //    {
-//        private IKeyBoundDataList _parent;
+//        private IContainerList _parent;
 
-//        public OneStringParser(string settingString,IKeyBoundDataList parent)
+//        public OneStringParser(string settingString,IContainerList parent)
 //        {
 //            this._settingString = settingString;
 //            //this._valuesString = strings.Values;
@@ -53,7 +53,7 @@
 //            private set { _keys = value; }
 //        }
 
-//        private void setParsed(IKeyBoundDataList parent)
+//        private void setParsed(IContainerList parent)
 //        {
 //            this.initializeLazyLoad();
 //            this._items = this.parse(parent);
@@ -65,7 +65,7 @@
 //            this._keys = new List<string>();
 //            this._items = new List<IKeyBoundData>();
 //        }
-//        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> parse(IKeyBoundDataList parent)
+//        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> parse(IContainerList parent)
 //        {
             
 //           // string[] delims = { delim };

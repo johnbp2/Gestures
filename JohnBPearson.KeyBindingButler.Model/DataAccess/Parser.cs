@@ -33,14 +33,15 @@ namespace JohnBPearson.com.Utility
         
         }
 
-        private IKeyBoundDataList _parent;
-        internal Parser(KeyAndDataStringLiterals strings, IKeyBoundDataList parent)
+        private IContainerList _parent;
+        internal Parser(KeyAndDataStringLiterals strings, IContainerList parent)
         {
 
             this._valuesString = strings.Values;
 
             this._keysString = strings.Keys;
             this._descriptionString = strings.Descriptions;
+            this._secured = strings.Secured;
             this._parent = parent;
 
         }
@@ -48,6 +49,7 @@ namespace JohnBPearson.com.Utility
         private string _keysString;
         private string _valuesString;
         private string _descriptionString;
+        private IEnumerable<string> _secured;
 
         private List<JohnBPearson.KeyBindingButler.Model.IContainer> _items;
 
@@ -80,6 +82,7 @@ namespace JohnBPearson.com.Utility
 
         private void setParsed()
         {
+           
             this._items = this.parse();
 
         }
@@ -103,6 +106,8 @@ namespace JohnBPearson.com.Utility
 
         private List<JohnBPearson.KeyBindingButler.Model.IContainer> parse()
         {
+
+            var securedArray = this._secured.ToArray();
             string[] delims = { delim };
             var resultList = new List<IContainer>();
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
@@ -117,7 +122,13 @@ namespace JohnBPearson.com.Utility
                 {
                     var value = values[index];
                     var des = descriptions[index];
-                    var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(this._parent,key[0], value, des);
+                    var isSecuredStrinh = securedArray[index];
+                    bool isSecure = false;                       
+                    if(!string.IsNullOrWhiteSpace(isSecuredStrinh)) {
+                        isSecure =   bool.Parse(isSecuredStrinh);
+                    }
+                   
+                    var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(this._parent,key[0], value, des, isSecure);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -149,46 +160,48 @@ namespace JohnBPearson.com.Utility
 
         private const string delim = "|";
         private const char delimChar = '|';
-        internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.KeyBindingButler.Model.IContainer> items)
-        {
-            var result = 0;
-            var tempKeys = new List<string>();
-            var tempValues = new List<string>();
-            var tempDescs = new List<string>();
-            var values = new StringBuilder();
-            foreach (var item in this.Items)
-            {
-                if (item.ObjectState != ObjectState.Deleted)
-                {
-                    if (!item.setIfLastItem()) { 
-                    tempKeys.Add(item.Key.GetDeliminated());
-                        tempValues.Add(item.Data.GetDeliminated());
-                        tempDescs.Add(item.Description.GetDeliminated());
-                    }else
-                    {
-                        tempKeys.Add(item.Key.Value);
-                        tempValues.Add(item.Data.Value);
-                        tempDescs.Add(item.Description.Value);
-                    }
-                }
-                if(item.ObjectState == ObjectState.Mutated)
-                {
-                    result++;
-                }
-                else if(item.ObjectState == ObjectState.Deleted)
-                {
-                    tempKeys.Add(item.Key.GetDeliminated());
-                    tempValues.Add(item.Data.GetDeliminated());
-                    tempDescs.Add(item.Description.GetDeliminated());
-                }
-            }
-            var strings = new KeyAndDataStringLiterals();
+        //internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.KeyBindingButler.Model.IContainer> items)
+        //{
+        //    var result = 0;
+        //    var tempKeys = new List<string>();
+        //    var tempValues = new List<string>();
+        //    var tempDescs = new List<string>();
+        //    var values = new StringBuilder();
+           
+        //    foreach (var item in this.Items)
+        //    {
+        //        if (item.ObjectState != ObjectState.Deleted)
+        //        {
+        //            if (!item.setIfLastItem()) { 
+        //            tempKeys.Add(item.Key.GetDeliminated());
+        //                tempValues.Add(item.Data.GetDeliminated());
+        //                tempDescs.Add(item.Description.GetDeliminated());
+        //            }else
+        //            {
+        //                tempKeys.Add(item.Key.Value);
+        //                tempValues.Add(item.Data.Value);
+        //                tempDescs.Add(item.Description.Value);
+        //            }
+        //        }
+        //        if(item.ObjectState == ObjectState.Mutated)
+        //        {
+        //            result++;
+        //        }
+        //        else if(item.ObjectState == ObjectState.Deleted)
+        //        {
+        //            tempKeys.Add(item.Key.GetDeliminated());
+        //            tempValues.Add(item.Data.GetDeliminated());
+        //            tempDescs.Add(item.Description.GetDeliminated());
+        //        }
+        //    }
+        //    var strings = new KeyAndDataStringLiterals();
           
-            strings.Keys = tempKeys.ToString();
-            strings.Descriptions = tempDescs.ToString();
-            strings.Values = this.checkAndRepairValuesArray(tempValues.ToArray()).ToString();
-            return strings;
-        }
+        //    strings.Keys = tempKeys.ToString();
+        //    strings.Descriptions = tempDescs.ToString();
+        //    strings.Values = this.checkAndRepairValuesArray(tempValues.ToArray()).ToString();
+            
+        //    return strings;
+        //}
 
 
     }

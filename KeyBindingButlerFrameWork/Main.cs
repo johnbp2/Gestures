@@ -15,6 +15,7 @@ using Windows.Media.Protection.PlayReady;
 using Windows.UI.Xaml.Controls;
 using System.ComponentModel.Design;
 using Windows.Web;
+using JohnBPearson.KeyBindingButler.Model.KeyBinding;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -92,8 +93,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private void CopyValueToClipBoard(IContainer data)
         {
 
-            System.Windows.Clipboard.SetText(data.Data.Value);
-
+            if (data.IsDataSecured)
+            {
+                System.Windows.Clipboard.SetText(data.Secured.Value);
+            }
+            else
+            {
+                System.Windows.Clipboard.SetText(data.Data.Value);
+            }
             this.lblKey.ClearAndReplace(data.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = data.Key.Value.ToLower();
             this.updateUIByKey(data.Key.Key);
@@ -181,7 +188,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             var currentItem = this.presenter.findKeyBoundValue(key.ToString());
             tbValue.Text = currentItem.Data.Value;
             tbDesc.Text = currentItem.Description.Value;
-
+            cbSecure.Checked = currentItem.IsDataSecured;
         }
 
         #endregion
