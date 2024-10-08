@@ -36,6 +36,8 @@ namespace JohnBPearson.KeyBindingButler.Model
         public IEnumerable<IContainer> Items
         { get { return this._items; } }
 
+
+        public IList<IContainer> GetItems() { return this._items; }
         //public void Replace(IKeyBoundData newItem, IKeyBoundData oldItem)
         //{
 
