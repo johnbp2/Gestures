@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Controls;
 using System.ComponentModel.Design;
 using Windows.Web;
 using JohnBPearson.KeyBindingButler.Model.KeyBinding;
+using Windows.UI.Xaml.Input;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -58,7 +59,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // var reminderForm = new Reminders();
             //this.presenter = presenter;
             //this.presenter.Form = this;
-            //this.keyBoundValueList.Items;]
+            //this._containerList.Items;]
 
             this.setupTryIconMenu();
         }
@@ -242,7 +243,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            this.presenter.registerHotKeys(this.presenter.HotKeyValues);
+            this.presenter.registerHotKeys(this.presenter.Containers);
 
 
 
@@ -340,7 +341,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            this.presenter.registerHotKeys(this.presenter.HotKeyValues);
+            this.presenter.registerHotKeys(this.presenter.Containers);
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -365,6 +366,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         {
             this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey,this.cbSecure.Checked);
             // private void updateKeyBoundData(string newValue, string newDescription)
+        }
+
+        private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new ListView(this.presenter.ContainerList);
+            form.ShowDialog();
         }
     } 
 }

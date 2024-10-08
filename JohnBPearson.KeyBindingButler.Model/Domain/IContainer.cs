@@ -26,10 +26,9 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
     }
-    public interface IContainer : System.IEquatable<IContainer>, IBase
-    {
-
-
+    public interface IContainer : IBase, System.IEquatable<IContainer>
+    { 
+        
 
       
 

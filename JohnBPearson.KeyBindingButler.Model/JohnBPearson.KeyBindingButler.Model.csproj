@@ -34,6 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Designer|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Designer\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\TheButlerFramework\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -69,20 +78,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KeyBinding\ValueObjects\BaseData.cs" />
-    <Compile Include="KeyBinding\ValueObjects\SecuredData.cs" />
-    <Compile Include="KeyBinding\IContainerList.cs" />
-    <Compile Include="KeyBinding\KeyAndDataStringLiterals.cs" />
-    <Compile Include="KeyBinding\ContainerList.cs" />
+    <Compile Include="Domain\ValueObjects\BaseData.cs" />
+    <Compile Include="Domain\ValueObjects\SecuredData.cs" />
+    <Compile Include="Domain\IContainerList.cs" />
+    <Compile Include="Domain\KeyAndDataStringLiterals.cs" />
+    <Compile Include="Domain\ContainerList.cs" />
     <Compile Include="ButlerBase.cs" />
-    <Compile Include="KeyBinding\ValueObjects\Data.cs" />
+    <Compile Include="Domain\ValueObjects\Data.cs" />
     <Compile Include="DataAccess\JsonToObject.cs" />
-    <Compile Include="KeyBinding\ValueObjects\Description.cs" />
-    <Compile Include="KeyBinding\ValueObjects\IBaseData.cs" />
-    <Compile Include="KeyBinding\IContainer.cs" />
-    <Compile Include="KeyBinding\ValueObjects\KeyInfo.cs" />
+    <Compile Include="Domain\ValueObjects\Description.cs" />
+    <Compile Include="Domain\ValueObjects\IBaseData.cs" />
+    <Compile Include="Domain\IContainer.cs" />
+    <Compile Include="Domain\ValueObjects\KeyInfo.cs" />
     <Compile Include="KeyBindButler.cs" />
-    <Compile Include="KeyBinding\Container.cs" />
+    <Compile Include="Domain\Container.cs" />
     <Compile Include="DataAccess\OneStringParser.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +111,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

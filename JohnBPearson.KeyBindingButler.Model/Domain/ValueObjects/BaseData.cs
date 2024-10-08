@@ -11,7 +11,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
 
-    public abstract class BaseData : IEquatable<BaseData>, IBaseData
+    public abstract class BaseData : IBaseData
     {
         protected IContainer _parent;
         protected BaseData(IContainer parent) { this._parent = parent; }
@@ -107,12 +107,23 @@ namespace JohnBPearson.KeyBindingButler.Model
             }
             return string.Concat(Value, delim.ToString());
         }
-        public bool Equals(IBaseData other)
+        public override bool Equals(object other)
         {
-            if (other != null && !string.IsNullOrWhiteSpace(other.Value))
+            BaseData localType = null;
+            if(other.GetType() != this.GetType())
+           {
+                return false;
+            }
+            else
             {
 
-                return this._value == other.Value;
+                localType = (BaseData)other;
+            }
+                if(localType == null) return false;
+            if (localType != null && !string.IsNullOrWhiteSpace(localType.Value))
+            {
+
+                return this._value == localType.Value;
             }
             return false;
         }
@@ -123,6 +134,10 @@ namespace JohnBPearson.KeyBindingButler.Model
            // if (other != null && other.Value == this.Value) { return true; } else { return false; }
         }
 
+        public bool Equals(IBaseData other)
+        {
+            return this == other;
+        }
 
         public static bool operator ==(BaseData lhs, BaseData rhs)
         {        // public abstract bool Equals(IBaseData other);

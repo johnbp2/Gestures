@@ -76,13 +76,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         {
             try
             {
-                MessageBox.Show("Unhandled exception catched.\n Application is going to close now.");
+                  MessageBox.Show($"Unhandled exception catched.\n Application is going to close now. {t.Exception.Message}");
             }
-            catch
+            catch(Exception ex)
             {
                 try
                 {
-                    MessageBox.Show("Fatal exception happend inside UIThreadException handler",
+                    MessageBox.Show($"Fatal exception happend inside UIThreadException handler; {ex.Message}",
                         "Fatal Windows Forms Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Stop);
                 }
                 finally

@@ -25,16 +25,16 @@ namespace JohnBPearson.Windows.Forms.Controls
             private int angle = 90;
             private int textX = 100;
             private int textY = 25;
-            private String text = "";
+       //     private String text = "";
 
         //Create Properties to read Button Text,Colors etc  
-        [Browsable(true),
-        Category("NotBetterButton")]
-        public String DisplayText
-            {
-                get { return text; }
-                set { text = value; Invalidate(); }
-            }
+        //[Browsable(true),
+        //Category("NotBetterButton")]
+        //public String DisplayText
+        //    {
+        //        get { return text; }
+        //        set { text = value; Invalidate(true); }
+        //    
 
         [Browsable(true),
 Category("NotBetterButton")]
@@ -139,7 +139,7 @@ Category("NotBetterButton")]
                 this.Size = new System.Drawing.Size(200, 50);
                 this.ForeColor = Color.White;
                 this.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-                text = this.Text;
+                //text = this.Text;
             }
 
             //method mouse enter  
@@ -174,7 +174,7 @@ Category("NotBetterButton")]
             protected override void OnPaint(PaintEventArgs pe)
             {
                 base.OnPaint(pe);
-                text = this.Text;
+               // text = this.Text;
                 if (textX == 100 && textY == 25)
                 {
                     textX = ((this.Width) / 3) + 10;
@@ -188,7 +188,7 @@ Category("NotBetterButton")]
                 SolidBrush frcolor = new SolidBrush(this.ForeColor);
                 Border3DStyle borderStyle = Border3DStyle.SunkenInner;
                 pe.Graphics.FillRectangle(b, ClientRectangle);
-                pe.Graphics.DrawString(text, this.Font, frcolor, p);
+              //  pe.Graphics.DrawString(text, this.Font, frcolor, p);
                 ControlPaint.DrawBorder3D(pe.Graphics, ClientRectangle, borderStyle);
                 b.Dispose();
             }
