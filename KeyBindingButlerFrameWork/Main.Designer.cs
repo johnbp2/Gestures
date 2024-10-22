@@ -140,7 +140,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.lblKey.Size = new System.Drawing.Size(5, 24);
             this.lblKey.TabIndex = 9;
             this.lblKey.Template = "";
-            this.lblKey.TemplateValues = ((System.Collections.Generic.List<string>)(resources.GetObject("lblKey.TemplateValues")));
+            this.lblKey.ValuesToApply = ((System.Collections.Generic.List<string>)(resources.GetObject("lblKey.ValuesToApply")));
             // 
             // templatedLabel1
             // 
@@ -153,7 +153,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.templatedLabel1.Size = new System.Drawing.Size(27, 24);
             this.templatedLabel1.TabIndex = 10;
             this.templatedLabel1.Template = "";
-            this.templatedLabel1.TemplateValues = null;
+            // this.templatedLabel1.ValuesToApply = null;
             // 
             // cbHotkeySelection
             // 

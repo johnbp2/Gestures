@@ -91,7 +91,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("123Isabella!|abc|||||||||||||||||123Isabella!||||||s")]
+        [global::System.Configuration.DefaultSettingValueAttribute("af||||||||||||||||||||||||test|zzzz")]
         public string BindableValues {
             get {
                 return ((string)(this["BindableValues"]));
@@ -112,7 +112,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Johnny Butler")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Belvedeer")]
         public string ServantName {
             get {
                 return ((string)(this["ServantName"]));

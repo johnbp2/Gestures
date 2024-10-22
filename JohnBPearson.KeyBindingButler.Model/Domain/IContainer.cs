@@ -18,7 +18,20 @@ namespace JohnBPearson.KeyBindingButler.Model
     public interface IBase
     {
         KeyInfo Key { get; }
+        
         Data Data { get; }
+        string DataString
+        {
+
+            get;
+            set;
+        }
+        string DescriptionString
+        {
+
+            get;
+            set;
+        }
         Description Description { get; set; }
         char KeyAsChar { get; }
         KeyBinding.SecuredData Secured { get; }
