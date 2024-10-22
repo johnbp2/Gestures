@@ -29,7 +29,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
             if (itemToUpdate != null)
             {
-                this.updateItem(itemToUpdate, newValue, newDescription, isSecured);
+                this.updateContainerInner(itemToUpdate, newValue, newDescription, isSecured);
             }
             else
             {
@@ -37,7 +37,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             }
         }
 
-        private void updateItem(JohnBPearson.KeyBindingButler.Model.IContainer oldItem, string newData, string description, bool isSecured)
+        private void updateContainerInner(JohnBPearson.KeyBindingButler.Model.IContainer oldItem, string newData, string description, bool isSecured)
         {
             oldItem.Update(ref newData, description, isSecured);
             GlobalHotKey.removeAllRegistration();

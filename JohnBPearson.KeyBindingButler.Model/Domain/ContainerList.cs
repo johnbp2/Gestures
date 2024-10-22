@@ -60,7 +60,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
             {
                 var data = string.Empty;
-                if (item.Secured != null)
+                if (item.IsDataSecured)
                 {
                     data = item.Secured.Secured;
                 }

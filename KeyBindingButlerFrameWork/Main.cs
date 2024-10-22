@@ -249,7 +249,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             this.bindDropDownKeyValues();
             this.lblKey.Template = "Alt + Shift + {0}";
-            this.lblKey.TemplateValues.Add("a");
+            this.lblKey.ValuesToApply.Add("a");
 
 
 
@@ -370,7 +370,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new ListView(this.presenter.ContainerList);
+            var form = new ListView(this.presenter.ContainerList, this.presenter);
             form.ShowDialog();
         }
     } 

@@ -113,6 +113,7 @@ namespace JohnBPearson.com.Utility
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
             var letters = this._keysString.Split(delimChar).Clone();
             var values = this._valuesString.Split(delimChar);
+            // TODO: fxi so there are no null from here
             var descriptions = this._descriptionString.Split(delimChar);
             this._keys = (letters as string[]).ToList();
             var index = 0;

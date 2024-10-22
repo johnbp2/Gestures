@@ -16,6 +16,12 @@ namespace JohnBPearson.KeyBindingButler.Model
 
     public class Container : IContainer
     {
+
+
+       
+
+      
+
         private Data _data;
        
         private KeyInfo _key;
@@ -25,11 +31,37 @@ namespace JohnBPearson.KeyBindingButler.Model
             get { return _key; }
             private set { _key = value; }
         }
+
+        public string DescriptionString
+        {
+            get
+            {
+                return this._description.Value;
+            }
+            set
+            {
+                this._description.Value = value;
+            }
+        }
+
+
+        public string DataString
+        {
+            get
+            {
+                return this._data.Value;
+            }
+            set
+            {
+                this._data.Value = value;
+            }
+        }
+
         public Data Data
         {
             get {
 
-                if (this._secured == null)
+                if (this._isDataSecured == false)
                 {
                     return _data;
                 }else

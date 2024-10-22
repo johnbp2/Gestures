@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Routing;
 
 namespace JohnBPearson.Windows.Forms.Controls
 {
@@ -23,7 +24,7 @@ namespace JohnBPearson.Windows.Forms.Controls
                 {
                     _template = value;
                 }
-			if(TemplateValues != null && !string.IsNullOrWhiteSpace(_template))
+			if(ValuesToApply != null && !string.IsNullOrWhiteSpace(_template))
 				{
 
                     updateText();
@@ -36,8 +37,13 @@ namespace JohnBPearson.Windows.Forms.Controls
 
 		private List<string> _templateValues = new List<string>();
         [Browsable(true)]
-        public List<string> TemplateValues
-		{ get { return _templateValues; } set { _templateValues = value; } }
+        public List<string> ValuesToApply
+		{ get { return _templateValues; } set {
+                if(value != null)
+                {
+                    _templateValues = value;
+                }
+            } }
 
         [Browsable(false)]
         public new string Text { get => base.Text; private set => base.Text = value; }
@@ -46,7 +52,7 @@ namespace JohnBPearson.Windows.Forms.Controls
         {
             try
             {
-                base.Text = String.Format(Template, TemplateValues.ToArray<string>());
+                base.Text = String.Format(Template, ValuesToApply.ToArray<string>());
             }
             catch (FormatException ex)
             {
@@ -61,7 +67,7 @@ namespace JohnBPearson.Windows.Forms.Controls
                 this._templateValues.Clear();
                 foreach (string arg in args)
                 {
-                    this.TemplateValues.Add(arg);
+                    this.ValuesToApply.Add(arg);
                 }
                 updateText();
             }
