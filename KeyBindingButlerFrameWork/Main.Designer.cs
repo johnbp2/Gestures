@@ -41,6 +41,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
             this.templatedLabel1 = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
@@ -54,7 +55,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.button2 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.transparentFlowPanel4 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
-            this.listViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.transparentFlowPanel1.SuspendLayout();
             this.transparentFlowPanel3.SuspendLayout();
@@ -75,7 +76,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
@@ -94,7 +96,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -109,9 +111,16 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // listViewToolStripMenuItem
+            // 
+            this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
+            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.listViewToolStripMenuItem.Text = "List View";
+            this.listViewToolStripMenuItem.Click += new System.EventHandler(this.listViewToolStripMenuItem_Click);
             // 
             // transparentFlowPanel1
             // 
@@ -153,7 +162,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.templatedLabel1.Size = new System.Drawing.Size(27, 24);
             this.templatedLabel1.TabIndex = 10;
             this.templatedLabel1.Template = "";
-            // this.templatedLabel1.ValuesToApply = null;
+            this.templatedLabel1.ValuesToApply = ((System.Collections.Generic.List<string>)(resources.GetObject("templatedLabel1.ValuesToApply")));
             // 
             // cbHotkeySelection
             // 
@@ -228,7 +237,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 30);
+            this.button1.Size = new System.Drawing.Size(80, 33);
             this.button1.TabIndex = 7;
             this.button1.Text = "Copy";
             this.button1.UseVisualStyleBackColor = true;
@@ -266,12 +275,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.transparentFlowPanel4.Size = new System.Drawing.Size(441, 601);
             this.transparentFlowPanel4.TabIndex = 10;
             // 
-            // listViewToolStripMenuItem
+            // aboutToolStripMenuItem
             // 
-            this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
-            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listViewToolStripMenuItem.Text = "List View";
-            this.listViewToolStripMenuItem.Click += new System.EventHandler(this.listViewToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -333,6 +342,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private TransparentFlowPanel transparentFlowPanel4;
         private TransparentFlowPanel transparentFlowPanel3;
         private System.Windows.Forms.ToolStripMenuItem listViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

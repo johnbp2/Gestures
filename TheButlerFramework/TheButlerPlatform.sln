@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Intero
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extension", "..\Extension\Extension.csproj", "{B8D5FFA8-80E3-447D-AE07-DA86AF72F206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Forms.Controls", "..\Controls\JohnBPearson.Windows.Forms.Controls\JohnBPearson.Windows.Forms.Controls.csproj", "{290F3E29-9012-4A41-AE60-993DBC62C716}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E973B09-BA6E-4604-80C8-6A1EDA86A7F1}"
 	ProjectSection(SolutionItems) = preProject
 		..\butler.png = ..\butler.png
@@ -23,6 +21,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Butler.Test", "..\JohnBPearson.Butler.Test\JohnBPearson.Butler.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Cypher", "JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj", "{BD8772B8-C584-4B74-848C-9928A215770B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Forms.Controls", "..\JohnBPearson.Windows.Forms.Controls\JohnBPearson.Windows.Forms.Controls.csproj", "{290F3E29-9012-4A41-AE60-993DBC62C716}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", "..\PrebuildHelper\PrebuildHelper.csproj", "{7F8AA506-3088-4C56-8C78-2116FAACC8E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,12 +57,6 @@ Global
 		{B8D5FFA8-80E3-447D-AE07-DA86AF72F206}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8D5FFA8-80E3-447D-AE07-DA86AF72F206}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8D5FFA8-80E3-447D-AE07-DA86AF72F206}.Release|Any CPU.Build.0 = Release|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
 		{2844508A-F28B-4D3D-A974-AAF26291981A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -79,6 +75,18 @@ Global
 		{BD8772B8-C584-4B74-848C-9928A215770B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD8772B8-C584-4B74-848C-9928A215770B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD8772B8-C584-4B74-848C-9928A215770B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290F3E29-9012-4A41-AE60-993DBC62C716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Debug Designer|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Debug Designer|Any CPU.Build.0 = Debug|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8AA506-3088-4C56-8C78-2116FAACC8E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
