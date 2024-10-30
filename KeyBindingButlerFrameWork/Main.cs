@@ -373,5 +373,11 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             var form = new ListView(this.presenter.ContainerList, this.presenter);
             form.ShowDialog();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboot = new AboutBox1();
+            aboot.ShowDialog();
+        }
     } 
 }
