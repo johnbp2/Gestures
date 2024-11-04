@@ -10,19 +10,25 @@ using System.Threading.Tasks;
 
 namespace PrebuildHelper
 {
+    internal static class Constants
+    {
+
+      internal static string searchString1 = @"[assembly: AssemblyVersion(";
+        internal static string searchString2 = @"[assembly: AssemblyFileVersion(";
+    }
     internal class Program
     {
-        const string searchString1 = @"[assembly: AssemblyVersion(";
-        const string searchString2 = @"[assembly: AssemblyFileVersion(";
+
 
         //   const replaceString1 = $"[assembly: AssemblyVersion(\"{0}.2.0.0\")]";
         /// <summary>
-        /// 
+        /// args are"
+        /// assemblyinfo path or dir to create assembllyinfo , major version, minor version, build, revision, project name
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            
+
             FileInfo assInfo = new FileInfo(args[0]);
             if(assInfo.Exists)
             {
@@ -33,7 +39,7 @@ namespace PrebuildHelper
                 var indexReplace = 0;
                 for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
                 {
-                    if(lines[i].StartsWith(searchString1))
+                    if(lines[i].StartsWith(Constants.searchString1))
                     {
                         indexReplace = i;
                         break;
@@ -44,15 +50,18 @@ namespace PrebuildHelper
                 var contents = new StringBuilder();
                 var listLines = lines.ToList();
                 listLines.RemoveAt(indexReplace);
-                listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{args[1]}.{args[2]}.{args[3]}.{args[4]}\")]");
+                int thisBuild = int.Parse(args[4]) + 1;
+                listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{args[1]}.{args[2]}.{args[3]}.{thisBuild}\")]");
                 foreach(var item in listLines)
                 {
                     contents.AppendLine(item);
                 }
-
+                // int thisBuild = int.Parse(args[4]) + 1;
 
                 File.WriteAllText(args[0], contents.ToString());
+                return thisBuild;
             }
+            return -1;
         }
     }
 }
