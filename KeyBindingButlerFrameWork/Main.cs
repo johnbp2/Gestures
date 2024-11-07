@@ -5,7 +5,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Tulpep.NotificationWindow;
-using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.Application.Model;
 using JohnBPearson.Windows.Forms.Controls;
 using System.Runtime.CompilerServices;
 using System.Drawing;
@@ -15,7 +15,7 @@ using Windows.Media.Protection.PlayReady;
 using Windows.UI.Xaml.Controls;
 using System.ComponentModel.Design;
 using Windows.Web;
-using JohnBPearson.KeyBindingButler.Model.KeyBinding;
+using JohnBPearson.Application.Model.KeyBinding;
 using Windows.UI.Xaml.Input;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
@@ -29,7 +29,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private JohnBPearson.KeyBindingButler.Model.IContainer currentItem;
+        private JohnBPearson.Application.Model.IContainer currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -111,7 +111,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
         }
 
-        //private void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> keys)
+        //private void registerHotKeys(IEnumerable<JohnBPearson.Application.Model.IKeyBoundData> keys)
         //{
            
         //    base.notify("Registered keys complete!", $"Registered keys: {result}", false, ToastOptions.All);

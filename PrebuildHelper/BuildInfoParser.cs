@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
+using JohnBPearson.Application.Common;
 
 namespace PrebuildHelper
 {
-
-    internal struct SymanticVersion
+    public enum file
     {
-        internal int Major;
-        internal int Minor;
-        internal int Build;
-        internal int Revision;
+    AssemblyInfo = 0,
+    Settings= 1
     }
-   static class BuildInfoParser
+    static partial class BuildInfoParser
     {
-         
-        static BuildInfo Parse(string pathToAssemblyInfo, string strMajor, string strMinor, string strBuild, string strR4evision)
+
+        private static string[] fileNames = { "AssemblyInfo.cs", "Settings.settings" };
+            
+            
+            
+            
+        static BuildInfo Parse(string projectPropertiesDirectory, string strMajor, string strMinor, string strBuild, string strRevision)
         {
             int temp = -1;
             SymanticVersion version = new SymanticVersion();
@@ -31,11 +36,67 @@ namespace PrebuildHelper
             int.TryParse(strBuild, out temp);
             version.Build= temp;
             temp= -1;
-            int.TryParse(strR4evision, out temp);
+            int.TryParse(strRevision, out temp);
             version.Revision= temp;
-
-            return new BuildInfo(pathToAssemblyInfo, version);
+            ProjectPropertiesFile assemblyInfo = null;
+            ProjectPropertiesFile settings = null;
+            foreach(string file in fileNames)
+            {
+            var tempFile =     handleFile(projectPropertiesDirectory, file);
+                if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
+                {
+                    assemblyInfo = tempFile;
+                }
+                else
+                {
+                
+                settings = tempFile;
+                }
+            }
+            return new BuildInfo(assemblyInfo, version, settings);
 
         }
+
+        private static ProjectPropertiesFile handleFile(string path, string fileName)
+       {
+          //  FileInfo assemblyFileInfo = new FileInfo(projectPropertiesDirectory);
+        var fullPath =   Path.Combine(path, fileName);
+            FileInfo fileInfo = new FileInfo(fullPath);
+            var validatedPath = "";
+
+            if(fileInfo.Exists)
+            {
+
+                if(fileInfo.Name == fileName)
+                {
+                    validatedPath = path;
+                }
+                else
+                {
+                    //foreach(var item in this.GetType().GetConstructors())
+                    //{
+                    //    foreach(var param in item.GetParameters())
+                    //    {
+                    //        param.Name
+                    //    }    
+                    //       // item.GetParameters()
+                    throw new System.ArgumentException($"Found file named {fileInfo.Name}, but expected AssemblyInfo.cs or a directory", $"{path}");
+                }
+
+
+
+            }
+            else
+            {
+
+                // TODO: [] add code to create new AssemblyInfo.cs file
+            }
+
+            var lines = File.ReadAllLines(fileInfo.FullName);
+            var ppFile = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileName), fullPath);
+       
+            return ppFile;
+        }
+
     }
 }

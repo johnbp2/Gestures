@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.Application.Model;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {

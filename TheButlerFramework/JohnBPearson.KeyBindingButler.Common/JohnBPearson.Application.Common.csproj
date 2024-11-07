@@ -7,8 +7,8 @@
     <ProjectGuid>{2844508A-F28B-4D3D-A974-AAF26291981A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JohnBPearson.KeyBindingButler.Common</RootNamespace>
-    <AssemblyName>JohnBPearson.KeyBindingButler.Common</AssemblyName>
+    <RootNamespace>JohnBPearson.Application.Common</RootNamespace>
+    <AssemblyName>JohnBPearson.Application.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -55,8 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBuildInfo.cs" />
     <Compile Include="IForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SymanticVersion.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

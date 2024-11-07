@@ -1,4 +1,4 @@
-﻿using JohnBPearson.KeyBindingButler.Model.KeyBinding;
+﻿using JohnBPearson.Application.Model.KeyBinding;
 using System;
 using System.ComponentModel;
 using System.Dynamic;
@@ -10,7 +10,7 @@ using System.Runtime.Remoting.Lifetime;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
 
 
@@ -103,7 +103,7 @@ namespace JohnBPearson.KeyBindingButler.Model
 
 
 
-        private JohnBPearson.KeyBindingButler.Model.KeyBinding.SecuredData _secured;
+        private JohnBPearson.Application.Model.KeyBinding.SecuredData _secured;
 
         public KeyBinding.SecuredData Secured
         {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
     public interface IContainerList
     {

@@ -28,14 +28,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             ////    Console.WriteLine("Encrypted:  {0}", str);
             ////    Console.WriteLine("Round Trip: {0}", roundtrip);
             ////}
-            Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
             // Add handler for UI thread exceptions
-            Application.ThreadException += new ThreadExceptionEventHandler(UIThreadException);
+            System.Windows.Forms.Application.ThreadException += new ThreadExceptionEventHandler(UIThreadException);
 
             // Force all WinForms errors to go through handler
-            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            System.Windows.Forms.Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
             // This handler is for catching non-UI thread exceptions
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
@@ -43,10 +43,10 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             if (Program.IsFirstInstance())
             {
                 var main = new Main(new MainPresenter());
-                Application.Run(main);
+                System.Windows.Forms.Application.Run(main);
             } else {
                 System.Windows.MessageBox.Show("Instance of the KeyInfo Binding Butler is already running!");
-                Application.Exit();
+                System.Windows.Forms.Application.Exit();
         } }
 
         private static void CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)
@@ -65,7 +65,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 }
                 finally
                 {
-                    Application.Exit();
+                    System.Windows.Forms.Application.Exit();
                 }
             }
 
@@ -87,12 +87,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 }
                 finally
                 {
-                    Application.Exit();
+                    System.Windows.Forms.Application.Exit();
                 }
             }
 
             // Here we can decide if we want to end our application or do something else
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         static bool IsFirstInstance()

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
     public class Data : BaseData
     {

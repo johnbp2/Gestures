@@ -22,10 +22,19 @@ namespace PrebuildHelper
 
         //   const replaceString1 = $"[assembly: AssemblyVersion(\"{0}.2.0.0\")]";
         /// <summary>
-        /// args are"
+        /// 
         /// assemblyinfo path or dir to create assembllyinfo , major version, minor version, build, revision, project name
         /// </summary>
-        /// <param name="args"></param>
+        /// 
+        /// <param name="args">
+        /// ordinal |  value
+        /// ------------------
+        /// 0       | path to prpject properties
+        /// 1       | Major Version
+        /// 2       | Minor Version
+        /// 3       | Build 
+        /// 4       | Revision 
+        /// </param>
         static int Main(string[] args)
         {
 

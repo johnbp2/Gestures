@@ -1,4 +1,4 @@
-﻿using JohnBPearson.KeyBindingButler.Model;
+﻿using JohnBPearson.Application.Model;
 using JohnBPearson.Windows.Interop;
 using System;
 using System.Drawing;
