@@ -2,24 +2,49 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 
 namespace JohnBPearson.HotkeyButler.DataAccess
 {
-    internal class SqliteDataAccess
+    public struct ApplicationDataRow
     {
-    }
+    
+    }   
 
-    internal class DbSqlHelper
+    public class SqliteDataAccess
     {
+
+        public static void Read(string selectText)
+        {
+         var reader = SqliteDataAccess.ExecuteReader(selectText);
+            while(reader.Read())
+            {
+                var schemaTable = reader.GetSchemaTable();
+                
+                    
+                    
+                    
+                    
+                    
+                    //                Console.WriteLine($"Hello, {name}!");
+            }
+        }
+        public static void initializeConnectionString()
+        {
+            SqliteDataAccess.common_conn = new SqliteConnection(Properties.Settings.Default.sqlitConnectionString);
+        }
         public static string ConnectionString
         {
-            get; set;
+            get{
+                return Properties.Settings.Default.sqlitConnectionString;
+                
+            } 
         }
         public static SqliteConnection common_conn = null;
-        public static SqliteTransaction common_transaction = null;
+        public static SqliteTransaction common_transaction =  null;
         private static void PrepareCommand(SqliteCommand cmd, SqliteConnection conn, string cmdText, params object[] p)
         {
             if(conn.State != ConnectionState.Open)
@@ -56,6 +81,7 @@ namespace JohnBPearson.HotkeyButler.DataAccess
             cmd.Connection = conn;
             cmd.CommandText = cmdText;
             cmd.CommandType = CommandType.Text;
+
             cmd.CommandTimeout = 30;
             if(p != null)
             {

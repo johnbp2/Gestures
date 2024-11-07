@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Dynamic;
 using System.Net.Http.Headers;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
 
     public enum ObjectState

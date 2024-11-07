@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting.Contexts;
 using System.Windows.Media.TextFormatting;
-using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.Application.Model;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Windows.Foundation.Collections;
 

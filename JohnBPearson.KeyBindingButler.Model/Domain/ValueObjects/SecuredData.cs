@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
 
-namespace JohnBPearson.KeyBindingButler.Model.KeyBinding
+namespace JohnBPearson.Application.Model.KeyBinding
 {
     public class SecuredData : Data
     {

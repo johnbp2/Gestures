@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Schema;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
     public class KeyInfo : BaseData
     {

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using JohnBPearson.com.Utility;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
     public class ContainerList : IContainerList
     {

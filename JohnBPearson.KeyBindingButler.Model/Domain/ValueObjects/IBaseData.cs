@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
     public interface IBaseData :IEquatable<IBaseData>
     {

@@ -14,9 +14,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E973B09-BA6E-4604-80C8-6A1EDA86A7F1}"
 	ProjectSection(SolutionItems) = preProject
 		..\butler.png = ..\butler.png
+		..\PrebuildHelper.db = ..\PrebuildHelper.db
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.KeyBindingButler.Common", "JohnBPearson.KeyBindingButler.Common\JohnBPearson.KeyBindingButler.Common.csproj", "{2844508A-F28B-4D3D-A974-AAF26291981A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Application.Common", "JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj", "{2844508A-F28B-4D3D-A974-AAF26291981A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Butler.Test", "..\JohnBPearson.Butler.Test\JohnBPearson.Butler.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
 EndProject

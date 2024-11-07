@@ -12,7 +12,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.Application.Model;
 
 namespace JohnBPearson.com.Utility
 {
@@ -51,9 +51,9 @@ namespace JohnBPearson.com.Utility
         private string _descriptionString;
         private IEnumerable<string> _secured;
 
-        private List<JohnBPearson.KeyBindingButler.Model.IContainer> _items;
+        private List<JohnBPearson.Application.Model.IContainer> _items;
 
-        internal List<JohnBPearson.KeyBindingButler.Model.IContainer> Items
+        internal List<JohnBPearson.Application.Model.IContainer> Items
         {
             get
             {
@@ -104,7 +104,7 @@ namespace JohnBPearson.com.Utility
             throw new ArgumentException(string.Concat( delim, " was not found in  ", value));
         }
 
-        private List<JohnBPearson.KeyBindingButler.Model.IContainer> parse()
+        private List<JohnBPearson.Application.Model.IContainer> parse()
         {
 
             var securedArray = this._secured.ToArray();
@@ -129,7 +129,7 @@ namespace JohnBPearson.com.Utility
                         isSecure =   bool.Parse(isSecuredStrinh);
                     }
                    
-                    var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(this._parent,key[0], value, des, isSecure);
+                    var hkv = JohnBPearson.Application.Model.Container.Create(this._parent,key[0], value, des, isSecure);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -161,7 +161,7 @@ namespace JohnBPearson.com.Utility
 
         private const string delim = "|";
         private const char delimChar = '|';
-        //internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.KeyBindingButler.Model.IContainer> items)
+        //internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.Application.Model.IContainer> items)
         //{
         //    var result = 0;
         //    var tempKeys = new List<string>();

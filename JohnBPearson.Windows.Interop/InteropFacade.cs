@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using JohnBPearson.KeyBindingButler.Model;
+using JohnBPearson.Application.Model;
 
 namespace JohnBPearson.Windows.Interop
 {

@@ -5,7 +5,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace JohnBPearson.KeyBindingButler.Model
+//namespace JohnBPearson.Application.Model
 //{
 //    internal class OneStringParser
 //    {
@@ -23,9 +23,9 @@
       
 //        private string _settingString = "";
 
-//        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> _items;
+//        private List<JohnBPearson.Application.Model.IKeyBoundData> _items;
 
-//        public List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> Items
+//        public List<JohnBPearson.Application.Model.IKeyBoundData> Items
 //        {
 //            get
 //            {
@@ -65,7 +65,7 @@
 //            this._keys = new List<string>();
 //            this._items = new List<IKeyBoundData>();
 //        }
-//        private List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> parse(IContainerList parent)
+//        private List<JohnBPearson.Application.Model.IKeyBoundData> parse(IContainerList parent)
 //        {
             
 //           // string[] delims = { delim };
@@ -110,7 +110,7 @@
 //            //    if (index < 26)
 //            //    {
 //            //        var value = valuesTyped[index];
-//            //        var hkv = JohnBPearson.KeyBindingButler.Model.Container.Create(key[0], value);
+//            //        var hkv = JohnBPearson.Application.Model.Container.Create(key[0], value);
 //            //        resultList.Add(hkv);
 //            //        index++;
 //            //    }
@@ -126,7 +126,7 @@
 //        //private const string delim = "|";
 //        private const char delimChar = '|';
 //        private const char itemDelimiterChar = ',';
-//        internal string updateString(List<JohnBPearson.KeyBindingButler.Model.IKeyBoundData> items)
+//        internal string updateString(List<JohnBPearson.Application.Model.IKeyBoundData> items)
 //        {
 //            var result = 0;
 

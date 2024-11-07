@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
-using JohnBPearson.KeyBindingButler.Common;
+using JohnBPearson.Application.Common;
 using System.Timers;
 
-namespace JohnBPearson.KeyBindingButler.Model.Processes
+namespace JohnBPearson.Application.Model.Processes
 {
 
     public class ProcessLauncher : IDisposable

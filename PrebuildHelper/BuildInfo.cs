@@ -5,53 +5,52 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JohnBPearson.Application.Common;
 
 namespace PrebuildHelper
 {
+
+
+
+    internal class IncrementOptions
+    {
+
+        internal bool IncrementMajor
+        {
+            get; set;
+        }
+        internal bool IncrementMinor
+        {
+            get;set;
+        }
+        internal bool IncrementBuild
+        {
+            get; set;
+        }
+        internal bool IncrementRevision
+        {
+            get; set;
+        }
+    }
     internal class BuildInfo
     {
-        internal BuildInfo(string pathToAssemblyInfo, SymanticVersion version) : 
-            this(pathToAssemblyInfo, version.Major, version.Minor, version.Build, version.Revision)
+        internal BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, SymanticVersion version, ProjectPropertiesFile settingsFileObject) : 
+            this(assemblyInfoFileObject, version.Major, version.Minor, version.Build, version.Revision, settingsFileObject)
         {
       
         }
 
-        private BuildInfo(string pathToAssemblyInfo, int major, int minor, int build, int revision)
+        private BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, int major, int minor, int build, int revision, ProjectPropertiesFile settingsFileObject)
         {
-            FileInfo fileInfo = new FileInfo(pathToAssemblyInfo);
+            FileInfo assemblyFileInfo = new FileInfo(assemblyInfoFileObject.FullPath);
+            FileInfo settingsFileInfo = new FileInfo(settingsFileObject.FullPath);
 
 
-            if(fileInfo.Exists)
-            {
-
-                if(fileInfo.Name == "AssemblyInfo.cs")
-                {
-                    PathToAssemblyInfo = pathToAssemblyInfo;
-                }
-                else
-                {
-                    //foreach(var item in this.GetType().GetConstructors())
-                    //{
-                    //    foreach(var param in item.GetParameters())
-                    //    {
-                    //        param.Name
-                    //    }    
-                    //       // item.GetParameters()
-                    throw new System.ArgumentException($"Found file named {fileInfo.Name}, but expected AssemblyInfo.cs or a directory", $"{pathToAssemblyInfo}");
-                }
-            
-            
-
-            }
-            else
-            {
-            
-            // TODO: [] add code to create new AssemblyInfo.cs file
-            }
-            var lines = File.ReadAllLines(fileInfo.FullName);
+           
+            var lines = File.ReadAllLines(assemblyFileInfo.FullName);
             // var contents = File.ReadAllText(assInfo.FullName);
 
-            fileInfo.MoveTo($"{pathToAssemblyInfo}.backup");
+            assemblyFileInfo.MoveTo($"{assemblyInfoFileObject}.backup");
             var indexReplace = 0;
             for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
             {
@@ -66,40 +65,63 @@ namespace PrebuildHelper
             var contents = new StringBuilder();
             var listLines = lines.ToList();
             listLines.RemoveAt(indexReplace);
-            int thisBuild = int.Parse("1") + 1;
-            listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{major}.{minor}.{build}.{thisBuild}\")]");
+            int currentRevision = revision + 1;
+            listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{major}.{minor}.{build}.{currentRevision}\")]");
             foreach(var item in listLines)
             {
                 contents.AppendLine(item);
             }
-            // int thisBuild = int.Parse(args[4]) + 1;
+            // int currentRevision = int.Parse(args[4]) + 1;
 
-            File.WriteAllText(pathToAssemblyInfo, contents.ToString());
+            File.WriteAllText(assemblyInfoFileObject.FullPath, contents.ToString());
             
             Major = major;
             Minor = minor;
             Build = build;
-            Revision = revision;
-          //3  return thisBuild;
+            Revision = currentRevision;
+            PreviousRevision = revision;
+          //3  return currentRevision;
         }
 
-        public string PathToAssemblyInfo
+        internal string PathToAssemblyInfo
         {
             get;
         }
-        public int Major
+
+        internal string pathToSettingsFile
         {
             get;
         }
-        public int Minor
+
+        internal int Major
         {
             get;
         }
-        public int Build
+        
+        internal int PreviousMajor
         {
             get;
         }
-        public int Revision
+        internal int Minor
+        {
+            get;
+        }internal int PreviousMinor
+        {
+            get;
+        }
+        internal int Build
+        {
+            get;
+        }
+        internal int PreviousBuild
+        {
+            get;
+        }
+        internal int Revision
+        {
+            get;
+        }
+        internal int PreviousRevision
         {
             get;
         }

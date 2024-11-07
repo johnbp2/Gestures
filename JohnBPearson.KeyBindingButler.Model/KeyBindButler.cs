@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JohnBPearson.com.Utility;
 
-namespace JohnBPearson.KeyBindingButler.Model
+namespace JohnBPearson.Application.Model
 {
 
     public enum ToastOptions

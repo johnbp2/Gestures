@@ -4,8 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
-using JohnBPearson.KeyBindingButler.Model;
-using JohnBPearson.KeyBindingButler.Model.KeyBinding;
+using JohnBPearson.Application.Model;
+using JohnBPearson.Application.Model.KeyBinding;
 using JohnBPearson.Windows.Interop;
 
 
@@ -19,7 +19,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
     public class MainPresenter : IPresenter<Main>
     {
-        private JohnBPearson.KeyBindingButler.Model.ContainerList _containerList;
+        private JohnBPearson.Application.Model.ContainerList _containerList;
         private Main _main;
         public Main Form { get { return this._main; } set { this._main = value; } }
 
@@ -37,7 +37,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             }
         }
 
-        private void updateContainerInner(JohnBPearson.KeyBindingButler.Model.IContainer oldItem, string newData, string description, bool isSecured)
+        private void updateContainerInner(JohnBPearson.Application.Model.IContainer oldItem, string newData, string description, bool isSecured)
         {
             oldItem.Update(ref newData, description, isSecured);
             GlobalHotKey.removeAllRegistration();
@@ -69,7 +69,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 return this.ContainerList.Keys;
             }
         }
-        public IEnumerable<JohnBPearson.KeyBindingButler.Model.IContainer> Containers
+        public IEnumerable<JohnBPearson.Application.Model.IContainer> Containers
         {
             get
             {
@@ -84,7 +84,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
 
-        public JohnBPearson.KeyBindingButler.Model.IContainer findKeyBoundValue(string keyValue)
+        public JohnBPearson.Application.Model.IContainer findKeyBoundValue(string keyValue)
         {
             return this.Containers.ToList().Find((item) => { return item.Key.Value == keyValue; });
 
@@ -107,12 +107,12 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             string[] arr = new string[26];
             Properties.Settings.Default.isSecured.CopyTo(arr, 0);
             strings.Secured = arr.AsEnumerable<string>();
-            this._containerList = new JohnBPearson.KeyBindingButler.Model.ContainerList(strings);
+            this._containerList = new JohnBPearson.Application.Model.ContainerList(strings);
             return this.ContainerList;
         }
 
 
-        public void registerHotKeys(IEnumerable<JohnBPearson.KeyBindingButler.Model.IContainer> keys)
+        public void registerHotKeys(IEnumerable<JohnBPearson.Application.Model.IContainer> keys)
         {
             GlobalHotKey.removeAllRegistration();
 
@@ -143,13 +143,13 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
     public interface IPresenter<T>
     {
         T Form { get; }
-        IEnumerable<JohnBPearson.KeyBindingButler.Model.IContainer> Containers { get; }
+        IEnumerable<JohnBPearson.Application.Model.IContainer> Containers { get; }
         int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
 
         void updateContainer(string newData, string description, string key, bool isSecured);
 
 
-        JohnBPearson.KeyBindingButler.Model.IContainer findKeyBoundValue(string keyValue);
+        JohnBPearson.Application.Model.IContainer findKeyBoundValue(string keyValue);
     }
 
 
