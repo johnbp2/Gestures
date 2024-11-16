@@ -15,7 +15,7 @@ namespace JohnBPearson.Windows.Forms.Controls
         void Popup(int index);
         void Popup();
     }
-    public class Notification : Tulpep.NotificationWindow.PopupNotifier, INotification 
+    public class Notification :JohnBPearson.Windows.Forms.Alert.PopupNotifier, INotification 
     {
         private List<Tuple<string, string>> _notifications = new List<Tuple<string, string>>();
             

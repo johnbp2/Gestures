@@ -9,7 +9,7 @@ using JohnBPearson.Application.Model;
 using JohnBPearson.Windows.Forms.Controls;
 using JohnBPearson.Windows.Interop;
 using Microsoft.Toolkit.Uwp.Notifications;
-using Tulpep.NotificationWindow;
+
 
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
@@ -23,7 +23,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         
         }
 
-        protected PopupNotifier notifier = new PopupNotifier();
+      //  protected . notifier = new PopupNotifier();
 
 
         protected void notify(string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.None)

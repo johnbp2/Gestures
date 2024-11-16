@@ -31,7 +31,7 @@ namespace JohnBPearson.Application.Model
             get { return _key; }
             private set { _key = value; }
         }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public string DescriptionString
         {
             get
@@ -44,11 +44,11 @@ namespace JohnBPearson.Application.Model
             }
         }
 
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public string DataString
         {
             get
-            {
+            {86
                 return this._data.Value;
             }
             set
@@ -140,7 +140,7 @@ namespace JohnBPearson.Application.Model
             get { return this._objectState; }
         }
 
-        protected Container()
+        public Container()
         {
         }
         protected Container(char key, string value)

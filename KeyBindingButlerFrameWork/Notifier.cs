@@ -3,7 +3,6 @@ using JohnBPearson.Windows.Interop;
 using System;
 using System.Drawing;
 using JohnBPearson.Windows.Forms.Controls;
-using Tulpep.NotificationWindow;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {

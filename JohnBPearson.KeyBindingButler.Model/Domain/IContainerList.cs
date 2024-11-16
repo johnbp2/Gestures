@@ -9,6 +9,7 @@ namespace JohnBPearson.Application.Model
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();
+        KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items);
         string PrepareDataToSaveAsOneSetting();
     }
 }

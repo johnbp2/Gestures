@@ -33,7 +33,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.popupNotifier1 = new Tulpep.NotificationWindow.PopupNotifier();
+            this.popupNotifier1 = new JohnBPearson.Windows.Forms.Alert.PopupNotifier();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -334,7 +334,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         private Controls.AdvancedRadioButton rbMinimizeToTrayOn;
         private Controls.AdvancedRadioButton rbMinimizeToTrayOff;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private Tulpep.NotificationWindow.PopupNotifier popupNotifier1;
+        private JohnBPearson.Windows.Forms.Alert.PopupNotifier popupNotifier1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbServantName;
         private System.Windows.Forms.Label label3;
