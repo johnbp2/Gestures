@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Deployment.Internal;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using JohnBPearson.Application.Common;
 
 namespace PrebuildHelper
@@ -45,16 +41,26 @@ namespace PrebuildHelper
             FileInfo assemblyFileInfo = new FileInfo(assemblyInfoFileObject.FullPath);
             FileInfo settingsFileInfo = new FileInfo(settingsFileObject.FullPath);
 
+            int currentRevision = updateFile(assemblyInfoFileObject, $"[assembly: AssemblyVersion(\"{major}.{minor}.{build}.{revision}\")]",assemblyFileInfo ,Constants.searchString1);
 
-           
-            var lines = File.ReadAllLines(assemblyFileInfo.FullName);
-            // var contents = File.ReadAllText(assInfo.FullName);
+            Major = major;
+            Minor = minor;
+            Build = build;
+            Revision = currentRevision;
+            PreviousRevision = revision;
+            //3  return currentRevision;
+        }
 
-            assemblyFileInfo.MoveTo($"{assemblyInfoFileObject}.backup");
+        private static int updateFile(ProjectPropertiesFile ppFile,string insertLine, FileInfo ppFileInfo, string searchString)
+        {
+            var ppLines = ppFile.Lines;
+                    // var contents = File.ReadAllText(assInfo.FullName);
+
+            ppFileInfo.MoveTo($"{ppFile}.backup");
             var indexReplace = 0;
-            for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
+            for(global::System.Int32 i = (ppLines.Length) - (1); i >= 0; i--)
             {
-                if(lines[i].StartsWith(Constants.searchString1))
+                if(ppLines[i].StartsWith(searchString))
                 {
                     indexReplace = i;
                     break;
@@ -63,24 +69,18 @@ namespace PrebuildHelper
             }
 
             var contents = new StringBuilder();
-            var listLines = lines.ToList();
+            var listLines = ppLines.ToList();
             listLines.RemoveAt(indexReplace);
-            int currentRevision = revision + 1;
-            listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{major}.{minor}.{build}.{currentRevision}\")]");
+            
+            listLines.Insert(indexReplace, insertLine);
             foreach(var item in listLines)
             {
                 contents.AppendLine(item);
             }
             // int currentRevision = int.Parse(args[4]) + 1;
 
-            File.WriteAllText(assemblyInfoFileObject.FullPath, contents.ToString());
-            
-            Major = major;
-            Minor = minor;
-            Build = build;
-            Revision = currentRevision;
-            PreviousRevision = revision;
-          //3  return currentRevision;
+            File.WriteAllText(ppFile.FullPath, contents.ToString());
+            return 1;//;
         }
 
         internal string PathToAssemblyInfo

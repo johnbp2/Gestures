@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", "..\Prebui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.HotkeyButler.DataAccess", "JohnBPearson.HotkeyButler.DataAccess\JohnBPearson.HotkeyButler.DataAccess.csproj", "{B998E062-1697-4967-8ABA-1FBF21B7A0E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationWindow", "..\..\Notification-Popup-Window\NotificationWindow\NotificationWindow.csproj", "{605006EB-D4E6-4312-A293-3A43FAC43240}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Designer|Any CPU = Debug Designer|Any CPU
@@ -96,6 +98,12 @@ Global
 		{B998E062-1697-4967-8ABA-1FBF21B7A0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B998E062-1697-4967-8ABA-1FBF21B7A0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B998E062-1697-4967-8ABA-1FBF21B7A0E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug Designer|Any CPU.ActiveCfg = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug Designer|Any CPU.Build.0 = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

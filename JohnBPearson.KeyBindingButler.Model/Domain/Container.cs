@@ -24,14 +24,14 @@ namespace JohnBPearson.Application.Model
 
         private Data _data;
        
-        private KeyInfo _key;
+        private InputKey _key;
          internal IContainerList _parent;
-        public KeyInfo Key
+        public InputKey Key
         {
             get { return _key; }
             private set { _key = value; }
         }
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public string DescriptionString
         {
             get
@@ -44,11 +44,11 @@ namespace JohnBPearson.Application.Model
             }
         }
 
-
+        [System.Text.Json.Serialization.JsonIgnore]
         public string DataString
         {
             get
-            {
+            {86
                 return this._data.Value;
             }
             set
@@ -140,7 +140,7 @@ namespace JohnBPearson.Application.Model
             get { return this._objectState; }
         }
 
-        protected Container()
+        public Container()
         {
         }
         protected Container(char key, string value)
@@ -155,7 +155,7 @@ namespace JohnBPearson.Application.Model
 
         private void CreateKeyboardKey(char key)
         {
-            Key = KeyInfo.Create(key, this);
+            Key = InputKey.Create(key, this);
         }
 
         private void CreateDescription(string description)
@@ -197,15 +197,15 @@ namespace JohnBPearson.Application.Model
             return new Container(parent, key, value, description, secured);
         }
 
-        //internal static Container CreateForReplace(Data newValue, IKeyBoundData oldItem)
+        //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
         //    if (!newValue.Equals(oldItem.Data))
         //    {
-        //        return new Container(oldItem.KeyInfo.KeyInfo, newValue.Value);
+        //        return new Containers(oldItem.InputKey.InputKey, newValue.Value);
         //    }
-        //    if (oldItem is Container)
+        //    if (oldItem is Containers)
         //    {
-        //        return (Container)(oldItem);
+        //        return (Containers)(oldItem);
         //    } else
         //    {
         //        throw new NotImplementedException();

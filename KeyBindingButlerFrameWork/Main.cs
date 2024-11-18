@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using Tulpep.NotificationWindow;
 using JohnBPearson.Application.Model;
 using JohnBPearson.Windows.Forms.Controls;
 using System.Runtime.CompilerServices;

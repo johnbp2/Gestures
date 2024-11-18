@@ -174,12 +174,12 @@ namespace JohnBPearson.com.Utility
         //        if (item.ObjectState != ObjectState.Deleted)
         //        {
         //            if (!item.setIfLastItem()) { 
-        //            tempKeys.Add(item.Key.GetDeliminated());
+        //            tempKeys.Add(item.Alpha.GetDeliminated());
         //                tempValues.Add(item.Data.GetDeliminated());
         //                tempDescs.Add(item.Description.GetDeliminated());
         //            }else
         //            {
-        //                tempKeys.Add(item.Key.Value);
+        //                tempKeys.Add(item.Alpha.Value);
         //                tempValues.Add(item.Data.Value);
         //                tempDescs.Add(item.Description.Value);
         //            }
@@ -190,7 +190,7 @@ namespace JohnBPearson.com.Utility
         //        }
         //        else if(item.ObjectState == ObjectState.Deleted)
         //        {
-        //            tempKeys.Add(item.Key.GetDeliminated());
+        //            tempKeys.Add(item.Alpha.GetDeliminated());
         //            tempValues.Add(item.Data.GetDeliminated());
         //            tempDescs.Add(item.Description.GetDeliminated());
         //        }

@@ -14,6 +14,7 @@ namespace JohnBPearson.Application.Model
         private Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
+        private List<IContainer> _importBackUpItems;
 
         public ContainerList(KeyAndDataStringLiterals strings)
         {
@@ -42,33 +43,48 @@ namespace JohnBPearson.Application.Model
         //{
 
 
-        //    var newKeyBoundValue = Container.CreateForReplace(newItem.Data, oldItem);
-        //    var index = this._items.IndexOf(oldItem);
-        //    this._items.RemoveAt(index);
-        //    this._items[index] = newItem;
-        //    //  return this._items;
+        //    var newKeyBoundValue = Containers.CreateForReplace(newItem.Data, oldItem);
+        //    var index = this.items.IndexOf(oldItem);
+        //    this.items.RemoveAt(index);
+        //    this.items[index] = newItem;
+        //    //  return this.items;
         //}
+
+        public KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
+        {
+            this._importBackUpItems = new List<IContainer>(items);
+       return this.prepareForSaveInner(items);
+        }
 
         public KeyAndDataStringLiterals PrepareDataForSave()
         {
+            return prepareForSaveInner();
+        }
 
+        private KeyAndDataStringLiterals prepareForSaveInner()
+        {
+            return prepareForSaveInner(_items);
+        }
+
+        private KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
+        {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
             var secured = new List<string>();
             int count = 0;
-            foreach (var item in _items)
+            foreach(var item in items)
 
             {
                 var data = string.Empty;
-                if (item.IsDataSecured)
+                if(item.IsDataSecured)
                 {
                     data = item.Secured.Secured;
                 }
                 else
                 {
-                data   = item.Data.Value;
+                    data = item.Data.Value;
                 }
-                
+
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseData.GetDeliminatedData(data));
                 secured.Add(item.IsDataSecured.ToString());

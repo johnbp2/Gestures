@@ -17,7 +17,7 @@ namespace JohnBPearson.Application.Model
     }
     public interface IBase
     {
-        KeyInfo Key { get; }
+        InputKey Key { get; }
         
         Data Data { get; }
         string DataString
@@ -74,9 +74,9 @@ namespace JohnBPearson.Application.Model
 //        /// <param name="value"></param>
 //        /// <param name="item">the item to be replaced</param>
 //        ///// <returns></returns>
-//        //public static IKeyBoundData CreateForReplace(string key, string value, Container item)
+//        //public static IKeyBoundData CreateForReplace(string key, string value, Containers item)
 //        //{
-//        //    return Container.KeyBoundDataBase Create(string key, string value)
+//        //    return Containers.KeyBoundDataBase Create(string key, string value)
 //        //}
 //    }
 //}
