@@ -67,9 +67,9 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             this.notifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon1.BalloonTipText = "The butler is in";
-            this.notifyIcon1.BalloonTipTitle = "KeyInfo Binding Butler";
+            this.notifyIcon1.BalloonTipTitle = "InputKey Binding Butler";
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "The \"KeyInfo Binding Butler\" is in";
+            this.notifyIcon1.Text = "The \"InputKey Binding Butler\" is in";
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // menuStrip1

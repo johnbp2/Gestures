@@ -51,7 +51,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
             dataGridView1.Columns.Remove("Data");
             dataGridView1.Columns.Remove("Description");
-            var col = dataGridView1.Columns["Key"];
+            var col = dataGridView1.Columns["Alpha"];
             col.ReadOnly = true;
 
         }
@@ -116,7 +116,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                        this._sourceList.ImportForSave(containers);
                         this._mainPresenter.executeAutoSave(true, "", false);
                     }
-                    //  System.Text.Json.JsonSerializer.Deserialize<Container[]>()
+                    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
                 }
             }
         }

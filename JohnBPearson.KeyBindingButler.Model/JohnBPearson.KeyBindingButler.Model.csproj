@@ -98,6 +98,7 @@
       <HintPath>..\TheButlerFramework\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -109,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Entities\Entities.cs" />
     <Compile Include="Domain\ValueObjects\Value.cs" />
     <Compile Include="Domain\ValueObjects\BaseData.cs" />
     <Compile Include="Domain\ValueObjects\SecuredData.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Domain\ValueObjects\Description.cs" />
     <Compile Include="Domain\ValueObjects\IBaseData.cs" />
     <Compile Include="Domain\IContainer.cs" />
-    <Compile Include="Domain\ValueObjects\KeyInfo.cs" />
+    <Compile Include="Domain\ValueObjects\InputKey.cs" />
     <Compile Include="KeyBindButler.cs" />
     <Compile Include="Domain\Container.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
@@ -144,7 +146,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Entities\" />
     <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

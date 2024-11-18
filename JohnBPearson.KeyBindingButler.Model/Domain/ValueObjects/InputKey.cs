@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-
-namespace JohnBPearson.Application.Model
+﻿namespace JohnBPearson.Application.Model
 {
-    public class KeyInfo : BaseData
+    public class InputKey : BaseData
     {
 
         private char _key;
@@ -27,11 +20,14 @@ namespace JohnBPearson.Application.Model
             }
             set { _key = value; }
         }
-        protected KeyInfo(IContainer parent) : base(parent)
+
+        public System.Windows.Forms.k MyProperty { get; set; }
+
+        protected InputKey(IContainer parent) : base(parent)
         {
 
         }
-        protected KeyInfo(char key, IContainer parent) : base(key.ToString(), parent)
+        protected InputKey(char key, IContainer parent) : base(key.ToString(), parent)
         {
             this._key = key;
         }
@@ -68,9 +64,9 @@ namespace JohnBPearson.Application.Model
 
         }
 
-        public static KeyInfo Create(char key, IContainer parent)
+        public static InputKey Create(char key, IContainer parent)
         {
-            return new KeyInfo(key, parent);
+            return new InputKey(key, parent);
 
         }
     }

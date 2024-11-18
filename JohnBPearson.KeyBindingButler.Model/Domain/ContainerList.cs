@@ -43,7 +43,7 @@ namespace JohnBPearson.Application.Model
         //{
 
 
-        //    var newKeyBoundValue = Container.CreateForReplace(newItem.Data, oldItem);
+        //    var newKeyBoundValue = Containers.CreateForReplace(newItem.Data, oldItem);
         //    var index = this.items.IndexOf(oldItem);
         //    this.items.RemoveAt(index);
         //    this.items[index] = newItem;

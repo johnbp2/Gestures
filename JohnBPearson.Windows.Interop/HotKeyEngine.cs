@@ -188,10 +188,10 @@ public class GlobalHotKey : IDisposable
 
     //private class HotKeyWithAction    {
 
-    //    public HotKeyWithAction(ModifierKeys modifier, KeyInfo key, string data, Action action = null, KeyBindCallBack callBack = null)
+    //    public HotKeyWithAction(ModifierKeys modifier, InputKey key, string data, Action action = null, KeyBindCallBack callBack = null)
     //    {
     //        Modifier = modifier;
-    //        KeyInfo = key;
+    //        InputKey = key;
     //        if (action != null)
     //        {
     //            Action = action;
@@ -204,7 +204,7 @@ public class GlobalHotKey : IDisposable
     //    }
 
     //    public ModifierKeys Modifier { get; }
-    //    public KeyInfo KeyInfo { get; }
+    //    public InputKey InputKey { get; }
     //    public IKeyBoundData Data { get;  } 
     //    public Action Action { get; }
     //    public KeyBindCallBack CallBack { get; }
