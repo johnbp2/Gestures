@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Dynamic;
 using System.Net.Http.Headers;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
 
     public enum ObjectState

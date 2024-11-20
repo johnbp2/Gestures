@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.KeyBindingButler.Model.Domain.Entities
+namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 {
 
     public class Rootobject
@@ -13,10 +13,16 @@ namespace JohnBPearson.KeyBindingButler.Model.Domain.Entities
         {
             get; set;
         }
+        public Rootobject()
+        {
+        }
     }
 
     public class Container
     {
+        public Container()
+        {
+        }
         public bool IsDataSecured
         {
             get; set;
@@ -45,18 +51,21 @@ namespace JohnBPearson.KeyBindingButler.Model.Domain.Entities
         {
             get; set;
         }
-        public object Secured
-        {
-            get; set;
-        }
-        public int ObjectState
-        {
-            get; set;
-        }
+        //public object Secured
+        //{
+        //    get; set;
+        //}
+        //public int ObjectState
+        //{
+        //    get; set;
+        //}
     }
 
     public class Key
     {
+        public Key()
+        {
+        }
         public string Alpha
         {
             get; set;
@@ -69,6 +78,9 @@ namespace JohnBPearson.KeyBindingButler.Model.Domain.Entities
 
     public class Data
     {
+        public Data()
+        {
+        }
         public string Value
         {
             get; set;
@@ -77,6 +89,10 @@ namespace JohnBPearson.KeyBindingButler.Model.Domain.Entities
 
     public class Description
     {
+
+        public Description()
+        {
+        }
         public string Value
         {
             get; set;

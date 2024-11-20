@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using JohnBPearson.com.Utility;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
     public class ContainerList : IContainerList
     {

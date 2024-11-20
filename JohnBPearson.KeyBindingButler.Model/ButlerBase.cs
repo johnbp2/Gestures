@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
     public enum TimeDayOrNight
     {

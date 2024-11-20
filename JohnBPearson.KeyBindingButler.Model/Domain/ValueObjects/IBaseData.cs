@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JohnBPearson.Application.Model
+namespace ohnBPearson.Application.Gestures.Model.Domain
 {
     public interface IBaseData :IEquatable<IBaseData>
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using JohnBPearson.com.Utility;
 
-namespace JohnBPearson.Application.Model
+namespace ohnBPearson.Application.Gestures.Model
 {
 
     public enum ToastOptions

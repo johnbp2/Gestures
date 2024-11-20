@@ -8,8 +8,8 @@
     <ProjectGuid>{45ED5872-A9F3-497C-8A12-753D1A22A9F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JohnBPearson.KeyBindingButler.Model</RootNamespace>
-    <AssemblyName>JohnBPearson.KeyBindingButler.Model</AssemblyName>
+    <RootNamespace>JohnBPearson.Application.Gestures.Model</RootNamespace>
+    <AssemblyName>JohnBPearson.Application.Gestures.Model</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -108,27 +108,28 @@
     <Reference Include="Tulpep.NotificationWindow">
       <HintPath>..\TheButlerFramework\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Entities\Entities.cs" />
     <Compile Include="Domain\ValueObjects\Value.cs" />
     <Compile Include="Domain\ValueObjects\BaseData.cs" />
     <Compile Include="Domain\ValueObjects\SecuredData.cs" />
-    <Compile Include="Domain\IContainerList.cs" />
     <Compile Include="Utility\KeyAndDataStringLiterals.cs" />
-    <Compile Include="Domain\ContainerList.cs" />
     <Compile Include="ButlerBase.cs" />
     <Compile Include="Domain\ValueObjects\Data.cs" />
     <Compile Include="Domain\ValueObjects\Description.cs" />
     <Compile Include="Domain\ValueObjects\IBaseData.cs" />
-    <Compile Include="Domain\IContainer.cs" />
     <Compile Include="Domain\ValueObjects\InputKey.cs" />
     <Compile Include="KeyBindButler.cs" />
-    <Compile Include="Domain\Container.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Parser.cs" />
     <Compile Include="SettingToList.cs" />
+    <Compile Include="View\Container.cs" />
+    <Compile Include="View\ContainerList.cs" />
+    <Compile Include="View\IContainer.cs" />
+    <Compile Include="View\IContainerList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TheButlerFramework\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
@@ -145,9 +146,7 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

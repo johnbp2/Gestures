@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JohnBPearson.Application.Model;
+using ohnBPearson.Application.Gestures.Model.Domain;
 using JohnBPearson.Windows.Forms.Controls;
 using JohnBPearson.Windows.Interop;
 using Microsoft.Toolkit.Uwp.Notifications;

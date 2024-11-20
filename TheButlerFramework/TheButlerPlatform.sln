@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyButler", "..\KeyBindingButlerFrameWork\HotkeyButler.csproj", "{49700ACC-7927-463E-A401-3144660034E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.KeyBindingButler.Model", "..\JohnBPearson.KeyBindingButler.Model\JohnBPearson.KeyBindingButler.Model.csproj", "{45ED5872-A9F3-497C-8A12-753D1A22A9F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Interop", "..\JohnBPearson.Windows.Interop\JohnBPearson.Windows.Interop.csproj", "{C2EB5A3E-9528-47CD-BB07-B0F924239A77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extension", "..\Extension\Extension.csproj", "{B8D5FFA8-80E3-447D-AE07-DA86AF72F206}"
@@ -31,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.HotkeyButler.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationWindow", "..\..\Notification-Popup-Window\NotificationWindow\NotificationWindow.csproj", "{605006EB-D4E6-4312-A293-3A43FAC43240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\JohnBPearson.KeyBindingButler.Model\Model.csproj", "{45ED5872-A9F3-497C-8A12-753D1A22A9F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Designer|Any CPU = Debug Designer|Any CPU
@@ -44,12 +44,6 @@ Global
 		{49700ACC-7927-463E-A401-3144660034E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49700ACC-7927-463E-A401-3144660034E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49700ACC-7927-463E-A401-3144660034E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2EB5A3E-9528-47CD-BB07-B0F924239A77}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
 		{C2EB5A3E-9528-47CD-BB07-B0F924239A77}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
 		{C2EB5A3E-9528-47CD-BB07-B0F924239A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -104,6 +98,12 @@ Global
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{605006EB-D4E6-4312-A293-3A43FAC43240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug Designer|Any CPU.ActiveCfg = Debug Designer|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug Designer|Any CPU.Build.0 = Debug Designer|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45ED5872-A9F3-497C-8A12-753D1A22A9F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

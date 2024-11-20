@@ -10,7 +10,7 @@ using System.Runtime.Remoting.Lifetime;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gesture.Model
 {
 
 
@@ -48,7 +48,7 @@ namespace JohnBPearson.Application.Model
         public string DataString
         {
             get
-            {86
+            {
                 return this._data.Value;
             }
             set

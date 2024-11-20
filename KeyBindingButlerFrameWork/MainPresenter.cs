@@ -69,7 +69,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
                 return this.ContainerList.Keys;
             }
         }
-        public IEnumerable<JohnBPearson.Application.Model.IContainer> Containers
+        public IEnumerable<JohnBPearson.Application.Gestures.IContainer> Containers
         {
             get
             {
