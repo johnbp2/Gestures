@@ -115,7 +115,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Notification-Popup-Window\NotificationWindow\NotificationWindow.csproj">
+    <ProjectReference Include="..\NotificationWindow\NotificationWindow.csproj">
       <Project>{605006eb-d4e6-4312-a293-3a43fac43240}</Project>
       <Name>NotificationWindow</Name>
     </ProjectReference>
