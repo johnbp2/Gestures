@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ohnBPearson.Application.Gestures.Model.Domain;
-using JohnBPearson.Windows.Forms.Controls;
-using JohnBPearson.Windows.Interop;
-using Microsoft.Toolkit.Uwp.Notifications;
+using JohnBPearson.Application.Gestures.Model;
+using JohnBPearson.Application.Gestures.Model;
 
 
 

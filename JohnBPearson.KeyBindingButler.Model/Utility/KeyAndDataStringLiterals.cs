@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JohnBPearson.Application.Gestures.Model
+namespace JohnBPearson.Application.Gestures.Model.Utility
 {
     public struct KeyAndDataStringLiterals
     {

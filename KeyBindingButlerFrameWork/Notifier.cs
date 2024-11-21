@@ -1,8 +1,8 @@
-﻿using JohnBPearson.Application.Model;
-using JohnBPearson.Windows.Interop;
-using System;
+﻿using System;
 using System.Drawing;
 using JohnBPearson.Windows.Forms.Controls;
+using JohnBPearson.Windows.Interop;
+using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {

@@ -257,6 +257,10 @@
       <Project>{b8d5ffa8-80e3-447d-ae07-da86af72f206}</Project>
       <Name>Extension</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JohnBPearson.KeyBindingButler.Model\Model.csproj">
+      <Project>{45ed5872-a9f3-497c-8a12-753d1a22a9f2}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JohnBPearson.Windows.Forms.Controls\JohnBPearson.Windows.Forms.Controls.csproj">
       <Project>{290f3e29-9012-4a41-ae60-993dbc62c716}</Project>
       <Name>JohnBPearson.Windows.Forms.Controls</Name>

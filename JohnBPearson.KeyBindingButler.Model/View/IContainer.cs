@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-
+using JohnBPearson.Application.Gestures.Model.Domain;
 using System.Dynamic;
 using System.Net.Http.Headers;
 
@@ -34,7 +34,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
         Description Description { get; set; }
         char KeyAsChar { get; }
-        KeyBinding.SecuredData Secured { get; }
+        SecuredData Secured { get; }
         ObjectState ObjectState { get; }
 
 
