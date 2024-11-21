@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain
 {
-    public class Data : BaseData
+    public class Data : BaseValue
     {
 
 

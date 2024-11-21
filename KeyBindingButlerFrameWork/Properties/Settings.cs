@@ -1,4 +1,4 @@
-﻿namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
+﻿namespace JohnBPearson.Windows.Forms.Gestures.Properties {
     
     
     // This class allows you to handle specific events on the settings class:

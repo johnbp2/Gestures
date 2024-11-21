@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     partial class BaseForm
     {

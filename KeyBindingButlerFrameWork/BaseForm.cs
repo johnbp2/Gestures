@@ -4,7 +4,7 @@ using JohnBPearson.Application.Gestures.Model;
 
 
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
 
     public partial class BaseForm : System.Windows.Forms.Form

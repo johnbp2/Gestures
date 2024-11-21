@@ -10,7 +10,7 @@ using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model.Utility;
 
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     public interface IPresenterBase : INotifyPropertyChanged
     {
@@ -28,9 +28,14 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         public void updateContainer(string newValue, string newDescription, string selectedKey, bool isSecured = false)
         {
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
-            if (itemToUpdate != null)
+            if(itemToUpdate != null)
             {
-                this.updateContainerInner(itemToUpdate, newValue, newDescription, isSecured);
+                if(itemToUpdate.Description.Value != newDescription || itemToUpdate.Data.Value != newValue
+                    || itemToUpdate.IsDataSecured != isSecured)
+                {
+
+                    this.updateContainerInner(itemToUpdate, newValue, newDescription, isSecured);
+                }
             }
             else
             {

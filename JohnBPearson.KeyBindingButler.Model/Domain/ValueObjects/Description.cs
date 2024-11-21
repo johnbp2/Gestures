@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain
 {
-    public class Description: BaseData
+    public class Description: BaseValue
     {
 
 

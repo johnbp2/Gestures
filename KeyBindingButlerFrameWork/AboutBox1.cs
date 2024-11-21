@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     partial class AboutBox1 : Form
     {

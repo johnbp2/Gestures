@@ -1,6 +1,6 @@
 ﻿using JohnBPearson.Windows.Forms.Controls;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     partial class SettingsDialog
     {

@@ -110,13 +110,13 @@
   <ItemGroup>
     <Compile Include="Domain\Entities\Entities.cs" />
     <Compile Include="Domain\ValueObjects\Value.cs" />
-    <Compile Include="Domain\ValueObjects\BaseData.cs" />
+    <Compile Include="Domain\ValueObjects\BaseValue.cs" />
     <Compile Include="Domain\ValueObjects\SecuredData.cs" />
     <Compile Include="Utility\KeyAndDataStringLiterals.cs" />
     <Compile Include="ButlerBase.cs" />
     <Compile Include="Domain\ValueObjects\Data.cs" />
     <Compile Include="Domain\ValueObjects\Description.cs" />
-    <Compile Include="Domain\ValueObjects\IBaseData.cs" />
+    <Compile Include="Domain\ValueObjects\IBaseValue.cs" />
     <Compile Include="Domain\ValueObjects\InputKey.cs" />
     <Compile Include="KeyBindButler.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
@@ -141,6 +141,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

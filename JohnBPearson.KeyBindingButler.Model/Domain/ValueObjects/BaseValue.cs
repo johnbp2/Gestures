@@ -5,11 +5,11 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
 
 
-    public abstract class BaseData : IBaseData
+    public abstract class BaseValue : IBaseValue
     {
         protected IContainer _parent;
-        protected BaseData(IContainer parent) { this._parent = parent; }
-        protected BaseData(string value, IContainer parent)
+        protected BaseValue(IContainer parent) { this._parent = parent; }
+        protected BaseValue(string value, IContainer parent)
         {
             if (value == null) value = string.Empty;
             this._value = value;
@@ -36,7 +36,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         public static string Delimiter
         {
-            get { return BaseData._delimiter; }
+            get { return BaseValue._delimiter; }
             private set
             {
                 if (!String.IsNullOrWhiteSpace(value))
@@ -103,7 +103,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         }
         public override bool Equals(object other)
         {
-            BaseData localType = null;
+            BaseValue localType = null;
             if(other.GetType() != this.GetType())
            {
                 return false;
@@ -111,7 +111,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             else
             {
 
-                localType = (BaseData)other;
+                localType = (BaseValue)other;
             }
                 if(localType == null) return false;
             if (localType != null && !string.IsNullOrWhiteSpace(localType.Value))
@@ -122,19 +122,19 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             return false;
         }
 
-        public bool Equals(BaseData other)
+        public bool Equals(BaseValue other)
         {
             return this == other;
            // if (other != null && other.Value == this.Value) { return true; } else { return false; }
         }
 
-        public bool Equals(IBaseData other)
+        public bool Equals(IBaseValue other)
         {
             return this == other;
         }
 
-        public static bool operator ==(BaseData lhs, BaseData rhs)
-        {        // public abstract bool Equals(IBaseData other);
+        public static bool operator ==(BaseValue lhs, BaseValue rhs)
+        {        // public abstract bool Equals(IBaseValue other);
             if (lhs is null || rhs is null)
             {
                 if (lhs is null && rhs is null) { return true; } else { return false; }
@@ -149,7 +149,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             
         }
 
-        public static bool operator !=(BaseData lhs, BaseData rhs)
+        public static bool operator !=(BaseValue lhs, BaseValue rhs)
         {
             if (lhs is null || rhs is null)
             {
