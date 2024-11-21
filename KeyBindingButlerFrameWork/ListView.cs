@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -43,20 +44,43 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             }
             dataGridView1.DataSource = containers; //typeof(IContaine
+                                                   //  if(dataGridView1.Columns[])
+            safeRemoveDataColumn("Data");
+            safeRemoveDataColumn("Description");
+            safeRemoveDataColumn("KeyAsChar");
 
-            dataGridView1.Columns.Remove("Data");
-            dataGridView1.Columns.Remove("Description");
-            var col = dataGridView1.Columns["Alpha"];
-            col.ReadOnly = true;
+            safeRemoveDataColumn("Secured");
+            safeRemoveDataColumn("IsDataSecured");
+            safeRemoveDataColumn("ObjectState");
+            //var col = dataGridView1.Columns["Alpha"];
+            //col.ReadOnly = true;
 
         }
 
+
+        private void safeRemoveDataColumn(string columnName)
+        {
+          
+          var column =  dataGridView1.Columns.GetFirstColumn(new DataGridViewElementStates());
+            if(column != null && column.Name == columnName)
+            {
+          
+            }
+            for(int i = dataGridView1.Columns.Count - 1; i >= 0; i--)
+            {
+                DataGridViewColumn col = dataGridView1.Columns[i];
+                if(col.Name == columnName)
+                {
+                    dataGridView1.Columns.Remove(col);
+                }
+            }
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             this._mainPresenter.executeAutoSave(true, "", false);
             this.notify("Saved", "Saved list contents", false, ToastOptions.Save);
             var export = System.Text.Json.JsonSerializer.Serialize<IContainerList>(this._sourceList);
-            System.Windows.Clipboard.SetText(export);
+          //  System.Windows.Clipboard.SetText(export);
         }
 
         private void btnExport_Click(object sender, EventArgs e)

@@ -28,9 +28,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public void updateContainer(string newValue, string newDescription, string selectedKey, bool isSecured = false)
         {
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
-            if (itemToUpdate != null)
+            if(itemToUpdate != null)
             {
-                this.updateContainerInner(itemToUpdate, newValue, newDescription, isSecured);
+                if(itemToUpdate.Description.Value != newDescription || itemToUpdate.Data.Value != newValue
+                    || itemToUpdate.IsDataSecured != isSecured)
+                {
+
+                    this.updateContainerInner(itemToUpdate, newValue, newDescription, isSecured);
+                }
             }
             else
             {

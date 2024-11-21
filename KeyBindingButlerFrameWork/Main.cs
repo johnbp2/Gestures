@@ -64,8 +64,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IContainer item)
         {
             var data = item.Data.Value;
-         
-            System.Windows.Clipboard.SetText(data);
+            System.Windows.Forms.Clipboard.SetDataObject(data, true, 10, 100);
+            //System.Windows.Clipboard.SetText(data);
 
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();

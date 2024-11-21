@@ -13,21 +13,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         static void Main()
         {
 
-            ////string original = "PASSWORD";
-            ////using(AesManaged myAes = new AesManaged())
-            ////{
-            ////    Encrypt the string to an array of bytes.
-            ////    byte[] encrypted = JohnBPearson.Create.Aes.AesCypher.EncryptStringToBytes_Aes(original, myAes.InputKey, myAes.IV);
-            ////    var str = System.Text.Encoding.Default.GetString(encrypted);
-
-            ////    Decrypt the bytes to a string.
-            ////    string roundtrip = JohnBPearson.Create.Aes.AesCypher.DecryptStringFromBytes_Aes(encrypted, myAes.InputKey, myAes.IV);
-
-            ////    Display the original data and the decrypted data.
-            ////    Console.WriteLine("Original:   {0}", original);
-            ////    Console.WriteLine("Encrypted:  {0}", str);
-            ////    Console.WriteLine("Round Trip: {0}", roundtrip);
-            ////}
+          
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
