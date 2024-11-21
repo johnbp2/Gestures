@@ -249,10 +249,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Notification-Popup-Window\NotificationWindow\NotificationWindow.csproj">
-      <Project>{605006eb-d4e6-4312-a293-3a43fac43240}</Project>
-      <Name>NotificationWindow</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Extension\Extension.csproj">
       <Project>{b8d5ffa8-80e3-447d-ae07-da86af72f206}</Project>
       <Name>Extension</Name>
@@ -268,6 +264,10 @@
     <ProjectReference Include="..\JohnBPearson.Windows.Interop\JohnBPearson.Windows.Interop.csproj">
       <Project>{c2eb5a3e-9528-47cd-bb07-b0f924239a77}</Project>
       <Name>JohnBPearson.Windows.Interop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationWindow\NotificationWindow.csproj">
+      <Project>{605006eb-d4e6-4312-a293-3a43fac43240}</Project>
+      <Name>NotificationWindow</Name>
     </ProjectReference>
     <ProjectReference Include="..\PrebuildHelper\PrebuildHelper.csproj">
       <Project>{7f8aa506-3088-4c56-8c78-2116faacc8e1}</Project>
