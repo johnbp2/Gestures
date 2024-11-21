@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     public partial class ListView : BaseForm
     {

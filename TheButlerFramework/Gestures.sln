@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotkeyButler", "..\KeyBindingButlerFrameWork\HotkeyButler.csproj", "{49700ACC-7927-463E-A401-3144660034E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturersApp", "..\KeyBindingButlerFrameWork\GesturersApp.csproj", "{49700ACC-7927-463E-A401-3144660034E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Interop", "..\JohnBPearson.Windows.Interop\JohnBPearson.Windows.Interop.csproj", "{C2EB5A3E-9528-47CD-BB07-B0F924239A77}"
 EndProject

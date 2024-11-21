@@ -4,7 +4,7 @@ using JohnBPearson.Windows.Forms.Controls;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     public static class Notifier
     {

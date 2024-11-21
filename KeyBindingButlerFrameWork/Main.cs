@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using JohnBPearson.Windows.Forms.KeyBindingButler.Properties;
+using JohnBPearson.Windows.Forms.Gestures.Properties;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model;
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     public partial class Main : BaseForm
     {

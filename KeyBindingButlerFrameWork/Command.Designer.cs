@@ -1,4 +1,4 @@
-﻿namespace JohnBPearson.Windows.Forms.KeyBindingButler
+﻿namespace JohnBPearson.Windows.Forms.Gestures
 {
     partial class Command
     {

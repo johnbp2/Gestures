@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler.Properties {
+namespace JohnBPearson.Windows.Forms.Gestures.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

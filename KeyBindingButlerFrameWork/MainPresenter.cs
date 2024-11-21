@@ -10,7 +10,7 @@ using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model.Utility;
 
 
-namespace JohnBPearson.Windows.Forms.KeyBindingButler
+namespace JohnBPearson.Windows.Forms.Gestures
 {
     public interface IPresenterBase : INotifyPropertyChanged
     {
