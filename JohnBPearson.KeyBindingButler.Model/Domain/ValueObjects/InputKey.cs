@@ -1,4 +1,4 @@
-﻿namespace JohnBPearson.Application.Model
+﻿namespace JohnBPearson.Application.Gestures.Model.Domain
 {
     public class InputKey : BaseData
     {
@@ -21,7 +21,7 @@
             set { _key = value; }
         }
 
-        public System.Windows.Forms.k MyProperty { get; set; }
+        public System.Windows.Input.Key MyProperty { get; set; }
 
         protected InputKey(IContainer parent) : base(parent)
         {

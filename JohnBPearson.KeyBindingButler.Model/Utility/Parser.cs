@@ -1,20 +1,10 @@
 ﻿
 using System;
-using System.CodeDom;
-using System.CodeDom.Compiler;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using JohnBPearson.Application.Model;
+using JohnBPearson.Application.Gestures.Model;
 
-namespace JohnBPearson.com.Utility
+namespace JohnBPearson.Application.Gestures.Model.Utility
 {
     internal class Parser
     {
@@ -51,9 +41,9 @@ namespace JohnBPearson.com.Utility
         private string _descriptionString;
         private IEnumerable<string> _secured;
 
-        private List<JohnBPearson.Application.Model.IContainer> _items;
+        private List<JohnBPearson.Application.Gestures.Model.IContainer> _items;
 
-        internal List<JohnBPearson.Application.Model.IContainer> Items
+        internal List<JohnBPearson.Application.Gestures.Model.IContainer> Items
         {
             get
             {
@@ -104,7 +94,7 @@ namespace JohnBPearson.com.Utility
             throw new ArgumentException(string.Concat( delim, " was not found in  ", value));
         }
 
-        private List<JohnBPearson.Application.Model.IContainer> parse()
+        private List<JohnBPearson.Application.Gestures.Model.IContainer> parse()
         {
 
             var securedArray = this._secured.ToArray();
@@ -129,7 +119,7 @@ namespace JohnBPearson.com.Utility
                         isSecure =   bool.Parse(isSecuredStrinh);
                     }
                    
-                    var hkv = JohnBPearson.Application.Model.Container.Create(this._parent,key[0], value, des, isSecure);
+                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isSecure);
                     resultList.Add(hkv);
                     index++;
                 }

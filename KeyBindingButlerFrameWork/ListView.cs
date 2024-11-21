@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
-using System.Windows.Forms;
-using System.Windows.Media.TextFormatting;
-using JohnBPearson.Application.Model;
-using Microsoft.Toolkit.Uwp.Notifications;
-using Windows.Foundation.Collections;
 using System.Text.Json;
+using System.Windows.Forms;
+using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {

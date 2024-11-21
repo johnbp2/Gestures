@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.KeyBindingButler.Model.Domain
+namespace JohnBPearson.Application.Gestures.Model.Domain
 {
     public abstract class ValueObject<T>
      where T : ValueObject<T>

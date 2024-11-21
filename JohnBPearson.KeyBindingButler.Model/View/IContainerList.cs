@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using JohnBPearson.Application.Gestures.Model.Utility;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
     public interface IContainerList
     {

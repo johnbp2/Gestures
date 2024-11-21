@@ -4,21 +4,22 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using JohnBPearson.com.Utility;
+using JohnBPearson.Application.Gestures.Model.Domain;
+using JohnBPearson.Application.Gestures.Model.Utility;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
     public class ContainerList : IContainerList
     {
 
-        private Parser _userSettingsParser;
+        private Utility.Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
         private List<IContainer> _importBackUpItems;
 
-        public ContainerList(KeyAndDataStringLiterals strings)
+        public ContainerList(Utility.KeyAndDataStringLiterals strings)
         {
-            this._userSettingsParser = new Parser(strings, this);
+            this._userSettingsParser = new Utility.Parser(strings, this);
             this._items = this._userSettingsParser.Items;
 
         }
@@ -50,23 +51,23 @@ namespace JohnBPearson.Application.Model
         //    //  return this.items;
         //}
 
-        public KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
+        public Utility.KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
         {
             this._importBackUpItems = new List<IContainer>(items);
        return this.prepareForSaveInner(items);
         }
 
-        public KeyAndDataStringLiterals PrepareDataForSave()
+        public Utility.KeyAndDataStringLiterals PrepareDataForSave()
         {
             return prepareForSaveInner();
         }
 
-        private KeyAndDataStringLiterals prepareForSaveInner()
+        private Utility.KeyAndDataStringLiterals prepareForSaveInner()
         {
             return prepareForSaveInner(_items);
         }
 
-        private KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
+        private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
         {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
@@ -94,7 +95,7 @@ namespace JohnBPearson.Application.Model
                 }
 
             }
-            var result = new KeyAndDataStringLiterals();
+            var result = new Utility.KeyAndDataStringLiterals();
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
@@ -124,5 +125,7 @@ namespace JohnBPearson.Application.Model
             return this._items.FindIndex((itemToCheck) => { return itemToCheck.Equals(searchItem); });
 
         }
+
+     
     }
 }

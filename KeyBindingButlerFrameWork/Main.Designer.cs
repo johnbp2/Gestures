@@ -46,17 +46,17 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.panelUpper = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
             this.templatedLabel1 = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
+            this.lblHotKeySelected = new System.Windows.Forms.Label();
             this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
             this.cbSecure = new System.Windows.Forms.CheckBox();
             this.tbValue = new System.Windows.Forms.TextBox();
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
-            this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
             this.notBetterButton1 = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
-            this.lblHotKeySelected = new System.Windows.Forms.Label();
+            this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.menuStrip1.SuspendLayout();
             this.panelUpper.SuspendLayout();
             this.panelButtons.SuspendLayout();
@@ -143,7 +143,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(435, 329);
+            this.panelUpper.Size = new System.Drawing.Size(435, 260);
             this.panelUpper.TabIndex = 2;
             // 
             // lblKey
@@ -173,6 +173,18 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.templatedLabel1.Template = "";
             this.templatedLabel1.ValuesToApply = ((System.Collections.Generic.List<string>)(resources.GetObject("templatedLabel1.ValuesToApply")));
             // 
+            // lblHotKeySelected
+            // 
+            this.lblHotKeySelected.AutoSize = true;
+            this.lblHotKeySelected.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblHotKeySelected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblHotKeySelected.Location = new System.Drawing.Point(3, 48);
+            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
+            this.lblHotKeySelected.Name = "lblHotKeySelected";
+            this.lblHotKeySelected.Size = new System.Drawing.Size(134, 26);
+            this.lblHotKeySelected.TabIndex = 12;
+            this.lblHotKeySelected.Text = "Last Key Stoke";
+            // 
             // cbHotkeySelection
             // 
             this.cbHotkeySelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -194,7 +206,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.lblDescription.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(106, 26);
-            this.lblDescription.TabIndex = 6;
+            this.lblDescription.TabIndex = 999;
             this.lblDescription.Text = "Description";
             // 
             // tbDesc
@@ -226,7 +238,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // 
             this.tbValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tbValue.BackColor = System.Drawing.SystemColors.Info;
-            this.tbValue.Location = new System.Drawing.Point(10, 341);
+            this.tbValue.Location = new System.Drawing.Point(10, 272);
             this.tbValue.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.tbValue.MaximumSize = new System.Drawing.Size(500, 335);
             this.tbValue.MinimumSize = new System.Drawing.Size(9, 50);
@@ -241,48 +253,41 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.notBetterButton1);
             this.panelButtons.Controls.Add(this.notBetterButton2);
-            this.panelButtons.Location = new System.Drawing.Point(3, 437);
+            this.panelButtons.Location = new System.Drawing.Point(3, 368);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Size = new System.Drawing.Size(438, 61);
             this.panelButtons.TabIndex = 9;
             // 
-            // panelOuter
-            // 
-            this.panelOuter.Controls.Add(this.panelUpper);
-            this.panelOuter.Controls.Add(this.tbValue);
-            this.panelOuter.Controls.Add(this.panelButtons);
-            this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelOuter.Location = new System.Drawing.Point(0, 27);
-            this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(441, 601);
-            this.panelOuter.TabIndex = 10;
-            // 
             // aLittleBetter_Save
             // 
-            this.aLittleBetter_Save.EndColor = System.Drawing.Color.Gold;
+            this.aLittleBetter_Save.EndColor = System.Drawing.SystemColors.MenuHighlight;
+            this.aLittleBetter_Save.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.aLittleBetter_Save.FlatAppearance.BorderSize = 3;
             this.aLittleBetter_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.aLittleBetter_Save.ForeColor = System.Drawing.Color.Black;
-            this.aLittleBetter_Save.GradientAngle = 65;
+            this.aLittleBetter_Save.GradientAngle = 10;
             this.aLittleBetter_Save.Location = new System.Drawing.Point(3, 3);
             this.aLittleBetter_Save.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.aLittleBetter_Save.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.aLittleBetter_Save.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.Name = "aLittleBetter_Save";
-            this.aLittleBetter_Save.Size = new System.Drawing.Size(98, 33);
-            this.aLittleBetter_Save.StartColor = System.Drawing.Color.DimGray;
+            this.aLittleBetter_Save.Size = new System.Drawing.Size(98, 43);
+            this.aLittleBetter_Save.StartColor = System.Drawing.SystemColors.HighlightText;
             this.aLittleBetter_Save.TabIndex = 3;
             this.aLittleBetter_Save.Text = "Save";
             this.aLittleBetter_Save.TextLocation_X = 76;
             this.aLittleBetter_Save.TextLocation_Y = 24;
             this.aLittleBetter_Save.Transparent1 = 150;
             this.aLittleBetter_Save.Transparent2 = 150;
-            this.aLittleBetter_Save.UseVisualStyleBackColor = true;
+            this.aLittleBetter_Save.UseVisualStyleBackColor = false;
             this.aLittleBetter_Save.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // notBetterButton1
             // 
             this.notBetterButton1.EndColor = System.Drawing.Color.Gold;
+            this.notBetterButton1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.notBetterButton1.FlatAppearance.BorderSize = 3;
             this.notBetterButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.notBetterButton1.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton1.GradientAngle = 65;
@@ -292,7 +297,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.notBetterButton1.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.notBetterButton1.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.notBetterButton1.Name = "notBetterButton1";
-            this.notBetterButton1.Size = new System.Drawing.Size(98, 33);
+            this.notBetterButton1.Size = new System.Drawing.Size(98, 43);
             this.notBetterButton1.StartColor = System.Drawing.Color.DimGray;
             this.notBetterButton1.TabIndex = 4;
             this.notBetterButton1.Text = "Reload";
@@ -306,6 +311,8 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             // notBetterButton2
             // 
             this.notBetterButton2.EndColor = System.Drawing.Color.Gold;
+            this.notBetterButton2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.notBetterButton2.FlatAppearance.BorderSize = 3;
             this.notBetterButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.notBetterButton2.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton2.GradientAngle = 65;
@@ -315,7 +322,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.notBetterButton2.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.notBetterButton2.Name = "notBetterButton2";
-            this.notBetterButton2.Size = new System.Drawing.Size(98, 33);
+            this.notBetterButton2.Size = new System.Drawing.Size(98, 43);
             this.notBetterButton2.StartColor = System.Drawing.Color.DimGray;
             this.notBetterButton2.TabIndex = 5;
             this.notBetterButton2.Text = "Copy";
@@ -326,17 +333,16 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.notBetterButton2.UseVisualStyleBackColor = true;
             this.notBetterButton2.Click += new System.EventHandler(this.btnCopy_Click);
             // 
-            // lblHotKeySelected
+            // panelOuter
             // 
-            this.lblHotKeySelected.AutoSize = true;
-            this.lblHotKeySelected.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblHotKeySelected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblHotKeySelected.Location = new System.Drawing.Point(3, 48);
-            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
-            this.lblHotKeySelected.Name = "lblHotKeySelected";
-            this.lblHotKeySelected.Size = new System.Drawing.Size(134, 26);
-            this.lblHotKeySelected.TabIndex = 12;
-            this.lblHotKeySelected.Text = "Last Accessed";
+            this.panelOuter.Controls.Add(this.panelUpper);
+            this.panelOuter.Controls.Add(this.tbValue);
+            this.panelOuter.Controls.Add(this.panelButtons);
+            this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.panelOuter.Location = new System.Drawing.Point(0, 27);
+            this.panelOuter.Name = "panelOuter";
+            this.panelOuter.Size = new System.Drawing.Size(441, 438);
+            this.panelOuter.TabIndex = 10;
             // 
             // Main
             // 
@@ -346,7 +352,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1015, 559);
+            this.ClientSize = new System.Drawing.Size(1015, 478);
             this.Controls.Add(this.panelOuter);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;

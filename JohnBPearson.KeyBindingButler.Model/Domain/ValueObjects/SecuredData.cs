@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
 
-namespace JohnBPearson.Application.Model.KeyBinding
+namespace JohnBPearson.Application.Gestures.Model.Domain
 {
     public class SecuredData : Data
     {

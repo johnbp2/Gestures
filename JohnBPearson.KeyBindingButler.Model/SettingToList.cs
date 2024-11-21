@@ -1,11 +1,11 @@
-﻿using JohnBPearson.com.Utility;
+﻿using JohnBPearson.Application.Gestures.Model.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
     public class SettingToList
     {

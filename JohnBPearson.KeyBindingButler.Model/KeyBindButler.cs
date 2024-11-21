@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JohnBPearson.com.Utility;
+using JohnBPearson.Application.Gestures.Model.Utility;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model
 {
 
     public enum ToastOptions

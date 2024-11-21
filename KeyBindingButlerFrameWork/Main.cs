@@ -1,21 +1,10 @@
-﻿using JohnBPearson.Windows.Interop;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using JohnBPearson.Application.Model;
-using JohnBPearson.Windows.Forms.Controls;
-using System.Runtime.CompilerServices;
-using System.Drawing;
-using System.Linq;
 using JohnBPearson.Windows.Forms.KeyBindingButler.Properties;
-using Windows.Media.Protection.PlayReady;
-using Windows.UI.Xaml.Controls;
-using System.ComponentModel.Design;
-using Windows.Web;
-using JohnBPearson.Application.Model.KeyBinding;
-using Windows.UI.Xaml.Input;
+using JohnBPearson.Windows.Interop;
+using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Forms.KeyBindingButler
 {
@@ -28,7 +17,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private JohnBPearson.Application.Model.IContainer currentItem;
+        private IContainer currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -72,7 +61,7 @@ namespace JohnBPearson.Windows.Forms.KeyBindingButler
 
 
 
-        public void hotKeyCallBack(IContainer item)
+        public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IContainer item)
         {
             var data = item.Data.Value;
          

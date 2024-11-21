@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using JohnBPearson.Application.Model;
+using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Interop
 {

@@ -68,14 +68,14 @@
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JohnBPearson.KeyBindingButler.Model\JohnBPearson.KeyBindingButler.Model.csproj">
-      <Project>{45ed5872-a9f3-497c-8a12-753d1a22a9f2}</Project>
-      <Name>JohnBPearson.KeyBindingButler.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JohnBPearson.KeyBindingButler.Model\Model.csproj">
+      <Project>{45ed5872-a9f3-497c-8a12-753d1a22a9f2}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

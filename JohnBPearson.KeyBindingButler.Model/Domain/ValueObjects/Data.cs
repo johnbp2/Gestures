@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JohnBPearson.Application.Model
+namespace JohnBPearson.Application.Gestures.Model.Domain
 {
     public class Data : BaseData
     {
