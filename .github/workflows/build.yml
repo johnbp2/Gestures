@@ -26,7 +26,7 @@ jobs:
         run: cd $GITHUB_WORKSPACE
 
       - name: Restore Packages
-        run: nuget restore TheButlerFramework/TheButlerPlatform.sln
+        run: nuget restore TheButlerFramework/Gestures.sln
 
       - name: Build Solution
         run: |
