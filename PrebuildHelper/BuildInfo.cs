@@ -55,7 +55,11 @@ namespace PrebuildHelper
         {
             var ppLines = ppFile.Lines;
                     // var contents = File.ReadAllText(assInfo.FullName);
-
+                    var backup = new FileInfo($"{ppFile}.backup");
+            if(backup.Exists)
+            {
+                backup.Delete();
+            }
             ppFileInfo.MoveTo($"{ppFile}.backup");
             var indexReplace = 0;
             for(global::System.Int32 i = (ppLines.Length) - (1); i >= 0; i--)

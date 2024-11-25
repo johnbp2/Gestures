@@ -8,6 +8,7 @@ using System.Linq;
 using JohnBPearson.Cypher;
 using JohnBPearson.HotkeyButler.DataAccess;
 using System.Net.Security;
+using System.Data;
 
 namespace JohnBPearson.Butler.Test
 {
@@ -48,8 +49,8 @@ namespace JohnBPearson.Butler.Test
         [TestMethod]
         public void dataA1ccessSQLite()
         {
-            SqliteDataAccess.Read(@"select * from Application inner join Version on Application.Id = Version.Application");
-            Assert.IsTrue(true);
+         DataTable result =   SqliteDataAccess.Read(@"select * from Application inner join Version on Application.ApplicationId = Version.Application");
+            Assert.IsTrue(result.Rows.Count > 0);
 
             // SqliteDataAccess.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
 

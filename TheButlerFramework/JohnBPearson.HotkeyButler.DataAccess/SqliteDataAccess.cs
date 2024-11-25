@@ -5,49 +5,77 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
+using System.Data.SQLite;
+using System.Data.Common;
+using System.Collections;
+using System.Collections.Specialized;
 
 namespace JohnBPearson.HotkeyButler.DataAccess
 {
     public struct ApplicationDataRow
     {
-    
-    }   
+
+    }
 
     public class SqliteDataAccess
     {
 
-        public static void Read(string selectText)
+        public static DataTable Read(string selectText)
         {
-         var reader = SqliteDataAccess.ExecuteReader(selectText);
+            DataTable dt = new DataTable();
+            var reader = SqliteDataAccess.ExecuteReader(selectText);
             while(reader.Read())
             {
                 var schemaTable = reader.GetSchemaTable();
-                
-                    
-                    
-                    
-                    
-                    
-                    //                Console.WriteLine($"Hello, {name}!");
+                if(dt.Rows.Count == 0)
+                {
+                    foreach(DataRow row in schemaTable.Rows)
+                    {
+                        dt.Columns.Add(row[0].ToString());
+                            }
+                }
+                ArrayList rowValues = new ArrayList();
+                rowValues.Add(reader["ApplicationId"]);
+                rowValues.Add(reader["AssemblyName"]);
+                rowValues.Add(reader["ProjectPropertiesPath"]);
+
+                rowValues.Add(reader["VersionId"]);
+                rowValues.Add(reader["Application"]);
+                rowValues.Add(reader["Major"]);
+                rowValues.Add(reader["Minor"]);
+                rowValues.Add(reader["Build"]);
+                rowValues.Add(reader["Revision"]);
+                //  NameValueCollection values = reader.GetValues();
+                //System.Diagnostics.Trace( values.
+                dt.Rows.Add(rowValues.ToArray());
+                System.Diagnostics.Debugger.Log(1, "schema table", schemaTable.TableName);
+
+
+                // reader.
+
+                //                Console.WriteLine($"Hello, {name}!");
+            }
+            return dt;
+        }
+        protected static void initializeConnectionString()
+        {
+            SqliteDataAccess.common_conn = new SQLiteConnection(Properties.Settings.Default.sqlitConnectionString);
+        }
+        protected static string ConnectionString
+        {
+            get
+            {
+                return Properties.Settings.Default.sqlitConnectionString;
+
             }
         }
-        public static void initializeConnectionString()
+        protected static SQLiteConnection common_conn = null;
+        protected static SQLiteTransaction common_transaction = null;
+        private static void PrepareCommand(SQLiteCommand cmd, SQLiteConnection conn, string cmdText, params object[] p)
         {
-            SqliteDataAccess.common_conn = new SqliteConnection(Properties.Settings.Default.sqlitConnectionString);
-        }
-        public static string ConnectionString
-        {
-            get{
-                return Properties.Settings.Default.sqlitConnectionString;
-                
-            } 
-        }
-        public static SqliteConnection common_conn = null;
-        public static SqliteTransaction common_transaction =  null;
-        private static void PrepareCommand(SqliteCommand cmd, SqliteConnection conn, string cmdText, params object[] p)
-        {
+
             if(conn.State != ConnectionState.Open)
+
                 conn.Open();
             if(common_transaction != null)
                 cmd.Transaction = common_transaction;
@@ -73,7 +101,7 @@ namespace JohnBPearson.HotkeyButler.DataAccess
             }
             cmd.Prepare();
         }
-        private static void PrepareCommand2(SqliteCommand cmd, SqliteConnection conn, string cmdText, params object[] p)
+        private static void PrepareCommand2(SQLiteCommand cmd, SQLiteConnection conn, string cmdText, params object[] p)
         {
             if(conn.State != ConnectionState.Open)
                 conn.Open();
@@ -100,59 +128,60 @@ namespace JohnBPearson.HotkeyButler.DataAccess
             }
             cmd.Prepare();
         }
-        public static int ExecuteNonQuery(string cmdText, params object[] p)
+        protected static int ExecuteNonQuery(string cmdText, params object[] p)
         {
             if(common_conn == null)
-                common_conn = new SqliteConnection(ConnectionString);
+                common_conn = new SQLiteConnection(ConnectionString);
             //using (SqliteConnection conn = new SqliteConnection(ConnectionString)) {
-            using(SqliteCommand command = new SqliteCommand())
+            using(SQLiteCommand command = new SQLiteCommand())
             {
                 PrepareCommand(command, common_conn, cmdText, p);
                 return command.ExecuteNonQuery();
             }
             //}
         }
-        public static int ExecuteNonQuery2(string cmdText, params object[] p)
+        protected static int ExecuteNonQuery2(string cmdText, params object[] p)
         {
-            //if (common_conn == null) common_conn = new SqliteConnection(ConnectionString);
-            using(SqliteConnection conn = new SqliteConnection(ConnectionString))
+            //if (common_conn == null) common_conn = new SQLiteConnection(ConnectionString);
+            using(SQLiteConnection conn = new SQLiteConnection(ConnectionString))
             {
-                using(SqliteCommand command = new SqliteCommand())
+                using(SQLiteCommand command = new SQLiteCommand())
                 {
                     PrepareCommand2(command, conn, cmdText, p);
                     return command.ExecuteNonQuery();
                 }
             }
         }
-        public static SqliteDataReader ExecuteReader(string cmdText, params object[] p)
+        protected static SQLiteDataReader ExecuteReader(string cmdText, params object[] p)
         {
+            //QLitePCL.Batteries.Init();
             if(common_conn == null)
-                common_conn = new SqliteConnection(ConnectionString);
-            SqliteCommand command = new SqliteCommand();
+                common_conn = new SQLiteConnection(ConnectionString);
+            SQLiteCommand command = new SQLiteCommand();
             PrepareCommand(command, common_conn, cmdText, p);
             return command.ExecuteReader(CommandBehavior.CloseConnection);
 
         }
-        public static SqliteDataReader ExecuteReader2(string cmdText, params object[] p)
+        protected static SQLiteDataReader ExecuteReader2(string cmdText, params object[] p)
         {
-            //if (common_conn == null) common_conn = new SqliteConnection(ConnectionString);
-            SqliteConnection conn = new SqliteConnection(ConnectionString);
-            SqliteCommand command = new SqliteCommand();
+            //if (common_conn == null) common_conn = new SQLiteConnection(ConnectionString);
+            SQLiteConnection conn = new SQLiteConnection(ConnectionString);
+            SQLiteCommand command = new SQLiteCommand();
             PrepareCommand2(command, conn, cmdText, p);
             return command.ExecuteReader(CommandBehavior.CloseConnection);
 
         }
         //public static string ExecuteScalar(string cmdText, params object[] p) {
-        //    using (SqliteConnection conn = new SqliteConnection(ConnectionString)) {
-        //        using (SqliteCommand command = new SqliteCommand()) {
+        //    using (SQLiteConnection conn = new SQLiteConnection(ConnectionString)) {
+        //        using (SQLiteCommand command = new SQLiteCommand()) {
         //            PrepareCommand(command, conn, cmdText, p);
         //            return (string)command.ExecuteScalar();
         //        }
         //    }
         //}
-        public static int UpdatePassword(string newPassword)
+        protected static int UpdatePassword(string newPassword)
         {
-            using(var connection = new SqliteConnection(ConnectionString))
+            using(var connection = new SQLiteConnection(ConnectionString))
             {
                 connection.Open();
                 using(var command = connection.CreateCommand())

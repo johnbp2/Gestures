@@ -15,7 +15,7 @@ namespace PrebuildHelper
     AssemblyInfo = 0,
     Settings= 1
     }
-    static partial class BuildInfoParser
+    internal static partial class BuildInfoParser
     {
 
         private static string[] fileNames = { "AssemblyInfo.cs", "Settings.settings" };
@@ -23,7 +23,7 @@ namespace PrebuildHelper
             
             
             
-        static BuildInfo Parse(string projectPropertiesDirectory, string strMajor, string strMinor, string strBuild, string strRevision)
+      internal  static BuildInfo Parse(string projectPropertiesDirectory, string strMajor, string strMinor, string strBuild, string strRevision)
         {
             int temp = -1;
             SymanticVersion version = new SymanticVersion();
@@ -80,7 +80,7 @@ namespace PrebuildHelper
                     //        param.Name
                     //    }    
                     //       // item.GetParameters()
-                    throw new System.ArgumentException($"Found file named {fileInfo.Name}, but expected AssemblyInfo.cs or a directory", $"{path}");
+                    throw new System.ArgumentException($"Found file named {fileInfo.Name.Replace(fileInfo.Extension, "")}, but expected AssemblyInfo.cs or a directory", $"{path}");
                 }
 
 
@@ -93,7 +93,8 @@ namespace PrebuildHelper
             }
 
             var lines = File.ReadAllLines(fileInfo.FullName);
-            var ppFile = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileName), fullPath);
+            
+            var ppFile = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), fullPath);
        
             return ppFile;
         }

@@ -38,38 +38,39 @@ namespace PrebuildHelper
         static int Main(string[] args)
         {
 
-            FileInfo assInfo = new FileInfo(args[0]);
-            if(assInfo.Exists)
-            {
-                var lines = File.ReadAllLines(assInfo.FullName);
-                // var contents = File.ReadAllText(assInfo.FullName);
+            BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
+            //FileInfo assInfo = new FileInfo(args[0]);
+            //if(assInfo.Exists)
+            //{
+            //    var lines = File.ReadAllLines(assInfo.FullName);
+            //    // var contents = File.ReadAllText(assInfo.FullName);
 
-                assInfo.MoveTo($"{args[0]}.back");
-                var indexReplace = 0;
-                for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
-                {
-                    if(lines[i].StartsWith(Constants.searchString1))
-                    {
-                        indexReplace = i;
-                        break;
+            //    assInfo.MoveTo($"{args[0]}.back");
+            //    var indexReplace = 0;
+            //    for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
+            //    {
+            //        if(lines[i].StartsWith(Constants.searchString1))
+            //        {
+            //            indexReplace = i;
+            //            break;
 
-                    }
-                }
+            //        }
+            //    }
 
-                var contents = new StringBuilder();
-                var listLines = lines.ToList();
-                listLines.RemoveAt(indexReplace);
-                int thisBuild = int.Parse(args[4]) + 1;
-                listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{args[1]}.{args[2]}.{args[3]}.{thisBuild}\")]");
-                foreach(var item in listLines)
-                {
-                    contents.AppendLine(item);
-                }
-                // int thisBuild = int.Parse(args[4]) + 1;
+            //    var contents = new StringBuilder();
+            //    var listLines = lines.ToList();
+            //    listLines.RemoveAt(indexReplace);
+            //    int thisBuild = int.Parse(args[4]) + 1;
+            //    listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{args[1]}.{args[2]}.{args[3]}.{thisBuild}\")]");
+            //    foreach(var item in listLines)
+            //    {
+            //        contents.AppendLine(item);
+            //    }
+            //    // int thisBuild = int.Parse(args[4]) + 1;
 
-                File.WriteAllText(args[0], contents.ToString());
-                return thisBuild;
-            }
+            //    File.WriteAllText(args[0], contents.ToString());
+            //    return thisBuild;
+            //}
             return -1;
         }
     }

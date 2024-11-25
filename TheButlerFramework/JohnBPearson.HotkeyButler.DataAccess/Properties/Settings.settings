@@ -5,9 +5,9 @@
     <Setting Name="sqlitConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=/path/to/your/database.d&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=./PrebuildHelper.db&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=/path/to/your/database.d</Value>
+      <Value Profile="(Default)">Data Source=./PrebuildHelper.db</Value>
     </Setting>
   </Settings>
 </SettingsFile>

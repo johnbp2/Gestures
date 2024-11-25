@@ -21,6 +21,7 @@ namespace PrebuildHelper
         }
         
 
+
         internal string FullPath
         {
             get; 

@@ -26,7 +26,7 @@ namespace JohnBPearson.HotkeyButler.DataAccess.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=/path/to/your/database.d")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=./PrebuildHelper.db")]
         public string sqlitConnectionString {
             get {
                 return ((string)(this["sqlitConnectionString"]));

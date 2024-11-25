@@ -26,12 +26,24 @@ namespace PrebuildHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int Builld {
+        public int Build {
             get {
-                return ((int)(this["Builld"]));
+                return ((int)(this["Build"]));
             }
             set {
-                this["Builld"] = value;
+                this["Build"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Revision {
+            get {
+                return ((int)(this["Revision"]));
+            }
+            set {
+                this["Revision"] = value;
             }
         }
     }
