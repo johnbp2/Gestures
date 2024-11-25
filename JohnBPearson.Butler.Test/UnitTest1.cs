@@ -51,7 +51,7 @@ namespace JohnBPearson.Butler.Test
         {
          DataTable result =   SqliteDataAccess.Read(@"select * from Application inner join Version on Application.ApplicationId = Version.Application");
             Assert.IsTrue(result.Rows.Count > 0);
-
+// test
             // SqliteDataAccess.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
 
 
