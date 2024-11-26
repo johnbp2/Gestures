@@ -112,13 +112,12 @@
     <Compile Include="Domain\ValueObjects\Value.cs" />
     <Compile Include="Domain\ValueObjects\BaseValue.cs" />
     <Compile Include="Domain\ValueObjects\SecuredData.cs" />
+    <Compile Include="Enum.cs" />
     <Compile Include="Utility\KeyAndDataStringLiterals.cs" />
-    <Compile Include="ButlerBase.cs" />
     <Compile Include="Domain\ValueObjects\Data.cs" />
     <Compile Include="Domain\ValueObjects\Description.cs" />
     <Compile Include="Domain\ValueObjects\IBaseValue.cs" />
     <Compile Include="Domain\ValueObjects\InputKey.cs" />
-    <Compile Include="KeyBindButler.cs" />
     <Compile Include="Processes\CommandProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Parser.cs" />
