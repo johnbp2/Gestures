@@ -18,46 +18,50 @@ namespace PrebuildHelper
     internal static partial class BuildInfoParser
     {
 
-        private static string[] fileNames = { "AssemblyInfo.cs", "Settings.settings" };
-            
-            
-            
-            
-      internal  static BuildInfo Parse(string projectPropertiesDirectory, string strMajor, string strMinor, string strBuild, string strRevision)
+
+
+
+
+
+        internal static void Parse(string projectPropertiesDirectory, string strMajor,
+            string strMinor, string strBuild, string strRevision)
         {
+
+            
             int temp = -1;
             SymanticVersion version = new SymanticVersion();
             int.TryParse(strMajor, out temp);
-            version.Major= temp;
+            version.Major = temp;
             temp = -1;
             int.TryParse(strMinor, out temp);
-            version.Minor= temp;
+            version.Minor = temp;
             temp = -1;
             int.TryParse(strBuild, out temp);
-            version.Build= temp;
-            temp= -1;
+            version.Build = temp;
+            temp = -1;
             int.TryParse(strRevision, out temp);
-            version.Revision= temp;
-            ProjectPropertiesFile assemblyInfo = null;
-            ProjectPropertiesFile settings = null;
-            foreach(string file in fileNames)
+            version.Revision = temp;
+            //ProjectPropertiesFile assemblyInfo = null;
+            //ProjectPropertiesFile settings = null;
+            foreach(string file in Constants.fileNames)
             {
-            var tempFile =     handleFile(projectPropertiesDirectory, file);
-                if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
-                {
-                    assemblyInfo = tempFile;
-                }
-                else
-                {
-                
-                settings = tempFile;
-                }
-            }
-            return new BuildInfo(assemblyInfo, version, settings);
+                validateFile(projectPropertiesDirectory, file);
+                //var tempFile =     validateFile(projectPropertiesDirectory, file);
+                //    if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
+                //    {
+                //        assemblyInfo = tempFile;
+                //    }
+                //    else
+                //    {
 
+                //    settings = tempFile;
+                //    }
+            }
+            //return new BuildInfo(assemblyInfo, version, settings);
+        
         }
 
-        private static ProjectPropertiesFile handleFile(string path, string fileName)
+        private static void validateFile(string path, string fileName)
        {
           //  FileInfo assemblyFileInfo = new FileInfo(projectPropertiesDirectory);
         var fullPath =   Path.Combine(path, fileName);
@@ -92,11 +96,11 @@ namespace PrebuildHelper
                 // TODO: [] add code to create new AssemblyInfo.cs file
             }
 
-            var lines = File.ReadAllLines(fileInfo.FullName);
+            //var lines = File.ReadAllLines(fileInfo.FullName);
             
-            var ppFile = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), fullPath);
+            //var ppFile = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), fullPath);
        
-            return ppFile;
+            //return ppFile;
         }
 
     }

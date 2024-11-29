@@ -85,7 +85,7 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSave.FlatAppearance.BorderSize = 2;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Font = new System.Drawing.Font("0xProto Nerd Font Mono", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.Black;
             this.btnSave.GradientAngle = 90;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -115,7 +115,7 @@
             this.btnExport.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnExport.FlatAppearance.BorderSize = 2;
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnExport.Font = new System.Drawing.Font("0xProto Nerd Font", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.ForeColor = System.Drawing.Color.Black;
             this.btnExport.GradientAngle = 90;
             this.btnExport.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -145,7 +145,7 @@
             this.aLittleBetter_Import.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.aLittleBetter_Import.FlatAppearance.BorderSize = 2;
             this.aLittleBetter_Import.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.aLittleBetter_Import.Font = new System.Drawing.Font("0xProto Nerd Font", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aLittleBetter_Import.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aLittleBetter_Import.ForeColor = System.Drawing.Color.Black;
             this.aLittleBetter_Import.GradientAngle = 90;
             this.aLittleBetter_Import.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -165,6 +165,7 @@
             this.aLittleBetter_Import.Transparent2 = 20;
             this.aLittleBetter_Import.UseVisualStyleBackColor = true;
             this.aLittleBetter_Import.Click += new System.EventHandler(this.aLittleBetter_Import_Click);
+           // this.aLittleBetter_Import.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.aLittleBetter_Import_ChangeUICues);
             // 
             // openFileDialog1
             // 

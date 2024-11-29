@@ -10,7 +10,8 @@ namespace JohnBPearson.Application.Gestures.Model
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();
-        KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items);
+        List<Domain.Entities.Container> MapToEnities();
+        void MapFromEntities(List<Domain.Entities.Container> entities);
         string PrepareDataToSaveAsOneSetting();
     }
 }

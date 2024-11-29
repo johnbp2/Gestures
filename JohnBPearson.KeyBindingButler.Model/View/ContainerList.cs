@@ -15,7 +15,7 @@ namespace JohnBPearson.Application.Gestures.Model
         private Utility.Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
-        private List<IContainer> _importBackUpItems;
+        private List<Domain.Entities.Container> _importBackUpItems;
 
         public ContainerList(Utility.KeyAndDataStringLiterals strings)
         {
@@ -51,11 +51,11 @@ namespace JohnBPearson.Application.Gestures.Model
         //    //  return this.items;
         //}
 
-        public Utility.KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
-        {
-            this._importBackUpItems = new List<IContainer>(items);
-       return this.prepareForSaveInner(items);
-        }
+       // public Utility.KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
+       // {
+       //     this._importBackUpItems = new List<IContainer>(items);
+       //return this.prepareForSaveInner(items);
+       // }
 
         public Utility.KeyAndDataStringLiterals PrepareDataForSave()
         {
@@ -126,6 +126,32 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
+        public List<Domain.Entities.Container> MapToEnities()
+        {
+            var list = new List<Domain.Entities.Container>();
+            foreach(var item in _items)
+            {
+                var concreteItem = item as Container;
+                list.Add(concreteItem.MapToEntity());
+            }
+            return list;
+        }
+
      
+
+        public void MapFromEntities(List<Domain.Entities.Container> entities)
+        {
+            this._importBackUpItems = this.MapToEnities();
+        var list = new List<IContainer>();
+
+            foreach(var entity in entities)
+            {
+               list.Add( Container.Create(this, entity));
+            }
+           
+
+          
+            this._items = list;
+        }
     }
 }

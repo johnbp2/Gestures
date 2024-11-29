@@ -27,14 +27,14 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         {
             get; set;
         }
-        public Key Key
-        {
-            get; set;
-        }
-        public Data Data
-        {
-            get; set;
-        }
+        //public Key Key
+        //{
+        //    get; set;
+        //}
+        //public Data Data
+        //{
+        //    get; set;
+        //}
         public string DataString
         {
             get; set;
@@ -43,10 +43,10 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         {
             get; set;
         }
-        public Description Description
-        {
-            get; set;
-        }
+        //public Description Description
+        //{
+        //    get; set;
+        //}
         public string KeyAsChar
         {
             get; set;

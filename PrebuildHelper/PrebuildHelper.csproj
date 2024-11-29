@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BuildInfo.cs" />
     <Compile Include="BuildInfoParser.cs" />
+    <Compile Include="IncrementOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectPropertiesFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

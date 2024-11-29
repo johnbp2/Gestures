@@ -134,6 +134,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelUpper
             // 
+            this.panelUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelUpper.Controls.Add(this.lblKey);
             this.panelUpper.Controls.Add(this.transparentFlowPanel1);
             this.panelUpper.Controls.Add(this.cbSecure);
@@ -143,7 +146,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(435, 260);
+            this.panelUpper.Size = new System.Drawing.Size(432, 260);
             this.panelUpper.TabIndex = 2;
             // 
             // lblKey
@@ -151,7 +154,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblKey.AutoSize = true;
             this.lblKey.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblKey.Location = new System.Drawing.Point(211, 6);
+            this.lblKey.Location = new System.Drawing.Point(158, 6);
             this.lblKey.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.lblKey.MinimumSize = new System.Drawing.Size(5, 10);
             this.lblKey.Name = "lblKey";
@@ -162,13 +165,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // transparentFlowPanel1
             // 
+            this.transparentFlowPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.transparentFlowPanel1.Controls.Add(this.lblHotKeySelected);
             this.transparentFlowPanel1.Controls.Add(this.cbHotkeySelection);
             this.transparentFlowPanel1.Location = new System.Drawing.Point(3, 40);
             this.transparentFlowPanel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.transparentFlowPanel1.Name = "transparentFlowPanel1";
             this.transparentFlowPanel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.transparentFlowPanel1.Size = new System.Drawing.Size(421, 44);
+            this.transparentFlowPanel1.Size = new System.Drawing.Size(316, 44);
             this.transparentFlowPanel1.TabIndex = 1000;
             // 
             // lblHotKeySelected
@@ -345,7 +349,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(441, 479);
+            this.panelOuter.Size = new System.Drawing.Size(911, 703);
             this.panelOuter.TabIndex = 10;
             // 
             // lblValue
