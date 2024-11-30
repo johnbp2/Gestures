@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using JohnBPearson.Application.Common;
 
@@ -13,8 +14,8 @@ namespace PrebuildHelper
 {
     internal class BuildInfo
     {
-        internal string[] updatedAssemblyInfoLines = [];   
-        internal string[] updatedSettingsLines = [];
+        internal string[] updatedAssemblyInfoLines;   
+        internal string[] updatedSettingsLines;
 
         internal BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, SymanticVersion version, ProjectPropertiesFile settingsFileObject) :
             this(assemblyInfoFileObject, version.Major, version.Minor, version.Build, version.Revision, settingsFileObject)
@@ -26,20 +27,23 @@ namespace PrebuildHelper
             int minor, int build, int revision, ProjectPropertiesFile settingsFileObject)
         {
             FileInfo assemblyFileInfo = new FileInfo(assemblyInfoFileObject.FullPath);
+            this.PathToAssemblyInfo = assemblyInfoFileObject.FullPath;
+            this.pathToSettingsFile = settingsFileObject.FullPath;
             FileInfo settingsFileInfo = new FileInfo(settingsFileObject.FullPath);
-            createBackupFile(assemblyInfoFileObject, assemblyFileInfo);
+            createBackupFile(assemblyFileInfo);
             updatedAssemblyInfoLines = assemblyInfoFileObject.Lines;
             updatedAssemblyInfoLines = updateFile(assemblyInfoFileObject, $"{Constants.searchString1}\"{major}.{minor}.{build}.{revision}\")]", assemblyFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
-
             updatedAssemblyInfoLines = updateFile(assemblyInfoFileObject, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", assemblyFileInfo, Constants.searchString2, updatedAssemblyInfoLines);
+            
+           // createBackupFile(settingsFileInfo);
+          
+            //var updatedSettingsLines= updateFile(settingsFileInfo, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", settingsFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
 
-            //var linbesd= updateFile(settingsFileInfo, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", settingsFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
 
-           
 
 
             //3  return currentRevi nsion;
-        } 
+        }
 
         private void temp(string filePath)
         {
@@ -51,29 +55,34 @@ namespace PrebuildHelper
         {
 
             var indexReplace = 0;
-            for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
+            //for(global::System.Int32 i = (lines.Length) - (1); i >= 0; i--)
+            //{
+            int i  = 0;
+            foreach(var line in lines)
             {
-                if(lines[i].StartsWith(searchString))
+                if(line.StartsWith(searchString))
                 {
                     indexReplace = i;
                     break;
 
                 }
-            }
+                
+                    ++i;
+            }           // }
 
            
             var listLines = lines.ToList();
             listLines.RemoveAt(indexReplace);
 
             listLines.Insert(indexReplace, insertLine);
-            // return writeLines(ppFile, contents, listLines);
+            // return writeLines(file, contents, listLines);
             return listLines.ToArray();
         }
 
-       
 
 
-        internal static int writeLines(ProjectPropertiesFile ppFile, List<string> listLines)
+
+        internal static int writeLines(string fullPath, IEnumerable<string> listLines)
         {
             var contents = new StringBuilder();
             foreach(var item in listLines)
@@ -82,21 +91,22 @@ namespace PrebuildHelper
             }
             // int currentRevision = int.Parse(args[4]) + 1;
 
-            File.WriteAllText(ppFile.FullPath, contents.ToString());
+            File.WriteAllText(fullPath, contents.ToString());
             return 1;//;
         }
 
-        private static void createBackupFile(ProjectPropertiesFile ppFile, FileInfo ppFileInfo)
+        internal static bool createBackupFile(FileInfo fileInfo)
         {
 
 
-            var backup = new FileInfo($"{ppFile}.backup");
+            var backup = new FileInfo($"{fileInfo.FullName}.backup");
             if(backup.Exists)
             {
                 backup.Delete();
             }
-            ppFileInfo.MoveTo($"{ppFile}.backup");
-
+            // rename to the .backup file AssemblyInfo.cs.backup
+            fileInfo.MoveTo($"{fileInfo.FullName}.backup");
+            return true;
         }
 
         internal string PathToAssemblyInfo

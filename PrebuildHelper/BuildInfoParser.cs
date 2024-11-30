@@ -18,7 +18,7 @@ namespace PrebuildHelper
     internal static partial class BuildInfoParser
     {
 
-
+        internal static SymanticVersion version = new SymanticVersion();
 
 
 
@@ -29,7 +29,7 @@ namespace PrebuildHelper
 
             
             int temp = -1;
-            SymanticVersion version = new SymanticVersion();
+           version = new SymanticVersion();
             int.TryParse(strMajor, out temp);
             version.Major = temp;
             temp = -1;
