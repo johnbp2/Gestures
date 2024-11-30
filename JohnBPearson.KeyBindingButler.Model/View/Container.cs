@@ -11,7 +11,17 @@ namespace JohnBPearson.Application.Gestures.Model
     {
 
 
+        internal Domain.Entities.Container MapToEntity()
+        {
+            var entity = new Domain.Entities.Container();
+            entity.DataString = this.Data.Value;
+            entity.DescriptionString = this.Description.Value;
+            entity.KeyAsChar = this.KeyAsChar.ToString();
 
+                return entity;
+        
+        
+        }
 
 
 
@@ -30,7 +40,7 @@ namespace JohnBPearson.Application.Gestures.Model
                 _key = value;
             }
         }
-        [System.Text.Json.Serialization.JsonIgnore]
+      //  [System.Text.Json.Serialization.JsonIgnore]
         public string DescriptionString
         {
             get
@@ -43,7 +53,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        [System.Text.Json.Serialization.JsonIgnore]
+       // [System.Text.Json.Serialization.JsonIgnore]
         public string DataString
         {
             get
@@ -138,13 +148,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
 
         }
-        //private string _description = "";
-        //public string Description
-        //{
-        //    get { return _description; } private set { if (value != this._description && !string.IsNullOrWhiteSpace(value) ){
-        //            _description = value;
-        //        } }
-        //}
+ 
 
 
         private JohnBPearson.Application.Gestures.Model.ObjectState _objectState = JohnBPearson.Application.Gestures.Model.ObjectState.New;
@@ -156,9 +160,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        public Container()
-        {
-        }
+
         protected Container(char key, string value)
         {
             this.CreateKeyboardKey(key);
@@ -214,6 +216,11 @@ namespace JohnBPearson.Application.Gestures.Model
             return new Container(parent, key, value, description, secured);
         }
 
+
+        internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
+        {
+            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DescriptionString, entity.DataString, false);
+        }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
         //    if (!newValue.Equals(oldItem.Data))

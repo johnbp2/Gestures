@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using JohnBPearson.Application.Common;
 
 namespace PrebuildHelper
 {
@@ -15,11 +18,14 @@ namespace PrebuildHelper
 
       internal static string searchString1 = @"[assembly: AssemblyVersion(";
         internal static string searchString2 = @"[assembly: AssemblyFileVersion(";
+        internal static string[] fileNames = { "AssemblyInfo.cs", "Settings.settings" };
     }
     internal class Program
     {
 
-
+        internal static ProjectPropertiesFile assemblyInfo = null;
+        internal static ProjectPropertiesFile settings = null;
+        internal static SymanticVersion symanticVersion;
         //   const replaceString1 = $"[assembly: AssemblyVersion(\"{0}.2.0.0\")]";
         /// <summary>
         /// 
@@ -39,6 +45,42 @@ namespace PrebuildHelper
         {
 
             BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
+
+            foreach(string file in Constants.fileNames)
+            {
+
+                var filePath = Path.Combine(args[0], file);
+                FileInfo fileInfo = new FileInfo(filePath);
+                var lines = File.ReadAllLines(filePath);
+                if(file.StartsWith("Ass"))
+                {
+
+                  //  var filePath = Path.Combine(args[0], file);
+                  //  FileInfo fileInfo = new FileInfo(filePath);
+                //    var lines = File.ReadAllLines(filePath);
+                    var assemblyInfo = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
+                    //foreach(string fileName in Constants.fileNames)
+                    //{
+
+                    //    if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
+                    //    {
+                    //        assemblyInfo = tempFile;
+                    //    }
+                    //    else
+                    //    {
+
+                    //        settings = tempFile;
+                    //    }
+                }
+                else
+                {
+
+                    settings = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
+                }
+            }
+                
+           
+            var bi = new BuildInfo(assemblyInfo, symanticVersion, settings);
             //FileInfo assInfo = new FileInfo(args[0]);
             //if(assInfo.Exists)
             //{
@@ -54,23 +96,6 @@ namespace PrebuildHelper
             //            indexReplace = i;
             //            break;
 
-            //        }
-            //    }
-
-            //    var contents = new StringBuilder();
-            //    var listLines = lines.ToList();
-            //    listLines.RemoveAt(indexReplace);
-            //    int thisBuild = int.Parse(args[4]) + 1;
-            //    listLines.Insert(indexReplace, $"[assembly: AssemblyVersion(\"{args[1]}.{args[2]}.{args[3]}.{thisBuild}\")]");
-            //    foreach(var item in listLines)
-            //    {
-            //        contents.AppendLine(item);
-            //    }
-            //    // int thisBuild = int.Parse(args[4]) + 1;
-
-            //    File.WriteAllText(args[0], contents.ToString());
-            //    return thisBuild;
-            //}
             return -1;
         }
     }

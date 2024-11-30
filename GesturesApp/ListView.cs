@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
@@ -131,13 +132,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
                         var doc = System.Text.Json.JsonDocument.Parse(fs);
-                        var containers = doc.Deserialize<List<Container>>();
-                       this._sourceList.ImportForSave(containers);
+                        var root = doc.Deserialize<JohnBPearson.Application.Gestures.Model.Domain.Entities.Rootobject>();
+                       this._sourceList.MapFromEntities(root.Containers.ToList());
                         this._mainPresenter.executeAutoSave(true, "", false);
                     }
                     //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
                 }
             }
         }
+
+
     }
 }
