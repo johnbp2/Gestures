@@ -102,7 +102,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GesturesSolution\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
+    <ProjectReference Include="..\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
       <Project>{2844508a-f28b-4d3d-a974-aaf26291981a}</Project>
       <Name>JohnBPearson.Application.Common</Name>
     </ProjectReference>
