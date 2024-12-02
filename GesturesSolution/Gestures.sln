@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Application.Common", "JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj", "{2844508A-F28B-4D3D-A974-AAF26291981A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Butler.Test", "..\JohnBPearson.Butler.Test\JohnBPearson.Butler.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestures.Test", "..\JohnBPearson.Butler.Test\Gestures.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Cypher", "JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj", "{BD8772B8-C584-4B74-848C-9928A215770B}"
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Forms.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", "..\PrebuildHelper\PrebuildHelper.csproj", "{7F8AA506-3088-4C56-8C78-2116FAACC8E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.HotkeyButler.DataAccess", "JohnBPearson.HotkeyButler.DataAccess\JohnBPearson.HotkeyButler.DataAccess.csproj", "{B998E062-1697-4967-8ABA-1FBF21B7A0E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturesApp.DataAccess", "JohnBPearson.HotkeyButler.DataAccess\GesturesApp.DataAccess.csproj", "{B998E062-1697-4967-8ABA-1FBF21B7A0E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\Model\Model.csproj", "{45ED5872-A9F3-497C-8A12-753D1A22A9F2}"
 EndProject
