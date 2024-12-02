@@ -110,11 +110,11 @@
     <Compile Include="View\IContainerList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GesturesSolution\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
+    <ProjectReference Include="..\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
       <Project>{2844508a-f28b-4d3d-a974-aaf26291981a}</Project>
       <Name>JohnBPearson.Application.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GesturesSolution\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
+    <ProjectReference Include="..\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
       <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
       <Name>JohnBPearson.Cypher</Name>
     </ProjectReference>
@@ -131,6 +131,5 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-
   </Target>
- </Project>
+</Project>

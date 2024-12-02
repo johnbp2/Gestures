@@ -54,10 +54,9 @@
     <Compile Include="SqliteDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\..\PrebuildHelper.db">
+    <None Include="..\PrebuildHelper.db">
       <Link>PrebuildHelper.db</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </None>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
