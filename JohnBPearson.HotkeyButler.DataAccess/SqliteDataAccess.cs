@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Data;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.Data.Common;
-using System.Collections;
-using System.Collections.Specialized;
+using Extension;
 
 namespace JohnBPearson.HotkeyButler.DataAccess
 {
@@ -32,7 +25,7 @@ namespace JohnBPearson.HotkeyButler.DataAccess
                     foreach(DataRow row in schemaTable.Rows)
                     {
                         dt.Columns.Add(row[0].ToString());
-                            }
+                    }
                 }
                 ArrayList rowValues = new ArrayList();
                 rowValues.Add(reader["ApplicationId"]);
@@ -59,6 +52,7 @@ namespace JohnBPearson.HotkeyButler.DataAccess
         }
         protected static void initializeConnectionString()
         {
+
             SqliteDataAccess.common_conn = new SQLiteConnection(Properties.Settings.Default.sqlitConnectionString);
         }
         protected static string ConnectionString
@@ -131,14 +125,17 @@ namespace JohnBPearson.HotkeyButler.DataAccess
         protected static int ExecuteNonQuery(string cmdText, params object[] p)
         {
             if(common_conn == null)
-                common_conn = new SQLiteConnection(ConnectionString);
-            //using (SqliteConnection conn = new SqliteConnection(ConnectionString)) {
-            using(SQLiteCommand command = new SQLiteCommand())
             {
-                PrepareCommand(command, common_conn, cmdText, p);
-                return command.ExecuteNonQuery();
+
+                common_conn = new SQLiteConnection(ConnectionString);
+                //using (SqliteConnection conn = new SqliteConnection(ConnectionString)) {
+                using(SQLiteCommand command = new SQLiteCommand())
+                {
+                    PrepareCommand(command, common_conn, cmdText, p);
+                    return command.ExecuteNonQuery();
+                }
             }
-            //}
+            return -1;
         }
         protected static int ExecuteNonQuery2(string cmdText, params object[] p)
         {
@@ -196,16 +193,10 @@ namespace JohnBPearson.HotkeyButler.DataAccess
                 }
             }
         }
-    }
-    public static class StringReplace
-    {
-        public static string ReplaceOne(this string str, string oldStr, string newStr)
+
+        public static class StringReplace
         {
-            StringBuilder sb = new StringBuilder(str);
-            int index = str.IndexOf(oldStr);
-            if(index > -1)
-                return str.Substring(0, index) + newStr + str.Substring(index + oldStr.Length);
-            return str;
+           
         }
     }
 }

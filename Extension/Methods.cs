@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Text;
 
 namespace Extension
 {
@@ -16,7 +17,14 @@ namespace Extension
         }
 
 
-
+        public static string ReplaceOne(this string str, string oldStr, string newStr)
+        {
+            StringBuilder sb = new StringBuilder(str);
+            int index = str.IndexOf(oldStr);
+            if(index > -1)
+                return str.Substring(0, index) + newStr + str.Substring(index + oldStr.Length);
+            return str;
+        }
 
         //public static T GetEnumValueByDescription<T>(this Enum description) where T : Enum
         //{

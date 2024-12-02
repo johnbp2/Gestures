@@ -71,5 +71,11 @@
       <Version>1.0.119</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Extension\Extension.csproj">
+      <Project>{b8d5ffa8-80e3-447d-ae07-da86af72f206}</Project>
+      <Name>Extension</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
