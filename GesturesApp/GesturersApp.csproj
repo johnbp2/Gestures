@@ -276,7 +276,7 @@
       <Project>{7f8aa506-3088-4c56-8c78-2116faacc8e1}</Project>
       <Name>PrebuildHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheButlerFramework\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
+    <ProjectReference Include="..\GesturesSolution\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
       <Project>{2844508a-f28b-4d3d-a974-aaf26291981a}</Project>
       <Name>JohnBPearson.Application.Common</Name>
     </ProjectReference>

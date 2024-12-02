@@ -128,11 +128,11 @@
     <Compile Include="View\IContainerList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheButlerFramework\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
+    <ProjectReference Include="..\GesturesSolution\JohnBPearson.KeyBindingButler.Common\JohnBPearson.Application.Common.csproj">
       <Project>{2844508a-f28b-4d3d-a974-aaf26291981a}</Project>
       <Name>JohnBPearson.Application.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheButlerFramework\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
+    <ProjectReference Include="..\GesturesSolution\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
       <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
       <Name>JohnBPearson.Cypher</Name>
     </ProjectReference>

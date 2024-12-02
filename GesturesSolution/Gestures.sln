@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", "..\Prebui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.HotkeyButler.DataAccess", "JohnBPearson.HotkeyButler.DataAccess\JohnBPearson.HotkeyButler.DataAccess.csproj", "{B998E062-1697-4967-8ABA-1FBF21B7A0E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\JohnBPearson.KeyBindingButler.Model\Model.csproj", "{45ED5872-A9F3-497C-8A12-753D1A22A9F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\Model\Model.csproj", "{45ED5872-A9F3-497C-8A12-753D1A22A9F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationWindow", "..\NotificationWindow\NotificationWindow.csproj", "{605006EB-D4E6-4312-A293-3A43FAC43240}"
 EndProject
