@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Utility;
-using JohnBPearson.Application.Gestures.Model;
 using System.Runtime.InteropServices;
 using System.Linq;
 using JohnBPearson.Cypher;
