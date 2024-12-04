@@ -28,12 +28,12 @@ namespace JohnBPearson.HotkeyButler.DataAccess
                     }
                 }
                 ArrayList rowValues = new ArrayList();
-                rowValues.Add(reader["ApplicationId"]);
+                rowValues.Add(reader["TargetId"]);
                 rowValues.Add(reader["AssemblyName"]);
                 rowValues.Add(reader["ProjectPropertiesPath"]);
 
                 rowValues.Add(reader["VersionId"]);
-                rowValues.Add(reader["Application"]);
+                rowValues.Add(reader["TargetApplication"]);
                 rowValues.Add(reader["Major"]);
                 rowValues.Add(reader["Minor"]);
                 rowValues.Add(reader["Build"]);

@@ -48,7 +48,7 @@ namespace JohnBPearson.Butler.Test
         [TestMethod]
         public void dataA1ccessSQLite()
         {
-         DataTable result =   SqliteDataAccess.Read(@"select * from Application inner join Version on Application.ApplicationId = Version.Application");
+         DataTable result =   SqliteDataAccess.Read(@"select * from TargetApplication t inner join Version v on t.TargetId = v.TargetApplication");
             Assert.IsTrue(result.Rows.Count > 0);
 // test
             // SqliteDataAccess.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
