@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Cypher", "Joyh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JohnBPearson.Windows.Forms.Controls", "JohnBPearson.Windows.Forms.Controls\JohnBPearson.Windows.Forms.Controls.csproj", "{290F3E29-9012-4A41-AE60-993DBC62C716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", ".\PrebuildHelper\PrebuildHelper.csproj", "{7F8AA506-3088-4C56-8C78-2116FAACC8E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrebuildHelper", "PrebuildHelper\PrebuildHelper.csproj", "{7F8AA506-3088-4C56-8C78-2116FAACC8E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturesApp.DataAccess", "JohnBPearson.HotkeyButler.DataAccess\GesturesApp.DataAccess.csproj", "{B998E062-1697-4967-8ABA-1FBF21B7A0E3}"
 EndProject
@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationWindow", "NotificationWindow\NotificationWindow.csproj", "{605006EB-D4E6-4312-A293-3A43FAC43240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturersApp", "GesturesApp\GesturersApp.csproj", "{49700ACC-7927-463E-A401-3144660034E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturesApp", "GesturesApp\GesturesApp.csproj", "{49700ACC-7927-463E-A401-3144660034E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
