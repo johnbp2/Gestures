@@ -68,9 +68,9 @@
       <Project>{45ed5872-a9f3-497c-8a12-753d1a22a9f2}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JohnBPearson.HotkeyButler.DataAccess\GesturesApp.DataAccess.csproj">
+    <ProjectReference Include="..\JohnBPearson.HotkeyButler.DataAccess\Gestures.DataAccess.csproj">
       <Project>{b998e062-1697-4967-8aba-1fbf21b7a0e3}</Project>
-      <Name>GesturesApp.DataAccess</Name>
+      <Name>Gestures.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
       <Project>{bd8772b8-c584-4b74-848c-9928a215770b}</Project>
@@ -94,6 +94,4 @@
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
-
 </Project>
