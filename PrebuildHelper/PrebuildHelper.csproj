@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BuildInfo.cs" />
     <Compile Include="BuildInfoParser.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="IncrementOptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectPropertiesFile.cs" />
@@ -76,10 +77,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\PrebuildHelper.db">
+    <AdditionalFiles Include="..\PrebuildHelper.db">
       <Link>PrebuildHelper.db</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AdditionalFiles>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

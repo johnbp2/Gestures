@@ -26,24 +26,48 @@ namespace PrebuildHelper.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int Build {
+        public int GesturesApp_Build {
             get {
-                return ((int)(this["Build"]));
+                return ((int)(this["GesturesApp_Build"]));
             }
             set {
-                this["Build"] = value;
+                this["GesturesApp_Build"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int Revision {
+        public int GesturesApp_Revision {
             get {
-                return ((int)(this["Revision"]));
+                return ((int)(this["GesturesApp_Revision"]));
             }
             set {
-                this["Revision"] = value;
+                this["GesturesApp_Revision"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GesturesApp_Minor {
+            get {
+                return ((string)(this["GesturesApp_Minor"]));
+            }
+            set {
+                this["GesturesApp_Minor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GesturesApp_Major {
+            get {
+                return ((string)(this["GesturesApp_Major"]));
+            }
+            set {
+                this["GesturesApp_Major"] = value;
             }
         }
     }

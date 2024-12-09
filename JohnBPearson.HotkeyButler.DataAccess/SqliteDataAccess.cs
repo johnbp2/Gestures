@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Data;
 using System.Data.SQLite;
+using System.Threading;
+using System.Web.Compilation;
 using Extension;
 
 namespace JohnBPearson.HotkeyButler.DataAccess
@@ -52,8 +54,15 @@ namespace JohnBPearson.HotkeyButler.DataAccess
         }
         protected static void initializeConnectionString()
         {
-
-            SqliteDataAccess.common_conn = new SQLiteConnection(Properties.Settings.Default.sqlitConnectionString);
+            if(common_conn == null)
+            {
+                SQLiteConnectionStringBuilder builder = new SQLiteConnectionStringBuilder();
+                builder.ConnectionString = Properties.Settings.Default.sqlitConnectionString;
+                builder.ForeignKeys = true;
+                builder.FailIfMissing = true;
+              //  SqliteDataAccess.common_conn = new SQLiteConnection();
+            common_conn = new SQLiteConnection(builder.ConnectionString);
+            }
         }
         protected static string ConnectionString
         {
@@ -122,12 +131,13 @@ namespace JohnBPearson.HotkeyButler.DataAccess
             }
             cmd.Prepare();
         }
-        protected static int ExecuteNonQuery(string cmdText, params object[] p)
-        {
-            if(common_conn == null)
+        public static int ExecuteNonQuery(string cmdText, params object[] p)
+         {
+            SqliteDataAccess.initializeConnectionString();
+            if(common_conn != null)
             {
 
-                common_conn = new SQLiteConnection(ConnectionString);
+               // common_conn = new SQLiteConnection(ConnectionString);
                 //using (SqliteConnection conn = new SqliteConnection(ConnectionString)) {
                 using(SQLiteCommand command = new SQLiteCommand())
                 {
@@ -151,9 +161,8 @@ namespace JohnBPearson.HotkeyButler.DataAccess
         }
         protected static SQLiteDataReader ExecuteReader(string cmdText, params object[] p)
         {
-            //QLitePCL.Batteries.Init();
-            if(common_conn == null)
-                common_conn = new SQLiteConnection(ConnectionString);
+            //QLitePCL. Batteries.Init();
+            SqliteDataAccess.initializeConnectionString();
             SQLiteCommand command = new SQLiteCommand();
             PrepareCommand(command, common_conn, cmdText, p);
             return command.ExecuteReader(CommandBehavior.CloseConnection);
@@ -161,10 +170,11 @@ namespace JohnBPearson.HotkeyButler.DataAccess
         }
         protected static SQLiteDataReader ExecuteReader2(string cmdText, params object[] p)
         {
+            SqliteDataAccess.initializeConnectionString();
             //if (common_conn == null) common_conn = new SQLiteConnection(ConnectionString);
-            SQLiteConnection conn = new SQLiteConnection(ConnectionString);
+           // SQLiteConnection conn = new SQLiteConnection(ConnectionString);
             SQLiteCommand command = new SQLiteCommand();
-            PrepareCommand2(command, conn, cmdText, p);
+            PrepareCommand2(command, common_conn, cmdText, p);
             return command.ExecuteReader(CommandBehavior.CloseConnection);
 
         }
@@ -194,9 +204,6 @@ namespace JohnBPearson.HotkeyButler.DataAccess
             }
         }
 
-        public static class StringReplace
-        {
-           
-        }
+  
     }
 }

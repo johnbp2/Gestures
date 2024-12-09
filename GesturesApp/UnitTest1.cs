@@ -57,7 +57,6 @@ namespace JohnBPearson.Butler.Test
             parms[1] = 0;
             parms[2] = 0;
             parms[3] = 25;
-            parms[4] = 1;
             SqliteDataAccess.ExecuteNonQuery("UPDATE Version    SET   Major = ?,        Minor = ?,        Build = ?,  Revision = ?  WHERE VersionId = ? ",
                 parms );
                                        

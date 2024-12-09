@@ -7,5 +7,18 @@
       <FileName>Utitlities.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="JohnBPearson.Windows.Interop.FlashWindow" Collapsed="true">
+    <Position X="13" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BoundKeyActionEventArgs" Collapsed="true">
+    <Position X="13" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GlobalHotKey" Collapsed="true">
+    <Position X="14.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
