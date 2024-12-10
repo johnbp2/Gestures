@@ -75,6 +75,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SettingsIncrement.cs" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\PrebuildHelper.db">

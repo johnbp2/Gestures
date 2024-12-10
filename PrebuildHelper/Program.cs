@@ -41,11 +41,11 @@ namespace PrebuildHelper
         {
             ProjectPropertiesFile assemblyInfo = null;
             ProjectPropertiesFile settings = null;
- SymanticVersion symanticVersion;
+ 
 
 
-            BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
-
+                BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
+            
             foreach(string file in Constants.fileNames)
             {
 
@@ -80,7 +80,8 @@ namespace PrebuildHelper
                 }
             }
    
-            var bi = new BuildInfo(assemblyInfo, BuildInfoParser.version, settings);
+            //var bi = new BuildInfo(assemblyInfo, BuildInfoParser.version, settings);
+            var bi = new BuildInfo(assemblyInfo, settings);
             BuildInfo.writeLines(bi.PathToAssemblyInfo, bi.updatedAssemblyInfoLines); 
             //FileInfo assInfo = new FileInfo(args[0]);
             //if(assInfo.Exists)

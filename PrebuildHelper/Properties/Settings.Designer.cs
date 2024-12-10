@@ -49,10 +49,10 @@ namespace PrebuildHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GesturesApp_Minor {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GesturesApp_Minor {
             get {
-                return ((string)(this["GesturesApp_Minor"]));
+                return ((int)(this["GesturesApp_Minor"]));
             }
             set {
                 this["GesturesApp_Minor"] = value;
@@ -61,10 +61,10 @@ namespace PrebuildHelper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GesturesApp_Major {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GesturesApp_Major {
             get {
-                return ((string)(this["GesturesApp_Major"]));
+                return ((int)(this["GesturesApp_Major"]));
             }
             set {
                 this["GesturesApp_Major"] = value;

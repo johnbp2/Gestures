@@ -17,14 +17,34 @@ namespace PrebuildHelper
         internal string[] updatedAssemblyInfoLines;   
         internal string[] updatedSettingsLines;
 
+        internal BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, ProjectPropertiesFile settingsFileObject)
+        {
+            var version = this.incrementVersion(assemblyInfoFileObject.FullPath);
+
+            this.init(assemblyInfoFileObject, version.Major, version.Minor, version.Build, version.Revision, settingsFileObject);
+        }
+
         internal BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, SymanticVersion version, ProjectPropertiesFile settingsFileObject) :
             this(assemblyInfoFileObject, version.Major, version.Minor, version.Build, version.Revision, settingsFileObject)
         {
 
         }
 
-        private BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, int major,
+        internal BuildInfo(ProjectPropertiesFile assemblyInfoFileObject, int major,
             int minor, int build, int revision, ProjectPropertiesFile settingsFileObject)
+        {
+            init(assemblyInfoFileObject, major, minor, build, revision, settingsFileObject);
+            // createBackupFile(settingsFileInfo);
+
+            //var updatedSettingsLines= updateFile(settingsFileInfo, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", settingsFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
+
+
+
+
+            //3  return currentRevi nsion;
+        }
+
+        private void init(ProjectPropertiesFile assemblyInfoFileObject, int major, int minor, int build, int revision, ProjectPropertiesFile settingsFileObject)
         {
             FileInfo assemblyFileInfo = new FileInfo(assemblyInfoFileObject.FullPath);
             this.PathToAssemblyInfo = assemblyInfoFileObject.FullPath;
@@ -34,22 +54,18 @@ namespace PrebuildHelper
             updatedAssemblyInfoLines = assemblyInfoFileObject.Lines;
             updatedAssemblyInfoLines = updateFile(assemblyInfoFileObject, $"{Constants.searchString1}\"{major}.{minor}.{build}.{revision}\")]", assemblyFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
             updatedAssemblyInfoLines = updateFile(assemblyInfoFileObject, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", assemblyFileInfo, Constants.searchString2, updatedAssemblyInfoLines);
-            
-           // createBackupFile(settingsFileInfo);
-          
-            //var updatedSettingsLines= updateFile(settingsFileInfo, $"{Constants.searchString2}\"{major}.{minor}.{build}.{revision}\")]", settingsFileInfo, Constants.searchString1, updatedAssemblyInfoLines);
-
-
-
-
-            //3  return currentRevi nsion;
         }
 
-        private void temp(string filePath)
+        private SymanticVersion incrementVersion(string path)
         {
-           
+            string[] search = new string[] { "\\" };
+            var parts= path.Split(search, StringSplitOptions.None);
+            
+            SettingsIncrement inc = new SettingsIncrement();
+           return inc.Increment(parts[parts.Length - 3]);
         }
 
+ 
         private static string[] updateFile(ProjectPropertiesFile ppFile, string insertLine,
             FileInfo ppFileInfo, string searchString, string[] lines)
         {
@@ -111,12 +127,12 @@ namespace PrebuildHelper
 
         internal string PathToAssemblyInfo
         {
-            get;
+            get;private set;
         }
 
         internal string pathToSettingsFile
         {
-            get;
+            get; private set;
         }
 
         internal int Major

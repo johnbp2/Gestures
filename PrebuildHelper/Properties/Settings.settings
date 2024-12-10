@@ -8,11 +8,11 @@
     <Setting Name="GesturesApp_Revision" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="GesturesApp_Minor" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="GesturesApp_Minor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="GesturesApp_Major" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="GesturesApp_Major" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
