@@ -32,18 +32,18 @@ namespace JohnBPearson.Windows.Forms.Controls
             base.ContentText = _notifications[index].Item2;
             base.Popup();
         }
-        protected Notification(List<Tuple<string, string>> notifications, System.Drawing.Bitmap bgImage) : base()
+        protected Notification(List<Tuple<string, string>> notifications, System.Drawing.Bitmap icon) : base()
         {
-            this._bitmap = bgImage;
+            this._bitmap = icon;
             this.InitializeComponent();
           
             this._notifications = notifications;
         }
 
-       public static INotification Create(List<Tuple<string, string>> notifications, System.Drawing.Bitmap bgImage)
+       public static INotification Create(List<Tuple<string, string>> notifications, System.Drawing.Bitmap icon)
         {
 
-            return new Notification(notifications, bgImage);
+            return new Notification(notifications, icon);
         }
 
         public static INotification Create(string title, string message, Bitmap bgImage)
@@ -61,7 +61,7 @@ namespace JohnBPearson.Windows.Forms.Controls
             // Notification
             // 
             this.AnimationDuration = 2000;
-            this.Image = (Image)this._bitmap;
+          this.Image = (Image)this._bitmap;
 
         }
     }

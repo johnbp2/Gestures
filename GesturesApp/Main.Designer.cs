@@ -84,7 +84,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(911, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(439, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -349,7 +349,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(911, 703);
+            this.panelOuter.Size = new System.Drawing.Size(439, 703);
             this.panelOuter.TabIndex = 10;
             // 
             // lblValue
@@ -369,7 +369,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(911, 728);
+            this.ClientSize = new System.Drawing.Size(439, 728);
             this.Controls.Add(this.panelOuter);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
