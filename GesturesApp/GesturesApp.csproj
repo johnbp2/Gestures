@@ -145,7 +145,7 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Notifier.cs" />
+    <Compile Include="NotificationService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MainPresenter.cs" />
@@ -282,11 +282,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bg.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="butler.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon1.ico" />
     <Content Include="icons8-butler-48.ico" />
+    <Content Include="ok.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Clipboard_09-26-2024_01.png" />
     <None Include="Resources\butler.png" />
     <None Include="Resources\Image1.bmp" />
