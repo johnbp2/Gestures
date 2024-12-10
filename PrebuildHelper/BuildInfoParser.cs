@@ -10,11 +10,7 @@ using JohnBPearson.Application.Common;
 
 namespace PrebuildHelper
 {
-    public enum file
-    {
-    AssemblyInfo = 0,
-    Settings= 1
-    }
+   
     internal static partial class BuildInfoParser
     {
 
@@ -47,7 +43,7 @@ namespace PrebuildHelper
             {
                 validateFile(projectPropertiesDirectory, file);
                 //var tempFile =     validateFile(projectPropertiesDirectory, file);
-                //    if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
+                //    if(tempFile.File == PrebuildHelper.ProjectPropertiesFileType.AssemblyInfo)
                 //    {
                 //        assemblyInfo = tempFile;
                 //    }

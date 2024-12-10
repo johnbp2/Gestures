@@ -2,9 +2,11 @@
 namespace PrebuildHelper
 {
 
+    
+
     internal class ProjectPropertiesFile
     {
-        internal ProjectPropertiesFile(string[] lines, PrebuildHelper.file file, string fullPath)
+        internal ProjectPropertiesFile(string[] lines, PrebuildHelper.ProjectPropertiesFileType file, string fullPath)
         {
         this.FullPath = fullPath;
             this.Lines = lines;
@@ -15,7 +17,7 @@ namespace PrebuildHelper
             get; 
         }
 
-        internal file File
+        internal PrebuildHelper.ProjectPropertiesFileType File
         {
             get; 
         }

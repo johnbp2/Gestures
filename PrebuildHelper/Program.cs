@@ -10,16 +10,8 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using JohnBPearson.Application.Common;
-
 namespace PrebuildHelper
 {
-    internal static class Constants
-    {
-
-        internal static string searchString1 = @"[assembly: AssemblyVersion(";
-        internal static string searchString2 = @"[assembly: AssemblyFileVersion(";
-        internal static string[] fileNames = { "AssemblyInfo.cs", "Settings.settings" };
-    }
     internal class Program
     {
 
@@ -31,7 +23,7 @@ namespace PrebuildHelper
 
         /// <summary>
         /// 
-        /// assemblyinfo path or dir to create assembllyinfo , major version, minor version, build, revision, project name
+        /// increments replaces the components of symantic version 
         /// </summary>
         /// 
         /// <param name="args">
@@ -43,15 +35,17 @@ namespace PrebuildHelper
         /// 3       | Build 
         /// 4       | Revision 
         /// </param>
+        /// <returns>int 1 = failure
+        /// 0 = success</returns>
         static int Main(string[] args)
         {
             ProjectPropertiesFile assemblyInfo = null;
             ProjectPropertiesFile settings = null;
- SymanticVersion symanticVersion;
+ 
 
 
-            BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
-
+                BuildInfoParser.Parse(args[0], args[1], args[2], args[3], args[4]);
+            
             foreach(string file in Constants.fileNames)
             {
 
@@ -64,11 +58,11 @@ namespace PrebuildHelper
                     //  var filePath = Path.Combine(args[0], file);
                     //  FileInfo fileInfo = new FileInfo(filePath);
                     //    var lines = File.ReadAllLines(filePath);
-                    assemblyInfo = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
+                    assemblyInfo = new ProjectPropertiesFile(lines, Utility.ToEnum<PrebuildHelper.ProjectPropertiesFileType>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
                     //foreach(string fileName in Constants.fileNames)
                     //{
 
-                    //    if(tempFile.File == PrebuildHelper.file.AssemblyInfo)
+                    //    if(tempFile.File == PrebuildHelper.ProjectPropertiesFileType.AssemblyInfo)
                     //    {
                     //        assemblyInfo = tempFile;
                     //    }
@@ -81,12 +75,13 @@ namespace PrebuildHelper
                 else
                 {
 
-                    settings = new ProjectPropertiesFile(lines, Utility.ToEnum<file>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
+                    settings = new ProjectPropertiesFile(lines, Utility.ToEnum<PrebuildHelper.ProjectPropertiesFileType>(fileInfo.Name.Replace(fileInfo.Extension, "")), filePath);
 
                 }
             }
    
-            var bi = new BuildInfo(assemblyInfo, BuildInfoParser.version, settings);
+            //var bi = new BuildInfo(assemblyInfo, BuildInfoParser.version, settings);
+            var bi = new BuildInfo(assemblyInfo, settings);
             BuildInfo.writeLines(bi.PathToAssemblyInfo, bi.updatedAssemblyInfoLines); 
             //FileInfo assInfo = new FileInfo(args[0]);
             //if(assInfo.Exists)

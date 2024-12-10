@@ -4,7 +4,7 @@ if exist "s:\source\repos\Gestures\GesturesApp\Properties\AssemblyInfo.cs.backup
 
 
 ren "s:\source\repos\Gestures\GesturesApp\Properties\AssemblyInfo.cs.backup" "AssemblyInfo.cs"
-echo "Created backup AssemblyInfo"
+echo "Restored AssemblyInfo from backup"
 
 ) else (
 
@@ -16,7 +16,7 @@ echo "Created backup AssemblyInfo"
 if exist "s:\source\repos\Gestures\GesturesApp\Properties\Settings.settings.backup" (
 
  ren "s:\source\repos\Gestures\GesturesApp\Properties\Settings.settings.backup" "Settings.settings"
-echo "Created backup Settings"
+echo "Restored Settings from backup"
 
 ) else (
 

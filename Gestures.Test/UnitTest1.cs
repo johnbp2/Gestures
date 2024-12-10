@@ -50,10 +50,17 @@ namespace JohnBPearson.Butler.Test
         {
          DataTable result =   SqliteDataAccess.Read(@"select * from TargetApplication t inner join Version v on t.TargetId = v.TargetApplication");
             Assert.IsTrue(result.Rows.Count > 0);
-// test
-            // SqliteDataAccess.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
-
-
+            // test
+            // SqliteDataAcces           s.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
+            object[] parms = new object[4];
+            parms[0] = 0;
+            parms[1] = 0;
+            parms[2] = 0;
+            parms[3] = 25;
+            parms[4] = 1;
+            SqliteDataAccess.ExecuteNonQuery("UPDATE Version    SET   Major = ?,        Minor = ?,        Build = ?,  Revision = ?  WHERE VersionId = ? ",
+                parms );
+                                       
         }
     }
 }
