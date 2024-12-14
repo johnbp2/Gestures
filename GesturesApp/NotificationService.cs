@@ -6,7 +6,7 @@ using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
-    public static class Notifier
+    public static class NotificationService
     {
 
      
@@ -23,7 +23,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             if (Properties.Settings.Default.ToastOption == ((int)toastType) || Properties.Settings.Default.ToastOption == (int)ToastOptions.All)
             {
-                Bitmap bmp = new Bitmap(@".\Butler.png");
+                Bitmap bmp = new Bitmap(@".\ok.bmp");
 
                 var popupNotifier = Notification.Create(title, content, bmp);
                 if (flash)

@@ -73,7 +73,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
-            base.notify($"Sir your data: {item.Description.Value}", "Is in the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
+            base.notify("Copied: ", $"{item.Description.Value} to the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
             //  messages.raiseEvent(key, item);
         }
 

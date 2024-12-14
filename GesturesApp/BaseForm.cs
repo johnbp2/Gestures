@@ -21,7 +21,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         protected void notify(string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.None, int flashCount = 0)
        {
 
-            Notifier.notify(this, title, content, flash, toastType);
+            NotificationService.notify(this, title, content, flash, toastType);
         //    if (toastType == ToastOptions.None)
         //    {
         //        return;
