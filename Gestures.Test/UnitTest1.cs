@@ -62,5 +62,12 @@ namespace JohnBPearson.Butler.Test
                 parms );
                                        
         }
+
+
+        [TestMethod]
+        public void testcmd()
+        {
+        
+        }
     }
 }

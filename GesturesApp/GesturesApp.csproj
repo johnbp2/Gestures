@@ -217,6 +217,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CefSharp.WinForms">
+      <Version>131.2.70</Version>
+    </PackageReference>
     <PackageReference Include="log4net">
       <Version>3.0.3</Version>
     </PackageReference>

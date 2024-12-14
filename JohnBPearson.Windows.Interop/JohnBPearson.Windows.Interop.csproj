@@ -60,7 +60,7 @@
     <Compile Include="FlashWindow.cs" />
     <Compile Include="HotKeyWithAction.cs" />
     <Compile Include="InteropFacade.cs" />
-    <Compile Include="HotKeyEngine.cs" />
+    <Compile Include="GlobalHotkey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
