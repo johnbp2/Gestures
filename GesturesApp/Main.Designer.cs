@@ -45,7 +45,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelUpper = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
-            this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.lblHotKeySelected = new System.Windows.Forms.Label();
             this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.cbSecure = new System.Windows.Forms.CheckBox();
@@ -60,7 +59,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblValue = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelUpper.SuspendLayout();
-            this.transparentFlowPanel1.SuspendLayout();
             this.panelButtons.SuspendLayout();
             this.panelOuter.SuspendLayout();
             this.SuspendLayout();
@@ -134,54 +132,47 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelUpper
             // 
-            this.panelUpper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelUpper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelUpper.AutoSize = true;
+            this.panelUpper.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelUpper.Controls.Add(this.lblHotKeySelected);
             this.panelUpper.Controls.Add(this.lblKey);
-            this.panelUpper.Controls.Add(this.transparentFlowPanel1);
+            this.panelUpper.Controls.Add(this.cbHotkeySelection);
             this.panelUpper.Controls.Add(this.cbSecure);
             this.panelUpper.Controls.Add(this.lblDescription);
             this.panelUpper.Controls.Add(this.tbDesc);
+            this.panelUpper.Controls.Add(this.lblValue);
+            this.panelUpper.Controls.Add(this.tbValue);
             this.panelUpper.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(432, 260);
+            this.panelUpper.Size = new System.Drawing.Size(385, 401);
             this.panelUpper.TabIndex = 2;
             // 
             // lblKey
             // 
-            this.lblKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblKey.AutoSize = true;
             this.lblKey.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblKey.Location = new System.Drawing.Point(158, 6);
-            this.lblKey.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.lblKey.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblKey.Location = new System.Drawing.Point(10, 46);
+            this.lblKey.Margin = new System.Windows.Forms.Padding(10, 10, 0, 0);
             this.lblKey.MinimumSize = new System.Drawing.Size(5, 10);
             this.lblKey.Name = "lblKey";
-            this.lblKey.Size = new System.Drawing.Size(5, 24);
+            this.lblKey.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.lblKey.Size = new System.Drawing.Size(10, 24);
             this.lblKey.TabIndex = 9;
             this.lblKey.Template = "";
             this.lblKey.ValuesToApply = ((System.Collections.Generic.List<string>)(resources.GetObject("lblKey.ValuesToApply")));
-            // 
-            // transparentFlowPanel1
-            // 
-            this.transparentFlowPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.transparentFlowPanel1.Controls.Add(this.lblHotKeySelected);
-            this.transparentFlowPanel1.Controls.Add(this.cbHotkeySelection);
-            this.transparentFlowPanel1.Location = new System.Drawing.Point(3, 40);
-            this.transparentFlowPanel1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.transparentFlowPanel1.Name = "transparentFlowPanel1";
-            this.transparentFlowPanel1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.transparentFlowPanel1.Size = new System.Drawing.Size(316, 44);
-            this.transparentFlowPanel1.TabIndex = 1000;
             // 
             // lblHotKeySelected
             // 
             this.lblHotKeySelected.AutoSize = true;
             this.lblHotKeySelected.BackColor = System.Drawing.SystemColors.Menu;
             this.lblHotKeySelected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblHotKeySelected.Location = new System.Drawing.Point(3, 5);
-            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
+            this.lblHotKeySelected.Location = new System.Drawing.Point(10, 10);
+            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
             this.lblHotKeySelected.Name = "lblHotKeySelected";
             this.lblHotKeySelected.Size = new System.Drawing.Size(227, 26);
             this.lblHotKeySelected.TabIndex = 12;
@@ -191,8 +182,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.cbHotkeySelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbHotkeySelection.FormattingEnabled = true;
-            this.cbHotkeySelection.Location = new System.Drawing.Point(239, 6);
-            this.cbHotkeySelection.Margin = new System.Windows.Forms.Padding(6, 1, 6, 6);
+            this.cbHotkeySelection.Location = new System.Drawing.Point(10, 80);
+            this.cbHotkeySelection.Margin = new System.Windows.Forms.Padding(10, 10, 6, 0);
             this.cbHotkeySelection.Name = "cbHotkeySelection";
             this.cbHotkeySelection.Size = new System.Drawing.Size(62, 32);
             this.cbHotkeySelection.TabIndex = 0;
@@ -204,8 +195,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.cbSecure.AutoSize = true;
             this.cbSecure.Cursor = System.Windows.Forms.Cursors.No;
             this.cbSecure.Enabled = false;
-            this.cbSecure.Location = new System.Drawing.Point(10, 89);
-            this.cbSecure.Margin = new System.Windows.Forms.Padding(10, 2, 2, 5);
+            this.cbSecure.Location = new System.Drawing.Point(10, 122);
+            this.cbSecure.Margin = new System.Windows.Forms.Padding(10, 10, 2, 0);
             this.cbSecure.Name = "cbSecure";
             this.cbSecure.Size = new System.Drawing.Size(100, 28);
             this.cbSecure.TabIndex = 11;
@@ -219,8 +210,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblDescription.AutoSize = true;
             this.lblDescription.BackColor = System.Drawing.SystemColors.Menu;
             this.lblDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDescription.Location = new System.Drawing.Point(10, 122);
-            this.lblDescription.Margin = new System.Windows.Forms.Padding(10, 0, 3, 6);
+            this.lblDescription.Location = new System.Drawing.Point(10, 160);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(106, 26);
             this.lblDescription.TabIndex = 999;
@@ -229,8 +220,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // tbDesc
             // 
             this.tbDesc.BackColor = System.Drawing.SystemColors.Info;
-            this.tbDesc.Location = new System.Drawing.Point(10, 157);
-            this.tbDesc.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.tbDesc.Location = new System.Drawing.Point(10, 196);
+            this.tbDesc.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(309, 68);
@@ -242,8 +233,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.tbValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tbValue.BackColor = System.Drawing.SystemColors.Info;
-            this.tbValue.Location = new System.Drawing.Point(10, 301);
-            this.tbValue.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.tbValue.Location = new System.Drawing.Point(10, 308);
+            this.tbValue.Margin = new System.Windows.Forms.Padding(10, 10, 0, 0);
             this.tbValue.MaximumSize = new System.Drawing.Size(500, 335);
             this.tbValue.MinimumSize = new System.Drawing.Size(9, 50);
             this.tbValue.Multiline = true;
@@ -254,12 +245,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelButtons
             // 
+            this.panelButtons.AutoSize = true;
+            this.panelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.notBetterButton1);
             this.panelButtons.Controls.Add(this.notBetterButton2);
-            this.panelButtons.Location = new System.Drawing.Point(3, 397);
+            this.panelButtons.Location = new System.Drawing.Point(3, 416);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(438, 61);
+            this.panelButtons.Size = new System.Drawing.Size(391, 49);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
@@ -342,9 +335,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelOuter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelOuter.Controls.Add(this.panelUpper);
-            this.panelOuter.Controls.Add(this.lblValue);
-            this.panelOuter.Controls.Add(this.tbValue);
             this.panelOuter.Controls.Add(this.panelButtons);
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
@@ -356,8 +348,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.lblValue.AutoSize = true;
             this.lblValue.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblValue.Location = new System.Drawing.Point(10, 272);
-            this.lblValue.Margin = new System.Windows.Forms.Padding(10, 0, 3, 5);
+            this.lblValue.Location = new System.Drawing.Point(10, 274);
+            this.lblValue.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
             this.lblValue.Name = "lblValue";
             this.lblValue.Size = new System.Drawing.Size(148, 24);
             this.lblValue.TabIndex = 10;
@@ -388,8 +380,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuStrip1.PerformLayout();
             this.panelUpper.ResumeLayout(false);
             this.panelUpper.PerformLayout();
-            this.transparentFlowPanel1.ResumeLayout(false);
-            this.transparentFlowPanel1.PerformLayout();
             this.panelButtons.ResumeLayout(false);
             this.panelOuter.ResumeLayout(false);
             this.panelOuter.PerformLayout();
@@ -424,7 +414,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private NotBetterButton notBetterButton1;
         private NotBetterButton notBetterButton2;
         private System.Windows.Forms.Label lblHotKeySelected;
-        private TransparentFlowPanel transparentFlowPanel1;
         private System.Windows.Forms.Label lblValue;
     }
 }

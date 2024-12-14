@@ -160,7 +160,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
 
 
-                base.notify(Properties.Settings.Default.ServantName, "Saved", Properties.Settings.Default.FlashWindow, ToastOptions.Save);
+                base.notify("Success", "Saved", Properties.Settings.Default.FlashWindow, ToastOptions.Save);
 
                 if (Properties.Settings.Default.FlashWindow)
                 {
