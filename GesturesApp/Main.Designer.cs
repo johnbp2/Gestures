@@ -264,12 +264,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // aLittleBetter_Save
             // 
-            this.aLittleBetter_Save.EndColor = System.Drawing.SystemColors.MenuHighlight;
+            this.aLittleBetter_Save.EndColor = System.Drawing.Color.LightSkyBlue;
             this.aLittleBetter_Save.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.aLittleBetter_Save.FlatAppearance.BorderSize = 3;
             this.aLittleBetter_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aLittleBetter_Save.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
             this.aLittleBetter_Save.ForeColor = System.Drawing.Color.Black;
             this.aLittleBetter_Save.GradientAngle = 10;
+            this.aLittleBetter_Save.Image = ((System.Drawing.Image)(resources.GetObject("aLittleBetter_Save.Image")));
+            this.aLittleBetter_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aLittleBetter_Save.Location = new System.Drawing.Point(3, 3);
             this.aLittleBetter_Save.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.MouseClickColor2 = System.Drawing.Color.Magenta;
@@ -277,9 +280,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.Name = "aLittleBetter_Save";
             this.aLittleBetter_Save.Size = new System.Drawing.Size(98, 43);
-            this.aLittleBetter_Save.StartColor = System.Drawing.SystemColors.HighlightText;
+            this.aLittleBetter_Save.StartColor = System.Drawing.Color.DimGray;
             this.aLittleBetter_Save.TabIndex = 3;
             this.aLittleBetter_Save.Text = "Save";
+            this.aLittleBetter_Save.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.aLittleBetter_Save.TextLocation_X = 76;
             this.aLittleBetter_Save.TextLocation_Y = 24;
             this.aLittleBetter_Save.Transparent1 = 150;
@@ -289,22 +293,26 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // notBetterButton1
             // 
-            this.notBetterButton1.EndColor = System.Drawing.Color.Gold;
+            this.notBetterButton1.EndColor = System.Drawing.Color.LightSkyBlue;
             this.notBetterButton1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.notBetterButton1.FlatAppearance.BorderSize = 3;
             this.notBetterButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.notBetterButton1.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notBetterButton1.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton1.GradientAngle = 65;
+            this.notBetterButton1.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton1.Image")));
+            this.notBetterButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.notBetterButton1.Location = new System.Drawing.Point(107, 3);
             this.notBetterButton1.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton1.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.notBetterButton1.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.notBetterButton1.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.notBetterButton1.Name = "notBetterButton1";
-            this.notBetterButton1.Size = new System.Drawing.Size(123, 43);
+            this.notBetterButton1.Size = new System.Drawing.Size(151, 43);
             this.notBetterButton1.StartColor = System.Drawing.Color.DimGray;
             this.notBetterButton1.TabIndex = 4;
             this.notBetterButton1.Text = "Reload All ";
+            this.notBetterButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.notBetterButton1.TextLocation_X = 76;
             this.notBetterButton1.TextLocation_Y = 24;
             this.notBetterButton1.Transparent1 = 150;
@@ -314,22 +322,26 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // notBetterButton2
             // 
-            this.notBetterButton2.EndColor = System.Drawing.Color.Gold;
+            this.notBetterButton2.EndColor = System.Drawing.Color.LightSkyBlue;
             this.notBetterButton2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.notBetterButton2.FlatAppearance.BorderSize = 3;
             this.notBetterButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.notBetterButton2.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
             this.notBetterButton2.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton2.GradientAngle = 65;
-            this.notBetterButton2.Location = new System.Drawing.Point(236, 3);
+            this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
+            this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.notBetterButton2.Location = new System.Drawing.Point(264, 3);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton2.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.notBetterButton2.Name = "notBetterButton2";
-            this.notBetterButton2.Size = new System.Drawing.Size(152, 43);
+            this.notBetterButton2.Size = new System.Drawing.Size(171, 43);
             this.notBetterButton2.StartColor = System.Drawing.Color.DimGray;
             this.notBetterButton2.TabIndex = 5;
-            this.notBetterButton2.Text = "Manual Copy";
+            this.notBetterButton2.Text = "Copy payload";
+            this.notBetterButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.notBetterButton2.TextLocation_X = 76;
             this.notBetterButton2.TextLocation_Y = 24;
             this.notBetterButton2.Transparent1 = 150;
@@ -367,7 +379,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.Azure;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(439, 728);
             this.Controls.Add(this.panelOuter);
