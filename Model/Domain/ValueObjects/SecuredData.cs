@@ -9,12 +9,25 @@ using Microsoft.SqlServer.Server;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain
 {
+    // TODO[]: CREATE TESTS FORE THIS 
+    /// <summary>
+    /// 
+    /// </summary>
     public class SecuredData : Data
     {
+        private readonly string rawData;
 
-        protected SecuredData(IContainer parent, ref string value) : base(value,parent)
+      protected SecuredData(IContainer parent,  string value, bool dataEncoded) : base(value,parent)
         {
-            this._secured = JohnBPearson.Cypher.Base64Url.Encode(value);
+            rawData = String.Copy(value);
+            if(!dataEncoded)
+            {
+                this._secured = JohnBPearson.Cypher.Base64Url.Encode(value);
+            }
+            else
+            {
+            this._secured = value;
+            }
             value = null;
         }
         private string _secured = string.Empty;
@@ -38,8 +51,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             get { return this._secured; }    
                     }
 
-        public static SecuredData Create(IContainer parent,  string value)
-        {    var instance = new SecuredData(parent, ref value);
+        public static SecuredData Create(IContainer parent,  string value, bool needsEncoding)
+        {    var instance = new SecuredData(parent, value, needsEncoding);
             value = null;
             return instance;
         }

@@ -73,9 +73,9 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap butler {
+        internal static System.Drawing.Bitmap blankkey {
             get {
-                object obj = ResourceManager.GetObject("butler", resourceCulture);
+                object obj = ResourceManager.GetObject("blankkey", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

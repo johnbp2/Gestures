@@ -89,7 +89,7 @@ namespace JohnBPearson.Application.Gestures.Model
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));
                 secured.Add(item.IsDataSecured.ToString());
-                if(item.ObjectState == ObjectState.Mutated)
+                if(item.ObjectState == ObjectState.Changed)
                 {
                     count++;
                 }

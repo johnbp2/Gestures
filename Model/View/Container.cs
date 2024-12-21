@@ -151,7 +151,7 @@ namespace JohnBPearson.Application.Gestures.Model
  
 
 
-        private JohnBPearson.Application.Gestures.Model.ObjectState _objectState = JohnBPearson.Application.Gestures.Model.ObjectState.New;
+        private JohnBPearson.Application.Gestures.Model.ObjectState _objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Loaded;
         public JohnBPearson.Application.Gestures.Model.ObjectState ObjectState
         {
             get
@@ -253,18 +253,18 @@ namespace JohnBPearson.Application.Gestures.Model
             if(this.Data.Value != newValue && !isSecure)
             {
                 this.Data.Value = newValue;
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Mutated;
+                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
 
             }
             else if(this.Data.Value != newValue || isSecure)
             {
                 this.UpdateAddSecureString(newValue);
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Mutated;
+                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
             }
             if(!string.IsNullOrWhiteSpace(newDescription))
             {
                 this.Description.Value = newDescription;
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Mutated;
+                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
             }
         }
 
@@ -279,7 +279,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
         public void UpdateAddSecureString(string newValue)
         {
-            this._secured = SecuredData.Create(this, newValue);
+            this._secured = SecuredData.Create(this, newValue, true);
             this._isDataSecured = true;
             newValue = string.Empty;
 

@@ -31,9 +31,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.popupNotifier1 = new JohnBPearson.Windows.Forms.Alert.PopupNotifier();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,13 +43,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblMinimizeToTray = new System.Windows.Forms.Label();
             this.rbMinimizeToTrayOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.rbMinimizeToTrayOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
-            this.tbServantName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbToastOptions = new System.Windows.Forms.ComboBox();
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -62,20 +61,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // popupNotifier1
-            // 
-            this.popupNotifier1.AnimationDuration = 2000;
-            this.popupNotifier1.AnimationInterval = 200;
-            this.popupNotifier1.ContentFont = new System.Drawing.Font("Tahoma", 8F);
-            this.popupNotifier1.ContentHoverColor = System.Drawing.SystemColors.Highlight;
-            this.popupNotifier1.ContentText = null;
-            this.popupNotifier1.Image = ((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));
-            this.popupNotifier1.IsRightToLeft = false;
-            this.popupNotifier1.OptionsMenu = null;
-            this.popupNotifier1.Size = new System.Drawing.Size(400, 100);
-            this.popupNotifier1.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
-            this.popupNotifier1.TitleText = null;
-            // 
             // transparentFlowPanel1
             // 
             this.transparentFlowPanel1.Controls.Add(this.tableLayoutPanel1);
@@ -84,15 +69,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.transparentFlowPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.transparentFlowPanel1.Location = new System.Drawing.Point(0, 0);
             this.transparentFlowPanel1.Name = "transparentFlowPanel1";
-            this.transparentFlowPanel1.Size = new System.Drawing.Size(265, 271);
+            this.transparentFlowPanel1.Size = new System.Drawing.Size(265, 223);
             this.transparentFlowPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.94574F));
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.rbFlashOn, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.rbFlashOff, 0, 5);
@@ -102,7 +87,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.Controls.Add(this.lblMinimizeToTray, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.rbMinimizeToTrayOn, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.rbMinimizeToTrayOff, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tbServantName, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbToastOptions, 1, 2);
@@ -112,16 +96,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(258, 219);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(258, 173);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1, 115);
+            this.label4.Location = new System.Drawing.Point(1, 135);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 13);
@@ -135,7 +119,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbFlashOn.GroupName = "flash";
             this.rbFlashOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbFlashOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbFlashOn.Location = new System.Drawing.Point(90, 117);
+            this.rbFlashOn.Location = new System.Drawing.Point(90, 137);
             this.rbFlashOn.Name = "rbFlashOn";
             this.rbFlashOn.Size = new System.Drawing.Size(38, 17);
             this.rbFlashOn.TabIndex = 14;
@@ -148,7 +132,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbFlashOff.GroupName = "flash";
             this.rbFlashOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbFlashOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbFlashOff.Location = new System.Drawing.Point(175, 117);
+            this.rbFlashOff.Location = new System.Drawing.Point(175, 137);
             this.rbFlashOff.Name = "rbFlashOff";
             this.rbFlashOff.Size = new System.Drawing.Size(38, 17);
             this.rbFlashOff.TabIndex = 15;
@@ -229,23 +213,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbMinimizeToTrayOff.Text = "off";
             this.rbMinimizeToTrayOff.UseVisualStyleBackColor = true;
             // 
-            // tbServantName
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tbServantName, 2);
-            this.tbServantName.Location = new System.Drawing.Point(90, 77);
-            this.tbServantName.Name = "tbServantName";
-            this.tbServantName.Size = new System.Drawing.Size(165, 20);
-            this.tbServantName.TabIndex = 10;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(1, 75);
             this.label2.Margin = new System.Windows.Forms.Padding(1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 18);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Name your man servant";
+            this.label2.Text = "Bg Color";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -277,7 +253,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.transparentPanel1.Controls.Add(this.btnSave);
             this.transparentPanel1.Controls.Add(this.btnCancel);
-            this.transparentPanel1.Location = new System.Drawing.Point(3, 228);
+            this.transparentPanel1.Location = new System.Drawing.Point(3, 182);
             this.transparentPanel1.Name = "transparentPanel1";
             this.transparentPanel1.Size = new System.Drawing.Size(258, 33);
             this.transparentPanel1.TabIndex = 1;
@@ -302,11 +278,21 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // colorDialog1
+            // 
+            this.colorDialog1.AnyColor = true;
+            this.colorDialog1.Color = System.Drawing.Color.LightGray;
+            this.colorDialog1.FullOpen = true;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 5;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 271);
+            this.ClientSize = new System.Drawing.Size(265, 223);
             this.Controls.Add(this.transparentFlowPanel1);
             this.Name = "SettingsDialog";
             this.Text = "Settings";
@@ -334,13 +320,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private Controls.AdvancedRadioButton rbMinimizeToTrayOn;
         private Controls.AdvancedRadioButton rbMinimizeToTrayOff;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private JohnBPearson.Windows.Forms.Alert.PopupNotifier popupNotifier1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbServantName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbToastOptions;
         private System.Windows.Forms.Label label4;
         private AdvancedRadioButton rbFlashOn;
         private AdvancedRadioButton rbFlashOff;
+        private SomewhatBetterButton notBetterButton1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

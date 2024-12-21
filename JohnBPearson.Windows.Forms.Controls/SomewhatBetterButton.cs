@@ -11,7 +11,7 @@ namespace JohnBPearson.Windows.Forms.Controls
 
 
 
-        public class NotBetterButton : System.Windows.Forms.Button
+        public class SomewhatBetterButton : System.Windows.Forms.Button
         {
             Color clr1, clr2;
             private Color color1 = Color.LightGreen;
@@ -29,7 +29,7 @@ namespace JohnBPearson.Windows.Forms.Controls
 
         //Create Properties to read Button Text,Colors etc  
         //[Browsable(true),
-        //Category("NotBetterButton")]
+        //Category("SomewhatBetterButton")]
         //public String DisplayText
         //    {
         //        get { return text; }
@@ -37,49 +37,49 @@ namespace JohnBPearson.Windows.Forms.Controls
         //    
 
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color StartColor
             {
                 get { return color1; }
                 set { color1 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color EndColor
             {
                 get { return color2; }
                 set { color2 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color MouseHoverColor1
             {
                 get { return m_hovercolor1; }
                 set { m_hovercolor1 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color MouseHoverColor2
             {
                 get { return m_hovercolor2; }
                 set { m_hovercolor2 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color MouseClickColor1
             {
                 get { return clickcolor1; }
                 set { clickcolor1 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public Color MouseClickColor2
             {
                 get { return clickcolor2; }
                 set { clickcolor2 = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public int Transparent1
             {
                 get { return color1Transparent; }
@@ -96,7 +96,7 @@ Category("NotBetterButton")]
                 }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public int Transparent2
             {
                 get { return color2Transparent; }
@@ -113,28 +113,28 @@ Category("NotBetterButton")]
                 }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public int GradientAngle
             {
                 get { return angle; }
                 set { angle = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public int TextLocation_X
             {
                 get { return textX; }
                 set { textX = value; Invalidate(); }
             }
         [Browsable(true),
-Category("NotBetterButton")]
+Category("SomewhatBetterButton")]
         public int TextLocation_Y
             {
                 get { return textY; }
                 set { textY = value; Invalidate(); }
             }
 
-            public NotBetterButton()
+            public SomewhatBetterButton()
             {
                 this.Size = new System.Drawing.Size(200, 50);
                 this.ForeColor = Color.White;
@@ -195,7 +195,7 @@ Category("NotBetterButton")]
 
         }
     
-    // public class NotBetterButton : System.Windows.Forms.Button
+    // public class SomewhatBetterButton : System.Windows.Forms.Button
     //{
 
     //    protected override void OnClick(EventArgs e)

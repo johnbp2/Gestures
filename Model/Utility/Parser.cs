@@ -174,7 +174,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         //                tempDescs.Add(item.Description.Value);
         //            }
         //        }
-        //        if(item.ObjectState == ObjectState.Mutated)
+        //        if(item.ObjectState == ObjectState.Changed)
         //        {
         //            result++;
         //        }

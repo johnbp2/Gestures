@@ -12,7 +12,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     {
 
         #region private fields
-        private JohnBPearson.Windows.Forms.Controls.NotBetterButton btnTest;
+        private JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton btnTest;
         private DataTable keyIndexTable;
         //  private string hotkeyModifiers = Properties.Settings.Def
 

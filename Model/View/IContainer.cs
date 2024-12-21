@@ -10,8 +10,8 @@ namespace JohnBPearson.Application.Gestures.Model
 
     public enum ObjectState
     {
-        New,
-        Mutated,
+        Loaded,
+        Changed,
         Deleted,
 
     }

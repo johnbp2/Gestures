@@ -285,17 +285,15 @@
     <Content Include="bg.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="butler.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+
     <Content Include="Icon1.ico" />
     <Content Include="icons8-butler-48.ico" />
     <Content Include="ok.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\blankkey.png" />
     <Content Include="Resources\save-disk-5342.png" />
     <None Include="Resources\Clipboard_09-26-2024_01.png" />
-    <None Include="Resources\butler.png" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -112,18 +112,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Belvedeer")]
-        public string ServantName {
-            get {
-                return ((string)(this["ServantName"]));
-            }
-            set {
-                this["ServantName"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("p")]
         public string LastBoundKeyPressed {
             get {
@@ -258,13 +246,12 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        public global::System.Drawing.Color BgColor {
             get {
-                return ((string)(this["Setting"]));
+                return ((global::System.Drawing.Color)(this["BgColor"]));
             }
             set {
-                this["Setting"] = value;
+                this["BgColor"] = value;
             }
         }
     }
