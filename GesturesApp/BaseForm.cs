@@ -31,8 +31,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  protected . notifier = new PopupNotifier();
 
 
-        protected void notify(string title, string content, bool flash = false, ToastOptions toastType = ToastOptions.None)
-        {
+        protected void notify(string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.None, int flashCount = 0)
+       {
 
             NotificationService.notify(this, title, content, flash, toastType);
             //    if (toastType == ToastOptions.None)
