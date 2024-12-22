@@ -44,20 +44,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.listViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelUpper = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
-            this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
             this.lblHotKeySelected = new System.Windows.Forms.Label();
+            this.lblKey = new JohnBPearson.Windows.Forms.Controls.TemplatedLabel();
             this.cbHotkeySelection = new System.Windows.Forms.ComboBox();
             this.cbSecure = new System.Windows.Forms.CheckBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.tbDesc = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblValue = new System.Windows.Forms.Label();
             this.tbValue = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton1 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
-            this.lblValue = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -154,8 +154,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(385, 401);
+            this.panelUpper.Size = new System.Drawing.Size(432, 425);
             this.panelUpper.TabIndex = 2;
+            // 
+            // lblHotKeySelected
+            // 
+            this.lblHotKeySelected.AutoSize = true;
+            this.lblHotKeySelected.BackColor = System.Drawing.SystemColors.Menu;
+            this.lblHotKeySelected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblHotKeySelected.Location = new System.Drawing.Point(10, 10);
+            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
+            this.lblHotKeySelected.Name = "lblHotKeySelected";
+            this.lblHotKeySelected.Size = new System.Drawing.Size(227, 26);
+            this.lblHotKeySelected.TabIndex = 12;
+            this.lblHotKeySelected.Text = "Select a gesture to modify";
             // 
             // lblKey
             // 
@@ -171,18 +183,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblKey.TabIndex = 9;
             this.lblKey.Template = "";
             this.lblKey.ValuesToApply = ((System.Collections.Generic.List<string>)(resources.GetObject("lblKey.ValuesToApply")));
-            // 
-            // lblHotKeySelected
-            // 
-            this.lblHotKeySelected.AutoSize = true;
-            this.lblHotKeySelected.BackColor = System.Drawing.SystemColors.Menu;
-            this.lblHotKeySelected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblHotKeySelected.Location = new System.Drawing.Point(10, 10);
-            this.lblHotKeySelected.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
-            this.lblHotKeySelected.Name = "lblHotKeySelected";
-            this.lblHotKeySelected.Size = new System.Drawing.Size(227, 26);
-            this.lblHotKeySelected.TabIndex = 12;
-            this.lblHotKeySelected.Text = "Select a gesture to modify";
             // 
             // cbHotkeySelection
             // 
@@ -235,16 +235,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tbDesc.TextChanged += new System.EventHandler(this.tbDesc_TextChanged);
             this.tbDesc.Leave += new System.EventHandler(this.tbDesc_Leave);
             // 
-            // label1
+            // lblValue
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Image = global::JohnBPearson.Windows.Forms.Gestures.Properties.Resources.alt_key;
-            this.label1.Location = new System.Drawing.Point(0, 228);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 24);
-            this.label1.TabIndex = 1001;
+            this.lblValue.AutoSize = true;
+            this.lblValue.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblValue.Location = new System.Drawing.Point(10, 274);
+            this.lblValue.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
+            this.lblValue.Name = "lblValue";
+            this.lblValue.Size = new System.Drawing.Size(148, 24);
+            this.lblValue.TabIndex = 10;
+            this.lblValue.Text = "Gesture Payload";
             // 
             // tbValue
             // 
@@ -260,6 +260,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tbValue.TabIndex = 2;
             this.tbValue.Leave += new System.EventHandler(this.tbValue_Leave);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Image = global::JohnBPearson.Windows.Forms.Gestures.Properties.Resources.alt_key;
+            this.label1.Location = new System.Drawing.Point(0, 401);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 24);
+            this.label1.TabIndex = 1001;
+            // 
             // panelButtons
             // 
             this.panelButtons.AutoSize = true;
@@ -267,9 +278,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.notBetterButton1);
             this.panelButtons.Controls.Add(this.notBetterButton2);
-            this.panelButtons.Location = new System.Drawing.Point(3, 416);
+            this.panelButtons.Location = new System.Drawing.Point(3, 440);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(391, 49);
+            this.panelButtons.Size = new System.Drawing.Size(438, 49);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
@@ -281,6 +292,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
             this.aLittleBetter_Save.ForeColor = System.Drawing.Color.Black;
             this.aLittleBetter_Save.GradientAngle = 10;
+            this.aLittleBetter_Save.Image = ((System.Drawing.Image)(resources.GetObject("aLittleBetter_Save.Image")));
             this.aLittleBetter_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aLittleBetter_Save.Location = new System.Drawing.Point(3, 3);
             this.aLittleBetter_Save.MouseClickColor1 = System.Drawing.Color.Transparent;
@@ -309,6 +321,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton1.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notBetterButton1.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton1.GradientAngle = 65;
+            this.notBetterButton1.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton1.Image")));
             this.notBetterButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.notBetterButton1.Location = new System.Drawing.Point(107, 3);
             this.notBetterButton1.MouseClickColor1 = System.Drawing.Color.Transparent;
@@ -337,6 +350,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
             this.notBetterButton2.ForeColor = System.Drawing.Color.Black;
             this.notBetterButton2.GradientAngle = 65;
+            this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
             this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.notBetterButton2.Location = new System.Drawing.Point(264, 3);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
@@ -367,19 +381,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(638, 551);
+            this.panelOuter.Size = new System.Drawing.Size(461, 551);
             this.panelOuter.TabIndex = 10;
-            // 
-            // lblValue
-            // 
-            this.lblValue.AutoSize = true;
-            this.lblValue.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblValue.Location = new System.Drawing.Point(10, 274);
-            this.lblValue.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
-            this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(148, 24);
-            this.lblValue.TabIndex = 10;
-            this.lblValue.Text = "Gesture Payload";
             // 
             // statusStrip1
             // 
