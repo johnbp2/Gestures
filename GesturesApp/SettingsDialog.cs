@@ -12,7 +12,7 @@ using JohnBPearson.Application.Gestures.Model;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
-    public partial class SettingsDialog : Form
+    public partial class SettingsDialog : BaseForm
     {
         public SettingsDialog()
         {
@@ -22,13 +22,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this.popupNotifier1.Popup();
+          
            
         Properties.Settings.Default.autoSave = rbAutoSaveOn.Checked;
          
 
                 Properties.Settings.Default.MinimizeToTray = rbMinimizeToTrayOn.Checked;
-            Properties.Settings.Default.ServantName = tbServantName.Text;
+          //  Properties.Settings.Default.ServantName = tbServantName.Text;
             ToastOptions toastOpt;
             if(System.Enum.TryParse(cbToastOptions.SelectedItem.ToString(), out toastOpt))
             {
@@ -43,6 +43,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
             Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;        // Properties.Settings.Default. = 
             Properties.Settings.Default.Save();
+            this.notify("Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
             this.Close();
         }
 
@@ -54,10 +55,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbMinimizeToTrayOn.Checked = Properties.Settings.Default.MinimizeToTray;
             this.rbMinimizeToTrayOff.Checked = !Properties.Settings.Default.MinimizeToTray;
 
-            tbServantName.Text = Properties.Settings.Default.ServantName;
-            popupNotifier1.ContentText = $"{tbServantName.Text} has saved your settings you can close settings dialog now";
+          //  tbServantName.Text = Properties.Settings.Default.ServantName;
+           // popupNotifier1.ContentText = $"You settings have been. you can close settings dialog now. or it will close in 15 seconds.";
             cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;
-
+         
             if (Properties.Settings.Default.FlashWindow)
             {
                 rbFlashOn.Checked = true;
@@ -65,12 +66,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             else { rbFlashOff.Checked = true; }
             // "2011-03-21 13:26";
          //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
-            popupNotifier1.TitleText = Properties.Settings.Default.ServantName;
+          // popupNotifier1.TitleText = Properties.Settings.Default.ServantName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void notBetterButton1_Click(object sender, EventArgs e)
+        {
+            this.colorDialog1 = new ColorDialog();
+            var result  = this.colorDialog1.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                Properties.Settings.Default.BgColor = this.colorDialog1.Color;
+            }
+          
         }
     }
 }

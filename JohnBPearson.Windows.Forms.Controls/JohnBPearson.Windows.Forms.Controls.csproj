@@ -68,7 +68,7 @@
     <Compile Include="Notification.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="NotBetterButton.cs">
+    <Compile Include="SomewhatBetterButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">

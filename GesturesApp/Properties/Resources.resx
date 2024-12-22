@@ -121,9 +121,6 @@
   <data name="keyboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\keyboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="butler" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\butler.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="shift_key" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shift_key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,5 +132,8 @@
   </data>
   <data name="Clipboard_09-26-2024_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Clipboard_09-26-2024_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blankkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blankkey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

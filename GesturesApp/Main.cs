@@ -12,7 +12,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     {
 
         #region private fields
-        private JohnBPearson.Windows.Forms.Controls.NotBetterButton btnTest;
+        private JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton btnTest;
         private DataTable keyIndexTable;
         //  private string hotkeyModifiers = Properties.Settings.Def
 
@@ -347,7 +347,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-            #endregion
         }
 
         private void cbSecure_CheckedChanged(object sender, EventArgs e)
@@ -367,5 +366,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var aboot = new AboutBox1();
             aboot.ShowDialog();
         }
-    } 
+
+        #endregion
+    }
 }

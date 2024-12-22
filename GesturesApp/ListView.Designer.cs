@@ -32,9 +32,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.transparentFlowPanel2 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
-            this.btnSave = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
-            this.btnExport = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
-            this.aLittleBetter_Import = new JohnBPearson.Windows.Forms.Controls.NotBetterButton();
+            this.btnSave = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
+            this.btnExport = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
+            this.aLittleBetter_Import = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -197,11 +197,11 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private Controls.TransparentFlowPanel transparentFlowPanel1;
-        private Controls.NotBetterButton btnSave;
+        private Controls.SomewhatBetterButton btnSave;
         private Controls.TransparentFlowPanel transparentFlowPanel2;
-        private Controls.NotBetterButton btnExport;
+        private Controls.SomewhatBetterButton btnExport;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private Controls.NotBetterButton aLittleBetter_Import;
+        private Controls.SomewhatBetterButton aLittleBetter_Import;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

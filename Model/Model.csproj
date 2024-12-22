@@ -77,7 +77,7 @@
     <Compile Include="Domain\ValueObjects\BaseValue.cs" />
     <Compile Include="Domain\ValueObjects\SecuredData.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="Utility\KeyAndDataStringLiterals.cs" />
+    <Compile Include="Domain\ValueObjects\KeyAndDataStringLiterals.cs" />
     <Compile Include="Domain\ValueObjects\Data.cs" />
     <Compile Include="Domain\ValueObjects\Description.cs" />
     <Compile Include="Domain\ValueObjects\IBaseValue.cs" />
