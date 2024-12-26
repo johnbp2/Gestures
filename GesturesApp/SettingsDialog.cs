@@ -74,15 +74,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.Close();
         }
 
-        private void notBetterButton1_Click(object sender, EventArgs e)
+        private void somewhatBetterButton1_Click(object sender, EventArgs e)
         {
             this.colorDialog1 = new ColorDialog();
-            var result  = this.colorDialog1.ShowDialog();
+            var result = this.colorDialog1.ShowDialog();
             if(result == DialogResult.OK)
             {
                 Properties.Settings.Default.BgColor = this.colorDialog1.Color;
+                this.BgColor = this.colorDialog1.Color;
             }
-          
+
         }
     }
 }
