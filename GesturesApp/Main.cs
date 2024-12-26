@@ -263,6 +263,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             var settings = new SettingsDialog();
             settings.Show();
+            this.BgColor = Properties.Settings.Default.BgColor;
         }
 
 

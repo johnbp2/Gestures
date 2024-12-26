@@ -51,6 +51,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnCancel = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.somewhatBetterButton1 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -90,6 +91,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbToastOptions, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.somewhatBetterButton1, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -288,6 +290,31 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.timer1.Interval = 5;
             // 
+            // somewhatBetterButton1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.somewhatBetterButton1, 2);
+            this.somewhatBetterButton1.EndColor = System.Drawing.Color.DimGray;
+            this.somewhatBetterButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.somewhatBetterButton1.ForeColor = System.Drawing.Color.Black;
+            this.somewhatBetterButton1.GradientAngle = 90;
+            this.somewhatBetterButton1.Location = new System.Drawing.Point(92, 79);
+            this.somewhatBetterButton1.Margin = new System.Windows.Forms.Padding(5);
+            this.somewhatBetterButton1.MouseClickColor1 = System.Drawing.Color.DarkOrange;
+            this.somewhatBetterButton1.MouseClickColor2 = System.Drawing.Color.Red;
+            this.somewhatBetterButton1.MouseHoverColor1 = System.Drawing.Color.Yellow;
+            this.somewhatBetterButton1.MouseHoverColor2 = System.Drawing.Color.DarkOrange;
+            this.somewhatBetterButton1.Name = "somewhatBetterButton1";
+            this.somewhatBetterButton1.Size = new System.Drawing.Size(161, 30);
+            this.somewhatBetterButton1.StartColor = System.Drawing.Color.LightGray;
+            this.somewhatBetterButton1.TabIndex = 16;
+            this.somewhatBetterButton1.Text = "SELECT";
+            this.somewhatBetterButton1.TextLocation_X = 36;
+            this.somewhatBetterButton1.TextLocation_Y = 16;
+            this.somewhatBetterButton1.Transparent1 = 150;
+            this.somewhatBetterButton1.Transparent2 = 150;
+            this.somewhatBetterButton1.UseVisualStyleBackColor = true;
+            this.somewhatBetterButton1.Click += new System.EventHandler(this.somewhatBetterButton1_Click);
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,5 +356,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private SomewhatBetterButton notBetterButton1;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Timer timer1;
+        private SomewhatBetterButton somewhatBetterButton1;
     }
 }

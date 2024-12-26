@@ -11,7 +11,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     public partial class BaseForm : System.Windows.Forms.Form
     {
 
-        protected Color BgColor
+        protected  Color BgColor
         {
             get
             {
