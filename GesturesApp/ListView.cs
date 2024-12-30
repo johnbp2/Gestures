@@ -86,7 +86,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            var export = System.Text.Json.JsonSerializer.Serialize<IEnumerable<IContainer>>(this._sourceList.Items);
+            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>(this._sourceList.MapToEnities());
           //  System.Windows.Clipboard.SetText(export);
 
             // Displays a SaveFileDialog so the user can save the Image
@@ -132,8 +132,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
                         var doc = System.Text.Json.JsonDocument.Parse(fs);
-                        var root = doc.Deserialize<JohnBPearson.Application.Gestures.Model.Domain.Entities.Rootobject>();
-                       this._sourceList.MapFromEntities(root.Containers.ToList());
+                        var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>();
+                       this._sourceList.MapFromEntities( root);
                         this._mainPresenter.executeAutoSave(true, "", false);
                     }
                     //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()

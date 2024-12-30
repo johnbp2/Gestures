@@ -82,6 +82,12 @@
     <Compile Include="TextOverlay.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TextOverlayUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextOverlayUserControl.Designer.cs">
+      <DependentUpon>TextOverlayUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TransparentFlowPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextOverlayUserControl.resx">
+      <DependentUpon>TextOverlayUserControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

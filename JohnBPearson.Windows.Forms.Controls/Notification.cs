@@ -56,12 +56,10 @@ namespace JohnBPearson.Windows.Forms.Controls
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notification));
             // 
             // Notification
             // 
             this.AnimationDuration = 2000;
-          this.Image = (Image)this._bitmap;
 
         }
     }
