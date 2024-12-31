@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListView));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
@@ -37,9 +38,11 @@
             this.aLittleBetter_Import = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.transparentFlowPanel1.SuspendLayout();
             this.transparentFlowPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -165,7 +168,6 @@
             this.aLittleBetter_Import.Transparent2 = 20;
             this.aLittleBetter_Import.UseVisualStyleBackColor = true;
             this.aLittleBetter_Import.Click += new System.EventHandler(this.aLittleBetter_Import_Click);
-           // this.aLittleBetter_Import.ChangeUICues += new System.Windows.Forms.UICuesEventHandler(this.aLittleBetter_Import_ChangeUICues);
             // 
             // openFileDialog1
             // 
@@ -189,6 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.transparentFlowPanel1.ResumeLayout(false);
             this.transparentFlowPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,5 +206,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private Controls.SomewhatBetterButton aLittleBetter_Import;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

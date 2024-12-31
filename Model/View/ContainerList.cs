@@ -106,7 +106,7 @@ namespace JohnBPearson.Application.Gestures.Model
         public string PrepareDataToSaveAsOneSetting()
         {
             var sbOneString = new StringBuilder();
-            foreach (var item in _items)
+            foreach(var item in _items)
             {
                 sbOneString.Append(this.buildSaveString(item));
 
