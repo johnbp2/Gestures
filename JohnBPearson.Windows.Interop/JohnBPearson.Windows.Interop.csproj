@@ -74,6 +74,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="JohnBPearson.Application.Common">
+      <Version>1.0.0</Version>
+    </PackageReference>
     <PackageReference Include="log4net">
       <Version>3.0.3</Version>
     </PackageReference>
