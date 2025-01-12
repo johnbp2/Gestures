@@ -27,7 +27,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <ApplicationVersion>0.1.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
@@ -45,6 +45,7 @@
     <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <UseWinFormsOutOfProcDesigner>True</UseWinFormsOutOfProcDesigner>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,13 +70,13 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8-butler-48.ico</ApplicationIcon>
+    <ApplicationIcon>ok.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Designer|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -275,10 +276,6 @@
       <Project>{605006eb-d4e6-4312-a293-3a43fac43240}</Project>
       <Name>NotificationWindow</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PrebuildHelper\PrebuildHelper.csproj">
-      <Project>{7f8aa506-3088-4c56-8c78-2116faacc8e1}</Project>
-      <Name>PrebuildHelper</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bg.bmp">
@@ -290,6 +287,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\blankkey.png" />
+    <Content Include="ok.ico" />
     <Content Include="Resources\save-disk-5342.png" />
     <None Include="Resources\Clipboard_09-26-2024_01.png" />
     <None Include="Resources\Image1.bmp" />

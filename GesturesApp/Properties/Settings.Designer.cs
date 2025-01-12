@@ -254,5 +254,38 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
                 this["BgColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Exception LastExceptionUser {
+            get {
+                return ((global::System.Exception)(this["LastExceptionUser"]));
+            }
+            set {
+                this["LastExceptionUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Exception LastExceptionApplication {
+            get {
+                return ((global::System.Exception)(this["LastExceptionApplication"]));
+            }
+            set {
+                this["LastExceptionApplication"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection MaskBindableValue {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["MaskBindableValue"]));
+            }
+            set {
+                this["MaskBindableValue"] = value;
+            }
+        }
     }
 }
