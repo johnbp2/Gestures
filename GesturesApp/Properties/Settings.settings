@@ -88,5 +88,14 @@
     <Setting Name="BgColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="LastExceptionUser" Type="System.Exception" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastExceptionApplication" Type="System.Exception" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MaskBindableValue" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

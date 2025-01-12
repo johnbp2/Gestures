@@ -36,19 +36,32 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 System.Windows.Forms.Application.Exit();
         } }
 
+
+
+        private static void captureException(Exception ex)
+        {
+            Properties.Settings.Default.LastExceptionUser = ex;
+            Properties.Settings.Default.LastExceptionApplication = ex;
+        }
+
+
         private static void CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)
         {
             try
             {
                 Exception ex = (Exception)e.ExceptionObject;
+                captureException(ex);
                 MessageBox.Show("Unhadled domain exception:\n\n" + ex.Message);
+                
             }
             catch (Exception exc)
             {
                 try
                 {
+                    captureException(exc);
                     MessageBox.Show("Fatal exception happend inside UnhadledExceptionHandler: \n\n"
                         + exc.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+
                 }
                 finally
                 {
@@ -63,14 +76,18 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             try
             {
-                  MessageBox.Show($"Unhandled exception catched.\n Application is going to close now. {t.Exception.Message}");
+                captureException(t.Exception);
+                MessageBox.Show($"Unhandled exception catched.\n Application is going to close now. {t.Exception.Message}");
+               
             }
             catch(Exception ex)
             {
                 try
                 {
+                    captureException(ex);
                     MessageBox.Show($"Fatal exception happend inside UIThreadException handler; {ex.Message}",
                         "Fatal Windows Forms Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Stop);
+                   
                 }
                 finally
                 {

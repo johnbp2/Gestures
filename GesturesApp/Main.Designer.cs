@@ -55,7 +55,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label1 = new System.Windows.Forms.Label();
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
-            this.notBetterButton1 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
+            this.btnReload = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -232,7 +232,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(309, 68);
             this.tbDesc.TabIndex = 1;
-            this.tbDesc.TextChanged += new System.EventHandler(this.tbDesc_TextChanged);
             this.tbDesc.Leave += new System.EventHandler(this.tbDesc_Leave);
             // 
             // lblValue
@@ -276,7 +275,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.AutoSize = true;
             this.panelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
-            this.panelButtons.Controls.Add(this.notBetterButton1);
+            this.panelButtons.Controls.Add(this.btnReload);
             this.panelButtons.Controls.Add(this.notBetterButton2);
             this.panelButtons.Location = new System.Drawing.Point(3, 440);
             this.panelButtons.Name = "panelButtons";
@@ -312,34 +311,34 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.UseVisualStyleBackColor = false;
             this.aLittleBetter_Save.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // notBetterButton1
+            // btnReload
             // 
-            this.notBetterButton1.EndColor = System.Drawing.Color.LightSkyBlue;
-            this.notBetterButton1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.notBetterButton1.FlatAppearance.BorderSize = 3;
-            this.notBetterButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.notBetterButton1.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notBetterButton1.ForeColor = System.Drawing.Color.Black;
-            this.notBetterButton1.GradientAngle = 65;
-            this.notBetterButton1.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton1.Image")));
-            this.notBetterButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notBetterButton1.Location = new System.Drawing.Point(107, 3);
-            this.notBetterButton1.MouseClickColor1 = System.Drawing.Color.Transparent;
-            this.notBetterButton1.MouseClickColor2 = System.Drawing.Color.Magenta;
-            this.notBetterButton1.MouseHoverColor1 = System.Drawing.Color.Magenta;
-            this.notBetterButton1.MouseHoverColor2 = System.Drawing.Color.Transparent;
-            this.notBetterButton1.Name = "notBetterButton1";
-            this.notBetterButton1.Size = new System.Drawing.Size(151, 43);
-            this.notBetterButton1.StartColor = System.Drawing.Color.DimGray;
-            this.notBetterButton1.TabIndex = 4;
-            this.notBetterButton1.Text = "Reload All ";
-            this.notBetterButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.notBetterButton1.TextLocation_X = 76;
-            this.notBetterButton1.TextLocation_Y = 24;
-            this.notBetterButton1.Transparent1 = 150;
-            this.notBetterButton1.Transparent2 = 150;
-            this.notBetterButton1.UseVisualStyleBackColor = true;
-            this.notBetterButton1.Click += new System.EventHandler(this.btnReload_Click);
+            this.btnReload.EndColor = System.Drawing.Color.LightSkyBlue;
+            this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnReload.FlatAppearance.BorderSize = 3;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReload.ForeColor = System.Drawing.Color.Black;
+            this.btnReload.GradientAngle = 65;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReload.Location = new System.Drawing.Point(107, 3);
+            this.btnReload.MouseClickColor1 = System.Drawing.Color.Transparent;
+            this.btnReload.MouseClickColor2 = System.Drawing.Color.Magenta;
+            this.btnReload.MouseHoverColor1 = System.Drawing.Color.Magenta;
+            this.btnReload.MouseHoverColor2 = System.Drawing.Color.Transparent;
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(151, 43);
+            this.btnReload.StartColor = System.Drawing.Color.DimGray;
+            this.btnReload.TabIndex = 4;
+            this.btnReload.Text = "Reload All ";
+            this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReload.TextLocation_X = 76;
+            this.btnReload.TextLocation_Y = 24;
+            this.btnReload.Transparent1 = 150;
+            this.btnReload.Transparent2 = 150;
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // notBetterButton2
             // 
@@ -464,7 +463,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.ToolStripMenuItem listViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private SomewhatBetterButton aLittleBetter_Save;
-        private SomewhatBetterButton notBetterButton1;
+        private SomewhatBetterButton btnReload;
         private SomewhatBetterButton notBetterButton2;
         private System.Windows.Forms.Label lblHotKeySelected;
         private System.Windows.Forms.Label lblValue;

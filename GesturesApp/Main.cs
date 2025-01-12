@@ -84,11 +84,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             if (data.IsDataSecured)
             {
-                System.Windows.Clipboard.SetText(data.Secured.Value);
+                //   System.Windows.Clipboard.SetText(data.Secured.Value);
+                Clipboard.SetDataObject(data.Data.Value, true);
             }
             else
             {
-                System.Windows.Clipboard.SetText(data.Data.Value);
+                Clipboard.SetDataObject(data.Data.Value, true);
             }
             this.lblKey.ClearAndReplace(data.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = data.Key.Value.ToLower();
@@ -315,11 +316,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblKey.ClearAndReplace(cbHotkeySelection.Text);
         }
 
-
-        private void tbDesc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
 
 
