@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe Gestures.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe Gestures.sln /p:platform="Any CPU" /p:configuration="Release" /t:"restore"     
         
       # - name: Run Tests
         # run: vstest.console.exe .\tests\Sandbox.Tests\bin\Release\Sandbox.Tests.dll
