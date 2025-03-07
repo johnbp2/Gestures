@@ -78,7 +78,7 @@ namespace JohnBPearson.Application.Gestures.Model
                 else
                 {
                     return this._secured;
-
+                
                 }
             }
             private set
@@ -219,7 +219,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
         internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
         {
-            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DescriptionString, entity.DataString, false);
+            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, false);
         }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{

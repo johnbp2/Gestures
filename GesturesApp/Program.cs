@@ -25,7 +25,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             // This handler is for catching non-UI thread exceptions
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-
+           // throw new Exception("TEST");
             if (Program.IsFirstInstance())
             {
                 var main = new Main(new MainPresenter());
@@ -40,8 +40,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private static void captureException(Exception ex)
         {
-            Properties.Settings.Default.LastExceptionUser = ex;
-            Properties.Settings.Default.LastExceptionApplication = ex;
+          //  System.Xml.Properties.Settings.Default.LastExceptionUser = System.Text.Json.JsonSerializer.Serialize<Exception>(ex);
+          //  Properties.Settings.Default.LastExceptionApplication = ex;
+           // Properties.Settings.Default.Save();
         }
 
 
