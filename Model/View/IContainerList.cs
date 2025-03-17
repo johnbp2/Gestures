@@ -12,6 +12,6 @@ namespace JohnBPearson.Application.Gestures.Model
         KeyAndDataStringLiterals PrepareDataForSave();
         List<Domain.Entities.Container> MapToEnities();
         void MapFromEntities(List<Domain.Entities.Container> entities);
-        string PrepareDataToSaveAsOneSetting();
+       // string PrepareDataToSaveAsOneSetting();
     }
 }

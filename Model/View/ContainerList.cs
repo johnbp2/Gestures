@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using JohnBPearson.Application.Gestures.Model.Domain;
-using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
@@ -141,7 +137,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
         public void MapFromEntities(List<Domain.Entities.Container> entities)
         {
-            this._importBackUpItems = this.MapToEnities();
+            // this._importBackUpItems = this.MapFromEntities(entities);
         var list = new List<IContainer>();
 
             foreach(var entity in entities)
