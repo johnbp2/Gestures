@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model;
 
@@ -10,6 +11,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
     public partial class BaseForm : System.Windows.Forms.Form
     {
+
+
+        protected BaseForm()
+        {
+            this.InitializeComponent();
+        }
+
+        public ToolStripStatusLabel MyProperty
+        {
+            get
+            {
+                return toolStripStatusLabel1;
+            }
+
+        }
+
 
         protected  Color BgColor
         {
@@ -31,10 +48,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  protected . notifier = new PopupNotifier();
 
 
-        protected void notify(string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.None, int flashCount = 0)
+        protected void notify(Form form, string title, string content, bool flash= false, ToastOptions toastType = ToastOptions.All, int flashCount = 0)
        {
 
-            NotificationService.notify(this, title, content, flash, toastType);
+            NotificationService.notify(form, title, content, flash, toastType);
+            this.toolStripStatusLabel1.Text    = content;
             //    if (toastType == ToastOptions.None)
             //    {
             //        return;
@@ -64,6 +82,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public void setBgColor(Color bgColor)
         {
             this.BgColor = bgColor;
+        }
+
+        protected void setStatus(string text)
+        {
+            this.toolStripStatusLabel1.Text = text;
+        
         }
 
         private void BaseForm_Paint(object sender, System.Windows.Forms.PaintEventArgs e)

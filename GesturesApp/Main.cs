@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using JohnBPearson.Windows.Forms.Gestures.Properties;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model;
+using System.Windows.Media.Animation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -38,7 +40,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         //  private IPresenter<Form> presenter;
         #endregion
-        public Main(MainPresenter presenter)
+
+        public Main() : base()
+        {
+        }
+        public Main(MainPresenter presenter) :base()
         {
             this.presenter = presenter;
             presenter.Form = this;
@@ -48,6 +54,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //this.presenter = presenter;
             //this.presenter.Form = this;
             //this._containerList.Items;]
+          base.statusStrip1.Refresh();
 
             this.setupTryIconMenu();
         }
@@ -73,7 +80,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
-            base.notify("Copied: ", $"{item.Description.Value} to the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
+            base.notify(this, "Copied: ", $"{item.Description.Value} to the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
             //  messages.raiseEvent(key, item);
         }
 
@@ -82,7 +89,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void CopyValueToClipBoard(IContainer data)
         {
 
-            if (data.IsDataSecured)
+            if(data.IsDataSecured)
             {
                 //   System.Windows.Clipboard.SetText(data.Secured.Value);
                 Clipboard.SetDataObject(data.Data.Value, true);
@@ -91,18 +98,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 Clipboard.SetDataObject(data.Data.Value, true);
             }
+           
+
+        }
+
+        private void keyChanged(IContainer data)
+        {
             this.lblKey.ClearAndReplace(data.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = data.Key.Value.ToLower();
             this.updateUIByKey(data.Key.Key);
 
             Settings.Default.LastBoundKeyPressed = data.Key.Value;
             Settings.Default.Save();
-
         }
 
         //private void registerHotKeys(IEnumerable<JohnBPearson.Application.Model.IKeyBoundData> keys)
         //{
-           
+
         //    base.notify("Registered keys complete!", $"Registered keys: {result}", false, ToastOptions.All);
         //}
 
@@ -151,26 +163,30 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // in a tooltip, when the mouse hovers over the systray icon  
         }
 
-
+   
+            
+            
+            
+            
 
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-            var result = this.presenter.executeAutoSave(overrideAutoSaveSetting, Properties.Settings.Default.ParseListToFindPassword, Properties.Settings.Default.StringProtection);
+            var result = this.presenter.executeSave(overrideAutoSaveSetting, Properties.Settings.Default.ParseListToFindPassword, Properties.Settings.Default.StringProtection);
             if (result == 0)
             {
-
-
-                base.notify("Success", "Saved", Properties.Settings.Default.FlashWindow, ToastOptions.Save);
-
-                if (Properties.Settings.Default.FlashWindow)
-                {
-                    FlashWindow.TrayAndWindow(this);
-                }
+                notifyDerived("Success", "Saved", Properties.Settings.Default.FlashWindow);
             }
 
 
 
+        }
+
+        private void notifyDerived(string title, string content, bool flash = false, ToastOptions toastType = ToastOptions.None, uint flashCount = 10)
+        {
+            base.notify(this, title, content, flash, ToastOptions.Save);
+            base.setStatus("Saved");
+            
         }
 
         private void updateUIByKey(char key) {
@@ -263,23 +279,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var settings = new SettingsDialog();
-            settings.Show();
-            this.BgColor = Properties.Settings.Default.BgColor;
+            settings.FormClosed += this.Settings_FormClosed;
+            settings.ShowDialog();
+      
+            
         }
 
-
-
+        private void Settings_FormClosed(object sender, FormClosedEventArgs e)
+        {
+          //  Properties.Settings.Default.Reload();
+            this.BgColor = Properties.Settings.Default.BgColor;
+        }
 
         private void Main_Activated(object sender, EventArgs e)
         {
             FlashWindow.Stop(this);
         }
 
-        private void notBetterButton2_Click(object sender, EventArgs e)
-        {
-            this.btnSave_Click(sender, e);
+        //private void notBetterButton2_Click(object sender, EventArgs e)
+        //{
+        //    this.btnSave_Click(sender, e);
 
-        }
+        //}
 
 
 
@@ -326,7 +347,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            this.presenter.registerHotKeys(this.presenter.Containers);
+            this.presenter.RefreshData();
+           
+            this.notifyDerived("Reload", "Completed");
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -337,6 +360,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 if (item != null) {
                 var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(ikbv);
+                    base.notify(this, "Copied", ikbv.Data.Value);
+                    this.keyChanged(ikbv);
                 }
                 //this.CropValueToClipBoard();
             }
@@ -356,6 +381,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             var form = new ListView(this.presenter.ContainerList, this.presenter);
             form.ShowDialog();
+      
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

@@ -43,7 +43,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
             Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;        // Properties.Settings.Default. = 
             Properties.Settings.Default.Save();
-            this.notify("Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
+            this.notify(this, "Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
             this.Close();
         }
 
