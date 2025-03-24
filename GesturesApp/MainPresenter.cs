@@ -50,7 +50,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             registerHotKeys(ContainerList.Items);
         }
 
-        public int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt)
+        public int executeSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt)
         {
             var strings = this.ContainerList.PrepareDataForSave();
             Properties.Settings.Default.BindableValues = strings.Values;
@@ -150,7 +150,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     {
         T Form { get; }
         IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> Containers { get; }
-        int executeAutoSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
+        int executeSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
 
         void updateContainer(string newData, string description, string key, bool isSecured);
 

@@ -16,7 +16,6 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
 
 
-
         protected Description(IContainer parent) : base(parent)
             {
 

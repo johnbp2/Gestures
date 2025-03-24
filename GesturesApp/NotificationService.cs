@@ -28,7 +28,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 var popupNotifier = Notification.Create(title, content, bmp);
                 if (flash)
                 {
-                    FlashWindow.TrayAndWindow(window);
+                    FlashWindow.Flash(window, 10);
                 }
                 //((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));1
                 using (popupNotifier as IDisposable)

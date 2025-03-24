@@ -64,8 +64,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this._mainPresenter.executeAutoSave(true, "", false);
-            this.notify("Saved", "Saved list contents", false, ToastOptions.Save);
+            this._mainPresenter.executeSave(true, "", false);
+            this.notify(this, "Saved", "Saved list contents", false, ToastOptions.Save);
             var export = System.Text.Json.JsonSerializer.Serialize<IContainerList>(this._sourceList);
           //  System.Windows.Clipboard.SetText(export);
         }
@@ -120,7 +120,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                         var doc = System.Text.Json.JsonDocument.Parse(fs);
                         var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>();
                        this._sourceList.MapFromEntities( root);
-                        this._mainPresenter.executeAutoSave(true, "", false);
+                        this._mainPresenter.executeSave(true, "", false);
                         this.rebindsource(this._sourceList);
                     }
                     //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()

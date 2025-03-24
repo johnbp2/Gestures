@@ -40,10 +40,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=3.0.0.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.3.0.3\lib\net462\log4net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -79,13 +75,13 @@
     <Compile Include="TemplatedLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextOverlay.cs">
+    <Compile Include="Experiments\TextOverlay.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextOverlayUserControl.cs">
+    <Compile Include="Experiments\TextOverlayUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TextOverlayUserControl.Designer.cs">
+    <Compile Include="Experiments\TextOverlayUserControl.Designer.cs">
       <DependentUpon>TextOverlayUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="TransparentFlowPanel.cs">
@@ -111,7 +107,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextOverlayUserControl.resx">
+    <EmbeddedResource Include="Experiments\TextOverlayUserControl.resx">
       <DependentUpon>TextOverlayUserControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -120,9 +116,6 @@
       <Project>{605006eb-d4e6-4312-a293-3a43fac43240}</Project>
       <Name>NotificationWindow</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
