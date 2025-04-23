@@ -1,141 +1,103 @@
 ﻿using System;
-using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 
-namespace JohnBPearson.Cypher.Aes
+namespace xxx
 {
-    public class AesCypher
+    internal class AesEncryption
     {
-
-        public static string LockString(string s)
+        internal static byte[] Encrypt(string plaintext, byte[] key, byte[] iv)
         {
-            return "";
-           //System.Text.Encoder           //using(AesManaged myAes = new AesManaged())
-            //{
-            //    byte[] encrypted = EncryptStringToBytes_Aes(s, myAes.Key, myAes.IV);
-            //    var str = System.Text.Encoding.Default.GetString(encrypted);
-
-            //    return str;
-            //}
-        }
-
-        public static string UnlockString(string s)
-        {
-            using(AesManaged myAes = new AesManaged())
+            using(Aes aesAlg = Aes.Create())
             {
-
-                byte[] decrypted = System.Text.Encoding.UTF8.GetBytes(s);
-                return DecryptStringFromBytes_Aes(decrypted, myAes.Key, myAes.IV);
-            }
-            }
-        //public static void Main()
-        //{
-        //    string original = "Here is some data to encrypt!";string original = "Here is some data to encrypt!";
-
-        //    // Create a new instance of the AesManaged
-        //    // class.  This generates a new key and initialization
-        //    // vector (IV).
-        //        using(AesManaged myAes = new AesManaged())
-        //        {
-        //            // Encrypt the string to an array of bytes.
-        //            byte[] encrypted = EncryptStringToBytes_Aes(original, myAes.Key, myAes.IV);
-
-        //// Decrypt the bytes to a string.
-        //string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
-
-        ////Display the original data and the decrypted data.
-        //Console.WriteLine("Original:   {0}", original);
-        //            Console.WriteLine("Round Trip: {0}", roundtrip);
-        //   }
-        //}
-        private static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
-        {
-            // Check arguments.
-            if(plainText == null || plainText.Length <= 0)
-                throw new ArgumentNullException("plainText");
-            if(Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if(IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-            byte[] encrypted;
-
-            // Create an AesManaged object
-            // with the specified key and IV.
-            using(AesManaged aesAlg = new AesManaged())
-            {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create an encryptor to perform the stream transform.
+                aesAlg.Key = key;
+                aesAlg.IV = iv;
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for encryption.
-                using(MemoryStream msEncrypt = new MemoryStream())
+                byte[] encryptedBytes;
+                using(var msEncrypt = new System.IO.MemoryStream())
                 {
-                    using(CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                    using(var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
-                        using(StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            //Write all data to the stream.
-                            foreach (var item in plainText.ToCharArray())
-                            {
-                                swEncrypt.Write(item);
-                            }
-                          
-                        }
-                        encrypted = msEncrypt.ToArray();
+                        byte[] plainBytes = Encoding.UTF8.GetBytes(plaintext);
+                        csEncrypt.Write(plainBytes, 0, plainBytes.Length);
                     }
+                    encryptedBytes = msEncrypt.ToArray();
                 }
+                return encryptedBytes;
             }
-
-            // Return the encrypted bytes from the memory stream.
-            return encrypted;
         }
-
-        private static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        internal static string Decrypt(byte[] ciphertext, byte[] key, byte[] iv)
         {
-            // Check arguments.
-            if(cipherText == null || cipherText.Length <= 0)
-                throw new ArgumentNullException("cipherText");
-            if(Key == null || Key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if(IV == null || IV.Length <= 0)
-                throw new ArgumentNullException("IV");
-
-            // Declare the string used to hold
-            // the decrypted text.
-            string plaintext = null;
-
-            // Create an AesManaged object
-            // with the specified key and IV.
-            using(AesManaged aesAlg = new AesManaged())
+            using(Aes aesAlg = Aes.Create())
             {
-                aesAlg.Key = Key;
-                aesAlg.IV = IV;
-
-                // Create a decryptor to perform the stream transform.
+                aesAlg.Key = key;
+                aesAlg.IV = iv;
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-
-                // Create the streams used for decryption.
-                using(MemoryStream msDecrypt = new MemoryStream(cipherText))
+                byte[] decryptedBytes;
+                using(var msDecrypt = new System.IO.MemoryStream(ciphertext))
                 {
-                    using(CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                    using(var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                     {
-                        using(StreamReader srDecrypt = new StreamReader(csDecrypt))
+                        using(var msPlain = new System.IO.MemoryStream())
                         {
-
-                            // Read the decrypted bytes from the decrypting stream
-                            // and place them in a string.
-                            if (srDecrypt.BaseStream.CanRead)
-                            {
-                                plaintext = srDecrypt.ReadToEnd();
-                            }
+                            csDecrypt.CopyTo(msPlain);
+                            decryptedBytes = msPlain.ToArray();
                         }
                     }
                 }
+                return Encoding.UTF8.GetString(decryptedBytes);
             }
-
-            return plaintext;
         }
     }
+
+
+    public class AesFacade
+    {
+
+        public static void Encrypt(string plainText) 
+        {
+            //string plaintext = "Hello, World!";
+            Console.WriteLine(plainText);
+            // Generate a random key and IV
+            byte[] key = new byte[32]; // 256-bit key
+            byte[] iv = new byte[16]; // 128-bit IV
+            using(var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(key);
+                rng.GetBytes(iv);
+            }
+            // Encrypt
+            byte[] ciphertext = AesEncryption.Encrypt(plainText, key, iv);
+            string encryptedText = Convert.ToBase64String(ciphertext);
+            Console.WriteLine("Encrypted Text: " + encryptedText);
+        }
+    
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string plaintext = "Hello, World!";
+            Console.WriteLine(plaintext);
+            // Generate a random key and IV
+            byte[] key = new byte[32]; // 256-bit key
+            byte[] iv = new byte[16]; // 128-bit IV
+            using(var rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(key);
+                rng.GetBytes(iv);
+            }
+            // Encrypt
+            byte[] ciphertext = AesEncryption.Encrypt(plaintext, key, iv);
+            string encryptedText = Convert.ToBase64String(ciphertext);
+            Console.WriteLine("Encrypted Text: " + encryptedText);
+            // Decrypt
+            byte[] bytes = Convert.FromBase64String(encryptedText);
+            string decryptedText = AesEncryption.Decrypt(bytes, key, iv);
+            Console.WriteLine("Decrypted Text: " + decryptedText);
+            //point
+            Console.ReadLine();
+        }
+    }
+
 }

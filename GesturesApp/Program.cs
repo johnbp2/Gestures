@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using JohnBPearson.Cypher;
+
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -13,7 +15,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
         static void Main()
         {
 
-          
+            var mp = new MemoryProtectionSample();
+            mp.Encrypt("test------------");
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
