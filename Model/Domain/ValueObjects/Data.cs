@@ -10,6 +10,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
     public class Data : BaseValue
     {
 
+       // private MemoryProtection mp = new MemoryProtection();
 
         //private Data() {
             
@@ -19,7 +20,28 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         
         }
 
-       
+      //  private string _value;
+
+        public override string Value
+        {
+            get
+            {
+                try
+                {
+                    return MemoryProtection.Decrypt(base.Value);
+                }
+                catch(  System.Security.Cryptography.CryptographicException e)
+                {
+                    return base.Value;
+                }
+            }
+            set
+            {
+                base.Value = MemoryProtection.Encrypt(value);
+                                
+            }
+        }
+
         public override string ToString()
         {
             return base.ToString();

@@ -1,6 +1,6 @@
 ﻿namespace JohnBPearson.Windows.Forms
 {
-    partial class Reminders
+    partial class RemindersForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reminders));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemindersForm));
             this.transparentTextBox1 = new JohnBPearson.Windows.Forms.Controls.TransparentTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // Reminders
+            // RemindersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -61,8 +61,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.transparentTextBox1);
-            this.Name = "Reminders";
-            this.Text = "Reminders";
+            this.Name = "RemindersForm";
+            this.Text = "RemindersForm";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

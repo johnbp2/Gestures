@@ -7,11 +7,12 @@ using System;
 using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using System.Web;
 
-public class MemoryProtection
+public static class MemoryProtection
 {
 
-    public string Encrypt(string plainText)
+    public static string Encrypt(string plainText, bool consoleOutput = true)
     {
         ///////////////////////////////
         //
@@ -22,95 +23,69 @@ public class MemoryProtection
         // Create the original data to be encrypted (The data length should be a multiple of 16).
         byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(plainText);
 
-        Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
-        Console.WriteLine("Encrypting...");
-
+        // Add padding of needed
+        byte[] paddedToEncryt = pad(toEncrypt);
+        // Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");9
+        logToConsole($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");
+        // Console.WriteLine("Encrypting...");
+        logToConsole("Encrypting...");
         // Encrypt the data in memory.
-        EncryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
-        string result = UnicodeEncoding.ASCII.GetString(toEncrypt);
+        EncryptInMemoryData(paddedToEncryt, MemoryProtectionScope.SameLogon);
+        string result = UnicodeEncoding.ASCII.GetString(paddedToEncryt);
         Console.WriteLine($"Encrypted data: {result}");
+       // System.Windows.Clipboard.SetText( result );
         return result;
     }
 
-    public string Decrypt(string encryptedText)
+    public static string Decrypt(string encryptedText)
     {
         byte[] bytes = UnicodeEncoding.ASCII.GetBytes(encryptedText);
-        DecryptInMemoryData(result, MemoryProtectionScope.SameLogon);
+        DecryptInMemoryData(bytes, MemoryProtectionScope.SameLogon);
         string result = UnicodeEncoding.ASCII.GetString(bytes);
-        Console.WriteLine($"Decrypted data: {result}");
+        //Console.WriteLine($"Decrypted data: {result}");
+        logToConsole($"Decrypted data: {result}", true);
         return result;
 
     }
-    private static void Run()
+    private static void logToConsole(string toLog)
     {
-        try
+        logToConsole(toLog, true); 
+    }
+    private static void logToConsole(string toLog, bool writeLine)
+    {
+            logToConsole(toLog, null, writeLine);
+    }
+    private static void logToConsole(string toLog, string[] formattingStrings, bool writeLine = true)
+    {
+        if(string.IsNullOrEmpty(toLog))
         {
-            ///////////////////////////////
-            //
-            // Memory Encryption - ProtectedMemory
-            //
-            ///////////////////////////////
-
-            // Create the original data to be encrypted (The data length should be a multiple of 16).
-            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes("ThisIsSomeData16");
-
-            Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
-            Console.WriteLine("Encrypting...");
-
-            // Encrypt the data in memory.
-            EncryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
-
-            Console.WriteLine($"Encrypted data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
-            Console.WriteLine("Decrypting...");
-
-            // Decrypt the data in memory.
-            DecryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
-
-            Console.WriteLine($"Decrypted data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
-
-            ///////////////////////////////
-            //
-            // Data Encryption - ProtectedData
-            //
-            ///////////////////////////////
-
-            // Create the original data to be encrypted
-            toEncrypt = UnicodeEncoding.ASCII.GetBytes("This is some data of any length.");
-
-            // Create a file.
-            FileStream fStream = new FileStream("Data.dat", FileMode.OpenOrCreate);
-
-            // Create some random entropy.
-            byte[] entropy = CreateRandomEntropy();
-
-            Console.WriteLine();
-            Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
-            Console.WriteLine("Encrypting and writing to disk...");
-
-            // Encrypt a copy of the data to the stream.
-            int bytesWritten = EncryptDataToStream(toEncrypt, entropy, DataProtectionScope.CurrentUser, fStream);
-
-            fStream.Close();
-
-            Console.WriteLine("Reading data from disk and decrypting...");
-
-            // Open the file.
-            fStream = new FileStream("Data.dat", FileMode.Open);
-
-            // Read from the stream and decrypt the data.
-            byte[] decryptData = DecryptDataFromStream(entropy, DataProtectionScope.CurrentUser, fStream, bytesWritten);
-
-            fStream.Close();
-
-            Console.WriteLine($"Decrypted data: {UnicodeEncoding.ASCII.GetString(decryptData)}");
+            return;
         }
-        catch(Exception e)
+
+        string output = "";
+        if(formattingStrings == null || formattingStrings.Length == 0)
         {
-            Console.WriteLine($"ERROR: {e.Message}");
+
+            output = toLog;
+
         }
+        else
+        {
+            output = string.Format(toLog, formattingStrings);
+        }
+        if(writeLine)
+        {
+
+            Console.WriteLine(output);
+        }
+        else
+        {
+            Console.Write(output);
+        }
+
     }
 
-    public static void EncryptInMemoryData(byte[] Buffer, MemoryProtectionScope Scope)
+    internal static void EncryptInMemoryData(byte[] Buffer, MemoryProtectionScope Scope)
     {
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
@@ -121,7 +96,7 @@ public class MemoryProtection
         ProtectedMemory.Protect(Buffer, Scope);
     }
 
-    public static void DecryptInMemoryData(byte[] Buffer, MemoryProtectionScope Scope)
+    internal static void DecryptInMemoryData(byte[] Buffer, MemoryProtectionScope Scope)
     {
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
@@ -132,7 +107,41 @@ public class MemoryProtection
         ProtectedMemory.Unprotect(Buffer, Scope);
     }
 
-    public static byte[] CreateRandomEntropy()
+
+    internal static byte[] pad(byte[] buffer)
+    {
+        int length = buffer.Length;
+        int totalPaddedLength = 0;
+        int padding = 0;
+        if(length < 16)
+        {
+            padding = 16 - length;
+            totalPaddedLength = 16;
+        }
+        else
+        {
+           var remainder = length % 16;
+            padding = remainder;
+            totalPaddedLength = length + remainder;
+        }
+      
+        byte[] result = new byte[totalPaddedLength];
+        for(int i = 0; i < buffer.Length; i++)
+        {
+            //for(int)
+            result[i] = buffer[i];/// Populates the array with values 1 to 5
+        }
+        // use length. legth is aways 1 place after the end of the array
+        for(int i = buffer.Length; i < result.Length; i++)
+        {
+            byte myByte = 0x0b;
+            result[i] = myByte;
+        }
+        return result;
+    }
+
+
+    internal static byte[] CreateRandomEntropy()
     {
         // Create a byte array to hold the random value.
         byte[] entropy = new byte[16];
@@ -145,7 +154,7 @@ public class MemoryProtection
         return entropy;
     }
 
-    public static int EncryptDataToStream(byte[] Buffer, byte[] Entropy, DataProtectionScope Scope, Stream S)
+internal static int EncryptDataToStream(byte[] Buffer, byte[] Entropy, DataProtectionScope Scope, Stream S)
     {
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
@@ -175,7 +184,7 @@ public class MemoryProtection
         return length;
     }
 
-    public static byte[] DecryptDataFromStream(byte[] Entropy, DataProtectionScope Scope, Stream S, int Length)
+    internal static  byte[] DecryptDataFromStream(byte[] Entropy, DataProtectionScope Scope, Stream S, int Length)
     {
         if(S == null)
             throw new ArgumentNullException(nameof(S));
@@ -204,4 +213,74 @@ public class MemoryProtection
         // Return the decrypted data
         return outBuffer;
     }
+
+
+    //private static void Run()
+    //{
+    //    try
+    //    {
+    //        ///////////////////////////////
+    //        //
+    //        // Memory Encryption - ProtectedMemory
+    //        //
+    //        ///////////////////////////////
+
+    //        // Create the original data to be encrypted (The data length should be a multiple of 16).
+    //        byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes("ThisIsSomeData16");
+
+    //        Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
+    //        Console.WriteLine("Encrypting...");
+
+    //        // Encrypt the data in memory.
+    //        EncryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
+
+    //        Console.WriteLine($"Encrypted data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
+    //        Console.WriteLine("Decrypting...");
+
+    //        // Decrypt the data in memory.
+    //        DecryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
+
+    //        Console.WriteLine($"Decrypted data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
+
+    //        ///////////////////////////////
+    //        //
+    //        // Data Encryption - ProtectedData
+    //        //
+    //        ///////////////////////////////
+
+    //        // Create the original data to be encrypted
+    //        toEncrypt = UnicodeEncoding.ASCII.GetBytes("This is some data of any length.");
+
+    //        // Create a file.
+    //        FileStream fStream = new FileStream("Data.dat", FileMode.OpenOrCreate);
+
+    //        // Create some random entropy.
+    //        byte[] entropy = CreateRandomEntropy();
+
+    //        Console.WriteLine();
+    //        Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
+    //        Console.WriteLine("Encrypting and writing to disk...");
+
+    //        // Encrypt a copy of the data to the stream.
+    //        int bytesWritten = EncryptDataToStream(toEncrypt, entropy, DataProtectionScope.CurrentUser, fStream);
+
+    //        fStream.Close();
+
+    //        Console.WriteLine("Reading data from disk and decrypting...");
+
+    //        // Open the file.
+    //        fStream = new FileStream("Data.dat", FileMode.Open);
+
+    //        // Read from the stream and decrypt the data.
+    //        byte[] decryptData = DecryptDataFromStream(entropy, DataProtectionScope.CurrentUser, fStream, bytesWritten);
+
+    //        fStream.Close();
+
+    //        Console.WriteLine($"Decrypted data: {UnicodeEncoding.ASCII.GetString(decryptData)}");
+    //    }
+    //    catch(Exception e)
+    //    {
+    //        Console.WriteLine($"ERROR: {e.Message}");
+    //    }
+    //}
 }

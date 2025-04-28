@@ -21,7 +21,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="BindableValues" Type="System.String" Scope="User">
-      <Value Profile="(Default)">af||||||||||||||||||||||||test|zzzz</Value>
+      <Value Profile="(Default)">??,?7??V$[??|||||||||||||||||||||||||</Value>
     </Setting>
     <Setting Name="BindableKeysBackup" Type="System.String" Scope="Application">
       <Value Profile="(Default)">a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z</Value>

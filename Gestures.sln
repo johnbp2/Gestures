@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesturesApp", "GesturesApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestures.Test", "Gestures.Test\Gestures.Test.csproj", "{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptor", "Cryptor\Cryptor.csproj", "{692063F3-2BD5-4D9F-8F20-735519780A6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Designer|Any CPU = Debug Designer|Any CPU
@@ -88,6 +90,12 @@ Global
 		{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EAE88A9-B3CE-44F8-95DF-79535885A4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Debug Designer|Any CPU.ActiveCfg = Debug|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Debug Designer|Any CPU.Build.0 = Debug|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692063F3-2BD5-4D9F-8F20-735519780A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

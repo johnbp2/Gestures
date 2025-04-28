@@ -71,15 +71,9 @@ namespace JohnBPearson.Application.Gestures.Model
             get
             {
 
-                if(this._isDataSecured == false)
-                {
+               
                     return _data;
-                }
-                else
-                {
-                    return this._secured;
-                
-                }
+               
             }
             private set
             {
@@ -123,16 +117,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
 
-        private JohnBPearson.Application.Gestures.Model.Domain.SecuredData _secured;
-
-        public JohnBPearson.Application.Gestures.Model.Domain.SecuredData Secured
-        {
-            get
-            {
-                return this._secured;
-            }
-        }
-
+       
         public char KeyAsChar
         {
             get
@@ -184,14 +169,9 @@ namespace JohnBPearson.Application.Gestures.Model
         protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value, string description, bool secured)
         {
             this.CreateKeyboardKey(key);
-            if(secured)
-            {
-                Data = SecuredData.Create(value, this);
-            }
-            else
-            {
+           
                 this.CreateData(value);
-            }
+            
             this.CreateDescription(description);
             this._parent = parent;
         }
@@ -250,17 +230,13 @@ namespace JohnBPearson.Application.Gestures.Model
         {
 
             this._isDataSecured = isSecure;
-            if(this.Data.Value != newValue && !isSecure)
+            if(this.Data.Value != newValue)
             {
                 this.Data.Value = newValue;
                 this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
 
             }
-            else if(this.Data.Value != newValue || isSecure)
-            {
-                this.UpdateAddSecureString(newValue);
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
-            }
+          
             if(!string.IsNullOrWhiteSpace(newDescription))
             {
                 this.Description.Value = newDescription;
@@ -277,13 +253,7 @@ namespace JohnBPearson.Application.Gestures.Model
         //    return false;
         //}
 
-        public void UpdateAddSecureString(string newValue)
-        {
-            this._secured = SecuredData.Create(this, newValue, true);
-            this._isDataSecured = true;
-            newValue = string.Empty;
-
-        }
+     
 
         public bool Equals(Gestures.Model.IContainer other)
         {

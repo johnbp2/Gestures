@@ -73,14 +73,9 @@ namespace JohnBPearson.Application.Gestures.Model
 
             {
                 var data = string.Empty;
-                if(item.IsDataSecured)
-                {
-                    data = item.Secured.Secured;
-                }
-                else
-                {
+               
                     data = item.Data.Value;
-                }
+                
 
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));

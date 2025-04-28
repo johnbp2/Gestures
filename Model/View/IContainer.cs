@@ -34,7 +34,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
         Description Description { get; set; }
         char KeyAsChar { get; }
-        SecuredData Secured { get; }
+     
         ObjectState ObjectState { get; }
 
 
