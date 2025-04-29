@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace JohnBPearson.Windows.Forms
 {
-    public class Reminder
+
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class Item
     {
-        public string titleKey
+        public string title
         {
             get; set;
         }
@@ -16,7 +18,15 @@ namespace JohnBPearson.Windows.Forms
         {
             get; set;
         }
-        public string dueDate
+        public string date
+        {
+            get; set;
+        }
+    }
+
+    public class Reminders
+    {
+        public List<Item> items
         {
             get; set;
         }
@@ -24,10 +34,35 @@ namespace JohnBPearson.Windows.Forms
 
     public class Root
     {
-        public List<Reminder> reminders
+        public RemindersForm reminders
         {
             get; set;
         }
     }
+
+
+    //    public class Reminder
+    //    {
+    //        public string title
+    //        {
+    //            get; set;
+    //        }
+    //        public string text
+    //        {
+    //            get; set;
+    //        }
+    //        public string date
+    //        {
+    //            get; set;
+    //        }
+    //    }
+
+    //    public class Root
+    //    {
+    //        public List<Reminder> reminders
+    //        {
+    //            get; set;
+    //        }
+    //    }
 
 }

@@ -12,7 +12,7 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -91,7 +91,7 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("af||||||||||||||||||||||||test|zzzz")]
+        [global::System.Configuration.DefaultSettingValueAttribute("??,?7??V$[??|||||||||||||||||||||||||")]
         public string BindableValues {
             get {
                 return ((string)(this["BindableValues"]));
@@ -155,18 +155,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["Descriptions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pwd|password|pw")]
-        public string ParseListToFindPassword {
-            get {
-                return ((string)(this["ParseListToFindPassword"]));
-            }
-            set {
-                this["ParseListToFindPassword"] = value;
             }
         }
         
@@ -285,6 +273,17 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["MaskBindableValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Protected {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Protected"]));
+            }
+            set {
+                this["Protected"] = value;
             }
         }
     }

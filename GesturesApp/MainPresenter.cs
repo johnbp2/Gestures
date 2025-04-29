@@ -110,7 +110,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             strings.Values = Properties.Settings.Default.BindableValues;
             strings.Keys = Properties.Settings.Default.BindableKeys;
             strings.Descriptions = Properties.Settings.Default.Descriptions;
-            string[] arr = new string[26];
+            var protectedValues = Properties.Settings.Default.Protected;
+            List<bool> listBool = new List<bool>();
+            foreach(string booleanValue in protectedValues)
+            {
+                bool temp = false;
+                if(bool.TryParse(booleanValue, out temp))
+                {
+                    listBool.Add(temp);
+                }
+                else
+                {
+                
+                listBool.add(false);
+                        
+                        }
+            }
+            string[] arr = new string[26]; 
             Properties.Settings.Default.isSecured.CopyTo(arr, 0);
             strings.Secured = arr.AsEnumerable<string>();
             this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);
@@ -121,10 +137,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> keys)
         {
             GlobalHotKey.removeAllRegistration();
-
-            var index = 0;
-            GlobalHotKey.removeAllRegistration();
-            var result = new StringBuilder();
+32            var result = new StringBuilder();
             foreach (var item in keys)
             {
 

@@ -50,6 +50,29 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         private static string _delimiter = "|";
 
+
+        private bool _protected;
+
+        public bool Protected
+        {
+            get
+            {
+                return _protected;
+            }
+            set
+            {
+                _protected = value;
+            }
+        }
+
+        public void EncryptInPlace()
+        {
+            if(!Protected)
+            {
+                DataProtectionService.Encrypt(this._value);
+            }
+        }
+
         public override string ToString()
         {
             return Value;

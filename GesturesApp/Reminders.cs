@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace JohnBPearson.Windows.Forms
 {
-    public partial class Reminders : Form
+    public partial class RemindersForm : Form
     {
-        public Reminders()
+        public RemindersForm()
         {
             InitializeComponent();
             this.initializeReminders();
@@ -21,11 +21,7 @@ namespace JohnBPearson.Windows.Forms
 
         private void initializeReminders()
         {
-            int maxReminders = Properties.Settings.Default.MaximumReminders;
-            for (int i = 1; i <= maxReminders; i++)
-            {
-
-            }
+           
 
 
         }

@@ -50,7 +50,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             presenter.Form = this;
             InitializeComponent();
             
-            // var reminderForm = new Reminders();
+            // var reminderForm = new RemindersForm();
             //this.presenter = presenter;
             //this.presenter.Form = this;
             //this._containerList.Items;]
