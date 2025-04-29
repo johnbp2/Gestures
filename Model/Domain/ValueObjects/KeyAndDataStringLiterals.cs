@@ -9,6 +9,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         public int ItemsUpdated;
         public string Descriptions;
         public IEnumerable<string> Secured;
+        public List<bool> Protected;
 
       
     }

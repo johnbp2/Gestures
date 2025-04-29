@@ -38,9 +38,6 @@
     <Setting Name="Descriptions" Type="System.String" Scope="User">
       <Value Profile="(Default)">test|||||||||||||||||||||||||</Value>
     </Setting>
-    <Setting Name="ParseListToFindPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)">pwd|password|pw</Value>
-    </Setting>
     <Setting Name="StringProtection" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -95,6 +92,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="MaskBindableValue" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Protected" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

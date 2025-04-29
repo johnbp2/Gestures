@@ -9,7 +9,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Web;
 
-public static class MemoryProtection
+public static class DataProtectionService
 {
 
     public static string Encrypt(string plainText, bool consoleOutput = true)
@@ -47,11 +47,11 @@ public static class MemoryProtection
         return result;
 
     }
-    private static void logToConsole(string toLog)
+    public static void logToConsole(string toLog)
     {
         logToConsole(toLog, true); 
     }
-    private static void logToConsole(string toLog, bool writeLine)
+    public static void logToConsole(string toLog, bool writeLine)
     {
             logToConsole(toLog, null, writeLine);
     }

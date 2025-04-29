@@ -10,7 +10,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
     public class Data : BaseValue
     {
 
-       // private MemoryProtection mp = new MemoryProtection();
+       // private DataProtectionService mp = new DataProtectionService();
 
         //private Data() {
             
@@ -28,7 +28,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             {
                 try
                 {
-                    return MemoryProtection.Decrypt(base.Value);
+                    return DataProtectionService.Decrypt(base.Value);
                 }
                 catch(  System.Security.Cryptography.CryptographicException e)
                 {
@@ -37,7 +37,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             }
             set
             {
-                base.Value = MemoryProtection.Encrypt(value);
+                base.Value = DataProtectionService.Encrypt(value);
                                 
             }
         }

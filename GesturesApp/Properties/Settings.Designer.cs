@@ -160,18 +160,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("pwd|password|pw")]
-        public string ParseListToFindPassword {
-            get {
-                return ((string)(this["ParseListToFindPassword"]));
-            }
-            set {
-                this["ParseListToFindPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool StringProtection {
             get {
@@ -285,6 +273,17 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["MaskBindableValue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Protected {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Protected"]));
+            }
+            set {
+                this["Protected"] = value;
             }
         }
     }

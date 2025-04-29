@@ -15,7 +15,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         static void Main()
         {
 
-           // var mp = new MemoryProtection();
+           // var mp = new DataProtectionService();
            
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);

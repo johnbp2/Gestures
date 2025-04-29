@@ -69,7 +69,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         {
             if(!Protected)
             {
-                MemoryProtection.Encrypt(this._value);
+                DataProtectionService.Encrypt(this._value);
             }
         }
 

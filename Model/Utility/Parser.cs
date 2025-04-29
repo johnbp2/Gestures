@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using JohnBPearson.Application.Gestures.Model;
+using log4net.Util;
 
 namespace JohnBPearson.Application.Gestures.Model.Utility
 {
@@ -47,10 +48,8 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         {
             get
             {
-                if (this._items == null)
-                {
-                    this.setParsed();
-                }                return this._items;
+                this.hydrateItems(this._items);
+                return this._items;
             }
             private set { this._items = value; }
         }
@@ -61,22 +60,20 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         {
             get
             {
-                if (this._keys == null)
-                {
-                    this.setParsed();
-                }
+                this.hydrateItems(this._items);
                 return this._keys;
             }
             private set { _keys = value; }
         }
 
-        private void setParsed()
+        private List<IContainer> hydrateItems(List<IContainer> items)
         {
-           
-            this._items = this.parse();
-
+            if(items == null)
+            {
+                items = parse();
+            }
+            return items;
         }
-
         internal static IEnumerable<string> parseStringToList(string value, char delim)
         {
             var list = new List<string>();
@@ -107,6 +104,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             var descriptions = this._descriptionString.Split(delimChar);
             this._keys = (letters as string[]).ToList();
             var index = 0;
+            var protectedItems = PropertiesDictionary.
             foreach (var key in this._keys)
             {
                 if (index < values.Length)
