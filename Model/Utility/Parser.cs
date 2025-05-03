@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using log4net.Util;
 
@@ -24,6 +25,21 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         
         }
 
+        private List<bool> _protect;
+
+        internal List<bool> Protected
+        {
+            get
+            {
+                return _protect;
+            }
+            set
+            {
+                _protect = value;
+            }
+        }
+
+
         private IContainerList _parent;
         internal Parser(KeyAndDataStringLiterals strings, IContainerList parent)
         {
@@ -32,15 +48,15 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
             this._keysString = strings.Keys;
             this._descriptionString = strings.Descriptions;
-            this._secured = strings.Secured;
+            this._isProtected = strings.IsProtected ;
             this._parent = parent;
-
+            this._protect = strings.Protect;
         }
 
         private string _keysString;
         private string _valuesString;
         private string _descriptionString;
-        private IEnumerable<string> _secured;
+        private IEnumerable<bool> _isProtected;
 
         private List<JohnBPearson.Application.Gestures.Model.IContainer> _items;
 
@@ -94,7 +110,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         private List<JohnBPearson.Application.Gestures.Model.IContainer> parse()
         {
 
-            var securedArray = this._secured.ToArray();
+          //  var securedArray = this._isProtected.ToArray();
             string[] delims = { delim };
             var resultList = new List<IContainer>();
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
@@ -104,20 +120,16 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             var descriptions = this._descriptionString.Split(delimChar);
             this._keys = (letters as string[]).ToList();
             var index = 0;
-            var protectedItems = PropertiesDictionary.
+           // var protectedItems = this._is
             foreach (var key in this._keys)
             {
                 if (index < values.Length)
                 {
                     var value = values[index];
                     var des = descriptions[index];
-                    var isSecuredStrinh = securedArray[index];
-                    bool isSecure = false;                       
-                    if(!string.IsNullOrWhiteSpace(isSecuredStrinh)) {
-                        isSecure =   bool.Parse(isSecuredStrinh);
-                    }
-                   
-                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isSecure);
+                    var isProtected = this._isProtected.ToArray()[index];
+                    var protect = this._protect.ToArray()[index];
+                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isProtected, protect);
                     resultList.Add(hkv);
                     index++;
                 }

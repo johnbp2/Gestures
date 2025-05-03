@@ -47,11 +47,22 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         //{
         //    get; set;
         //}
+        public bool Protect
+        {
+            get;
+            set;
+        }
+
+        public bool IsProtected
+        {
+            get;
+            set;
+        }
         public string KeyAsChar
         {
             get; set;
         }
-        //public object Secured
+        //public object IsProtected
         //{
         //    get; set;
         //}

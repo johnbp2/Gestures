@@ -7,9 +7,9 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         public string Values;
         public int ItemsUpdated;
         public string Descriptions;
-        public IEnumerable<bool> IsProtected;
-        public List<bool> Protect;
+        public IEnumerable<string> Secured;
+        public List<bool> Protected;
 
-
+      
     }
-}
+    

@@ -50,13 +50,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             registerHotKeys(ContainerList.Items);
         }
 
-        public int executeSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt)
+        public int executeSave(bool overrideAutoSaveSetting)
         {
             var strings = this.ContainerList.PrepareDataForSave();
             Properties.Settings.Default.BindableValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
-            Properties.Settings.Default.isSecured.Clear();
-            Properties.Settings.Default.isSecured.AddRange(strings.Secured.ToArray());
+            Properties.Settings.Default.IsProtected.Clear();
+            Properties.Settings.Default.IsProtected.AddRange(strings.IsProtected.ToArray());
             Properties.Settings.Default.Save();
             this.LoadHotKeyValues();
             GlobalHotKey.removeAllRegistration();
@@ -110,7 +110,19 @@ namespace JohnBPearson.Windows.Forms.Gestures
             strings.Values = Properties.Settings.Default.BindableValues;
             strings.Keys = Properties.Settings.Default.BindableKeys;
             strings.Descriptions = Properties.Settings.Default.Descriptions;
-            var protectedValues = Properties.Settings.Default.Protected;
+            var protectValues = Properties.Settings.Default.Protect;
+         strings.Protect =   parseStringsToBools(protectValues);
+            var isProtectedValues = Properties.Settings.Default.IsProtected;
+            strings.IsProtected = =parseStringsToBools(isProtectedValues);
+            string[] arr = new string[26];
+            Properties.Settings.Default.IsProtected.CopyTo(arr, 0);
+            strings.IsProtected = arr.AsEnumerable<string>();
+            this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);
+            return this.ContainerList;
+        }
+
+        private static List<bool> parseStringsToBools(System.Collections.Specialized.StringCollection protectedValues)
+        {
             List<bool> listBool = new List<bool>();
             foreach(string booleanValue in protectedValues)
             {
@@ -121,18 +133,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 }
                 else
                 {
-                
-                listBool.add(false);
-                        
-                        }
-            }
-            string[] arr = new string[26]; 
-            Properties.Settings.Default.isSecured.CopyTo(arr, 0);
-            strings.Secured = arr.AsEnumerable<string>();
-            this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);
-            return this.ContainerList;
-        }
 
+                    listBool.Add(false);
+
+                }
+            }
+            return listBool;
+        }
 
         public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> keys)
         {
@@ -163,7 +170,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     {
         T Form { get; }
         IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> Containers { get; }
-        int executeSave(bool overrideAutoSaveSetting, string encryptionFlags, bool encrypt);
+        int executeSave(bool overrideAutoSaveSetting);
 
         void updateContainer(string newData, string description, string key, bool isSecured);
 

@@ -32,7 +32,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if (Program.IsFirstInstance())
             {
                 var main = new Main(new MainPresenter());
-                main.setBgColor(Properties.Settings.Default.BgColor);
+                main.BgColor = Properties.Settings.Default.BgColor;
                 System.Windows.Forms.Application.Run(main);
             } else {
                 System.Windows.MessageBox.Show("Instance of the InputKey Binding Butler is already running!");

@@ -91,7 +91,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             if(data.IsDataSecured)
             {
-                //   System.Windows.Clipboard.SetText(data.Secured.Value);
+                //   System.Windows.Clipboard.SetText(data.IsProtected.Value);
                 Clipboard.SetDataObject(data.Data.Value, true);
             }
             else
@@ -172,7 +172,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-            var result = this.presenter.executeSave(overrideAutoSaveSetting, Properties.Settings.Default.ParseListToFindPassword, Properties.Settings.Default.StringProtection);
+            var result = this.presenter.executeSave(overrideAutoSaveSetting);
             if (result == 0)
             {
                 notifyDerived("Success", "Saved", Properties.Settings.Default.FlashWindow);

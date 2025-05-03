@@ -26,7 +26,7 @@ namespace JohnBPearson.Application.Gestures.Model
             {
                 if (this._userSettingsParser != null)
                 {
-                    return this._userSettingsParser.Keys;
+                    return this.serSettingsParser.Keys;
                 }
                 else return null;
             }
@@ -90,7 +90,7 @@ namespace JohnBPearson.Application.Gestures.Model
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
-            result.IsProtected = secured;
+            result.Secured = secured;
             return result;
         }
 

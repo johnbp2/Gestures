@@ -28,7 +28,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        protected  Color BgColor
+        public  Color BgColor
         {
             get
             {
@@ -77,11 +77,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //            FlashWindow.TrayAndWindow(this);
             //        }
             //    }
-        }
-
-        public void setBgColor(Color bgColor)
-        {
-            this.BgColor = bgColor;
         }
 
         protected void setStatus(string text)

@@ -196,39 +196,39 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>true</string>
   <string>false</string>
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
   <string>false</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection isSecured {
+        public global::System.Collections.Specialized.StringCollection IsProtected {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["isSecured"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["IsProtected"]));
             }
             set {
-                this["isSecured"] = value;
+                this["IsProtected"] = value;
             }
         }
         
@@ -278,12 +278,12 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Protected {
+        public global::System.Collections.Specialized.StringCollection Protect {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Protected"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["Protect"]));
             }
             set {
-                this["Protected"] = value;
+                this["Protect"] = value;
             }
         }
     }

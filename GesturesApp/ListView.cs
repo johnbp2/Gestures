@@ -144,7 +144,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             safeRemoveDataColumn("Description");
             safeRemoveDataColumn("KeyAsChar");
 
-            safeRemoveDataColumn("Secured");
+            safeRemoveDataColumn("IsProtected");
             safeRemoveDataColumn("IsDataSecured");
             safeRemoveDataColumn("ObjectState");
         }

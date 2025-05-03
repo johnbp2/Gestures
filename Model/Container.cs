@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using JohnBPearson.Application.Gestures.Model.Domain;
-using JohnBPearson.Application.Gestures.Model.Domain.Entities;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
@@ -67,7 +66,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        public Domain.Data Data
+        public Data Data
         {
             get
             {
@@ -85,8 +84,8 @@ namespace JohnBPearson.Application.Gestures.Model
                 }
             }
         }
-        private Domain.Description _description;
-        public Domain.Description Description
+        private Description _description;
+        public Description Description
         {
             get
             {
@@ -150,11 +149,11 @@ namespace JohnBPearson.Application.Gestures.Model
         protected Container(char key, string value)
         {
             this.CreateKeyboardKey(key);
-            this.CreateData(value,);
+            this.CreateData(value);
         }
-        private void CreateData(string value, bool isProtected, bool protect)
+        private void CreateData(string value)
         {
-            Data = Data.Create(value, this, isProtected, protect);
+            Data = Data.Create(value, this);
         }
 
         private void CreateKeyboardKey(char key)
@@ -167,9 +166,7 @@ namespace JohnBPearson.Application.Gestures.Model
             Description = Description.Create(description, this);
         }
 
-        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value,
-            
-            string description, bool isProtected, bool protect)
+        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value, string description, bool secured)
         {
             this.CreateKeyboardKey(key);
            
@@ -178,16 +175,8 @@ namespace JohnBPearson.Application.Gestures.Model
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container container)
-        {
-            this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
-            this.CreateData(container.DataString);
 
-            this.CreateDescription(description);
-            this._parent = parent;
-        }
-        } 
         public bool setIfLastItem()
         {
             /// z is the last in the keyboard key list 
@@ -202,16 +191,15 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent,
-            char key, string value, string description = "", bool isProtected = false, bool protect = false)
+        internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value, string description = "", bool secured = false)
         {
-            return new Container(parent, key, value, description, isProtected, protect);
+            return new Container(parent, key, value, description, secured);
         }
 
 
         internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
         {
-            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString);
+            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, false);
         }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{

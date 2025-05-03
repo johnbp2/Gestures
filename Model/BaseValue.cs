@@ -21,15 +21,10 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         private  string _value = "";
         public virtual string Value
         {
-            get
+            get { return _value; }
+             set
             {
-                return _value;
-            }
-            set
-            {
-                _value = value;
-            }
-        }
+            _value = value; }   
         //private    set
         //    {
         //        if (!string.IsNullOrWhiteSpace(value))
@@ -37,7 +32,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         //            this._value = value;
         //        }
         //    }
-       // }
+        }
         private bool _isEncrypted;
 
         public bool IsEncrypted
@@ -55,10 +50,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         public static string Delimiter
         {
-            get {
-                
-                return BaseValue._delimiter;
-            }
+            get { return BaseValue._delimiter; }
             private set
             {
                 if (!String.IsNullOrWhiteSpace(value))
