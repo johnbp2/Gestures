@@ -64,7 +64,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this._mainPresenter.executeSave(true, "", false);
+            this._mainPresenter.executeSave(true);
             this.notify(this, "Saved", "Saved list contents", false, ToastOptions.Save);
             var export = System.Text.Json.JsonSerializer.Serialize<IContainerList>(this._sourceList);
           //  System.Windows.Clipboard.SetText(export);
@@ -72,7 +72,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>(this._sourceList.MapToEnities());
+            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>(this._sourceList.MapToEntities());
           //  System.Windows.Clipboard.SetText(export);
 
             // Displays a SaveFileDialog so the user can save the Image
@@ -120,7 +120,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                         var doc = System.Text.Json.JsonDocument.Parse(fs);
                         var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>();
                        this._sourceList.MapFromEntities( root);
-                        this._mainPresenter.executeSave(true, "", false);
+                        this._mainPresenter.executeSave(true);
                         this.rebindsource(this._sourceList);
                     }
                     //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()

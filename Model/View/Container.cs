@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using JohnBPearson.Application.Gestures.Model.Domain;
 
 namespace JohnBPearson.Application.Gestures.Model
@@ -17,15 +15,16 @@ namespace JohnBPearson.Application.Gestures.Model
             entity.DataString = this.Data.Value;
             entity.DescriptionString = this.Description.Value;
             entity.KeyAsChar = this.KeyAsChar.ToString();
+            entity.IsProtected = this.Data.isProtected;
+            entity.Protect = this.Data.Protect;
+            entity.Length = this.Data.Length;
+            return entity;
 
-                return entity;
-        
-        
         }
+   
 
 
-
-        private Data _data;
+        private Domain.Data _data;
 
         private InputKey _key;
         internal JohnBPearson.Application.Gestures.Model.IContainerList _parent;
@@ -66,7 +65,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        public Data Data
+        public Domain.Data Data
         {
             get
             {
@@ -84,8 +83,8 @@ namespace JohnBPearson.Application.Gestures.Model
                 }
             }
         }
-        private Description _description;
-        public Description Description
+        private Domain.Description _description;
+        public Domain.Description Description
         {
             get
             {
@@ -136,7 +135,7 @@ namespace JohnBPearson.Application.Gestures.Model
  
 
 
-        private JohnBPearson.Application.Gestures.Model.ObjectState _objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Loaded;
+        private JohnBPearson.Application.Gestures.Model.ObjectState _objectState = JohnBPearson.Application.Gestures.Model.ObjectState.isNew;
         public JohnBPearson.Application.Gestures.Model.ObjectState ObjectState
         {
             get
@@ -146,14 +145,14 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        protected Container(char key, string value)
+        protected Container(char key, string data, bool isProtected, bool protect)
         {
             this.CreateKeyboardKey(key);
-            this.CreateData(value);
+            this.CreateData(data,isProtected, protect);
         }
-        private void CreateData(string value)
+        private void CreateData(string value, bool isProtected, bool protect)
         {
-            Data = Data.Create(value, this);
+            Data = Domain.Data.Create(value, this, isProtected, protect);
         }
 
         private void CreateKeyboardKey(char key)
@@ -163,20 +162,30 @@ namespace JohnBPearson.Application.Gestures.Model
 
         private void CreateDescription(string description)
         {
-            Description = Description.Create(description, this);
+            Description = Domain.Description.Create(description, this);
         }
 
-        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value, string description, bool secured)
+        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value,
+            
+            string description, bool isProtected, bool protect)
         {
             this.CreateKeyboardKey(key);
            
-                this.CreateData(value);
+                this.CreateData(value ,isProtected, protect);
             
             this.CreateDescription(description);
             this._parent = parent;
         }
+        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container container)
+        {
+            this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
+            this.CreateData(container.DataString, container.IsProtected, container.Protect);
 
+            this.CreateDescription(container.DescriptionString);
+            this._parent = parent;
+        }
+        
         public bool setIfLastItem()
         {
             /// z is the last in the keyboard key list 
@@ -191,19 +200,20 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value, string description = "", bool secured = false)
+        public static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent,
+            char key, string value, string description = "", bool isProtected = false, bool protect = false)
         {
-            return new Container(parent, key, value, description, secured);
+            return new Container(parent, key, value, description, isProtected, protect);
         }
 
 
-        internal static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
+        public static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
         {
-            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, false);
+            return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.Protect);
         }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
-        //    if (!newValue.Equals(oldItem.Data))
+        //    if (!newValue.Equals(oldItem.Data)) 02
         //    {
         //        return new Containers(oldItem.InputKey.InputKey, newValue.Value);
         //    }
@@ -213,39 +223,7 @@ namespace JohnBPearson.Application.Gestures.Model
         //    } else
         //    {
         //        throw new NotImplementedException();
-        //    }
-        //}
-
-       
-
-
-        //[Obsolete("no mas")]
-        //public string GetDelimitated()
-        //{
-        //    return string.Concat(this._key.GetDeliminated(), this._data.ToString());
-
-        //}
-
-        public void Update(ref string newValue, string newDescription, bool isSecure = false)
-        {
-
-            this._isDataSecured = isSecure;
-            if(this.Data.Value != newValue)
-            {
-                this.Data.Value = newValue;
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
-
-            }
-          
-            if(!string.IsNullOrWhiteSpace(newDescription))
-            {
-                this.Description.Value = newDescription;
-                this._objectState = JohnBPearson.Application.Gestures.Model.ObjectState.Changed;
-            }
-        }
-
-        //public bool Equals(IContainer other)
-        //{
+        //    }0-2        //{
         //    if (other.Data.Equals(this.Data))
         //    {
         //        return true;

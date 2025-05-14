@@ -64,9 +64,10 @@ namespace JohnBPearson.Butler.Test
         }
 
 
-        [TestMethod]
-        public void testcmd()
+        [TestMethod] 
+        public void CheckEncryption()
         {
+
         
         }
     }

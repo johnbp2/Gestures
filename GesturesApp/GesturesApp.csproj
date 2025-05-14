@@ -140,6 +140,7 @@
     <Compile Include="InsecureMaskedTexrtbox.Designer.cs">
       <DependentUpon>InsecureMaskedTexrtbox.cs</DependentUpon>
     </Compile>
+    <Compile Include="IPresenter.cs" />
     <Compile Include="ListView.cs">
       <SubType>Form</SubType>
     </Compile>

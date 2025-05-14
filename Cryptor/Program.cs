@@ -16,7 +16,7 @@ namespace Cryptor
     {
         static int Main(string[] args)
         {
-         //   DataProtectionService mp = new DataProtectionService();
+         DataProtect mp = new DataProtect();
      
                 if(args.Length == 0 || args.Length == 1 || string.IsNullOrWhiteSpace(args[1]))
                 {
@@ -45,10 +45,10 @@ namespace Cryptor
                 {
                     case 1:
                      //   Console.WriteLine(mp.Encrypt(args[1]));
-                     DataProtectionService.Encrypt(args[1]);
+                    mp.Encrypt(args[1]);
                         break;
                     case 2:
-                       DataProtectionService.Decrypt(args[1]);
+                       mp.Decrypt(args[1]);
                         break;
                     default:
                         break;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.UI.WebControls;
 using JohnBPearson.Application.Gestures.Model.Domain;
+using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
@@ -55,19 +57,18 @@ namespace JohnBPearson.Application.Gestures.Model
 
         public Utility.KeyAndDataStringLiterals PrepareDataForSave()
         {
-            return prepareForSaveInner();
-        }
-
-        private Utility.KeyAndDataStringLiterals prepareForSaveInner()
-        {
             return prepareForSaveInner(_items);
         }
+
+    
 
         private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
         {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
-            var secured = new List<string>();
+          //  var secured = new List<string>();
+            List<bool> isProtected = new List<bool>();
+            List<bool> Protect = new List<bool>();
             int count = 0;
             foreach(var item in items)
 
@@ -75,11 +76,12 @@ namespace JohnBPearson.Application.Gestures.Model
                 var data = string.Empty;
                
                     data = item.Data.Value;
-                
 
+                isProtected.Add(item.Data.isProtected);
+                Protect.Add(item.Data.Protect);
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));
-                secured.Add(item.IsDataSecured.ToString());
+               // secured.Add(item.IsDataSecured.ToString());
                 if(item.ObjectState == ObjectState.Changed)
                 {
                     count++;
@@ -90,26 +92,37 @@ namespace JohnBPearson.Application.Gestures.Model
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
-            result.Secured = secured;
+            result.IsProtected = isProtected;
+            result.Protect = Protect;
             return result;
         }
 
-        public string PrepareDataToSaveAsOneSetting()
+
+        public static List<int> paresStringsToInts(System.Collections.Specialized.StringCollection items)
         {
-            var sbOneString = new StringBuilder();
-            foreach(var item in _items)
-            {
-                sbOneString.Append(this.buildSaveString(item));
+        return Parser.parseStringsToInts(items);
+        }
+        public static System.Collections.Specialized.StringCollection ParseBoolsToStrings(IEnumerable<bool> items)
+        {
+            return Utility.Parser.parseBoolsToString(items);                                                                                                                                    
+                
+                
+        }
+        public IContainerList Replace(IContainer oldItem, IContainer newItem)
+        {
+        int index=  this.findIndex(oldItem as Container);
 
+            this._items.RemoveAt(index);
+            this._items.Insert(index, newItem);
+            return this;
+                }
 
-            }
-            return sbOneString.ToString();
+        public static List<bool> ParseStringsToBools(System.Collections.Specialized.StringCollection items)
+        {
+            return Utility.Parser.parseStringsToBools(items);
+
         }
 
-        private string buildSaveString(IContainer item)
-        {
-            return String.Concat(item.Key.GetDeliminated(), item.Data, ContainerList.deliminater);
-        }
 
         internal int findIndex(Container searchItem)
         {
@@ -117,7 +130,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
-        public List<Domain.Entities.Container> MapToEnities()
+        public List<Domain.Entities.Container> MapToEntities()
         {
             var list = new List<Domain.Entities.Container>();
             foreach(var item in _items)
@@ -127,6 +140,7 @@ namespace JohnBPearson.Application.Gestures.Model
             }
             return list;
         }
+
 
      
 

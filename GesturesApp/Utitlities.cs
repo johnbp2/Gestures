@@ -29,7 +29,7 @@ namespace JohnBPearson.NET.Extensions
             return string.Concat(Utitlities.reminderString, numberText);
                 
                 //return str.Split(new char[] { ' ', '.', '?' },
-            //                 StringSplitOptions.RemoveEmptyEntries).Length;
+            //                 StringSplitOptions.RemoveEmptyEntries).Lengths;
         }   
     }
 }

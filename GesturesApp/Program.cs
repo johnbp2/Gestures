@@ -32,7 +32,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if (Program.IsFirstInstance())
             {
                 var main = new Main(new MainPresenter());
-                main.setBgColor(Properties.Settings.Default.BgColor);
+                main.BackColor = Properties.Settings.Default.BgColor;
                 System.Windows.Forms.Application.Run(main);
             } else {
                 System.Windows.MessageBox.Show("Instance of the InputKey Binding Butler is already running!");
@@ -55,7 +55,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 Exception ex = (Exception)e.ExceptionObject;
                 captureException(ex);
-                MessageBox.Show("Unhadled domain exception:\n\n" + ex.Message);
+                MessageBox.Show("Unhandled domain exception:\n\n" + ex.Message);
                 
             }
             catch (Exception exc)
@@ -63,7 +63,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 try
                 {
                     captureException(exc);
-                    MessageBox.Show("Fatal exception happend inside UnhadledExceptionHandler: \n\n"
+                    MessageBox.Show("Fatal exception happened inside UnhandledExceptionHandler: \n\n"
                         + exc.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 }
@@ -81,7 +81,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             try
             {
                 captureException(t.Exception);
-                MessageBox.Show($"Unhandled exception catched.\n Application is going to close now. {t.Exception.Message}");
+                MessageBox.Show($"Unhandled exception caught.\n Application is going to close now. {t.Exception.Message}");
                
             }
             catch(Exception ex)
@@ -89,7 +89,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 try
                 {
                     captureException(ex);
-                    MessageBox.Show($"Fatal exception happend inside UIThreadException handler; {ex.Message}",
+                    MessageBox.Show($"Fatal exception happened inside UIThreadException handler; {ex.Message}",
                         "Fatal Windows Forms Error", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Stop);
                    
                 }

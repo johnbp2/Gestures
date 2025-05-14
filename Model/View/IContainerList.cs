@@ -10,8 +10,11 @@ namespace JohnBPearson.Application.Gestures.Model
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();
-        List<Domain.Entities.Container> MapToEnities();
+        List<Domain.Entities.Container> MapToEntities();
         void MapFromEntities(List<Domain.Entities.Container> entities);
+      
+
+        IContainerList Replace(IContainer oldItem, IContainer newItem);
        // string PrepareDataToSaveAsOneSetting();
     }
 }

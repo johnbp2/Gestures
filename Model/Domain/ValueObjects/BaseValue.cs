@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain
 {
 
 
 
-    public abstract class BaseValue : IBaseValue
+    public abstract class BaseValue : ValueObject<BaseValue>, IBaseValue
     {
         protected IContainer _parent;
         protected BaseValue(IContainer parent) { this._parent = parent; }
@@ -15,10 +17,41 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             this._value = value;
             this._parent = parent;
         }
+      
 
+        #region hashcode
+        string sSourceData;
+        byte[] tmpSource;
+        byte[] tmpHash;
+        public override int GetHashCode()
+        {
+            return GetHashCodeCore();
+        }
 
+        protected override int GetHashCodeCore()
+        {
+            sSourceData =this.Value;
+            //Create a byte array from source data.
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(sSourceData);
 
-        private  string _value = "";
+            tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
+          return tmpHash.GetHashCode();
+
+        }
+
+        //static string ByteArrayToString(byte[] arrInput)
+        //{
+        //    int i;
+        //    StringBuilder sOutput = new StringBuilder(arrInput.Lengths);
+        //    for(i = 0; i < arrInput.Lengths; i++)
+        //    {
+        //        sOutput.Append(arrInput[i].ToString("X2"));
+        //    }
+        //    return sOutput.ToString();
+        //}
+
+        #endregion
+        private string _value = "";
         public virtual string Value
         {
             get { return _value; }
@@ -32,6 +65,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         //            this._value = value;
         //        }
         //    }
+       // }
+       
         }
 
         public static string Delimiter
@@ -51,28 +86,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         private static string _delimiter = "|";
 
 
-        private bool _protected;
-
-        public bool Protected
-        {
-            get
-            {
-                return _protected;
-            }
-            set
-            {
-                _protected = value;
-            }
-        }
-
-        public void EncryptInPlace()
-        {
-            if(!Protected)
-            {
-                DataProtectionService.Encrypt(this._value);
-            }
-        }
-
+       
+       
         public override string ToString()
         {
             return Value;
@@ -124,27 +139,28 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             }
             return string.Concat(Value, delim.ToString());
         }
-        public override bool Equals(object other)
+
+
+        protected override bool EqualsCore(BaseValue other)
         {
-            BaseValue localType = null;
-            if(other.GetType() != this.GetType())
-           {
-                return false;
-            }
-            else
-            {
-
-                localType = (BaseValue)other;
-            }
-                if(localType == null) return false;
-            if (localType != null && !string.IsNullOrWhiteSpace(localType.Value))
-            {
-
-                return this._value == localType.Value;
-            }
+            if(this.Value == other.Value)
+                return true;
             return false;
         }
 
+
+        public override bool Equals(object obj)
+        {
+            var valueObject = obj as BaseValue;
+
+            if(ReferenceEquals(valueObject, null))
+                return false;
+
+            if(ReferenceEquals(valueObject, this))
+                return true;
+            else
+                return EqualsCore(valueObject);
+        }
         public bool Equals(BaseValue other)
         {
             return this == other;
@@ -156,7 +172,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             return this == other;
         }
 
-        public static bool operator ==(BaseValue lhs, BaseValue rhs)
+
+        public static  bool operator ==(BaseValue lhs, BaseValue rhs)
         {        // public abstract bool Equals(IBaseValue other);
             if (lhs is null || rhs is null)
             {

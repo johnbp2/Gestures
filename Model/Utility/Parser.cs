@@ -1,7 +1,12 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Deployment.Internal;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Web.UI;
+using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using log4net.Util;
 
@@ -24,6 +29,49 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         
         }
 
+        private List<bool> _protect;
+
+        internal List<bool> Protected
+        {
+            get
+            {
+                return _protect;
+            }
+            set
+            {
+                _protect = value;
+            }
+        }
+
+        internal static System.Collections.Specialized.StringCollection parseBoolsToString(IEnumerable<bool> items)
+        {
+            var strings = new System.Collections.Specialized.StringCollection();
+            foreach(var item in items)
+            {
+                strings.Add(item.ToString());
+            }
+            return strings;
+                }
+        internal static List<bool> parseStringsToBools(System.Collections.Specialized.StringCollection protectedValues)
+        {
+            List<bool> listBool = new List<bool>();
+            foreach(string booleanValue in protectedValues)
+            {
+                bool temp = false;
+                if(bool.TryParse(booleanValue, out temp))
+                {
+                    listBool.Add(temp);
+                }
+                else
+                {
+
+                    listBool.Add(false);
+
+                }
+            }
+            return listBool;
+        }
+
         private IContainerList _parent;
         internal Parser(KeyAndDataStringLiterals strings, IContainerList parent)
         {
@@ -32,15 +80,15 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
             this._keysString = strings.Keys;
             this._descriptionString = strings.Descriptions;
-            this._secured = strings.Secured;
+            this._isProtected = strings.IsProtected ;
             this._parent = parent;
-
+            this._protect = strings.Protect;
         }
 
         private string _keysString;
         private string _valuesString;
         private string _descriptionString;
-        private IEnumerable<string> _secured;
+        private IEnumerable<bool> _isProtected;
 
         private List<JohnBPearson.Application.Gestures.Model.IContainer> _items;
 
@@ -48,7 +96,10 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         {
             get
             {
-                this.hydrateItems(this._items);
+                if(this._items == null)
+                {
+                    this._items = parse();
+                }
                 return this._items;
             }
             private set { this._items = value; }
@@ -60,20 +111,23 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         {
             get
             {
-                this.hydrateItems(this._items);
+                if(this._items == null)
+                {
+                    this._items = parse();
+                }
                 return this._keys;
             }
             private set { _keys = value; }
         }
 
-        private List<IContainer> hydrateItems(List<IContainer> items)
-        {
-            if(items == null)
-            {
-                items = parse();
-            }
-            return items;
-        }
+        //private List<IContainer> hydrateItems(List<IContainer> items)
+        //{
+        //    if(items == null)
+        //    {
+        //        items = parse();
+        //    }
+        //    return items;
+        //}
         internal static IEnumerable<string> parseStringToList(string value, char delim)
         {
             var list = new List<string>();
@@ -94,7 +148,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         private List<JohnBPearson.Application.Gestures.Model.IContainer> parse()
         {
 
-            var securedArray = this._secured.ToArray();
+         
             string[] delims = { delim };
             var resultList = new List<IContainer>();
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
@@ -104,20 +158,16 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             var descriptions = this._descriptionString.Split(delimChar);
             this._keys = (letters as string[]).ToList();
             var index = 0;
-            var protectedItems = PropertiesDictionary.
+           // var protectedItems = this._is
             foreach (var key in this._keys)
             {
                 if (index < values.Length)
                 {
                     var value = values[index];
                     var des = descriptions[index];
-                    var isSecuredStrinh = securedArray[index];
-                    bool isSecure = false;                       
-                    if(!string.IsNullOrWhiteSpace(isSecuredStrinh)) {
-                        isSecure =   bool.Parse(isSecuredStrinh);
-                    }
-                   
-                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isSecure);
+                    var isProtected = this._isProtected.ToArray()[index];
+                    var protect = this._protect.ToArray()[index];
+                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isProtected, protect);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -147,6 +197,26 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             return values;
         }
 
+        internal static List<int> parseStringsToInts(System.Collections.Specialized.StringCollection strings)
+        {
+        var ret = new List<int>();
+            int test = 0;
+           
+            foreach(string s in strings)
+            {
+                if(int.TryParse(s, out test))
+                {
+                
+                ret.Add(test);
+                }
+                else
+                {
+                    ret.Add(0);
+                }
+
+            }
+            return ret;
+        }
         private const string delim = "|";
         private const char delimChar = '|';
         //internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.Application.Model.IContainer> items)
@@ -159,7 +229,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
            
         //    foreach (var item in this.Items)
         //    {
-        //        if (item.ObjectState != ObjectState.Deleted)
+        //        if (item.ObjectState != ObjectState.isDeleted)
         //        {
         //            if (!item.setIfLastItem()) { 
         //            tempKeys.Add(item.Alpha.GetDeliminated());
@@ -176,7 +246,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         //        {
         //            result++;
         //        }
-        //        else if(item.ObjectState == ObjectState.Deleted)
+        //        else if(item.ObjectState == ObjectState.isDeleted)
         //        {
         //            tempKeys.Add(item.Alpha.GetDeliminated());
         //            tempValues.Add(item.Data.GetDeliminated());

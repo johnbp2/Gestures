@@ -27,10 +27,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private string selectedKey
         {
-            get { if (cbHotkeySelection.SelectedItem != null) {
+            get
+            {
+                if(cbHotkeySelection.SelectedItem != null)
+                {
+                    this.presenter.findKeyBoundValue(cbHotkeySelection.SelectedItem.ToString(), true);
                     return cbHotkeySelection.SelectedItem as string;
 
-                } else
+                }
+                else
                 {
                     return null;
                 }
@@ -44,17 +49,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public Main() : base()
         {
         }
-        public Main(MainPresenter presenter) :base()
+        public Main(MainPresenter presenter) : base()
         {
             this.presenter = presenter;
             presenter.Form = this;
             InitializeComponent();
-            
+
             // var reminderForm = new RemindersForm();
             //this.presenter = presenter;
             //this.presenter.Form = this;
             //this._containerList.Items;]
-          base.statusStrip1.Refresh();
+            base.statusStrip1.Refresh();
 
             this.setupTryIconMenu();
         }
@@ -89,16 +94,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void CopyValueToClipBoard(IContainer data)
         {
 
-            if(data.IsDataSecured)
+            try
             {
-                //   System.Windows.Clipboard.SetText(data.Secured.Value);
+
+
                 Clipboard.SetDataObject(data.Data.Value, true);
             }
-            else
+            catch(Exception ex)
             {
                 Clipboard.SetDataObject(data.Data.Value, true);
             }
-           
+
 
         }
 
@@ -109,7 +115,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.updateUIByKey(data.Key.Key);
 
             Settings.Default.LastBoundKeyPressed = data.Key.Value;
-            Settings.Default.Save();
+            //  Settings.Default.Save();
         }
 
         //private void registerHotKeys(IEnumerable<JohnBPearson.Application.Model.IKeyBoundData> keys)
@@ -120,7 +126,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private void bindDropDownKeyValues()
+        public void bindDropDownKeyValues()
         {
 
 
@@ -135,7 +141,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private void setupTryIconMenu() {
+        private void setupTryIconMenu()
+        {
             this.components = new System.ComponentModel.Container();
             this.contextMenuIcon = new System.Windows.Forms.ContextMenu();
             this.menuItemIcon = new System.Windows.Forms.MenuItem();
@@ -163,17 +170,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // in a tooltip, when the mouse hovers over the systray icon  
         }
 
-   
-            
-            
-            
-            
+
+
+
+
+
 
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-            var result = this.presenter.executeSave(overrideAutoSaveSetting, Properties.Settings.Default.ParseListToFindPassword, Properties.Settings.Default.StringProtection);
-            if (result == 0)
+            var result = this.presenter.executeSave(overrideAutoSaveSetting);
+            if(result == 0)
             {
                 notifyDerived("Success", "Saved", Properties.Settings.Default.FlashWindow);
             }
@@ -186,15 +193,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             base.notify(this, title, content, flash, ToastOptions.Save);
             base.setStatus("Saved");
-            
+
         }
 
-        private void updateUIByKey(char key) {
+        public void updateUIByKey(char key)
+        {
 
-            var currentItem = this.presenter.findKeyBoundValue(key.ToString());
+            var currentItem = this.presenter.Current;// this.presenter.findKeyBoundValue(key.ToString());
             tbValue.Text = currentItem.Data.Value;
             tbDesc.Text = currentItem.Description.Value;
-            cbSecure.Checked = currentItem.IsDataSecured;
+            cbProtect.Checked = currentItem.Data.Protect;
+
         }
 
         #endregion
@@ -223,7 +232,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {     //if the form is minimized  
             //hide it from the task bar  
             //and show the system tray icon (represented by the NotifyIcon control)  
-            if (this.WindowState == FormWindowState.Minimized && Properties.Settings.Default.MinimizeToTray)
+            if(this.WindowState == FormWindowState.Minimized && Properties.Settings.Default.MinimizeToTray)
             {
                 Hide();
                 notifyIcon1.Visible = true;
@@ -232,7 +241,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 this.ShowInTaskbar = true;
             }
-      
+
             //  this.Size = new Size()
         }
 
@@ -263,10 +272,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbValue_TextChanged(object sender, EventArgs e)
         {
-            if (this.selectedKey != null) {
-                var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKey);
+            if(this.selectedKey != null)
+            {
+                var itemToUpdate = this.presenter.findKeyBoundValue(this.selectedKey, true);
 
-                this.presenter.updateContainer(tbValue.Text, itemToUpdate.Description.Value,this.selectedKey, this.cbSecure.Checked);
+                this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
 
             }
         }
@@ -281,14 +291,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var settings = new SettingsDialog();
             settings.FormClosed += this.Settings_FormClosed;
             settings.ShowDialog();
-      
-            
+
+
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e)
         {
-          //  Properties.Settings.Default.Reload();
-            this.BgColor = Properties.Settings.Default.BgColor;
+            //  Properties.Settings.Default.Reload();
+            this.BackColor = Properties.Settings.Default.BgColor;
         }
 
         private void Main_Activated(object sender, EventArgs e)
@@ -306,7 +316,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void cbHotkeySelection_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (this.selectedKey != null)
+            if(this.selectedKey != null)
             {
                 this.updateUIByKey(this.selectedKey.ToCharArray()[0]);
 
@@ -317,20 +327,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbValue_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, cbSecure.Checked);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, this.cbProtect.Checked);
         }
 
-      
+
 
         private void cbHotkeySelection_TextUpdate(object sender, EventArgs e)
         {
-            if (this.selectedKey != null)
+            if(this.selectedKey != null)
             {
                 tbValue.Text = this.presenter.findKeyBoundValue(this.selectedKey.ToString()).Data.Value;
 
             }
             var control = (System.Windows.Forms.ComboBox)sender;
-            //if (control.Text.Length == 1)
+            //if (control.Text.Lengths == 1)
             //{
             this.updateUIByKey(control.Text.ToCharArray()[0]);
             //  }
@@ -342,23 +352,24 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbSecure.Checked);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
         {
             this.presenter.RefreshData();
-           
+
             this.notifyDerived("Reload", "Completed");
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (this.cbHotkeySelection.SelectedIndex > -1)
+            if(this.cbHotkeySelection.SelectedIndex > -1)
             {
                 var item = this.cbHotkeySelection.Items[this.cbHotkeySelection.SelectedIndex];
-                if (item != null) {
-                var ikbv = this.presenter.findKeyBoundValue(item.ToString());
+                if(item != null)
+                {
+                    var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(ikbv);
                     base.notify(this, "Copied", ikbv.Data.Value);
                     this.keyChanged(ikbv);
@@ -371,17 +382,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-        private void cbSecure_CheckedChanged(object sender, EventArgs e)
-        {
-            this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey,this.cbSecure.Checked);
-            // private void updateKeyBoundData(string newValue, string newDescription)
-        }
+        //private void cbSecure_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey);
+        //    // private void updateKeyBoundData(string newValue, string newDescription)
+        //}
 
         private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new ListView(this.presenter.ContainerList, this.presenter);
             form.ShowDialog();
-      
+
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -391,5 +402,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
         #endregion
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+            this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+        }
     }
 }

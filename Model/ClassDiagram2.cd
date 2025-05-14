@@ -1,138 +1,132 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="JohnBPearson.Application.Gestures.Model.Container">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="JohnBPearson.Application.Gestures.Model.ContainerList" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAABBAAgAASEkACwAAIQACAAAFgBAAAQCACAAJA=</HashCode>
-      <FileName>View\Container.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="JohnBPearson.Application.Gestures.Model.ContainerList" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>DAAIAAAABAAACAAAiAAAAIAAABCBAggAAAEAAAAAAAA=</HashCode>
+      <HashCode>DAAIAAAABAAACQAAiAAAAIAAABCBIgAAAAAAAAAAACA=</HashCode>
       <FileName>View\ContainerList.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Entities.Rootobject" Collapsed="true">
-    <Position X="17.5" Y="4.5" Width="1.5" />
+    <Position X="7.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>Domain\Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Entities.Container" Collapsed="true">
-    <Position X="15.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAABAAAAAACAAAAgAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
-      <FileName>Domain\Entities\Entities.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Entities.Key" Collapsed="true">
-    <Position X="15.75" Y="4.5" Width="1.5" />
+    <Position X="5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAgAAAAAAA=</HashCode>
       <FileName>Domain\Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Entities.Data" Collapsed="true">
-    <Position X="17.5" Y="3.5" Width="1.5" />
+    <Position X="9.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Domain\Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Entities.Description" Collapsed="true">
-    <Position X="19.25" Y="3.5" Width="1.5" />
+    <Position X="11.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
       <FileName>Domain\Entities\Entities.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JohnBPearson.Application.Gestures.Model.Domain.BaseValue" Collapsed="true">
-    <Position X="11" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ABAAEAAAAAAAAAAEgAAAQAAQAAAAAAAQAAAgCAAAAiA=</HashCode>
-      <FileName>Domain\ValueObjects\BaseValue.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Data" Collapsed="true">
-    <Position X="11" Y="5" Width="1.5" />
+    <Position X="15" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAEAAAAAAEAAIAAABIAQAAAEIAAAAgAAAAAAA=</HashCode>
       <FileName>Domain\ValueObjects\Data.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.Description" Collapsed="true">
-    <Position X="13.25" Y="5" Width="1.5" />
+    <Position X="19.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Domain\ValueObjects\Description.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.InputKey" Collapsed="true">
-    <Position X="8.75" Y="5" Width="1.5" />
+    <Position X="16.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQEAACAAAAAAAAAAEAAAAAgAAAAAgA=</HashCode>
       <FileName>Domain\ValueObjects\InputKey.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JohnBPearson.Application.Gestures.Model.Domain.SecuredData" Collapsed="true">
-    <Position X="11" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAEAAAAggAAAAAAA=</HashCode>
-      <FileName>Domain\ValueObjects\SecuredData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="JohnBPearson.Application.Gestures.Model.Domain.ValueObject&lt;T&gt;" Collapsed="true">
-    <Position X="19.25" Y="4.5" Width="1.5" />
+    <Position X="14" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAQAAIAAAAAAAAAABiA=</HashCode>
       <FileName>Domain\ValueObjects\Value.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="JohnBPearson.Application.Gestures.Model.IBase" Collapsed="true">
-    <Position X="3.75" Y="0.75" Width="1.5" />
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="JohnBPearson.Application.Gestures.Model.Domain.BaseValue" Collapsed="true">
+    <Position X="15.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAASAAAAgAAIAAAAAABABAAAAAACAAAA=</HashCode>
+      <HashCode>ABAAEAAAAAAAAABEgAAAQBAQAAQAAIAQAACgCAAABiA=</HashCode>
+      <FileName>Domain\ValueObjects\BaseValue.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="JohnBPearson.Application.Gestures.Model.Container">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABBAAgAASEkACgAAAQACAAAFgBAAAQCACAAJA=</HashCode>
+      <FileName>View\Container.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="JohnBPearson.Application.Gestures.Model.IBaseContainer">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAASAAAAgAAAAAAAAABABAAAAAACAAAA=</HashCode>
       <FileName>View\IContainer.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="JohnBPearson.Application.Gestures.Model.IContainer" Collapsed="true">
-    <Position X="2.5" Y="2" Width="1.5" />
+  <Interface Name="JohnBPearson.Application.Gestures.Model.IContainer">
+    <Position X="7.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>View\IContainer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="JohnBPearson.Application.Gestures.Model.IKeyBoundCommand" Collapsed="true">
-    <Position X="4.75" Y="2" Width="1.5" />
+    <Position X="12.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\IContainer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="JohnBPearson.Application.Gestures.Model.IContainerList" Collapsed="true">
-    <Position X="7.25" Y="2" Width="1.5" />
+    <Position X="11" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAIAAAAAAAACAAAiAAAAAAAAAAAAggAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAIAAAAAAAACAAAiAAAAAAAAAAAAgAAAAAAAAAAACA=</HashCode>
       <FileName>View\IContainerList.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="JohnBPearson.Application.Gestures.Model.Domain.IBaseValue" Collapsed="true">
-    <Position X="15.75" Y="5.75" Width="1.5" />
+    <Position X="8.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAQAAAgCAAAAAA=</HashCode>
       <FileName>Domain\ValueObjects\IBaseValue.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="System.IEquatable&lt;T&gt;" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Enum Name="JohnBPearson.Application.Gestures.Model.ObjectState" Collapsed="true">
-    <Position X="7.25" Y="3" Width="1.5" />
+    <Position X="17.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAABAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAABAAAAAABAAAA=</HashCode>
       <FileName>View\IContainer.cs</FileName>
     </TypeIdentifier>
   </Enum>

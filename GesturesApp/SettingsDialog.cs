@@ -81,7 +81,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if(result == DialogResult.OK)
             {
                 Properties.Settings.Default.BgColor = this.colorDialog1.Color;
-                this.BgColor = this.colorDialog1.Color;
+                this.BackColor = this.colorDialog1.Color;
             }
 
         }

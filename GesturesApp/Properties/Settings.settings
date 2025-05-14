@@ -51,51 +51,139 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">"Data Source=your_database.db;Version=3;"</Value>
     </Setting>
-    <Setting Name="isSecured" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;string&gt;true&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string /&gt;
-  &lt;string&gt;false&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
-    </Setting>
-    <Setting Name="BgColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="LastExceptionUser" Type="System.Exception" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="LastExceptionApplication" Type="System.Exception" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="MaskBindableValue" Type="System.Collections.Specialized.StringCollection" Scope="User">
+    <Setting Name="Protect" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;false&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="DataLength" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+  &lt;string&gt;0&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="BgColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Protected" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="ByteStrings" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="IsProtected" Type="System.String" Scope="User">
+      <Value Profile="(Default)">
+          &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+            &lt;string&gt;false&lt;/string&gt;
+          &lt;/ArrayOfString&gt;
+        </Value>
     </Setting>
   </Settings>
 </SettingsFile>
