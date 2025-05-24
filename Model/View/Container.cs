@@ -9,15 +9,16 @@ namespace JohnBPearson.Application.Gestures.Model
     {
 
 
-        internal Domain.Entities.Container MapToEntity()
+        internal Domain.Entities.ContainerEntity MapToEntity()
         {
-            var entity = new Domain.Entities.Container();
+            var entity = new Domain.Entities.ContainerEntity();
             entity.DataString = this.Data.Value;
             entity.DescriptionString = this.Description.Value;
             entity.KeyAsChar = this.KeyAsChar.ToString();
             entity.IsProtected = this.Data.isProtected;
             entity.Protect = this.Data.Protect;
             entity.Length = this.Data.Length;
+            entity.ByteString = this.Data.ByteString;
             return entity;
 
         }
@@ -176,7 +177,19 @@ namespace JohnBPearson.Application.Gestures.Model
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container container)
+
+        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value,
+
+          string description, bool isProtected, bool protect, string byteString)
+        {
+            this.CreateKeyboardKey(key);
+
+            this.CreateData(value, isProtected, protect);
+
+            this.CreateDescription(description);
+            this._parent = parent;
+        }
+        protected Container(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.ContainerEntity container)
         {
             this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
@@ -207,7 +220,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        public static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.Container entity)
+        public static Container Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.ContainerEntity entity)
         {
             return new Container(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.Protect);
         }

@@ -9,6 +9,11 @@ using JohnBPearson.Application.Model;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model.Utility;
 using Windows.Management.Deployment;
+using System.Windows.Forms;
+using Microsoft.Win32;
+using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
+using System.Reflection;
+using System.IO;
 
 
 namespace JohnBPearson.Windows.Forms.Gestures
@@ -41,13 +46,34 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 this._main = value;
             }
         }
+
+        private SaveFileDialog _saveDialog;  
+
+        public SaveFileDialog SaveDialog
+        {
+            get
+            {
+                return _saveDialog;
+            }
+            set
+            {
+                _saveDialog = value;
+            }
+        }
+
+
+
         private JohnBPearson.Application.Gestures.Model.IContainer _current;
 
         public JohnBPearson.Application.Gestures.Model.IContainer Current
         {
             get
             {
-                return _current;
+               // if(_current == null)
+           //     {
+                    return this.findKeyBoundValue(this._main.selectedKey);
+                //}
+            //    return _current;
             }
         }
         public void updateContainer(string newValue, string newDescription, string selectedKey, bool protect)
@@ -76,7 +102,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(ContainerList.Items);
             this.Form.bindDropDownKeyValues();
-            this.Form.updateUIByKey(newItem.KeyAsChar);
+            this.Form.updateUI(newItem);
 
         }
 
@@ -93,6 +119,55 @@ namespace JohnBPearson.Windows.Forms.Gestures
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.ContainerList.Items);
             return 0;
+        }
+
+        public void executeJsonSave()
+        {
+            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>(this._containerList.MapToEntities());
+            //  System.Windows.Clipboard.SetText(export);
+
+            // Displays a SaveFileDialog so the user can save the Image
+            // assigned to Button2.
+            if(this.SaveDialog == null)
+            {
+
+                SaveDialog = new System.Windows.Forms.SaveFileDialog();
+            }
+                SaveDialog.Filter = "json text|*.json";
+            SaveDialog.Title = "Save all your key bindings to json File";
+            SaveDialog.DefaultExt = "json";
+            string path = Path.Combine(Assembly.GetExecutingAssembly().Location, "JsonObjects"); ;
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            SaveDialog.InitialDirectory =path;
+            SaveDialog.ShowDialog();
+
+            // If the file name is not an empty string open it for saving.
+            if(SaveDialog.FileName != "")
+            {
+                // Saves the Image via a FileStream created by the OpenFile method.
+                using(System.IO.FileStream fs =
+                      (System.IO.FileStream)SaveDialog.OpenFile())
+                {
+
+                    // Saves the Image in the appropriate ImageFormat based upon the
+                    // File type selected in the dialog box.
+                    // NOTE that the FilterIndex property is one-based.
+                    switch(SaveDialog.FilterIndex)
+                    {
+
+                        case 1:
+                            byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+                            fs.Write(exportBytes, 0, exportBytes.Length);
+                            break;
+                    }
+
+                    fs.Close();
+                }
+            }
+
         }
         public IEnumerable<string> Keys
         {
@@ -120,14 +195,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-
-        public JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue, bool setToCurrent = false)
+        // TODO: rename to <code>setcurrent(string keyValue)</code> remove the option to not set as current
+        private JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue)
         {
             var currentItem = this.Containers.ToList().Find((item) => { return item.Key.Value == keyValue; });
-            if(setToCurrent)
-            {
+          
                 this._current = currentItem;
-            }
+           
             return currentItem;
         }
 
@@ -138,8 +212,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.Containers);
+
+            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.Container);
         }
-        private ContainerList LoadHotKeyValues()
+        private void LoadHotKeyValues()
         {
             var strings = new KeyAndDataStringLiterals();
             strings.Values = Properties.Settings.Default.BindableValues;
@@ -154,7 +230,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             string[] arr = new string[26];
 
             this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);
-            return this.ContainerList;
+           // return this.ContainerList;
         }
 
 

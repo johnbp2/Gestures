@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Microsoft.Toolkit.Uwp.Notifications;
 
 
@@ -12,8 +13,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         void updateContainer(string newData, string description, string key, bool protect);
 
-
-        JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue, bool setToCurrent = false);
+        SaveFileDialog SaveDialog {
+            get; set;
+        }
+       // JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue, bool setToCurrent = false);
     }
 
 

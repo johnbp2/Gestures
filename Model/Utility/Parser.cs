@@ -26,7 +26,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             internal Resurrect()
             {
             }
-        
+
         }
 
         private List<bool> _protect;
@@ -51,7 +51,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                 strings.Add(item.ToString());
             }
             return strings;
-                }
+        }
         internal static List<bool> parseStringsToBools(System.Collections.Specialized.StringCollection protectedValues)
         {
             List<bool> listBool = new List<bool>();
@@ -80,7 +80,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
             this._keysString = strings.Keys;
             this._descriptionString = strings.Descriptions;
-            this._isProtected = strings.IsProtected ;
+            this._isProtected = strings.IsProtected;
             this._parent = parent;
             this._protect = strings.Protect;
         }
@@ -102,7 +102,10 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                 }
                 return this._items;
             }
-            private set { this._items = value; }
+            private set
+            {
+                this._items = value;
+            }
         }
 
         private List<string> _keys;
@@ -117,7 +120,10 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                 }
                 return this._keys;
             }
-            private set { _keys = value; }
+            private set
+            {
+                _keys = value;
+            }
         }
 
         //private List<IContainer> hydrateItems(List<IContainer> items)
@@ -132,23 +138,23 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         {
             var list = new List<string>();
 
-            if (value.Contains(delim))
+            if(value.Contains(delim))
             {
                 var arr = new List<char>();
-                    arr.Add(delim);
-                    
-                  list.AddRange(  value.Split(arr.ToArray(), StringSplitOptions.None));
+                arr.Add(delim);
+
+                list.AddRange(value.Split(arr.ToArray(), StringSplitOptions.None));
                 return list;
             }
 
 
-            throw new ArgumentException(string.Concat( delim, " was not found in  ", value));
+            throw new ArgumentException(string.Concat(delim, " was not found in  ", value));
         }
 
         private List<JohnBPearson.Application.Gestures.Model.IContainer> parse()
         {
 
-         
+            //  var securedArray = this._isProtected.ToArray();
             string[] delims = { delim };
             var resultList = new List<IContainer>();
             //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
@@ -158,16 +164,16 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             var descriptions = this._descriptionString.Split(delimChar);
             this._keys = (letters as string[]).ToList();
             var index = 0;
-           // var protectedItems = this._is
-            foreach (var key in this._keys)
+            // var protectedItems = this._is
+            foreach(var key in this._keys)
             {
-                if (index < values.Length)
+                if(index < values.Length)
                 {
                     var value = values[index];
                     var des = descriptions[index];
                     var isProtected = this._isProtected.ToArray()[index];
                     var protect = this._protect.ToArray()[index];
-                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent,key[0], value, des, isProtected, protect);
+                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent, key[0], value, des, isProtected, protect);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -185,11 +191,11 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
         private string[] checkAndRepairValuesArray(string[] values)
         {
-            if (values.Length < 26)
+            if(values.Length < 26)
             {
-             var needToAdd = 26- values.Length;
-                
-                for (int i = 0; i < needToAdd; i++)
+                var needToAdd = 26 - values.Length;
+
+                for(int i = 0; i < needToAdd; i++)
                 {
                     values.Append("");
                 }
@@ -199,15 +205,15 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
         internal static List<int> parseStringsToInts(System.Collections.Specialized.StringCollection strings)
         {
-        var ret = new List<int>();
+            var ret = new List<int>();
             int test = 0;
-           
+
             foreach(string s in strings)
             {
                 if(int.TryParse(s, out test))
                 {
-                
-                ret.Add(test);
+
+                    ret.Add(test);
                 }
                 else
                 {
@@ -226,7 +232,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         //    var tempValues = new List<string>();
         //    var tempDescs = new List<string>();
         //    var values = new StringBuilder();
-           
+
         //    foreach (var item in this.Items)
         //    {
         //        if (item.ObjectState != ObjectState.isDeleted)
@@ -254,11 +260,11 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         //        }
         //    }
         //    var strings = new KeyAndDataStringLiterals();
-          
+
         //    strings.Keys = tempKeys.ToString();
         //    strings.Descriptions = tempDescs.ToString();
         //    strings.Values = this.checkAndRepairValuesArray(tempValues.ToArray()).ToString();
-            
+
         //    return strings;
         //}
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
@@ -10,8 +11,8 @@ namespace JohnBPearson.Application.Gestures.Model
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();
-        List<Domain.Entities.Container> MapToEntities();
-        void MapFromEntities(List<Domain.Entities.Container> entities);
+        List<Domain.Entities.ContainerEntity> MapToEntities();
+        void MapFromEntities(List<Domain.Entities.ContainerEntity> entities);
       
 
         IContainerList Replace(IContainer oldItem, IContainer newItem);

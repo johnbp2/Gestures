@@ -24,7 +24,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void ListView_Load(object sender, EventArgs e)
         {
-
+            this._mainPresenter.SaveDialog = saveFileDialog1;
             //Gateway gt = new Gateway();
 
             //IList<IOperator> list = gt.GetOperators();
@@ -72,39 +72,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>(this._sourceList.MapToEntities());
-          //  System.Windows.Clipboard.SetText(export);
-
-            // Displays a SaveFileDialog so the user can save the Image
-            // assigned to Button2.
-            saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            saveFileDialog1.Filter = "json text|*.json";
-            saveFileDialog1.Title = "Save all your key bindings to json File";
-            saveFileDialog1.ShowDialog();
-
-            // If the file name is not an empty string open it for saving.
-            if(saveFileDialog1.FileName != "")
-            {
-                // Saves the Image via a FileStream created by the OpenFile method.
-                using(System.IO.FileStream fs =
-                      (System.IO.FileStream)saveFileDialog1.OpenFile())
-                {
-
-                    // Saves the Image in the appropriate ImageFormat based upon the
-                    // File type selected in the dialog box.
-                    // NOTE that the FilterIndex property is one-based.
-                    switch(saveFileDialog1.FilterIndex)
-                    {
-
-                        case 1:
-                            byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
-                            fs.Write(exportBytes, 0, exportBytes.Length);
-                            break;
-                    }
-
-                    fs.Close();
-                }
-            }
+            this._mainPresenter.SaveDialog = this.saveFileDialog1;
+            this._mainPresenter.executeJsonSave();
         }
 
         private void aLittleBetter_Import_Click(object sender, EventArgs e)
@@ -113,18 +82,19 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 if(this.openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    using(System.IO.FileStream fs = (FileStream)openFileDialog1.OpenFile())
-                    {
+                    System.IO.FileStream fs = (FileStream)openFileDialog1.OpenFile();
+                    //        using()
+                    //        {
 
 
-                        var doc = System.Text.Json.JsonDocument.Parse(fs);
-                        var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.Container>>();
-                       this._sourceList.MapFromEntities( root);
-                        this._mainPresenter.executeSave(true);
-                        this.rebindsource(this._sourceList);
-                    }
-                    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+                    //            var doc = System.Text.Json.JsonDocument.Parse(fs);
+                    //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
+                    //           this._sourceList.MapFromEntities( root);
+                    JsonService.Import(_sourceList: this._mainPresenter.ContainerList, fs);
+                    this._mainPresenter.executeSave(true);
+                    this.rebindsource(this._sourceList);
                 }
+                //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
             }
         }
 
@@ -140,6 +110,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             }
             dataGridView1.DataSource = containers;
+            
             safeRemoveDataColumn("Data");
             safeRemoveDataColumn("Description");
             safeRemoveDataColumn("KeyAsChar");
@@ -147,6 +118,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             safeRemoveDataColumn("Secured");
             safeRemoveDataColumn("IsDataSecured");
             safeRemoveDataColumn("ObjectState");
+
+            var percentWdth = 100 / dataGridView1.Columns.Count;
+            foreach(DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.Width = percentWdth/100;
+            }
         }
             
             

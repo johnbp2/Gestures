@@ -13,7 +13,28 @@ namespace JohnBPearson.Application.Gestures.Model
         private Utility.Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
-        private List<Domain.Entities.Container> _importBackUpItems;
+        private List<Domain.Entities.ContainerEntity> _importBackUpItems;
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                if(this._userSettingsParser != null)
+                {
+                    return this._userSettingsParser.Keys;
+                }
+                else
+                    return null;
+            }
+        }
+        public IEnumerable<IContainer> Items
+        {
+            get
+            {
+                return this._items;
+            }
+        }
+
+
 
         public ContainerList(Utility.KeyAndDataStringLiterals strings)
         {
@@ -22,51 +43,24 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
-        public IEnumerable<string> Keys
+        public IList<IContainer> GetItems()
         {
-            get
-            {
-                if (this._userSettingsParser != null)
-                {
-                    return this._userSettingsParser.Keys;
-                }
-                else return null;
-            }
+            return this._items;
         }
-        public IEnumerable<IContainer> Items
-        { get { return this._items; } }
 
-
-        public IList<IContainer> GetItems() { return this._items; }
-        //public void Replace(IKeyBoundData newItem, IKeyBoundData oldItem)
-        //{
-
-
-        //    var newKeyBoundValue = Containers.CreateForReplace(newItem.Data, oldItem);
-        //    var index = this.items.IndexOf(oldItem);
-        //    this.items.RemoveAt(index);
-        //    this.items[index] = newItem;
-        //    //  return this.items;
-        //}
-
-       // public Utility.KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
-       // {
-       //     this._importBackUpItems = new List<IContainer>(items);
-       //return this.prepareForSaveInner(items);
-       // }
 
         public Utility.KeyAndDataStringLiterals PrepareDataForSave()
         {
             return prepareForSaveInner(_items);
         }
 
-    
+
 
         private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
         {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
-          //  var secured = new List<string>();
+            //  var secured = new List<string>();
             List<bool> isProtected = new List<bool>();
             List<bool> Protect = new List<bool>();
             int count = 0;
@@ -74,14 +68,14 @@ namespace JohnBPearson.Application.Gestures.Model
 
             {
                 var data = string.Empty;
-               
-                    data = item.Data.Value;
+
+                data = item.Data.Value;
 
                 isProtected.Add(item.Data.isProtected);
                 Protect.Add(item.Data.Protect);
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));
-               // secured.Add(item.IsDataSecured.ToString());
+                // secured.Add(item.IsDataSecured.ToString());
                 if(item.ObjectState == ObjectState.Changed)
                 {
                     count++;
@@ -100,22 +94,22 @@ namespace JohnBPearson.Application.Gestures.Model
 
         public static List<int> paresStringsToInts(System.Collections.Specialized.StringCollection items)
         {
-        return Parser.parseStringsToInts(items);
+            return Parser.parseStringsToInts(items);
         }
         public static System.Collections.Specialized.StringCollection ParseBoolsToStrings(IEnumerable<bool> items)
         {
-            return Utility.Parser.parseBoolsToString(items);                                                                                                                                    
-                
-                
+            return Utility.Parser.parseBoolsToString(items);
+
+
         }
         public IContainerList Replace(IContainer oldItem, IContainer newItem)
         {
-        int index=  this.findIndex(oldItem as Container);
+            int index = this.findIndex(oldItem as Container);
 
             this._items.RemoveAt(index);
             this._items.Insert(index, newItem);
             return this;
-                }
+        }
 
         public static List<bool> ParseStringsToBools(System.Collections.Specialized.StringCollection items)
         {
@@ -130,9 +124,14 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
-        public List<Domain.Entities.Container> MapToEntities()
+        public void import()
         {
-            var list = new List<Domain.Entities.Container>();
+        
+        }
+
+        public List<Domain.Entities.ContainerEntity> MapToEntities()
+        {
+            var list = new List<Domain.Entities.ContainerEntity>();
             foreach(var item in _items)
             {
                 var concreteItem = item as Container;
@@ -142,21 +141,21 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-     
 
-        public void MapFromEntities(List<Domain.Entities.Container> entities)
+
+        public void MapFromEntities(List<Domain.Entities.ContainerEntity> entities)
         {
             // this._importBackUpItems = this.MapFromEntities(entities);
-        var list = new List<IContainer>();
+            this._items = new List<IContainer>();
 
             foreach(var entity in entities)
             {
-               list.Add( Container.Create(this, entity));
+                this._items.Add(Container.Create(this, entity));
             }
-           
 
-          
-            this._items = list;
+
+
+            
         }
     }
 }

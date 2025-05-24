@@ -31,7 +31,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent()  
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
@@ -56,8 +56,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.btnReload = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
+            this.btnSaveJson = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.panelUpper.SuspendLayout();
             this.panelButtons.SuspendLayout();
@@ -83,7 +85,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(461, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(674, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -136,7 +138,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelUpper.AutoSize = true;
-            this.panelUpper.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelUpper.Controls.Add(this.lblHotKeySelected);
             this.panelUpper.Controls.Add(this.lblKey);
             this.panelUpper.Controls.Add(this.cbHotkeySelection);
@@ -150,7 +151,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(432, 421);
+            this.panelUpper.Size = new System.Drawing.Size(625, 421);
             this.panelUpper.TabIndex = 2;
             // 
             // lblHotKeySelected
@@ -202,7 +203,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.cbProtect.TabIndex = 1002;
             this.cbProtect.Text = "Protect?";
             this.cbProtect.UseVisualStyleBackColor = true;
-            this.cbProtect.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.cbProtect.CheckedChanged += new System.EventHandler(this.cbProtect_CheckedChanged);
             // 
             // lblDescription
             // 
@@ -269,10 +270,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.btnReload);
+            this.panelButtons.Controls.Add(this.btnSaveJson);
             this.panelButtons.Controls.Add(this.notBetterButton2);
             this.panelButtons.Location = new System.Drawing.Point(3, 436);
             this.panelButtons.Name = "panelButtons";
-            this.panelButtons.Size = new System.Drawing.Size(438, 49);
+            this.panelButtons.Padding = new System.Windows.Forms.Padding(8);
+            this.panelButtons.Size = new System.Drawing.Size(631, 65);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
@@ -286,7 +289,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.GradientAngle = 10;
             this.aLittleBetter_Save.Image = ((System.Drawing.Image)(resources.GetObject("aLittleBetter_Save.Image")));
             this.aLittleBetter_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.aLittleBetter_Save.Location = new System.Drawing.Point(3, 3);
+            this.aLittleBetter_Save.Location = new System.Drawing.Point(11, 11);
             this.aLittleBetter_Save.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.aLittleBetter_Save.MouseHoverColor1 = System.Drawing.Color.Magenta;
@@ -297,8 +300,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.TabIndex = 3;
             this.aLittleBetter_Save.Text = "Save";
             this.aLittleBetter_Save.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.aLittleBetter_Save.TextLocation_X = 76;
-            this.aLittleBetter_Save.TextLocation_Y = 24;
+            this.aLittleBetter_Save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.aLittleBetter_Save.TextLocation_X = 0;
+            this.aLittleBetter_Save.TextLocation_Y = 0;
             this.aLittleBetter_Save.Transparent1 = 150;
             this.aLittleBetter_Save.Transparent2 = 150;
             this.aLittleBetter_Save.UseVisualStyleBackColor = false;
@@ -306,6 +310,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // btnReload
             // 
+            this.btnReload.AutoEllipsis = true;
             this.btnReload.EndColor = System.Drawing.Color.LightSkyBlue;
             this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnReload.FlatAppearance.BorderSize = 3;
@@ -315,7 +320,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnReload.GradientAngle = 65;
             this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
             this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReload.Location = new System.Drawing.Point(107, 3);
+            this.btnReload.Location = new System.Drawing.Point(115, 11);
             this.btnReload.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.btnReload.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.btnReload.MouseHoverColor1 = System.Drawing.Color.Magenta;
@@ -324,14 +329,45 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnReload.Size = new System.Drawing.Size(151, 43);
             this.btnReload.StartColor = System.Drawing.Color.DimGray;
             this.btnReload.TabIndex = 4;
-            this.btnReload.Text = "Reload All ";
+            this.btnReload.Text = "Reload";
             this.btnReload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReload.TextLocation_X = 76;
-            this.btnReload.TextLocation_Y = 24;
+            this.btnReload.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReload.TextLocation_X = 0;
+            this.btnReload.TextLocation_Y = 0;
             this.btnReload.Transparent1 = 150;
             this.btnReload.Transparent2 = 150;
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnSaveJson
+            // 
+            this.btnSaveJson.EndColor = System.Drawing.Color.LightSkyBlue;
+            this.btnSaveJson.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSaveJson.FlatAppearance.BorderSize = 3;
+            this.btnSaveJson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveJson.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
+            this.btnSaveJson.ForeColor = System.Drawing.Color.Black;
+            this.btnSaveJson.GradientAngle = 65;
+            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
+            this.btnSaveJson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveJson.Location = new System.Drawing.Point(272, 11);
+            this.btnSaveJson.MouseClickColor1 = System.Drawing.Color.Transparent;
+            this.btnSaveJson.MouseClickColor2 = System.Drawing.Color.Magenta;
+            this.btnSaveJson.MouseHoverColor1 = System.Drawing.Color.Magenta;
+            this.btnSaveJson.MouseHoverColor2 = System.Drawing.Color.Transparent;
+            this.btnSaveJson.Name = "btnSaveJson";
+            this.btnSaveJson.Size = new System.Drawing.Size(171, 43);
+            this.btnSaveJson.StartColor = System.Drawing.Color.DimGray;
+            this.btnSaveJson.TabIndex = 10;
+            this.btnSaveJson.Text = "Save Json";
+            this.btnSaveJson.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSaveJson.TextLocation_X = 0;
+            this.btnSaveJson.TextLocation_Y = 0;
+            this.btnSaveJson.Transparent1 = 150;
+            this.btnSaveJson.Transparent2 = 150;
+            this.btnSaveJson.UseVisualStyleBackColor = true;
+            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
             // 
             // notBetterButton2
             // 
@@ -344,7 +380,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.GradientAngle = 65;
             this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
             this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notBetterButton2.Location = new System.Drawing.Point(264, 3);
+            this.notBetterButton2.Location = new System.Drawing.Point(449, 11);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton2.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor1 = System.Drawing.Color.Magenta;
@@ -355,8 +391,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.TabIndex = 5;
             this.notBetterButton2.Text = "Copy payload";
             this.notBetterButton2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.notBetterButton2.TextLocation_X = 76;
-            this.notBetterButton2.TextLocation_Y = 24;
+            this.notBetterButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.notBetterButton2.TextLocation_X = 0;
+            this.notBetterButton2.TextLocation_Y = 0;
             this.notBetterButton2.Transparent1 = 150;
             this.notBetterButton2.Transparent2 = 150;
             this.notBetterButton2.UseVisualStyleBackColor = true;
@@ -367,21 +404,21 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelOuter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelOuter.Controls.Add(this.panelUpper);
             this.panelOuter.Controls.Add(this.panelButtons);
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(461, 530);
+            this.panelOuter.Size = new System.Drawing.Size(674, 530);
             this.panelOuter.TabIndex = 10;
             // 
             // Main
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(461, 666);
+            this.ClientSize = new System.Drawing.Size(674, 666);
             this.Controls.Add(this.panelOuter);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
@@ -396,6 +433,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Main_Resize);
+            this.Controls.SetChildIndex(this.menuStrip1, 0);
+            this.Controls.SetChildIndex(this.panelOuter, 0);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panelUpper.ResumeLayout(false);
@@ -436,6 +475,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbProtect;
+        private SomewhatBetterButton btnSaveJson;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -15,5 +15,9 @@ namespace JohnBPearson.Windows.Interop
             // Invoke the function as a regular managed method.
             MessageBox(IntPtr.Zero, text, caption, 0);
         }
+
+
     }
+
+
 }
