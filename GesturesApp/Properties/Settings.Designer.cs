@@ -336,14 +336,15 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
   <string />
   <string />
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection ByteStrings {
+        public global::System.Collections.Specialized.StringCollection HexStrings {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["ByteStrings"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
             }
             set {
-                this["ByteStrings"] = value;
+                this["HexStrings"] = value;
             }
         }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -375,14 +376,11 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
   <string>false</string>
   <string>false</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection IsProtected
-        {
-            get
-            {
+        public global::System.Collections.Specialized.StringCollection IsProtected {
+            get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["IsProtected"]));
             }
-            set
-            {
+            set {
                 this["IsProtected"] = value;
             }
         }

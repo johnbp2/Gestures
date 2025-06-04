@@ -25,7 +25,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         {
            // this._data = new Data();
         }
-        public string ByteString
+        public string HexString
         {
 
             get; set;
@@ -53,6 +53,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         {
             get; set;
         }
+        [Obsolete]
         public bool Protect
         {
             get;

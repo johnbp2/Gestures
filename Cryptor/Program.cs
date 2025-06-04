@@ -44,8 +44,8 @@ namespace Cryptor
                 switch(optionValue)
                 {
                     case 1:
-                     //   Console.WriteLine(mp.Encrypt(args[1]));
-                    mp.Encrypt(args[1]);
+                     //   Console.WriteLine(mp.EncryptToBytes(args[1]));
+                    mp.EncryptToBytes(args[1]);
                         break;
                     case 2:
                        mp.Decrypt(args[1]);

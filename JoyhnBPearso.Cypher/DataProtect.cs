@@ -12,7 +12,7 @@ namespace JohnBPearson.Cypher
     public class DataProtect
     {
 
-        public byte[] Encrypt(string plainText)
+        public byte[] EncryptToBytes(string plainText)
         {
             ///////////////////////////////
             //
@@ -20,21 +20,17 @@ namespace JohnBPearson.Cypher
             //
             ///////////////////////////////
 
-            // Create the original data to be encrypted (The data length should be a multiple of 16).
-            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(plainText);
-
+            byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(plainText);
+            var backup = toEncrypt.Clone();
             // Add padding of needed
             byte[] paddedToEncryt = DataProtectionService.pad(toEncrypt);
-            // Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");9
-          // Logger.logToConsole($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");
+            // Console.WriteLine($"Original data: {UnicodeEncoding.UTF8.GetString(paddedToEncryt)}");9
+            Logger.logToConsole($"Original data: {UnicodeEncoding.UTF8.GetString(paddedToEncryt)}");
             // Console.WriteLine("Encrypting...");
-          //  Logger.logToConsole("Encrypting...");
-            // Encrypt the data in memory.
+            Logger.logToConsole("Encrypting...");
+            // EncryptToBytes the data in memory.
             DataProtectionService.EncryptInMemoryData(paddedToEncryt, MemoryProtectionScope.SameLogon);
-            string result = UnicodeEncoding.ASCII.GetString(paddedToEncryt);
-          //  Console.WriteLine($"Encrypted data: {result}");
-            // System.Windows.Clipboard.SetText( result );
-            return paddedToEncryt;
+            return paddedToEncryt.Clone() as byte[];
         }
 
         public string Encrypt(string plainText, bool consoleOutput = true)
@@ -46,17 +42,17 @@ namespace JohnBPearson.Cypher
             ///////////////////////////////
 
             // Create the original data to be encrypted (The data length should be a multiple of 16).
-            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(plainText);
+            byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(plainText);
 
             // Add padding of needed
             byte[] paddedToEncryt = DataProtectionService.pad(toEncrypt);
-            // Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");9
-            Logger.logToConsole($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");
+            // Console.WriteLine($"Original data: {UnicodeEncoding.UTF8.GetString(paddedToEncryt)}");9
+            Logger.logToConsole($"Original data: {UnicodeEncoding.UTF8.GetString(paddedToEncryt)}");
             // Console.WriteLine("Encrypting...");
             Logger.logToConsole("Encrypting...");
-            // Encrypt the data in memory.
+            // EncryptToBytes the data in memory.
             DataProtectionService.EncryptInMemoryData(paddedToEncryt, MemoryProtectionScope.SameLogon);
-            string result = UnicodeEncoding.ASCII.GetString(paddedToEncryt);
+            string result = UnicodeEncoding.UTF8.GetString(paddedToEncryt);
             Console.WriteLine($"Encrypted data: {result}");
             // System.Windows.Clipboard.SetText( result );
             return result;
@@ -64,20 +60,29 @@ namespace JohnBPearson.Cypher
 
         public string Decrypt(string encryptedText)
         {
-            byte[] bytes = UnicodeEncoding.ASCII.GetBytes(encryptedText);
+            byte[] bytes = UnicodeEncoding.UTF8.GetBytes(encryptedText);
             DataProtectionService.DecryptInMemoryData(bytes, MemoryProtectionScope.SameLogon);
-            string result = UnicodeEncoding.ASCII.GetString(bytes);
+            string result = UnicodeEncoding.UTF8.GetString(bytes);
             //Console.WriteLine($"Decrypted data: {result}");
             Logger.logToConsole($"Decrypted data: {result}", true);
             return result;
 
         }
+        public string DecryptBytes(byte[] encryptedBytes)
+        {
+           // byte[] bytes = UnicodeEncoding.UTF8.GetBytes(encryptedText);
+            DataProtectionService.DecryptInMemoryData(encryptedBytes, MemoryProtectionScope.SameLogon);
+            string result = UnicodeEncoding.UTF8.GetString(encryptedBytes);
+            //Console.WriteLine($"Decrypted data: {result}");
+            Logger.logToConsole($"Decrypted data: {result}", true);
+            return result;
 
+        }
         public int encryptToFile(string plainText, DirectoryInfo path, string fileName, bool consoleOutput = true)
         {
 
             // Create the original data to be encrypted
-            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(plainText);
+            byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(plainText);
 
             // Create a file.
             
@@ -86,10 +91,10 @@ namespace JohnBPearson.Cypher
             if(consoleOutput)
             {
                 Logger.logToConsole("");
-                Logger.logToConsole($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
+                Logger.logToConsole($"Original data: {UnicodeEncoding.UTF8.GetString(toEncrypt)}");
                 Logger.logToConsole("Encrypting and writing to disk...");
             }
-            // Encrypt a copy of the data to the stream.
+            // EncryptToBytes a copy of the data to the stream.
             int bytesWritten = DataProtectionService.EncryptDataToStream(toEncrypt, DataProtectionScope.CurrentUser, fStream);
 
             fStream.Close();
@@ -107,7 +112,7 @@ namespace JohnBPearson.Cypher
                 // Read from the stream and decrypt the data.
                 byte[] decryptData = DataProtectionService.DecryptDataFromStream(DataProtectionScope.CurrentUser, fStream, length);
                 fStream.Close();
-                var result = UnicodeEncoding.ASCII.GetString(decryptData);
+                var result = UnicodeEncoding.UTF8.GetString(decryptData);
                 if(consoleOutput)
                 {
                     Console.WriteLine($"Decrypted data: {result}");

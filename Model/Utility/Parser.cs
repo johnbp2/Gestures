@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Deployment.Internal;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -72,7 +73,8 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             return listBool;
         }
 
-        private IContainerList _parent;
+        private IContainerList _containerList;
+        private List<int> dataLengths;
         internal Parser(KeyAndDataStringLiterals strings, IContainerList parent)
         {
 
@@ -81,14 +83,17 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             this._keysString = strings.Keys;
             this._descriptionString = strings.Descriptions;
             this._isProtected = strings.IsProtected;
-            this._parent = parent;
+            this._containerList = parent;
             this._protect = strings.Protect;
+            this._byteString = strings.HexStrings;
+            this.dataLengths = strings.DataLengths;
         }
 
         private string _keysString;
         private string _valuesString;
         private string _descriptionString;
         private IEnumerable<bool> _isProtected;
+        private IEnumerable<string> _byteString;
 
         private List<JohnBPearson.Application.Gestures.Model.IContainer> _items;
 
@@ -172,8 +177,10 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                     var value = values[index];
                     var des = descriptions[index];
                     var isProtected = this._isProtected.ToArray()[index];
-                    var protect = this._protect.ToArray()[index];
-                    var hkv = JohnBPearson.Application.Gestures.Model.Container.Create(this._parent, key[0], value, des, isProtected, protect);
+                    var hexString = this._byteString.ToArray()[index];
+                    var length = this.dataLengths.ToArray()[index];
+                    //var protect = this._protect.ToArray()[index];
+                    var hkv = JohnBPearson.Application.Gestures.Model.ContainerFactory.Create(this._containerList, key[0], value, des, isProtected, hexString,length);
                     resultList.Add(hkv);
                     index++;
                 }

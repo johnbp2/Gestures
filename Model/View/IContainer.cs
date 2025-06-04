@@ -32,7 +32,9 @@ namespace JohnBPearson.Application.Gestures.Model
         
         char KeyAsChar { get; }
      
-        ObjectState ObjectState { get; }
+        ObjectState ObjectState {
+            get; set;
+        }
 
 
     }

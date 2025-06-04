@@ -83,7 +83,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
-            updateUI(item as Container);
+            updateUI(item as ContainerFactory);
           //  this.presenter.Current=  
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
@@ -169,10 +169,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void presenterSave(bool overrideAutoSaveSetting)
         {
             var result = this.presenter.executeSave(overrideAutoSaveSetting);
-            if(result == 0)
-            {
-                notifyDerived("Success", "Saved", Properties.Settings.Default.FlashWindow);
-            }
+           
+                notifyDerived("Success", $"Saved. Items that were modified  {result}", Properties.Settings.Default.FlashWindow);
+           
 
 
 
@@ -185,7 +184,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-        public void updateUI(Container currentItem)
+        public void updateUI(ContainerFactory currentItem)
         {
 
             //var currentItem = this.presenter.Current;// this.presenter.findKeyBoundValue(key.ToString());
@@ -271,7 +270,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
               
 
-                this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+                this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked, this.presenter.Current.Data.HexString);
 
             }
         }
@@ -313,7 +312,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             if(this.selectedKey != null)
             {
-                this.updateUI(this.presenter.Current as Container);
+                this.updateUI(this.presenter.Current as ContainerFactory);
 
             }
 
@@ -322,7 +321,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbValue_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, this.cbProtect.Checked);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, this.cbProtect.Checked, 
+                this.presenter.Current.Data.HexString);
         }
 
 
@@ -332,7 +332,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if(this.selectedKey != null)
             {
                 tbValue.Text = this.presenter.Current.Data.Value;
-                this.updateUI(this.presenter.Current as Container);
+                this.updateUI(this.presenter.Current as ContainerFactory);
             }
             var control = (System.Windows.Forms.ComboBox)sender;
             //if (control.Text.Lengths == 1)
@@ -343,11 +343,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-
+         
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbProtect.Checked,this.presenter.Current.Data.HexString);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -367,7 +367,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                   //  var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(this.presenter.Current);
                     base.notify(this, "Copied", this.presenter.Current.Data.Value);
-                    this.updateUI(this.presenter.Current as Container);
+                    this.updateUI(this.presenter.Current as ContainerFactory);
                 }
                 //this.CropValueToClipBoard();
             }
@@ -400,9 +400,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void cbProtect_CheckedChanged(object sender, EventArgs e)
         {
-         
 
-            this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+            this.presenter.Current.Data.setEncryptedValue(this.presenter.Current.Data.Value);
+
+           // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
 
       

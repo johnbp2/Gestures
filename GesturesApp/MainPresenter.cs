@@ -76,17 +76,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //    return _current;
             }
         }
-        public void updateContainer(string newValue, string newDescription, string selectedKey, bool protect)
+        public void updateContainer(string newValue, string newDescription, string selectedKey, bool isProtected, string hexString)
         {
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
             if(itemToUpdate != null)
             {
-                if(itemToUpdate.Description.Value != newDescription || itemToUpdate.Data.Value != newValue
-                    )
-                {
+               
 
-                    this.updateContainerInner(itemToUpdate, newValue, newDescription, protect);
-                }
+                    this.updateContainerInner(itemToUpdate, newValue, newDescription, hexString);
+                
             }
             else
             {
@@ -94,15 +92,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
-        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IContainer oldItem, string newData, string description, bool protect)
+        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IContainer oldItem, string newData, string description, string hexString)
         {
-            var newItem = JohnBPearson.Application.Gestures.Model.Container.Create(this.ContainerList, oldItem.KeyAsChar, newData, description, oldItem.Data.isProtected, protect);
-
-            this.ContainerList.Replace(oldItem, newItem);
+            var newItem = JohnBPearson.Application.Gestures.Model.ContainerFactory.Create(this.ContainerList, oldItem.KeyAsChar, 
+                newData, description, oldItem.Data.isProtected, hexString);
+            oldItem.Data.Value = newData;
+            oldItem.Description.Value = description;
+           // this.ContainerList.Replace(oldItem, newItem);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(ContainerList.Items);
-            this.Form.bindDropDownKeyValues();
-            this.Form.updateUI(newItem);
+          //  this.Form.bindDropDownKeyValues();
+            this.Form.updateUI(oldItem as Application.Gestures.Model.ContainerFactory);
 
         }
 
@@ -111,14 +111,24 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var strings = this.ContainerList.PrepareDataForSave();
             Properties.Settings.Default.BindableValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
-            Properties.Settings.Default.IsProtected.Clear();
+          //  Properties.Settings.Default.IsProtected.Clear();
             Properties.Settings.Default.IsProtected = ContainerList.ParseBoolsToStrings(strings.IsProtected);
             Properties.Settings.Default.Protect = ContainerList.ParseBoolsToStrings(strings.Protect);
+            var settingsCollection = new System.Collections.Specialized.StringCollection();
+            settingsCollection.AddRange(strings.HexStrings.ToArray());
+            Properties.Settings.Default.HexStrings = settingsCollection; //strings.HexStrings.
+            settingsCollection = new System.Collections.Specialized.StringCollection();
+            //var stringLengths = new 
+            strings.DataLengths.ForEach(delegate (int length)
+            {
+                settingsCollection.Add(length.ToString());
+            });
+            Properties.Settings.Default.DataLength = settingsCollection;
             Properties.Settings.Default.Save();
             this.LoadHotKeyValues();
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.ContainerList.Items);
-            return 0;
+            return this.ContainerList.Modified;
         }
 
         public void executeJsonSave()
@@ -136,7 +146,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 SaveDialog.Filter = "json text|*.json";
             SaveDialog.Title = "Save all your key bindings to json File";
             SaveDialog.DefaultExt = "json";
-            string path = Path.Combine(Assembly.GetExecutingAssembly().Location, "JsonObjects"); ;
+            string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.Combine(currentDir, "JsonObjects"); ;
             if(!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -213,7 +224,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.Containers);
 
-            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.Container);
+            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.ContainerFactory);
         }
         private void LoadHotKeyValues()
         {
@@ -221,12 +232,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             strings.Values = Properties.Settings.Default.BindableValues;
             strings.Keys = Properties.Settings.Default.BindableKeys;
             strings.Descriptions = Properties.Settings.Default.Descriptions;
-
+            
             strings.Protect = ContainerList.ParseStringsToBools(Properties.Settings.Default.Protect);
 
             strings.IsProtected = ContainerList.ParseStringsToBools(Properties.Settings.Default.IsProtected);
             strings.DataLengths = ContainerList.paresStringsToInts(Properties.Settings.Default.DataLength);
-            strings.ByteStrings = Properties.Settings.Default.ByteStrings.Cast<string>().ToList();
+           strings.HexStrings = Properties.Settings.Default.HexStrings.Cast<string>().ToList();
             string[] arr = new string[26];
 
             this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);

@@ -54,7 +54,11 @@ namespace JohnBPearson.Application.Gestures.Model
             return prepareForSaveInner(_items);
         }
 
-
+        public int Modified
+        {
+            get;
+            private set;
+        }
 
         private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
         {
@@ -63,31 +67,45 @@ namespace JohnBPearson.Application.Gestures.Model
             //  var secured = new List<string>();
             List<bool> isProtected = new List<bool>();
             List<bool> Protect = new List<bool>();
+            List<string> hexStrings = new List<string>();
+            List<int> dataLength = new List<int>();
             int count = 0;
             foreach(var item in items)
 
             {
                 var data = string.Empty;
-
-                data = item.Data.Value;
+                if(!item.Data.isProtected)
+                     {
+                    data = item.Data.Value;
+                }
 
                 isProtected.Add(item.Data.isProtected);
-                Protect.Add(item.Data.Protect);
+               // Protect.Add(item.Data.Protect);
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));
-                // secured.Add(item.IsDataSecured.ToString());
+                // always add hexstring every time else we lose the position
+                // in the array that tells us which
+                // key a-z this value belongs with. 
+                //if(item.Data.isProtected)
+                //{
+                    hexStrings.Add(item.Data.HexString);
+                //}
+                dataLength.Add(item.Data.Length);
                 if(item.ObjectState == ObjectState.Changed)
                 {
                     count++;
                 }
 
             }
+            this.Modified = count;
             var result = new Utility.KeyAndDataStringLiterals();
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
             result.IsProtected = isProtected;
             result.Protect = Protect;
+            result.HexStrings = hexStrings;
+            result.DataLengths = dataLength;
             return result;
         }
 
@@ -104,7 +122,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
         public IContainerList Replace(IContainer oldItem, IContainer newItem)
         {
-            int index = this.findIndex(oldItem as Container);
+            int index = this.findIndex(oldItem as ContainerFactory);
 
             this._items.RemoveAt(index);
             this._items.Insert(index, newItem);
@@ -118,7 +136,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        internal int findIndex(Container searchItem)
+        internal int findIndex(ContainerFactory searchItem)
         {
             return this._items.FindIndex((itemToCheck) => { return itemToCheck.Equals(searchItem); });
 
@@ -134,7 +152,7 @@ namespace JohnBPearson.Application.Gestures.Model
             var list = new List<Domain.Entities.ContainerEntity>();
             foreach(var item in _items)
             {
-                var concreteItem = item as Container;
+                var concreteItem = item as ContainerFactory;
                 list.Add(concreteItem.MapToEntity());
             }
             return list;
@@ -150,7 +168,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
             foreach(var entity in entities)
             {
-                this._items.Add(Container.Create(this, entity));
+                this._items.Add(ContainerFactory.Create(this, entity));
             }
 
 

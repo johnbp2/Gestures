@@ -29,7 +29,7 @@ internal class DataProtectionService
      //   logToConsole($"Original data: {UnicodeEncoding.ASCII.GetString(paddedToEncryt)}");
         // Console.WriteLine("Encrypting...");
         // logToConsole("Encrypting...");
-        // Encrypt the data in memory.
+        // EncryptToBytes the data in memory.
         EncryptInMemoryData(paddedToEncryt, MemoryProtectionScope.SameLogon);
         string result = UnicodeEncoding.ASCII.GetString(paddedToEncryt);
         Console.WriteLine($"Encrypted data: {result}");
@@ -54,9 +54,9 @@ internal class DataProtectionService
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
         if(Buffer.Length <= 0)
-            throw new ArgumentException("The buffer length was 0.", nameof(Buffer));
+            throw new ArgumentException("The toPad length was 0.", nameof(Buffer));
 
-        // Encrypt the data in memory. The result is stored in the same array as the original data.
+        // EncryptToBytes the data in memory. The result is stored in the same array as the original data.
         ProtectedMemory.Protect(Buffer, Scope);
     }
 
@@ -65,45 +65,56 @@ internal class DataProtectionService
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
         if(Buffer.Length <= 0)
-            throw new ArgumentException("The buffer length was 0.", nameof(Buffer));
+            throw new ArgumentException("The toPad length was 0.", nameof(Buffer));
 
         // Decrypt the data in memory. The result is stored in the same array as the original data.
         ProtectedMemory.Unprotect(Buffer, Scope);
     }
 
 
-    internal static byte[] pad(byte[] buffer)
+    internal static byte[] pad(byte[] toPad, byte pad = 0x0b)
     {
-        int length = buffer.Length;
+        int length = toPad.Length;
         int totalPaddedLength = 0;
         int padding = 0;
         if(length < 16)
         {
             padding = 16 - length;
             totalPaddedLength = 16;
+            return innerPad(toPad, pad, totalPaddedLength);
+        }
+        else if(length == 16)
+        {
+            padding = 0;
+            return toPad;
         }
         else
         {
-           var remainder = length % 16;
+            var remainder = length % 16;
             padding = remainder;
             totalPaddedLength = length + remainder;
+            return innerPad(toPad, pad, totalPaddedLength);
         }
-      
+
+      //  return innerPad(toPad, pad, totalPaddedLength);
+    }
+
+    private static byte[] innerPad(byte[] toPad, byte pad, int totalPaddedLength)
+    {
         byte[] result = new byte[totalPaddedLength];
-        for(int i = 0; i < buffer.Length; i++)
+        for(int i = 0; i < toPad.Length; i++)
         {
             //for(int)
-            result[i] = buffer[i];/// Populates the array with values 1 to 5
+            result[i] = toPad[i];/// Populates the array with values 1 to 5
         }
         // use length. legth is aways 1 place after the end of the array
-        for(int i = buffer.Length; i < result.Length; i++)
+        for(int i = toPad.Length; i < result.Length; i++)
         {
-            byte myByte = 0x0b;
-            result[i] = myByte;
+            byte bytePadding = pad;
+            result[i] = bytePadding;
         }
         return result;
     }
-
 
     internal static byte[] CreateRandomEntropy()
     {
@@ -123,13 +134,13 @@ internal static int EncryptDataToStream(byte[] Buffer, DataProtectionScope Scope
         if(Buffer == null)
             throw new ArgumentNullException(nameof(Buffer));
         if(Buffer.Length <= 0)
-            throw new ArgumentException("The buffer length was 0.", nameof(Buffer));
+            throw new ArgumentException("The toPad length was 0.", nameof(Buffer));
         if(S == null)
             throw new ArgumentNullException(nameof(S));
 
         int length = 0;
 
-        // Encrypt the data and store the result in a new byte array. The original data remains unchanged.
+        // EncryptToBytes the data and store the result in a new byte array. The original data remains unchanged.
         byte[] encryptedData = ProtectedData.Protect(Buffer, null ,Scope);
 
         // Write the encrypted data to a stream.
@@ -188,7 +199,7 @@ internal static int EncryptDataToStream(byte[] Buffer, DataProtectionScope Scope
     //        Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
     //        Console.WriteLine("Encrypting...");
 
-    //        // Encrypt the data in memory.
+    //        // EncryptToBytes the data in memory.
     //        EncryptInMemoryData(toEncrypt, MemoryProtectionScope.SameLogon);
 
     //        Console.WriteLine($"Encrypted data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
@@ -218,7 +229,7 @@ internal static int EncryptDataToStream(byte[] Buffer, DataProtectionScope Scope
     //        Console.WriteLine($"Original data: {UnicodeEncoding.ASCII.GetString(toEncrypt)}");
     //        Console.WriteLine("Encrypting and writing to disk...");
 
-    //        // Encrypt a copy of the data to the stream.
+    //        // EncryptToBytes a copy of the data to the stream.
     //        int bytesWritten = EncryptDataToStream(toEncrypt, entropy, DataProtectionScope.CurrentUser, fStream);
 
     //        fStream.Close();

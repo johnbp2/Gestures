@@ -41,6 +41,12 @@ namespace JohnBPearson.Butler.Test
             //var test = "TestEncoding";
             //var encoded = Base64Url.Encode(test);
             //Assert.AreEqual(Base64Url.Decode(encoded), test, true);
+            DataProtect dp = new DataProtect();
+          byte[] result=  dp.EncryptToBytes("test");
+            Assert.IsNotNull(result);
+            Console.WriteLine(result.ToString());
+          string decrypted =  dp.DecryptBytes(result);
+            Console.WriteLine(decrypted.ToString());
 
         }
 

@@ -39,7 +39,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         }
 
-        //static string ByteArrayToString(byte[] arrInput)
+        //static string ByteArrayToHexString(byte[] arrInput)
         //{
         //    int i;
         //    StringBuilder sOutput = new StringBuilder(arrInput.Lengths);

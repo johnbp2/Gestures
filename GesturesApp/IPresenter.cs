@@ -11,7 +11,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> Containers { get; }
         int executeSave(bool overrideAutoSaveSetting);
 
-        void updateContainer(string newData, string description, string key, bool protect);
+        void updateContainer(string newData, string description, string key, bool isProtected, string hexString);
 
         SaveFileDialog SaveDialog {
             get; set;

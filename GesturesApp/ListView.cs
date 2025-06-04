@@ -103,10 +103,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             IList<IContainer> list = newsourceList.GetItems();
 
-            IList<Container> containers = new List<Container>();
+            IList<ContainerFactory> containers = new List<ContainerFactory>();
             foreach(IContainer conntainer in list)
             {
-                containers.Add((Container)conntainer);
+                containers.Add((ContainerFactory)conntainer);
 
             }
             dataGridView1.DataSource = containers;
