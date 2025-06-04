@@ -1,21 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-
+﻿using System.Diagnostics.Eventing.Reader;
 using JohnBPearson.Application.Gestures.Model.Domain;
-using System.Dynamic;
-using System.Net.Http.Headers;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
 
     public enum ObjectState
     {
-        Loaded,
+        isNew,
         Changed,
-        Deleted,
+        isDeleted,
 
     }
-    public interface IBase
+    public interface IBaseContainer
     {
         InputKey Key { get; }
         
@@ -33,30 +29,33 @@ namespace JohnBPearson.Application.Gestures.Model
             set;
         }
         Description Description { get; set; }
+        
         char KeyAsChar { get; }
      
-        ObjectState ObjectState { get; }
+        ObjectState ObjectState {
+            get; set;
+        }
 
 
     }
-    public interface IContainer : IBase, System.IEquatable<IContainer>
+    public interface IContainer : IBaseContainer, System.IEquatable<IContainer>
     { 
         
-
+       
       
 
 
-        void Update(ref string newValue, string newDescription,  bool isSecure = false);
+      //  void Update(ref string newValue, string newDescription,  bool isProtected ,bool protect);
        // string GetDelimitated();
 
 
         bool setIfLastItem();
 
-   bool IsDataSecured { get; set; }
+    
     }
 
 
-    public interface IKeyBoundCommand: IBase // , IEquatable<IKeyBoundCommand>
+    public interface IKeyBoundCommand: IBaseContainer // , IEquatable<IKeyBoundCommand>
     {
 
     }

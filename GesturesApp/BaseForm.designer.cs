@@ -39,7 +39,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.Controls.Add(this.statusStrip1);
             this.Name = "BaseForm";
             this.Load += new System.EventHandler(this.form_load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BaseForm_Paint);
+            this.SizeChanged += new System.EventHandler(this.BaseForm_SizeChanged);
+            this.PaddingChanged += new System.EventHandler(this.BaseForm_PaddingChanged);
+           //this.Paint += new System.Windows.Forms.PaintEventHandler(this.BaseForm_Paint);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

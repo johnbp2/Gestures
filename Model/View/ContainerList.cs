@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.UI.WebControls;
 using JohnBPearson.Application.Gestures.Model.Domain;
+using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
@@ -11,7 +13,28 @@ namespace JohnBPearson.Application.Gestures.Model
         private Utility.Parser _userSettingsParser;
         private List<IContainer> _items = new List<IContainer>();
         private const string deliminater = "|";
-        private List<Domain.Entities.Container> _importBackUpItems;
+        private List<Domain.Entities.ContainerEntity> _importBackUpItems;
+        public IEnumerable<string> Keys
+        {
+            get
+            {
+                if(this._userSettingsParser != null)
+                {
+                    return this._userSettingsParser.Keys;
+                }
+                else
+                    return null;
+            }
+        }
+        public IEnumerable<IContainer> Items
+        {
+            get
+            {
+                return this._items;
+            }
+        }
+
+
 
         public ContainerList(Utility.KeyAndDataStringLiterals strings)
         {
@@ -20,129 +43,137 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
-        public IEnumerable<string> Keys
+        public IList<IContainer> GetItems()
         {
-            get
-            {
-                if (this._userSettingsParser != null)
-                {
-                    return this._userSettingsParser.Keys;
-                }
-                else return null;
-            }
+            return this._items;
         }
-        public IEnumerable<IContainer> Items
-        { get { return this._items; } }
 
-
-        public IList<IContainer> GetItems() { return this._items; }
-        //public void Replace(IKeyBoundData newItem, IKeyBoundData oldItem)
-        //{
-
-
-        //    var newKeyBoundValue = Containers.CreateForReplace(newItem.Data, oldItem);
-        //    var index = this.items.IndexOf(oldItem);
-        //    this.items.RemoveAt(index);
-        //    this.items[index] = newItem;
-        //    //  return this.items;
-        //}
-
-       // public Utility.KeyAndDataStringLiterals ImportForSave(IEnumerable<IContainer> items)
-       // {
-       //     this._importBackUpItems = new List<IContainer>(items);
-       //return this.prepareForSaveInner(items);
-       // }
 
         public Utility.KeyAndDataStringLiterals PrepareDataForSave()
         {
-            return prepareForSaveInner();
+            return prepareForSaveInner(_items);
         }
 
-        private Utility.KeyAndDataStringLiterals prepareForSaveInner()
+        public int Modified
         {
-            return prepareForSaveInner(_items);
+            get;
+            private set;
         }
 
         private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
         {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
-            var secured = new List<string>();
+            //  var secured = new List<string>();
+            List<bool> isProtected = new List<bool>();
+            List<bool> Protect = new List<bool>();
+            List<string> hexStrings = new List<string>();
+            List<int> dataLength = new List<int>();
             int count = 0;
             foreach(var item in items)
 
             {
                 var data = string.Empty;
-               
+                if(!item.Data.isProtected)
+                     {
                     data = item.Data.Value;
-                
+                }
 
+                isProtected.Add(item.Data.isProtected);
+               // Protect.Add(item.Data.Protect);
                 descriptions.Append(item.Description.GetDeliminated());
                 values.Append(BaseValue.GetDeliminatedData(data));
-                secured.Add(item.IsDataSecured.ToString());
+                // always add hexstring every time else we lose the position
+                // in the array that tells us which
+                // key a-z this value belongs with. 
+                //if(item.Data.isProtected)
+                //{
+                    hexStrings.Add(item.Data.HexString);
+                //}
+                dataLength.Add(item.Data.Length);
                 if(item.ObjectState == ObjectState.Changed)
                 {
                     count++;
                 }
 
             }
+            this.Modified = count;
             var result = new Utility.KeyAndDataStringLiterals();
             result.Values = values.ToString();
             result.Descriptions = descriptions.ToString();
             result.ItemsUpdated = count;
-            result.Secured = secured;
+            result.IsProtected = isProtected;
+            result.Protect = Protect;
+            result.HexStrings = hexStrings;
+            result.DataLengths = dataLength;
             return result;
         }
 
-        public string PrepareDataToSaveAsOneSetting()
+
+        public static List<int> paresStringsToInts(System.Collections.Specialized.StringCollection items)
         {
-            var sbOneString = new StringBuilder();
-            foreach(var item in _items)
-            {
-                sbOneString.Append(this.buildSaveString(item));
+            return Parser.parseStringsToInts(items);
+        }
+        public static System.Collections.Specialized.StringCollection ParseBoolsToStrings(IEnumerable<bool> items)
+        {
+            return Utility.Parser.parseBoolsToString(items);
 
 
-            }
-            return sbOneString.ToString();
+        }
+        public IContainerList Replace(IContainer oldItem, IContainer newItem)
+        {
+            int index = this.findIndex(oldItem as ContainerFactory);
+
+            this._items.RemoveAt(index);
+            this._items.Insert(index, newItem);
+            return this;
         }
 
-        private string buildSaveString(IContainer item)
+        public static List<bool> ParseStringsToBools(System.Collections.Specialized.StringCollection items)
         {
-            return String.Concat(item.Key.GetDeliminated(), item.Data, ContainerList.deliminater);
+            return Utility.Parser.parseStringsToBools(items);
+
         }
 
-        internal int findIndex(Container searchItem)
+
+        internal int findIndex(ContainerFactory searchItem)
         {
             return this._items.FindIndex((itemToCheck) => { return itemToCheck.Equals(searchItem); });
 
         }
 
-        public List<Domain.Entities.Container> MapToEnities()
+        public void import()
         {
-            var list = new List<Domain.Entities.Container>();
+        
+        }
+
+        public List<Domain.Entities.ContainerEntity> MapToEntities()
+        {
+            var list = new List<Domain.Entities.ContainerEntity>();
             foreach(var item in _items)
             {
-                var concreteItem = item as Container;
+                var concreteItem = item as ContainerFactory;
                 list.Add(concreteItem.MapToEntity());
             }
             return list;
         }
 
-     
 
-        public void MapFromEntities(List<Domain.Entities.Container> entities)
+
+
+        public void MapFromEntities(List<Domain.Entities.ContainerEntity> entities)
         {
             // this._importBackUpItems = this.MapFromEntities(entities);
-        var list = new List<IContainer>();
+            this._items = new List<IContainer>();
 
             foreach(var entity in entities)
             {
-               list.Add( Container.Create(this, entity));
+                this._items.Add(ContainerFactory.Create(this, entity));
             }
-           
 
-          
-            this._items = list;
+
+
+            
         }
     }
 }

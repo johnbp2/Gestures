@@ -9,7 +9,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 
     public class Rootobject
     {
-        public Container[] Containers
+        public ContainerEntity[] Containers
         {
             get; set;
         }
@@ -18,15 +18,19 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         }
     }
 
-    public class Container
+    public class ContainerEntity
     {
-        public Container()
+      //  private DataEntity _data;
+        public ContainerEntity()
         {
+           // this._data = new Data();
         }
-        public bool IsDataSecured
+        public string HexString
         {
+
             get; set;
         }
+     
         //public Key Key
         //{
         //    get; set;
@@ -35,10 +39,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         //{
         //    get; set;
         //}
-        public string DataString
-        {
-            get; set;
-        }
+       
         public string DescriptionString
         {
             get; set;
@@ -47,11 +48,35 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         //{
         //    get; set;
         //}
+        #region data object
+        public string DataString
+        {
+            get; set;
+        }
+        [Obsolete]
+        public bool Protect
+        {
+            get;
+            set;
+        }
+
+        public bool IsProtected
+        {
+            get;
+            set;
+        }
         public string KeyAsChar
         {
             get; set;
         }
-        //public object Secured
+        public int Length
+        {
+            get;
+            set;
+        }
+
+        #endregion
+        //public object IsProtected
         //{
         //    get; set;
         //}
@@ -86,7 +111,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
             get; set;
         }
     }
-
+    
     public class Description
     {
 

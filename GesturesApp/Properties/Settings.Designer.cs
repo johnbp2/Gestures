@@ -194,57 +194,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>true</string>
-  <string>false</string>
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string>false</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection isSecured {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["isSecured"]));
-            }
-            set {
-                this["isSecured"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color BgColor {
-            get {
-                return ((global::System.Drawing.Color)(this["BgColor"]));
-            }
-            set {
-                this["BgColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Exception LastExceptionUser {
             get {
                 return ((global::System.Exception)(this["LastExceptionUser"]));
@@ -267,23 +216,172 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection MaskBindableValue {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Protect {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["MaskBindableValue"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["Protect"]));
             }
             set {
-                this["MaskBindableValue"] = value;
+                this["Protect"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Protected {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DataLength {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Protected"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["DataLength"]));
             }
             set {
-                this["Protected"] = value;
+                this["DataLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color BgColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BgColor"]));
+            }
+            set {
+                this["BgColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection HexStrings {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
+            }
+            set {
+                this["HexStrings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+  <string>false</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection IsProtected {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["IsProtected"]));
+            }
+            set {
+                this["IsProtected"] = value;
             }
         }
     }
