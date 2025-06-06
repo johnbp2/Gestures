@@ -91,13 +91,13 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("??,?7??V$[??|||||||||||||||||||||||||")]
-        public string BindableValues {
+        [global::System.Configuration.DefaultSettingValueAttribute("test|||||||||||||||||||||||||")]
+        public string DataValues {
             get {
-                return ((string)(this["BindableValues"]));
+                return ((string)(this["DataValues"]));
             }
             set {
-                this["BindableValues"] = value;
+                this["DataValues"] = value;
             }
         }
         

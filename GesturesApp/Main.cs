@@ -21,7 +21,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private IContainer currentItem;
+        private IValueObjectFactory currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -75,7 +75,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IContainer item)
+        public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IValueObjectFactory item)
         {
             var data = item.Data.Value;
             System.Windows.Forms.Clipboard.SetDataObject(data, true, 10, 100);
@@ -83,7 +83,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
-            updateUI(item as ContainerFactory);
+            updateUI(item as ValueObjectFactory);
           //  this.presenter.Current=  
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
@@ -93,7 +93,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private void CopyValueToClipBoard(IContainer data)
+        private void CopyValueToClipBoard(IValueObjectFactory data)
         {
 
             try
@@ -184,7 +184,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-        public void updateUI(ContainerFactory currentItem)
+        public void updateUI(ValueObjectFactory currentItem)
         {
 
             //var currentItem = this.presenter.Current;// this.presenter.findKeyBoundValue(key.ToString());
@@ -254,7 +254,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var actions = new List<Action<string>>();
             this.presenter.registerHotKeys(this.presenter.Containers);
 
-           // this.presenter.ContainerList
+           // this.presenter.EntityFactory
             this.bindDropDownKeyValues();
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.ValuesToApply.Add("a");
@@ -312,7 +312,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             if(this.selectedKey != null)
             {
-                this.updateUI(this.presenter.Current as ContainerFactory);
+                this.updateUI(this.presenter.Current as ValueObjectFactory);
 
             }
 
@@ -332,7 +332,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if(this.selectedKey != null)
             {
                 tbValue.Text = this.presenter.Current.Data.Value;
-                this.updateUI(this.presenter.Current as ContainerFactory);
+                this.updateUI(this.presenter.Current as ValueObjectFactory);
             }
             var control = (System.Windows.Forms.ComboBox)sender;
             //if (control.Text.Lengths == 1)
@@ -367,7 +367,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                   //  var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(this.presenter.Current);
                     base.notify(this, "Copied", this.presenter.Current.Data.Value);
-                    this.updateUI(this.presenter.Current as ContainerFactory);
+                    this.updateUI(this.presenter.Current as ValueObjectFactory);
                 }
                 //this.CropValueToClipBoard();
             }
@@ -400,9 +400,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void cbProtect_CheckedChanged(object sender, EventArgs e)
         {
+            if(cbProtect.Checked)
+            {
 
-            this.presenter.Current.Data.setEncryptedValue(this.presenter.Current.Data.Value);
-
+                this.presenter.Current.Data.setEncryptedValue(this.presenter.Current.Data.Value);
+            }
            // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
 

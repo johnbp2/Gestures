@@ -25,7 +25,7 @@ namespace JohnBPearson.Butler.Test
 
             var testData = new KeyAndDataStringLiterals() { Descriptions = goodDescString, Keys = goodKeys, Values = goodDataString };
 
-            var lists = new ContainerList(testData);
+            var lists = new EntityFactory(testData);
 
             var result = lists.Items;
 

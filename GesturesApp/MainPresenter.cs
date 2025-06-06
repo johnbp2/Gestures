@@ -26,8 +26,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
     public class MainPresenter : IPresenter<Main>
     {
-        private JohnBPearson.Application.Gestures.Model.ContainerList _containerList;
-        public ContainerList ContainerList
+        private JohnBPearson.Application.Gestures.Model.EntityFactory _containerList;
+        public EntityFactory ContainerList
         {
             get
             {
@@ -63,9 +63,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private JohnBPearson.Application.Gestures.Model.IContainer _current;
+        private JohnBPearson.Application.Gestures.Model.IValueObjectFactory _current;
 
-        public JohnBPearson.Application.Gestures.Model.IContainer Current
+        public JohnBPearson.Application.Gestures.Model.IValueObjectFactory Current
         {
             get
             {
@@ -92,28 +92,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
-        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IContainer oldItem, string newData, string description, string hexString)
+        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IValueObjectFactory oldItem, string newData, string description, string hexString)
         {
-            var newItem = JohnBPearson.Application.Gestures.Model.ContainerFactory.Create(this.ContainerList, oldItem.KeyAsChar, 
+            var newItem = JohnBPearson.Application.Gestures.Model.ValueObjectFactory.Create(this.ContainerList, oldItem.KeyAsChar, 
                 newData, description, oldItem.Data.isProtected, hexString);
             oldItem.Data.Value = newData;
             oldItem.Description.Value = description;
-           // this.ContainerList.Replace(oldItem, newItem);
+           // this.EntityFactory.Replace(oldItem, newItem);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(ContainerList.Items);
           //  this.Form.bindDropDownKeyValues();
-            this.Form.updateUI(oldItem as Application.Gestures.Model.ContainerFactory);
+            this.Form.updateUI(oldItem as Application.Gestures.Model.ValueObjectFactory);
 
         }
 
         public int executeSave(bool overrideAutoSaveSetting)
         {
             var strings = this.ContainerList.PrepareDataForSave();
-            Properties.Settings.Default.BindableValues = strings.Values;
+            Properties.Settings.Default.DataValues = strings.Values;
             Properties.Settings.Default.Descriptions = strings.Descriptions;
           //  Properties.Settings.Default.IsProtected.Clear();
-            Properties.Settings.Default.IsProtected = ContainerList.ParseBoolsToStrings(strings.IsProtected);
-            Properties.Settings.Default.Protect = ContainerList.ParseBoolsToStrings(strings.Protect);
+            Properties.Settings.Default.IsProtected = EntityFactory.ParseBoolsToStrings(strings.IsProtected);
+            Properties.Settings.Default.Protect = EntityFactory.ParseBoolsToStrings(strings.Protect);
             var settingsCollection = new System.Collections.Specialized.StringCollection();
             settingsCollection.AddRange(strings.HexStrings.ToArray());
             Properties.Settings.Default.HexStrings = settingsCollection; //strings.HexStrings.
@@ -192,7 +192,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 return this.ContainerList.Keys;
             }
         }
-        public IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> Containers
+        public IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> Containers
         {
             get
             {
@@ -207,7 +207,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
         // TODO: rename to <code>setcurrent(string keyValue)</code> remove the option to not set as current
-        private JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue)
+        private JohnBPearson.Application.Gestures.Model.IValueObjectFactory findKeyBoundValue(string keyValue)
         {
             var currentItem = this.Containers.ToList().Find((item) => { return item.Key.Value == keyValue; });
           
@@ -224,29 +224,29 @@ namespace JohnBPearson.Windows.Forms.Gestures
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.Containers);
 
-            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.ContainerFactory);
+            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.ValueObjectFactory);
         }
         private void LoadHotKeyValues()
         {
             var strings = new KeyAndDataStringLiterals();
-            strings.Values = Properties.Settings.Default.BindableValues;
+            strings.Values = Properties.Settings.Default.DataValues;
             strings.Keys = Properties.Settings.Default.BindableKeys;
             strings.Descriptions = Properties.Settings.Default.Descriptions;
             
-            strings.Protect = ContainerList.ParseStringsToBools(Properties.Settings.Default.Protect);
+            strings.Protect = EntityFactory.ParseStringsToBools(Properties.Settings.Default.Protect);
 
-            strings.IsProtected = ContainerList.ParseStringsToBools(Properties.Settings.Default.IsProtected);
-            strings.DataLengths = ContainerList.paresStringsToInts(Properties.Settings.Default.DataLength);
+            strings.IsProtected = EntityFactory.ParseStringsToBools(Properties.Settings.Default.IsProtected);
+            strings.DataLengths = EntityFactory.paresStringsToInts(Properties.Settings.Default.DataLength);
            strings.HexStrings = Properties.Settings.Default.HexStrings.Cast<string>().ToList();
             string[] arr = new string[26];
 
-            this._containerList = new JohnBPearson.Application.Gestures.Model.ContainerList(strings);
-           // return this.ContainerList;
+            this._containerList = new JohnBPearson.Application.Gestures.Model.EntityFactory(strings);
+           // return this.EntityFactory;
         }
 
 
 
-        public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> keys)
+        public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> keys)
         {
             GlobalHotKey.removeAllRegistration();
             var result = new StringBuilder();

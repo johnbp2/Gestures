@@ -12,7 +12,7 @@ using Microsoft.SqlServer.Server;
 namespace JohnBPearson.Application.Gestures.Model.Domain
 {
 
-         [DebuggerDisplay("{debugDisplay}")]
+    [DebuggerDisplay("{debugDisplay}")]
     public class Data : BaseValue
     {
 
@@ -24,12 +24,13 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             set;
         }
 
-    public string debugDisplay {
-        get
+        public string debugDisplay
         {
-            return $"Value={this.Value} HexString={this.HexString} Length={this.Length}";
+            get
+            {
+                return $"Value={this.Value} HexString={this.HexString} Length={this.Length}";
+            }
         }
-    } 
         private bool _protect;
         /// <summary>
         /// deprecated do not use
@@ -43,7 +44,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             }
             set
             {
-               
+
             }
         }
 
@@ -52,22 +53,23 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             get;
             private set;
         }
-        protected Data(string value, IContainer parent, bool isProtected, string hexString , int length) : base(value, parent) {
-           // this.Protect = protect;
+        protected Data(string value, IValueObjectFactory parent, bool isProtected, string hexString, int length) : base(value, parent)
+        {
+            // this.Protect = protect;
             this.Length = length;
             this.Value = value;
             this.isProtected = isProtected;
             this._parent = parent;
-         //  this.HexString = HexString;
+            //  this.HexString = HexString;
             if(!string.IsNullOrWhiteSpace(hexString))
             {
                 this._byteValue = this.StringToByteArray(hexString);
             }
         }
 
-      //  private string _value;
+        //  private string _value;
 
-        public  override string Value
+        public override string Value
         {
             get
             {
@@ -77,10 +79,10 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
                     {
                         this.setDecryptedValue();
                         // TODO: need to conver the byte string to its ASCII form
-                    
+
                     }
-                   return base.Value;
-                   
+                    return base.Value;
+
                 }
                 catch(System.Security.Cryptography.CryptographicException e)
                 {
@@ -96,7 +98,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
                     this._parent.ObjectState = ObjectState.Changed;
                 }
             }
-        }   
+        }
 
         /// <summary>
         /// 
@@ -105,13 +107,13 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         public void setEncryptedValue(string plainText)
         {
             //dont encrypt it twice
-         
+
             /// this.isProtected means the data is already encrypted 
             this.Length = plainText.Length;
             if(!this.isProtected)
             {
-              //  base.Value = _dataProtect.Encrypt(plainText, false);
-            
+                //  base.Value = _dataProtect.Encrypt(plainText, false);
+
                 this.ByteValue = _dataProtect.EncryptToBytes(plainText);
                 this.isProtected = true;
                 this._parent.ObjectState = ObjectState.Changed;
@@ -120,32 +122,58 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         private void setDecryptedValue()
         {
-            if(this.isProtected)
+            if(this.isProtected && this.Length > 0 && this.HexString.Length > 0)
             {
+                var paddedValue = this._dataProtect.DecryptBytes(this.StringToByteArray(this.HexString));
+                if(this.Length < 16)
+                {
+                    int padding = 16 - this.Length;
+                    base.Value = paddedValue.Substring(0, padding);
+                }
+                else if(this.Length == 16)
+                {
+                    base.Value = paddedValue;
+                }
+                else
+                {
+                    // must be greater than 16
 
-                base.Value = this._dataProtect.DecryptBytes(this.StringToByteArray(this.HexString)).Remove(this.Length-1);
+                    int padding = this.Length % 16;
+                    if(padding != 0)
+                    {
+                        base.Value = paddedValue.Substring(0, padding);
+                    }
+                    else
+                    {
+
+
+                        base.Value = paddedValue;
+                    }
+
+                }
+                
             }
         }
 
         private byte[] _byteValue;
-        
+
         public byte[] ByteValue
         {
             get
             {
                 //if(this._byteValue != null)
                 //{
-                  return this._byteValue;
+                return this._byteValue;
                 //}
                 //else
-                   
+
                 //{return new byte[];
                 //  }
             }
             private set
             {
-            this._byteValue= value;
-             //   this._hexString = this.ByteArrayToHexString(value);
+                this._byteValue = value;
+                //   this._hexString = this.ByteArrayToHexString(value);
 
             }
         }
@@ -168,19 +196,19 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
                 }
                 else
                 {
-                return string.Empty;
+                    return string.Empty;
                 }
             }
-         
-        
-        
+
+
+
         }
 
 
         private string ByteArrayToHexString(byte[] ba)
         {
 
-            
+
             StringBuilder hex = new StringBuilder(ba.Length * 2);
             foreach(byte b in ba)
                 hex.AppendFormat("{0:x2}", b);
@@ -213,11 +241,11 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             return base.ToString();
         }
 
-        public static Data Create(string value, IContainer parent, bool isProtected, string hexString, int length)
+        public static Data Create(string value, IValueObjectFactory parent, bool isProtected, string hexString, int length)
         {
             return new Data(value, parent, isProtected, hexString, length);
         }
 
-      
+
     }
 }

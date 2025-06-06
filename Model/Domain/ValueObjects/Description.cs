@@ -16,11 +16,11 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
 
 
-        protected Description(IContainer parent) : base(parent)
+        protected Description(IValueObjectFactory parent) : base(parent)
             {
 
             }
-            protected Description(string description, IContainer parent) : base(description, parent)
+            protected Description(string description, IValueObjectFactory parent) : base(description, parent)
             {
               
             }
@@ -33,7 +33,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
                
             }
 
-        public static Description Create(string description, IContainer parent)
+        public static Description Create(string description, IValueObjectFactory parent)
         {
             return new Description(description, parent);
         }

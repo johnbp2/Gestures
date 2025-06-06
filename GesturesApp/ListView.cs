@@ -13,8 +13,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
     public partial class ListView : BaseForm
     {
         private MainPresenter _mainPresenter;
-        private IContainerList _sourceList;
-        public ListView(IContainerList sourceList, MainPresenter presenter)
+        private IEntityFactory _sourceList;
+        public ListView(IEntityFactory sourceList, MainPresenter presenter)
         {
             InitializeComponent();
 
@@ -66,7 +66,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             this._mainPresenter.executeSave(true);
             this.notify(this, "Saved", "Saved list contents", false, ToastOptions.Save);
-            var export = System.Text.Json.JsonSerializer.Serialize<IContainerList>(this._sourceList);
+            var export = System.Text.Json.JsonSerializer.Serialize<IEntityFactory>(this._sourceList);
           //  System.Windows.Clipboard.SetText(export);
         }
 
@@ -99,14 +99,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        public  void rebindsource(IContainerList newsourceList)
+        public  void rebindsource(IEntityFactory newsourceList)
         {
-            IList<IContainer> list = newsourceList.GetItems();
+            IList<IValueObjectFactory> list = newsourceList.GetItems();
 
-            IList<ContainerFactory> containers = new List<ContainerFactory>();
-            foreach(IContainer conntainer in list)
+            IList<ValueObjectFactory> containers = new List<ValueObjectFactory>();
+            foreach(IValueObjectFactory conntainer in list)
             {
-                containers.Add((ContainerFactory)conntainer);
+                containers.Add((ValueObjectFactory)conntainer);
 
             }
             dataGridView1.DataSource = containers;
@@ -118,11 +118,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             safeRemoveDataColumn("Secured");
             safeRemoveDataColumn("IsDataSecured");
             safeRemoveDataColumn("ObjectState");
-
+            int parentWidth = this.transparentFlowPanel1.Width;
             var percentWdth = 100 / dataGridView1.Columns.Count;
+               //var columnwidth = parentWidth * percentWdth;
             foreach(DataGridViewColumn column in dataGridView1.Columns)
             {
-                column.Width = percentWdth/100;
+                column.FillWeight = percentWdth;
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
             
