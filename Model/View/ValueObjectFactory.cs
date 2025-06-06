@@ -6,7 +6,7 @@ namespace JohnBPearson.Application.Gestures.Model
 {
 
     [DebuggerDisplay("{debugDisplay}")]
-    public class ContainerFactory : JohnBPearson.Application.Gestures.Model.IContainer
+    public class ValueObjectFactory : JohnBPearson.Application.Gestures.Model.IValueObjectFactory
     {
 
 
@@ -37,7 +37,7 @@ namespace JohnBPearson.Application.Gestures.Model
         private Domain.Data _data;
 
         private InputKey _key;
-        internal JohnBPearson.Application.Gestures.Model.IContainerList _parent;
+        internal JohnBPearson.Application.Gestures.Model.IEntityFactory _parent;
         public InputKey Key
         {
             get
@@ -149,7 +149,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        protected ContainerFactory(char key, string data, bool isProtected, string hexString, int length)
+        protected ValueObjectFactory(char key, string data, bool isProtected, string hexString, int length)
         {
             this.CreateKeyboardKey(key);
             this.CreateData(data,isProtected, hexString, length);
@@ -169,7 +169,7 @@ namespace JohnBPearson.Application.Gestures.Model
             Description = Domain.Description.Create(description, this);
         }
 
-        protected ContainerFactory(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value,
+        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, char key, string value,
             
             string description, bool isProtected, string hexString, int length)
         {
@@ -181,7 +181,7 @@ namespace JohnBPearson.Application.Gestures.Model
             this._parent = parent;
         }
 
-        protected ContainerFactory(JohnBPearson.Application.Gestures.Model.IContainerList parent, char key, string value,
+        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, char key, string value,
 
           string description, bool isProtected, bool protect, string hexString, int length)
         {
@@ -192,7 +192,7 @@ namespace JohnBPearson.Application.Gestures.Model
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected ContainerFactory(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.ContainerEntity container)
+        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, Domain.Entities.ContainerEntity container)
         {
             this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
@@ -216,17 +216,17 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        public static ContainerFactory Create(JohnBPearson.Application.Gestures.Model.IContainerList parent,
+        public static ValueObjectFactory Create(JohnBPearson.Application.Gestures.Model.IEntityFactory parent,
             char key, string value, string description = "", bool isProtected = false,
             string hexString = "", int length = 0)
         {
-            return new ContainerFactory(parent, key, value, description, isProtected, hexString, length);
+            return new ValueObjectFactory(parent, key, value, description, isProtected, hexString, length);
         }
 
 
-        public static ContainerFactory Create(JohnBPearson.Application.Gestures.Model.IContainerList parent, Domain.Entities.ContainerEntity entity)
+        public static ValueObjectFactory Create(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, Domain.Entities.ContainerEntity entity)
         {
-            return new ContainerFactory(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length);
+            return new ValueObjectFactory(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length);
         }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
@@ -250,7 +250,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
      
 
-        public bool Equals(Gestures.Model.IContainer other)
+        public bool Equals(Gestures.Model.IValueObjectFactory other)
         {
             if(other.Data.Equals(this.Data))
             {
@@ -259,7 +259,7 @@ namespace JohnBPearson.Application.Gestures.Model
             return false;
         }
 
-        public bool Equals(Gestures.Model.ContainerFactory other)
+        public bool Equals(Gestures.Model.ValueObjectFactory other)
         {
             if(other.Data.Equals(this.Data))
             {

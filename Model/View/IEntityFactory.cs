@@ -4,10 +4,10 @@ using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
-    public interface IContainerList
+    public interface IEntityFactory
     {
-        IEnumerable<IContainer> Items { get; }
-        IList<IContainer> GetItems();
+        IEnumerable<IValueObjectFactory> Items { get; }
+        IList<IValueObjectFactory> GetItems();
         IEnumerable<string> Keys { get; }
 
         KeyAndDataStringLiterals PrepareDataForSave();
@@ -15,7 +15,7 @@ namespace JohnBPearson.Application.Gestures.Model
         void MapFromEntities(List<Domain.Entities.ContainerEntity> entities);
       
 
-        IContainerList Replace(IContainer oldItem, IContainer newItem);
+        IEntityFactory Replace(IValueObjectFactory oldItem, IValueObjectFactory newItem);
        // string PrepareDataToSaveAsOneSetting();
     }
 }

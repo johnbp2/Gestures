@@ -8,7 +8,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     public interface IPresenter<T>
     {
         T Form { get; }
-        IEnumerable<JohnBPearson.Application.Gestures.Model.IContainer> Containers { get; }
+        IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> Containers { get; }
         int executeSave(bool overrideAutoSaveSetting);
 
         void updateContainer(string newData, string description, string key, bool isProtected, string hexString);
@@ -16,7 +16,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         SaveFileDialog SaveDialog {
             get; set;
         }
-       // JohnBPearson.Application.Gestures.Model.IContainer findKeyBoundValue(string keyValue, bool setToCurrent = false);
+       // JohnBPearson.Application.Gestures.Model.IValueObjectFactory findKeyBoundValue(string keyValue, bool setToCurrent = false);
     }
 
 

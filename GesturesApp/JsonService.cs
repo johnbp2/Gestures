@@ -20,7 +20,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
         }
 
-        internal static void Export(ContainerList sourceList)
+        internal static void Export(EntityFactory sourceList)
         {
             {
                 var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>(sourceList.MapToEntities());
@@ -60,7 +60,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        internal static void Import(ContainerList _sourceList, FileStream fs)
+        internal static void Import(EntityFactory _sourceList, FileStream fs)
         {
           
                     using(fs)

@@ -7,11 +7,11 @@ using JohnBPearson.Application.Gestures.Model.Utility;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
-    public class ContainerList : IContainerList
+    public class EntityFactory : IEntityFactory
     {
 
         private Utility.Parser _userSettingsParser;
-        private List<IContainer> _items = new List<IContainer>();
+        private List<IValueObjectFactory> _items = new List<IValueObjectFactory>();
         private const string deliminater = "|";
         private List<Domain.Entities.ContainerEntity> _importBackUpItems;
         public IEnumerable<string> Keys
@@ -26,7 +26,7 @@ namespace JohnBPearson.Application.Gestures.Model
                     return null;
             }
         }
-        public IEnumerable<IContainer> Items
+        public IEnumerable<IValueObjectFactory> Items
         {
             get
             {
@@ -36,14 +36,14 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
 
-        public ContainerList(Utility.KeyAndDataStringLiterals strings)
+        public EntityFactory(Utility.KeyAndDataStringLiterals strings)
         {
             this._userSettingsParser = new Utility.Parser(strings, this);
             this._items = this._userSettingsParser.Items;
 
         }
 
-        public IList<IContainer> GetItems()
+        public IList<IValueObjectFactory> GetItems()
         {
             return this._items;
         }
@@ -60,7 +60,7 @@ namespace JohnBPearson.Application.Gestures.Model
             private set;
         }
 
-        private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IContainer> items)
+        private Utility.KeyAndDataStringLiterals prepareForSaveInner(IEnumerable<IValueObjectFactory> items)
         {
             var values = new StringBuilder();
             var descriptions = new StringBuilder();
@@ -74,7 +74,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
             {
                 var data = string.Empty;
-                if(!item.Data.isProtected)
+                if(!item.Data.isProtected || item.Data.HexString.Length ==0)
                      {
                     data = item.Data.Value;
                 }
@@ -120,9 +120,9 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
         }
-        public IContainerList Replace(IContainer oldItem, IContainer newItem)
+        public IEntityFactory Replace(IValueObjectFactory oldItem, IValueObjectFactory newItem)
         {
-            int index = this.findIndex(oldItem as ContainerFactory);
+            int index = this.findIndex(oldItem as ValueObjectFactory);
 
             this._items.RemoveAt(index);
             this._items.Insert(index, newItem);
@@ -136,7 +136,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        internal int findIndex(ContainerFactory searchItem)
+        internal int findIndex(ValueObjectFactory searchItem)
         {
             return this._items.FindIndex((itemToCheck) => { return itemToCheck.Equals(searchItem); });
 
@@ -152,7 +152,7 @@ namespace JohnBPearson.Application.Gestures.Model
             var list = new List<Domain.Entities.ContainerEntity>();
             foreach(var item in _items)
             {
-                var concreteItem = item as ContainerFactory;
+                var concreteItem = item as ValueObjectFactory;
                 list.Add(concreteItem.MapToEntity());
             }
             return list;
@@ -164,11 +164,11 @@ namespace JohnBPearson.Application.Gestures.Model
         public void MapFromEntities(List<Domain.Entities.ContainerEntity> entities)
         {
             // this._importBackUpItems = this.MapFromEntities(entities);
-            this._items = new List<IContainer>();
+            this._items = new List<IValueObjectFactory>();
 
             foreach(var entity in entities)
             {
-                this._items.Add(ContainerFactory.Create(this, entity));
+                this._items.Add(ValueObjectFactory.Create(this, entity));
             }
 
 

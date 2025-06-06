@@ -9,9 +9,9 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
     public abstract class BaseValue : ValueObject<BaseValue>, IBaseValue
     {
-        protected IContainer _parent;
-        protected BaseValue(IContainer parent) { this._parent = parent; }
-        protected BaseValue(string value, IContainer parent)
+        protected IValueObjectFactory _parent;
+        protected BaseValue(IValueObjectFactory parent) { this._parent = parent; }
+        protected BaseValue(string value, IValueObjectFactory parent)
         {
             if (value == null) value = string.Empty;
             this._value = value;
@@ -81,8 +81,21 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             }
         }
 
-
-
+        public static char DelimiterChar
+        {
+            get
+            {
+                return BaseValue._delimiterChar;
+            }
+            private set
+            {
+                if(!char.IsWhiteSpace(value))
+                {
+                    _delimiterChar = value;
+                }
+            }
+        }
+        private static char _delimiterChar = '|';
         private static string _delimiter = "|";
 
 

@@ -87,10 +87,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Parser.cs" />
     <Compile Include="SettingToList.cs" />
-    <Compile Include="View\ContainerFactory.cs" />
-    <Compile Include="View\ContainerList.cs" />
-    <Compile Include="View\IContainer.cs" />
-    <Compile Include="View\IContainerList.cs" />
+    <Compile Include="View\ValueObjectFactory.cs" />
+    <Compile Include="View\EntityFactory.cs" />
+    <Compile Include="View\IValueObjectFactory.cs" />
+    <Compile Include="View\IEntityFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JoyhnBPearso.Cypher\JohnBPearson.Cypher.csproj">
