@@ -77,8 +77,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
                 {
                     if(this.isProtected && !string.IsNullOrWhiteSpace(this.HexString))
                     {
-                        this.setDecryptedValue();
-                        // TODO: need to conver the byte string to its ASCII form
+                        this.decryptValue();
+                       
 
                     }
                     return base.Value;
@@ -104,7 +104,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         /// 
         /// </summary>
         /// <param name="plainText"></param>
-        public void setEncryptedValue(string plainText)
+        public void encryptValue(string plainText)
         {
             //dont encrypt it twice
 
@@ -120,38 +120,54 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             }
         }
 
-        private void setDecryptedValue()
+        public void RemoveEncryption()
+        {
+            this.decryptValue();
+            this.isProtected = false;
+            this._byteValue = new byte[] { };
+            this.Length = 0;
+
+
+
+        }
+
+
+        private void decryptValue()
         {
             if(this.isProtected && this.Length > 0 && this.HexString.Length > 0)
             {
                 var paddedValue = this._dataProtect.DecryptBytes(this.StringToByteArray(this.HexString));
+                int padding = 0;
                 if(this.Length < 16)
                 {
-                    int padding = 16 - this.Length;
-                    base.Value = paddedValue.Substring(0, padding);
+                     padding = 16 - this.Length;
+                  //  base.Value = paddedValue.Remove(this.Length, padding);
                 }
                 else if(this.Length == 16)
                 {
                     base.Value = paddedValue;
+                    return;
                 }
                 else
                 {
                     // must be greater than 16
 
-                    int padding = this.Length % 16;
-                    if(padding != 0)
+                     //
+                    if(this.Length % 16 != 0)
                     {
-                        base.Value = paddedValue.Substring(0, padding);
+                        padding = this.Length % 16;
+                      
                     }
                     else
                     {
 
 
                         base.Value = paddedValue;
+                        return;
                     }
 
                 }
-                
+                base.Value = paddedValue.Remove(this.Length, padding);
             }
         }
 

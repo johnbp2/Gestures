@@ -48,7 +48,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
         private SaveFileDialog _saveDialog;  
-
+        // NEEDS TO be set by caller
         public SaveFileDialog SaveDialog
         {
             get

@@ -190,7 +190,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //var currentItem = this.presenter.Current;// this.presenter.findKeyBoundValue(key.ToString());
             tbValue.Text = currentItem.Data.Value;
             tbDesc.Text = currentItem.Description.Value;
-            cbProtect.Checked = currentItem.Data.Protect;
+            cbProtect.Checked = currentItem.Data.isProtected;
 
             this.lblKey.ClearAndReplace(currentItem.Key.Value.ToLower());
            // this.cbHotkeySelection.SelectedItem = currentItem.Key.Value.ToLower();
@@ -400,10 +400,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void cbProtect_CheckedChanged(object sender, EventArgs e)
         {
-            if(cbProtect.Checked)
+            if(cbProtect.Checked && !this.presenter.Current.Data.isProtected)
             {
 
-                this.presenter.Current.Data.setEncryptedValue(this.presenter.Current.Data.Value);
+                this.presenter.Current.Data.encryptValue(this.presenter.Current.Data.Value);
+                return;
+            }
+            else if(!cbProtect.Checked && this.presenter.Current.Data.isProtected)
+            {
+                this.presenter.Current.Data.RemoveEncryption();
             }
            // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
