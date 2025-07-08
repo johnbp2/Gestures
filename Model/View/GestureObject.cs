@@ -1,12 +1,15 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using JohnBPearson.Application.Gestures.Model.Domain;
 
 namespace JohnBPearson.Application.Gestures.Model
 {
 
     [DebuggerDisplay("{debugDisplay}")]
-    public class ValueObjectFactory : JohnBPearson.Application.Gestures.Model.IValueObjectFactory
+    public class GestureObject : JohnBPearson.Application.Gestures.Model.IGestureObject
     {
 
 
@@ -28,16 +31,24 @@ namespace JohnBPearson.Application.Gestures.Model
            // entity.Protect = this.Data.Protect;
             entity.Length = this.Data.Length;
             entity.HexString = this.Data.HexString;
+            var byteVslue = new List<string>();
+            foreach(byte b in this.Data.Value)
+            {
+                byteVslue.Add(b.ToString());
+            }
+            entity.ByteValue = byteVslue.ToArray();
             return entity;
 
         }
    
+        // TODO: Add yield stmnt
+      //  public override yield
 
 
         private Domain.Data _data;
 
         private InputKey _key;
-        internal JohnBPearson.Application.Gestures.Model.IEntityFactory _parent;
+        internal JohnBPearson.Application.Gestures.Model.IGestureFactory _parent;
         public InputKey Key
         {
             get
@@ -149,14 +160,14 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        protected ValueObjectFactory(char key, string data, bool isProtected, string hexString, int length)
+        protected GestureObject(char key, string data, bool isProtected, string hexString, int length, string[] byteValue)
         {
             this.CreateKeyboardKey(key);
-            this.CreateData(data,isProtected, hexString, length);
+            this.CreateData(data,isProtected, hexString, length, byteValue);
         }
-        private void CreateData(string value, bool isProtected,string hexString, int length)
+        private void CreateData(string value, bool isProtected,string hexString, int length, string[] byteValue)
         {
-            Data = Domain.Data.Create(value, this, isProtected, hexString, length);
+            Data = Domain.Data.Create(value, this, isProtected, hexString, length, byteValue);
         }
 
         private void CreateKeyboardKey(char key)
@@ -169,34 +180,34 @@ namespace JohnBPearson.Application.Gestures.Model
             Description = Domain.Description.Create(description, this);
         }
 
-        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, char key, string value,
+        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, char key, string value,
             
-            string description, bool isProtected, string hexString, int length)
+            string description, bool isProtected, string hexString, int length, string[] byteValue)
         {
             this.CreateKeyboardKey(key);
            
-                this.CreateData(value ,isProtected, hexString, length);
+                this.CreateData(value ,isProtected, hexString, length, byteValue);
             
             this.CreateDescription(description);
             this._parent = parent;
         }
 
-        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, char key, string value,
+        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, char key, string value,
 
-          string description, bool isProtected, bool protect, string hexString, int length)
+          string description, bool isProtected, bool protect, string hexString, int length, string[] byteValue)
         {
             this.CreateKeyboardKey(key);
 
-            this.CreateData(value, isProtected,hexString,length);
+            this.CreateData(value, isProtected,hexString,length, byteValue);
 
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected ValueObjectFactory(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, Domain.Entities.ContainerEntity container)
+        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.ContainerEntity container)
         {
             this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
-            this.CreateData(container.DataString, container.IsProtected, container.HexString, container.Length);
+            this.CreateData(container.DataString, container.IsProtected, container.HexString, container.Length, container.ByteValue);
 
             this.CreateDescription(container.DescriptionString);
             this._parent = parent;
@@ -216,17 +227,18 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        public static ValueObjectFactory Create(JohnBPearson.Application.Gestures.Model.IEntityFactory parent,
+        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent,
             char key, string value, string description = "", bool isProtected = false,
-            string hexString = "", int length = 0)
+            string hexString = "", int length = 0, string[] byteValue = null )
         {
-            return new ValueObjectFactory(parent, key, value, description, isProtected, hexString, length);
+            
+            return new GestureObject(parent, key, value, description, isProtected, hexString, length, byteValue);
         }
 
 
-        public static ValueObjectFactory Create(JohnBPearson.Application.Gestures.Model.IEntityFactory parent, Domain.Entities.ContainerEntity entity)
+        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.ContainerEntity entity)
         {
-            return new ValueObjectFactory(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length);
+            return new GestureObject(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length, entity.ByteValue);
         }
         //internal static Containers CreateForReplace(Data newValue, IKeyBoundData oldItem)
         //{
@@ -250,7 +262,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
      
 
-        public bool Equals(Gestures.Model.IValueObjectFactory other)
+        public bool Equals(Gestures.Model.IGestureObject other)
         {
             if(other.Data.Equals(this.Data))
             {
@@ -259,7 +271,7 @@ namespace JohnBPearson.Application.Gestures.Model
             return false;
         }
 
-        public bool Equals(Gestures.Model.ValueObjectFactory other)
+        public bool Equals(Gestures.Model.GestureObject other)
         {
             if(other.Data.Equals(this.Data))
             {

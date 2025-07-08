@@ -13,8 +13,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
     public partial class ListView : BaseForm
     {
         private MainPresenter _mainPresenter;
-        private IEntityFactory _sourceList;
-        public ListView(IEntityFactory sourceList, MainPresenter presenter)
+        private IGestureFactory _sourceList;
+        public ListView(IGestureFactory sourceList, MainPresenter presenter)
         {
             InitializeComponent();
 
@@ -64,9 +64,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this._mainPresenter.executeSave(true);
+            this._mainPresenter.executeSaveAsUserSettings(true);
             this.notify(this, "Saved", "Saved list contents", false, ToastOptions.Save);
-            var export = System.Text.Json.JsonSerializer.Serialize<IEntityFactory>(this._sourceList);
+            var export = System.Text.Json.JsonSerializer.Serialize<IGestureFactory>(this._sourceList);
           //  System.Windows.Clipboard.SetText(export);
         }
 
@@ -78,11 +78,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void aLittleBetter_Import_Click(object sender, EventArgs e)
         {
-            using(this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog())
-            {
-                if(this.openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    System.IO.FileStream fs = (FileStream)openFileDialog1.OpenFile();
+          //  using(this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog())
+            //{
+                //if(this.openFileDialog1.ShowDialog() == DialogResult.OK)
+                //{
+                  //  System.IO.FileStream fs = (FileStream)openFileDialog1.OpenFile();
                     //        using()
                     //        {
 
@@ -90,23 +90,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
                     //            var doc = System.Text.Json.JsonDocument.Parse(fs);
                     //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
                     //           this._sourceList.MapFromEntities( root);
-                    JsonService.Import(_sourceList: this._mainPresenter.ContainerList, fs);
-                    this._mainPresenter.executeSave(true);
+                    JsonService.Import(_sourceList: this._mainPresenter.ContainerList);
+                    this._mainPresenter.executeSaveAsUserSettings(true);
                     this.rebindsource(this._sourceList);
-                }
+             //   }
                 //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
-            }
+         //   }
         }
 
 
-        public  void rebindsource(IEntityFactory newsourceList)
+        public  void rebindsource(IGestureFactory newsourceList)
         {
-            IList<IValueObjectFactory> list = newsourceList.GetItems();
+            IList<IGestureObject> list = newsourceList.GetItems();
 
-            IList<ValueObjectFactory> containers = new List<ValueObjectFactory>();
-            foreach(IValueObjectFactory conntainer in list)
+            IList<GestureObject> containers = new List<GestureObject>();
+            foreach(IGestureObject conntainer in list)
             {
-                containers.Add((ValueObjectFactory)conntainer);
+                containers.Add((GestureObject)conntainer);
 
             }
             dataGridView1.DataSource = containers;

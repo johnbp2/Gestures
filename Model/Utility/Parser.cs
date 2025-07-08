@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Deployment.Internal;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Web.UI;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
@@ -74,31 +76,40 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             return listBool;
         }
 
-        private IEntityFactory _containerList;
+        private IGestureFactory _containerList;
         private List<int> _dataLengths;
-        internal Parser(KeyAndDataStringLiterals strings, IEntityFactory parent)
+        internal Parser(Dto strings, IGestureFactory parent)
         {
 
-            this._valuesString = strings.Values;
+          //  this._valuesString = strings.Values;
 
-            this._keysString = strings.Keys;
-            this._descriptionString = strings.Descriptions;
+          //  this._keysString = strings.Keys;
+         //   this._descriptionString = strings.Descriptions;
             this._isProtected = strings.IsProtected;
             this._containerList = parent;
             this._protect = strings.Protect;
-            this._byteString = strings.HexStrings;
+            this._hexStrings = strings.HexStrings;
             this._dataLengths = strings.DataLengths;
+            this._dto = strings;
+
+            this._data = strings.Data;
+//this._key = strings.Key;
+            this._description = strings.Description;
         }
-
-        private string _keysString;
-        private string _valuesString;
-        private string _descriptionString;
+        private Dto _dto;
+       // private string _keysString;
+       // private string _valuesString;
+        //private string _descriptionString;
         private IEnumerable<bool> _isProtected;
-        private IEnumerable<string> _byteString;
+        private IEnumerable<string> _hexStrings;
 
-        private List<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> _items;
+       // private string[] _key;
+        private string[] _data;
+        private string[] _description;
 
-        internal List<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> Items
+        private List<JohnBPearson.Application.Gestures.Model.IGestureObject> _items;
+
+        internal List<JohnBPearson.Application.Gestures.Model.IGestureObject> Items
         {
             get
             {
@@ -114,7 +125,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
             }
         }
 
-        private List<string> _keys;
+       // private List<string> _keys;
 
         internal List<string> Keys
         {
@@ -124,15 +135,13 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                 {
                     this._items = parse();
                 }
-                return this._keys;
-            }
-            private set
-            {
-                _keys = value;
+                var list = new List<string>();
+                 this.keysArray.ToList().ForEach(k => list.Add(k.ToString()));
+                return list;
             }
         }
 
-        //private List<IValueObjectFactory> hydrateItems(List<IValueObjectFactory> items)
+        //private List<IGestureObject> hydrateItems(List<IGestureObject> items)
         //{
         //    if(items == null)
         //    {
@@ -156,32 +165,40 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
 
             throw new ArgumentException(string.Concat(delim, " was not found in  ", value));
         }
-
-        private List<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> parse()
+        private char[] keysArray
+        {
+            get
+            {
+              return  new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            
+            }
+        }
+        private List<JohnBPearson.Application.Gestures.Model.IGestureObject> parse()
         {
 
             //  var securedArray = this._isProtected.ToArray();
             string[] delims = { BaseValue.Delimiter };
-            var resultList = new List<IValueObjectFactory>();
-            //   var letters = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
-            var letters = this._keysString.Split(BaseValue.DelimiterChar).Clone();
-            var values = this._valuesString.Split(BaseValue.DelimiterChar);
+            var resultList = new List<IGestureObject>();
+            //   var letterrs = this._keysString.Split(delims, 100, StringSplitOptions.None).Clone();
+          //  var letters = this._keysString.Split(BaseValue.DelimiterChar).Clone();
+           // var values = this._valuesString.Split(BaseValue.DelimiterChar);
             // TODO: fxi so there are no null from here
-            var descriptions = this._descriptionString.Split(BaseValue.DelimiterChar);
-            this._keys = (letters as string[]).ToList();
+          //  var descriptions = this._descriptionString.Split(BaseValue.DelimiterChar);
+            //this._keys = (letters as string[]).ToList();
             var index = 0;
             // var protectedItems = this._is
-            foreach(var key in this._keys)
+          
+            foreach(var key in this.keysArray)
             {
-                if(index < values.Length)
+                if(index < this._data.Length)
                 {
-                    var value = values[index];
-                    var des = descriptions[index];
+                    var value = this._data.ToArray()[index];
+                    var des = this._description.ToArray()[index];
                     var isProtected = this._isProtected.ToArray()[index];
-                    var hexString = this._byteString.ToArray()[index];
+                    var hexString = this._hexStrings.ToArray()[index];
                     var length = this._dataLengths.ToArray()[index];
                     //var protect = this._protect.ToArray()[index];
-                    var hkv = JohnBPearson.Application.Gestures.Model.ValueObjectFactory.Create(this._containerList, key[0], value, des, isProtected, hexString,length);
+                    var hkv = JohnBPearson.Application.Gestures.Model.GestureObject.Create(this._containerList, key, value, des, isProtected, hexString,length);
                     resultList.Add(hkv);
                     index++;
                 }
@@ -191,8 +208,8 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
                 }
 
             }
-            checkAndRepairValuesArray(values);
-            checkAndRepairValuesArray(descriptions);
+         //   checkAndRepairValuesArray(values);
+           // checkAndRepairValuesArray(descriptions);
 
             return resultList;
         }
@@ -233,7 +250,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         }
      //   private const string delim = "|";
        // private const char delimChar = '|';
-        //internal KeyAndDataStringLiterals updateStrings(List<JohnBPearson.Application.Model.IValueObjectFactory> items)
+        //internal Dto updateStrings(List<JohnBPearson.Application.Model.IGestureObject> items)
         //{
         //    var result = 0;
         //    var tempKeys = new List<string>();
@@ -267,7 +284,7 @@ namespace JohnBPearson.Application.Gestures.Model.Utility
         //            tempDescs.Add(item.Description.GetDeliminated());
         //        }
         //    }
-        //    var strings = new KeyAndDataStringLiterals();
+        //    var strings = new Dto();
 
         //    strings.Keys = tempKeys.ToString();
         //    strings.Descriptions = tempDescs.ToString();

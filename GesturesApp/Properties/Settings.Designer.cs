@@ -25,31 +25,10 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z")]
-        public string BindableKeys {
-            get {
-                return ((string)(this["BindableKeys"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Alt + Shift + ")]
         public string KeyBindingModifiers {
             get {
                 return ((string)(this["KeyBindingModifiers"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Test")]
-        public string Reminder01 {
-            get {
-                return ((string)(this["Reminder01"]));
-            }
-            set {
-                this["Reminder01"] = value;
             }
         }
         
@@ -86,18 +65,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["MinimizeToTray"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test|||||||||||||||||||||||||")]
-        public string DataValues {
-            get {
-                return ((string)(this["DataValues"]));
-            }
-            set {
-                this["DataValues"] = value;
             }
         }
         
@@ -148,30 +115,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("test|||||||||||||||||||||||||")]
-        public string Descriptions {
-            get {
-                return ((string)(this["Descriptions"]));
-            }
-            set {
-                this["Descriptions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool StringProtection {
-            get {
-                return ((bool)(this["StringProtection"]));
-            }
-            set {
-                this["StringProtection"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool FlashWindow {
             get {
@@ -211,46 +154,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["LastExceptionApplication"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Protect {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Protect"]));
-            }
-            set {
-                this["Protect"] = value;
             }
         }
         
@@ -349,32 +252,111 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
-  <string>false</string>
+  <string>Test a</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Data {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
+            }
+            set {
+                this["Data"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>Test a</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Description {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Description"]));
+            }
+            set {
+                this["Description"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>False</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection IsProtected {
             get {

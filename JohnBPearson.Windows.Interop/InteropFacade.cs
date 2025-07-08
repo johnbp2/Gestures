@@ -5,7 +5,7 @@ using JohnBPearson.Application.Gestures.Model;
 namespace JohnBPearson.Windows.Interop
 {
 
-    public delegate void KeyBindCallBack(IValueObjectFactory item);
+    public delegate void KeyBindCallBack(IGestureObject item);
     internal class InteropFacade
     {
         public InteropFacade() { }

@@ -53,7 +53,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             get;
             private set;
         }
-        protected Data(string value, IValueObjectFactory parent, bool isProtected, string hexString, int length) : base(value, parent)
+        protected Data(string value, IGestureObject parent, bool isProtected, string hexString, int length, string[] bytes) : base(value, parent)
         {
             // this.Protect = protect;
             this.Length = length;
@@ -63,10 +63,30 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             //  this.HexString = HexString;
             if(!string.IsNullOrWhiteSpace(hexString))
             {
-                this._byteValue = this.StringToByteArray(hexString);
+                this._byteValue = this.parseByteValue(bytes);
             }
         }
 
+
+        private byte[] parseByteValue(string[] bytes)
+        {
+            if(bytes == null)
+            {
+                return new byte[0];
+            }
+
+            byte[] result = new byte[bytes.Length];
+
+            int indexer = 0;
+            foreach(string s in bytes) { 
+
+            byte.TryParse(s, out result[indexer]);
+                indexer++;
+            }
+            
+
+            return result;
+        }
         //  private string _value;
 
         public override string Value
@@ -93,10 +113,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             {
 
                 base.Value = value;
-                if(this._parent != null)
-                {
-                    this._parent.ObjectState = ObjectState.Changed;
-                }
+               
             }
         }
 
@@ -136,11 +153,20 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         {
             if(this.isProtected && this.Length > 0 && this.HexString.Length > 0)
             {
-                var paddedValue = this._dataProtect.DecryptBytes(this.StringToByteArray(this.HexString));
+                var paddedValue = string.Empty;
+                //if(this.ByteValue != null)
+                //{
+                //    paddedValue = this._dataProtect.DecryptBytes(this.ByteValue);
+                //}
+                //else
+                //{
+                    paddedValue = this._dataProtect.DecryptBytes(this.ByteValue);
+                //}
+              
                 int padding = 0;
                 if(this.Length < 16)
                 {
-                     padding = 16 - this.Length;
+                     padding = paddedValue.Length - this.Length;
                   //  base.Value = paddedValue.Remove(this.Length, padding);
                 }
                 else if(this.Length == 16)
@@ -232,6 +258,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         }
         private byte[] StringToByteArray(String hex)
         {
+
             int NumberChars = hex.Length;
             byte[] bytes = new byte[NumberChars / 2];
             for(int i = 0; i < NumberChars; i += 2)
@@ -257,9 +284,9 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
             return base.ToString();
         }
 
-        public static Data Create(string value, IValueObjectFactory parent, bool isProtected, string hexString, int length)
+        public static Data Create(string value, IGestureObject parent, bool isProtected, string hexString, int length, string[] bytes)
         {
-            return new Data(value, parent, isProtected, hexString, length);
+            return new Data(value, parent, isProtected, hexString, length, bytes);
         }
 
 

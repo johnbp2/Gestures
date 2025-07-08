@@ -22,11 +22,11 @@
         }
 
 
-        protected InputKey(IValueObjectFactory parent) : base(parent)
+        protected InputKey(IGestureObject parent) : base(parent)
         {
 
         }
-        protected InputKey(char key, IValueObjectFactory parent) : base(key.ToString(), parent)
+        protected InputKey(char key, IGestureObject parent) : base(key.ToString(), parent)
         {
             this._key = key;
         }
@@ -63,7 +63,7 @@
 
         }
 
-        public static InputKey Create(char key, IValueObjectFactory parent)
+        public static InputKey Create(char key, IGestureObject parent)
         {
             return new InputKey(key, parent);
 

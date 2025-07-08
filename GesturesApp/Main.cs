@@ -9,6 +9,7 @@ using System.Windows.Media.Animation;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
+using System.Text.Json.Serialization;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -21,7 +22,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private IValueObjectFactory currentItem;
+        private IGestureObject currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -39,7 +40,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 }
                 else
                 {
-                    return null;
+                    return Properties.Settings.Default.LastBoundKeyPressed;
                 }
             }
 
@@ -66,7 +67,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.setupTryIconMenu();
         }
 
+        private bool _loadJson = false;
 
+        public void setCommandArgs(string[] args)
+        {
+            if(args != null && args.Length > 0 && args[0] == "-j")
+            {
+                this._loadJson = true;
+                this.presenter.LoadJson = true;
+            }
+        }
 
 
 
@@ -75,7 +85,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IValueObjectFactory item)
+        public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IGestureObject item)
         {
             var data = item.Data.Value;
             System.Windows.Forms.Clipboard.SetDataObject(data, true, 10, 100);
@@ -83,7 +93,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
-            updateUI(item as ValueObjectFactory);
+            updateUI(item as GestureObject);
           //  this.presenter.Current=  
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
@@ -93,7 +103,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private void CopyValueToClipBoard(IValueObjectFactory data)
+        private void CopyValueToClipBoard(IGestureObject data)
         {
 
             try
@@ -168,7 +178,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void presenterSave(bool overrideAutoSaveSetting)
         {
-            var result = this.presenter.executeSave(overrideAutoSaveSetting);
+            var result = this.presenter.executeSaveAsUserSettings(overrideAutoSaveSetting);
            
                 notifyDerived("Success", $"Saved. Items that were modified  {result}", Properties.Settings.Default.FlashWindow);
            
@@ -184,7 +194,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-        public void updateUI(ValueObjectFactory currentItem)
+        public void updateUI(GestureObject currentItem)
         {
 
             //var currentItem = this.presenter.Current;// this.presenter.findKeyBoundValue(key.ToString());
@@ -252,9 +262,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            this.presenter.registerHotKeys(this.presenter.Containers);
+            if(this._loadJson)
+            {
+                JsonService.Import(this.presenter.ContainerList);
+            }
+            else
+            {
 
-           // this.presenter.EntityFactory
+                this.presenter.registerHotKeys(this.presenter.Containers);
+            }
+           // this.presenter.GestureFactory
             this.bindDropDownKeyValues();
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.ValuesToApply.Add("a");
@@ -268,10 +285,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             if(this.selectedKey != null)
             {
-              
 
-                this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked, this.presenter.Current.Data.HexString);
 
+                this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey);
+                this.handleCypher();
             }
         }
 
@@ -312,7 +329,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             if(this.selectedKey != null)
             {
-                this.updateUI(this.presenter.Current as ValueObjectFactory);
+                this.updateUI(this.presenter.Current as GestureObject);
 
             }
 
@@ -321,8 +338,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbValue_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey, this.cbProtect.Checked, 
-                this.presenter.Current.Data.HexString);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, selectedKey);
+            this.handleCypher();
         }
 
 
@@ -332,7 +349,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if(this.selectedKey != null)
             {
                 tbValue.Text = this.presenter.Current.Data.Value;
-                this.updateUI(this.presenter.Current as ValueObjectFactory);
+                this.updateUI(this.presenter.Current as GestureObject);
             }
             var control = (System.Windows.Forms.ComboBox)sender;
             //if (control.Text.Lengths == 1)
@@ -347,7 +364,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
-            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey, this.cbProtect.Checked,this.presenter.Current.Data.HexString);
+            this.presenter.updateContainer(tbValue.Text, tbDesc.Text, this.selectedKey);
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -367,7 +384,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                   //  var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(this.presenter.Current);
                     base.notify(this, "Copied", this.presenter.Current.Data.Value);
-                    this.updateUI(this.presenter.Current as ValueObjectFactory);
+                    this.updateUI(this.presenter.Current as GestureObject);
                 }
                 //this.CropValueToClipBoard();
             }
@@ -400,6 +417,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void cbProtect_CheckedChanged(object sender, EventArgs e)
         {
+            this.handleCypher();
+           // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+        }
+
+
+        private void handleCypher()
+        {
             if(cbProtect.Checked && !this.presenter.Current.Data.isProtected)
             {
 
@@ -410,11 +434,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 this.presenter.Current.Data.RemoveEncryption();
             }
-           // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
-
-      
-
         private void btnSaveJson_Click(object sender, EventArgs e)
         {
             this.presenter.SaveDialog = saveFileDialog1;

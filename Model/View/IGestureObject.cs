@@ -38,7 +38,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
     }
-    public interface IValueObjectFactory : IBaseContainer, System.IEquatable<IValueObjectFactory>
+    public interface IGestureObject : IBaseContainer, System.IEquatable<IGestureObject>
     { 
         
        

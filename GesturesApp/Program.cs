@@ -13,14 +13,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
 
             // var mp = new DataProtectionService();
-            if(SingleInstance.Start())
-            {
-                SingleInstance.ShowFirstInstance();
-            }
+            //if(SingleInstance.Start())
+            //{
+            //    SingleInstance.ShowFirstInstance();
+            //}
                 System.Windows.Forms.Application.EnableVisualStyles();
                 System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
@@ -39,6 +39,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
 
                 var main = new Main(new MainPresenter());
+                main.setCommandArgs(args);
                 main.BackColor = Properties.Settings.Default.BgColor;
                 System.Windows.Forms.Application.Run(main);
             }
@@ -47,7 +48,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 Interop.Utilities.MessageBox(ex.Message, ex.Source);
             }
 
-            SingleInstance.Stop();
+          //  SingleInstance.Stop();
             //}
             //else
             //{
@@ -74,6 +75,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 Exception ex = (Exception)e.ExceptionObject;
                 captureException(ex);
                 MessageBox.Show("Unhandled domain exception:\n\n" + ex.Message);
+                MessageBox.Show(ex.TargetSite.Name);
+                MessageBox.Show(ex.StackTrace);
                 
             }
             catch (Exception exc)
@@ -103,7 +106,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 captureException(t.Exception);
                 MessageBox.Show($"Unhandled exception caught.\n Application is going to close now. {t.Exception.Message}");
-               
+                MessageBox.Show(t.Exception.TargetSite.Name);
+                MessageBox.Show(t.Exception.StackTrace);
+
             }
             catch(Exception ex)
             {
