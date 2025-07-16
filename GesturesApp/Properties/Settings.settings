@@ -2,14 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JohnBPearson.Windows.Forms.Gestures.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="BindableKeys" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z</Value>
-    </Setting>
     <Setting Name="KeyBindingModifiers" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Alt + Shift + </Value>
-    </Setting>
-    <Setting Name="Reminder01" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Test</Value>
     </Setting>
     <Setting Name="MaximumReminders" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -19,9 +13,6 @@
     </Setting>
     <Setting Name="MinimizeToTray" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="DataValues" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test|||||||||||||||||||||||||</Value>
     </Setting>
     <Setting Name="BindableKeysBackup" Type="System.String" Scope="Application">
       <Value Profile="(Default)">a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z</Value>
@@ -34,12 +25,6 @@
     </Setting>
     <Setting Name="BindableCommands" Type="System.String" Scope="User">
       <Value Profile="(Default)">dir||||||||||||||||||pushd c:\|||||||s</Value>
-    </Setting>
-    <Setting Name="Descriptions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">test|||||||||||||||||||||||||</Value>
-    </Setting>
-    <Setting Name="StringProtection" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="FlashWindow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -56,37 +41,6 @@
     </Setting>
     <Setting Name="LastExceptionApplication" Type="System.Exception" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Protect" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="DataLength" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -153,35 +107,96 @@
   &lt;string /&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="Data" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Test a&lt;/string&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Description" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;Test a&lt;/string&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
     <Setting Name="IsProtected" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
-  &lt;string&gt;false&lt;/string&gt;
+  &lt;string&gt;False&lt;/string&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>

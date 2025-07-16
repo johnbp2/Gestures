@@ -35,13 +35,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // BaseForm
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.statusStrip1);
             this.Name = "BaseForm";
             this.Load += new System.EventHandler(this.form_load);
             this.SizeChanged += new System.EventHandler(this.BaseForm_SizeChanged);
             this.PaddingChanged += new System.EventHandler(this.BaseForm_PaddingChanged);
-           //this.Paint += new System.Windows.Forms.PaintEventHandler(this.BaseForm_Paint);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

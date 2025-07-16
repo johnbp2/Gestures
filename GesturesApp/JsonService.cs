@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
+using Microsoft.Win32;
 using Windows.Media.Protection.PlayReady;
 
 namespace JohnBPearson.Windows.Forms.Gestures
@@ -20,7 +21,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
         }
 
-        internal static void Export(EntityFactory sourceList)
+        internal static void Export(GestureFactory sourceList)
         {
             {
                 var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>(sourceList.MapToEntities());
@@ -60,22 +61,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        internal static void Import(EntityFactory _sourceList, FileStream fs)
+        internal static void Import(GestureFactory _sourceList)
         {
-          
-                    using(fs)
+            var of = new System.Windows.Forms.OpenFileDialog();
+            of.Filter = "json text|*.json";
+
+            if(of.FileName != string.Empty)
+            {
+                using(System.IO.FileStream fs =
+                         (System.IO.FileStream)of.OpenFile())
+                
                     {
 
 
-                        var doc = System.Text.Json.JsonDocument.Parse(fs);
-                        var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
-                      _sourceList.MapFromEntities(root);
+                    var doc = System.Text.Json.JsonDocument.Parse(fs);
+                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
+                    _sourceList.MapFromEntities(root);
 
-                    }
-                    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
-                
+                }
+                //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
 
-               
+
+            }
             
         }
     }

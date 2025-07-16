@@ -3,6 +3,7 @@ using System.Drawing;
 using JohnBPearson.Windows.Forms.Controls;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model;
+using JohnBPearson.Windows.Forms.Gestures.Properties;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -23,20 +24,21 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             if (Properties.Settings.Default.ToastOption == ((int)toastType) || Properties.Settings.Default.ToastOption == (int)ToastOptions.All)
             {
-                Bitmap bmp = new Bitmap(@".\ok.bmp");
+                Bitmap bmp = new Bitmap("s:\\source\\repos\\Gestures\\GesturesApp\\Resources\\ok.bmp");
 
                 var popupNotifier = Notification.Create(title, content, bmp);
+                
                 if (flash)
                 {
                     FlashWindow.Flash(window, 10);
                 }
                 //((System.Drawing.Image)(resources.GetObject("popupNotifier1.Image")));1
-                using (popupNotifier as IDisposable)
-                {
+                //using (var popupnotifier = Notification.Create(title, content, bmp) as IDisposable)
+                //{
 
                     popupNotifier.Popup();
 
-                }
+                //}
                
             }
         }

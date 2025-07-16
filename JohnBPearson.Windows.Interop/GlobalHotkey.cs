@@ -23,7 +23,7 @@ public class GlobalHotKey : IDisposable
 
  
 
-    public static bool RegisterHotKey(string aKeyGestureString, JohnBPearson.Application.Gestures.Model.IValueObjectFactory data, KeyBindCallBack callBack)
+    public static bool RegisterHotKey(string aKeyGestureString, JohnBPearson.Application.Gestures.Model.IGestureObject data, KeyBindCallBack callBack)
     {
 
         var c = new KeyGestureConverter();
@@ -34,7 +34,7 @@ public class GlobalHotKey : IDisposable
         }
         return GlobalHotKey.RegisterHotKey(aKeyGesture.Modifiers, aKeyGesture.Key, data, callBack);
     }
-    private static bool RegisterHotKey(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IValueObjectFactory data, KeyBindCallBack callBack)
+    private static bool RegisterHotKey(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IGestureObject data, KeyBindCallBack callBack)
     {
         if (modifier == ModifierKeys.None)
         {
@@ -80,7 +80,7 @@ public class GlobalHotKey : IDisposable
         
     }
 
-    private static void ReplaceAdd(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IValueObjectFactory data,  KeyBindCallBack callBack)
+    private static void ReplaceAdd(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IGestureObject data,  KeyBindCallBack callBack)
     {
         if (registeredHotKeys.ContainsKey(data.Key.Value))
         {
@@ -155,7 +155,7 @@ public class GlobalHotKey : IDisposable
     private class HotKeyWithAction
     {
 
-        public HotKeyWithAction(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IValueObjectFactory data, Action action = null, KeyBindCallBack callBack = null)
+        public HotKeyWithAction(ModifierKeys modifier, System.Windows.Input.Key key, JohnBPearson.Application.Gestures.Model.IGestureObject data, Action action = null, KeyBindCallBack callBack = null)
         {
             Modifier = modifier;
             Key = key;
@@ -172,7 +172,7 @@ public class GlobalHotKey : IDisposable
 
         public ModifierKeys Modifier { get; }
         public System.Windows.Input.Key Key { get; }
-        public JohnBPearson.Application.Gestures.Model.IValueObjectFactory Data { get; }
+        public JohnBPearson.Application.Gestures.Model.IGestureObject Data { get; }
         public Action Action { get; }
         public KeyBindCallBack CallBack { get; }
 

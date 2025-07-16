@@ -8,15 +8,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
     public interface IPresenter<T>
     {
         T Form { get; }
-        IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> Containers { get; }
-        int executeSave(bool overrideAutoSaveSetting);
+        IEnumerable<JohnBPearson.Application.Gestures.Model.IGestureObject> Containers { get; }
+        int executeSaveAsUserSettings(bool overrideAutoSaveSetting);
 
-        void updateContainer(string newData, string description, string key, bool isProtected, string hexString);
+        void updateContainer(string newData, string description, string key);
 
         SaveFileDialog SaveDialog {
             get; set;
         }
-       // JohnBPearson.Application.Gestures.Model.IValueObjectFactory findKeyBoundValue(string keyValue, bool setToCurrent = false);
+       // JohnBPearson.Application.Gestures.Model.IGestureObject findKeyBoundValue(string keyValue, bool setToCurrent = false);
     }
 
 

@@ -14,6 +14,9 @@ using Microsoft.Win32;
 using SaveFileDialog = System.Windows.Forms.SaveFileDialog;
 using System.Reflection;
 using System.IO;
+using System.Collections.Specialized;
+using JohnBPearson.Windows.Forms.Gestures.Properties;
+
 
 
 namespace JohnBPearson.Windows.Forms.Gestures
@@ -26,8 +29,21 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
     public class MainPresenter : IPresenter<Main>
     {
-        private JohnBPearson.Application.Gestures.Model.EntityFactory _containerList;
-        public EntityFactory ContainerList
+        private bool _loadJson;
+        public bool LoadJson
+        {
+            get
+            {
+                return _loadJson;
+            }
+            set
+            {
+                _loadJson = value;
+            }
+        }
+
+        private JohnBPearson.Application.Gestures.Model.GestureFactory _containerList;
+        public GestureFactory ContainerList
         {
             get
             {
@@ -47,7 +63,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
-        private SaveFileDialog _saveDialog;  
+        private SaveFileDialog _saveDialog;
         // NEEDS TO be set by caller
         public SaveFileDialog SaveDialog
         {
@@ -63,28 +79,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private JohnBPearson.Application.Gestures.Model.IValueObjectFactory _current;
+        private JohnBPearson.Application.Gestures.Model.IGestureObject _current;
 
-        public JohnBPearson.Application.Gestures.Model.IValueObjectFactory Current
+        public JohnBPearson.Application.Gestures.Model.IGestureObject Current
         {
             get
             {
-               // if(_current == null)
-           //     {
-                    return this.findKeyBoundValue(this._main.selectedKey);
+                // if(_current == null)
+                //     {
+                return this.findKeyBoundValue(this._main.selectedKey);
                 //}
-            //    return _current;
+                //    return _current;
             }
         }
-        public void updateContainer(string newValue, string newDescription, string selectedKey, bool isProtected, string hexString)
+        public void updateContainer(string newValue, string newDescription, string selectedKey)
         {
             var itemToUpdate = this.findKeyBoundValue(selectedKey);
             if(itemToUpdate != null)
             {
-               
 
-                    this.updateContainerInner(itemToUpdate, newValue, newDescription, hexString);
-                
+
+                this.updateContainerInner(itemToUpdate, newValue, newDescription);
+
             }
             else
             {
@@ -92,44 +108,59 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
-        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IValueObjectFactory oldItem, string newData, string description, string hexString)
+        private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IGestureObject oldItem, string newData, string description)
         {
-            var newItem = JohnBPearson.Application.Gestures.Model.ValueObjectFactory.Create(this.ContainerList, oldItem.KeyAsChar, 
-                newData, description, oldItem.Data.isProtected, hexString);
+            //var newItem = JohnBPearson.Application.Gestures.Model.GestureObject.Create(this.ContainerList, oldItem.KeyAsChar,
+            //    newData, description, oldItem.Data.isProtected, hexString);
             oldItem.Data.Value = newData;
             oldItem.Description.Value = description;
-           // this.EntityFactory.Replace(oldItem, newItem);
+           
+            // this.GestureFactory.Replace(oldItem, newItem);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(ContainerList.Items);
-          //  this.Form.bindDropDownKeyValues();
-            this.Form.updateUI(oldItem as Application.Gestures.Model.ValueObjectFactory);
+            //  this.Form.bindDropDownKeyValues();
+            this.Form.updateUI(oldItem as Application.Gestures.Model.GestureObject);
 
         }
 
-        public int executeSave(bool overrideAutoSaveSetting)
+        public int executeSaveAsUserSettings(bool overrideAutoSaveSetting)
         {
             var strings = this.ContainerList.PrepareDataForSave();
-            Properties.Settings.Default.DataValues = strings.Values;
-            Properties.Settings.Default.Descriptions = strings.Descriptions;
-          //  Properties.Settings.Default.IsProtected.Clear();
-            Properties.Settings.Default.IsProtected = EntityFactory.ParseBoolsToStrings(strings.IsProtected);
-            Properties.Settings.Default.Protect = EntityFactory.ParseBoolsToStrings(strings.Protect);
-            var settingsCollection = new System.Collections.Specialized.StringCollection();
-            settingsCollection.AddRange(strings.HexStrings.ToArray());
-            Properties.Settings.Default.HexStrings = settingsCollection; //strings.HexStrings.
-            settingsCollection = new System.Collections.Specialized.StringCollection();
-            //var stringLengths = new 
-            strings.DataLengths.ForEach(delegate (int length)
-            {
-                settingsCollection.Add(length.ToString());
-            });
-            Properties.Settings.Default.DataLength = settingsCollection;
+            //  Properties.Settings.Default.DataValues = strings.Values;
+            // Properties.Settings.Default.Descriptions = strings.Descriptions;
+            //  Properties.Settings.Default.IsProtected.Clear();
+            Properties.Settings.Default.IsProtected = GestureFactory.ParseBoolsToStrings(strings.IsProtected);
+            //  Properties.Settings.Default.Protect = GestureFactory.ParseBoolsToStrings(strings.Protect);
+            //var settingsCollection = new System.Collections.Specialized.StringCollection();
+            //  settingsCollection.AddRange(strings.HexStrings.ToArray());
+            Properties.Settings.Default.HexStrings = this.copyGenericListToSpecCol<string>(strings.HexStrings); //strings.HexStrings.
+                                                                                                                // settingsCollection = new System.Collections.Specialized.StringCollection();
+                                                                                                                //var stringLengths = new 
+                                                                                                                //strings.DataLengths.ForEach(delegate (int length)                                                                                                                                                                                                                                                                                                                                                                          bb
+                                                                                                                //{
+                                                                                                                //    settingsCollection.Add(length.ToString());
+                                                                                                                //});
+            Properties.Settings.Default.DataLength = this.copyGenericListToSpecCol<int>(strings.DataLengths);
+            Properties.Settings.Default.Data = this.copyGenericListToSpecCol<string>(strings.Data);
+            Properties.Settings.Default.Description = this.copyGenericListToSpecCol<string>(strings.Description);
             Properties.Settings.Default.Save();
-            this.LoadHotKeyValues();
+            this.mapSettingsToDto();
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.ContainerList.Items);
             return this.ContainerList.Modified;
         }
+
+        private StringCollection copyGenericListToSpecCol<T>(IList<T> arr)
+        {
+            //var stringLengths = new 
+            var settingsCollection = new System.Collections.Specialized.StringCollection();
+            arr.ToList<T>().ForEach(action: delegate (T length)
+            {
+                settingsCollection.Add(length.ToString());
+            });
+            return settingsCollection;
+        }
+
 
         public void executeJsonSave()
         {
@@ -143,16 +174,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
                 SaveDialog = new System.Windows.Forms.SaveFileDialog();
             }
-                SaveDialog.Filter = "json text|*.json";
+            SaveDialog.Filter = "json text|*.json";
             SaveDialog.Title = "Save all your key bindings to json File";
             SaveDialog.DefaultExt = "json";
             string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string path = Path.Combine(currentDir, "JsonObjects"); ;
+            string path = Path.Combine(currentDir, "JsonObjects");
+            ;
             if(!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            SaveDialog.InitialDirectory =path;
+            SaveDialog.InitialDirectory = path;
             SaveDialog.ShowDialog();
 
             // If the file name is not an empty string open it for saving.
@@ -186,19 +218,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 if(this.ContainerList == null)
                 {
-                    this.LoadHotKeyValues();
+                    if(this.LoadJson)
+                    {
+
+                        this._containerList = new GestureFactory();
+                    }
+                    else
+                    {
+                        this.mapSettingsToDto();
+                    }
+                    
 
                 }
                 return this.ContainerList.Keys;
             }
         }
-        public IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> Containers
+        public IEnumerable<JohnBPearson.Application.Gestures.Model.IGestureObject> Containers
         {
             get
             {
                 if(this.ContainerList == null)
                 {
-                    LoadHotKeyValues();
+                    mapSettingsToDto();
                 }
                 return this.ContainerList.Items;
             }
@@ -207,46 +248,36 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
         // TODO: rename to <code>setcurrent(string keyValue)</code> remove the option to not set as current
-        private JohnBPearson.Application.Gestures.Model.IValueObjectFactory findKeyBoundValue(string keyValue)
+        private JohnBPearson.Application.Gestures.Model.IGestureObject findKeyBoundValue(string keyValue)
         {
             var currentItem = this.Containers.ToList().Find((item) => { return item.Key.Value == keyValue; });
-          
-                this._current = currentItem;
-           
+
+            this._current = currentItem;
+
             return currentItem;
         }
 
         public void RefreshData()
         {
 
-            this.LoadHotKeyValues();
+            this.mapSettingsToDto();
 
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.Containers);
 
-            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.ValueObjectFactory);
+            this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.GestureObject);
         }
-        private void LoadHotKeyValues()
+        private void mapSettingsToDto()
         {
-            var strings = new KeyAndDataStringLiterals();
-            strings.Values = Properties.Settings.Default.DataValues;
-            strings.Keys = Properties.Settings.Default.BindableKeys;
-            strings.Descriptions = Properties.Settings.Default.Descriptions;
-            
-            strings.Protect = EntityFactory.ParseStringsToBools(Properties.Settings.Default.Protect);
 
-            strings.IsProtected = EntityFactory.ParseStringsToBools(Properties.Settings.Default.IsProtected);
-            strings.DataLengths = EntityFactory.paresStringsToInts(Properties.Settings.Default.DataLength);
-           strings.HexStrings = Properties.Settings.Default.HexStrings.Cast<string>().ToList();
-            string[] arr = new string[26];
-
-            this._containerList = new JohnBPearson.Application.Gestures.Model.EntityFactory(strings);
-           // return this.EntityFactory;
+            var dto = Mapper.mapToDto(Properties.Settings.Default.IsProtected, Settings.Default.DataLength, Settings.Default.HexStrings, Settings.Default.Description, Settings.Default.Data);
+            this._containerList = new GestureFactory(dto);
+            // return this.GestureFactory;
         }
 
 
 
-        public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IValueObjectFactory> keys)
+        public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IGestureObject> keys)
         {
             GlobalHotKey.removeAllRegistration();
             var result = new StringBuilder();

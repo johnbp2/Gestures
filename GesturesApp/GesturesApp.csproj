@@ -72,9 +72,7 @@
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ApplicationIcon>ok.ico</ApplicationIcon>
   </PropertyGroup>
@@ -209,7 +207,6 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="JohnBPearson.com.snk" />
-    <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\JohnBPearson.KeyBindingButler.Model.Container.datasource" />
     <None Include="Properties\DataSources\JohnBPearson.KeyBindingButler.Model.IContainer.datasource" />
     <None Include="Properties\Settings.settings">

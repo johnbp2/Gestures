@@ -21,7 +21,7 @@ namespace JohnBPearson.Windows.Forms.Alert
     /// </summary>
     [ToolboxBitmapAttribute(typeof(PopupNotifier), "Icon.ico")]
     [DefaultEvent("Click")]
-    public class PopupNotifier : Component
+    public class PopupNotifier : Component, IDisposable
     {
         #region Windows API
         private const int SW_SHOWNOACTIVATE = 4;
@@ -91,47 +91,80 @@ namespace JohnBPearson.Windows.Forms.Alert
 
         [Category("Header"), DefaultValue(typeof(Color), "ControlDark")]
         [Description("Color of the window header.")]
-        public Color HeaderColor { get; set; }
+        public Color HeaderColor
+        {
+            get; set;
+        }
 
         [Category("Appearance"), DefaultValue(typeof(Color), "Control")]
         [Description("Color of the window background.")]
-        public Color BodyColor { get; set; }
+        public Color BodyColor
+        {
+            get; set;
+        }
 
         [Category("Title"), DefaultValue(typeof(Color), "Gray")]
         [Description("Color of the title text.")]
-        public Color TitleColor { get; set; }
+        public Color TitleColor
+        {
+            get; set;
+        }
 
         [Category("Content"), DefaultValue(typeof(Color), "ControlText")]
         [Description("Color of the content text.")]
-        public Color ContentColor { get; set; }
+        public Color ContentColor
+        {
+            get; set;
+        }
 
         [Category("Appearance"), DefaultValue(typeof(Color), "WindowFrame")]
         [Description("Color of the window border.")]
-        public Color BorderColor { get; set; }
+        public Color BorderColor
+        {
+            get; set;
+        }
 
         [Category("Buttons"), DefaultValue(typeof(Color), "WindowFrame")]
         [Description("Border color of the close and options buttons when the mouse is over them.")]
-        public Color ButtonBorderColor { get; set; }
+        public Color ButtonBorderColor
+        {
+            get; set;
+        }
 
         [Category("Buttons"), DefaultValue(typeof(Color), "Highlight")]
         [Description("Background color of the close and options buttons when the mouse is over them.")]
-        public Color ButtonHoverColor { get; set; }
+        public Color ButtonHoverColor
+        {
+            get; set;
+        }
 
         [Category("Content"), DefaultValue(typeof(Color), "HotTrack")]
         [Description("Color of the content text when the mouse is hovering over it.")]
-        public Color ContentHoverColor { get; set; }
+        public Color ContentHoverColor
+        {
+            get; set;
+        }
 
         [Category("Appearance"), DefaultValue(50)]
         [Description("Gradient of window background color.")]
-        public int GradientPower { get; set; }
+        public int GradientPower
+        {
+            get; set;
+        }
 
         [Category("Content")]
         [Description("Font of the content text.")]
-        public Font ContentFont { get; set; }
+        public Font ContentFont
+        {
+            get; set;
+        }
 
         [Category("Title")]
         [Description("Font of the title.")]
-        public Font TitleFont { get; set; }
+        public Font TitleFont
+        {
+            get; set;
+        }
 
         [Category("Image")]
         [Description("Size of the icon image.")]
@@ -139,9 +172,9 @@ namespace JohnBPearson.Windows.Forms.Alert
         {
             get
             {
-                if (imageSize.Width == 0)
+                if(imageSize.Width == 0)
                 {
-                    if (Image != null)
+                    if(Image != null)
                     {
                         return Image.Size;
                     }
@@ -155,7 +188,10 @@ namespace JohnBPearson.Windows.Forms.Alert
                     return imageSize;
                 }
             }
-            set { imageSize = value; }
+            set
+            {
+                imageSize = value;
+            }
         }
 
         public void ResetImageSize()
@@ -172,27 +208,45 @@ namespace JohnBPearson.Windows.Forms.Alert
 
         [Category("Image")]
         [Description("Icon image to display.")]
-        public Image Image { get; set; }
+        public Image Image
+        {
+            get; set;
+        }
 
         [Category("Header"), DefaultValue(true)]
         [Description("Whether to show a 'grip' image within the window header.")]
-        public bool ShowGrip { get; set; }
+        public bool ShowGrip
+        {
+            get; set;
+        }
 
         [Category("Behavior"), DefaultValue(true)]
         [Description("Whether to scroll the window or only fade it.")]
-        public bool Scroll { get; set; }
+        public bool Scroll
+        {
+            get; set;
+        }
 
         [Category("Content")]
         [Description("Content text to display.")]
-        public string ContentText { get; set; }
+        public string ContentText
+        {
+            get; set;
+        }
 
         [Category("Title")]
         [Description("Title text to display.")]
-        public string TitleText { get; set; }
+        public string TitleText
+        {
+            get; set;
+        }
 
         [Category("Title")]
         [Description("Padding of title text.")]
-        public Padding TitlePadding { get; set; }
+        public Padding TitlePadding
+        {
+            get; set;
+        }
 
         private void ResetTitlePadding()
         {
@@ -206,7 +260,10 @@ namespace JohnBPearson.Windows.Forms.Alert
 
         [Category("Content")]
         [Description("Padding of content text.")]
-        public Padding ContentPadding { get; set; }
+        public Padding ContentPadding
+        {
+            get; set;
+        }
 
         private void ResetContentPadding()
         {
@@ -220,7 +277,10 @@ namespace JohnBPearson.Windows.Forms.Alert
 
         [Category("Image")]
         [Description("Padding of icon image.")]
-        public Padding ImagePadding { get; set; }
+        public Padding ImagePadding
+        {
+            get; set;
+        }
 
         private void ResetImagePadding()
         {
@@ -234,39 +294,66 @@ namespace JohnBPearson.Windows.Forms.Alert
 
         [Category("Header"), DefaultValue(9)]
         [Description("Height of window header.")]
-        public int HeaderHeight { get; set; }
+        public int HeaderHeight
+        {
+            get; set;
+        }
 
         [Category("Buttons"), DefaultValue(true)]
         [Description("Whether to show the close button.")]
-        public bool ShowCloseButton { get; set; }
+        public bool ShowCloseButton
+        {
+            get; set;
+        }
 
         [Category("Buttons"), DefaultValue(false)]
         [Description("Whether to show the options button.")]
-        public bool ShowOptionsButton { get; set; }
+        public bool ShowOptionsButton
+        {
+            get; set;
+        }
 
         [Category("Behavior")]
         [Description("Context menu to open when clicking on the options button.")]
-        public ContextMenuStrip OptionsMenu { get; set; }
+        public ContextMenuStrip OptionsMenu
+        {
+            get; set;
+        }
 
         [Category("Behavior"), DefaultValue(3000)]
         [Description("Time in milliseconds the window is displayed.")]
-        public int Delay { get; set; }
+        public int Delay
+        {
+            get; set;
+        }
 
         [Category("Behavior"), DefaultValue(1000)]
         [Description("Time in milliseconds needed to make the window appear or disappear.")]
-        public int AnimationDuration { get; set; }
+        public int AnimationDuration
+        {
+            get; set;
+        }
 
         [Category("Behavior"), DefaultValue(10)]
         [Description("Interval in milliseconds used to draw the animation.")]
-        public int AnimationInterval { get; set; }
+        public int AnimationInterval
+        {
+            get; set;
+        }
 
         [Category("Appearance")]
         [Description("Size of the window.")]
-        public Size Size { get; set; }
+        public Size Size
+        {
+            get; set;
+        }
 
         [Category("Content")]
         [Description("Show Content Right To Left,نمایش پیغام چپ به راست فعال شود")]
-        public bool IsRightToLeft { get; set; }
+        public bool IsRightToLeft
+        {
+            get; set;
+        }
         #endregion
 
         /// <summary>
@@ -324,12 +411,12 @@ namespace JohnBPearson.Windows.Forms.Alert
         /// </summary>
         public void Popup()
         {
-            if (!disposed)
+            if(!disposed)
             {
-                if (!frmPopup.Visible)
+                if(!frmPopup.Visible)
                 {
                     frmPopup.Size = Size;
-                    if (Scroll)
+                    if(Scroll)
                     {
                         posStart = Screen.PrimaryScreen.WorkingArea.Bottom;
                         posStop = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
@@ -356,10 +443,10 @@ namespace JohnBPearson.Windows.Forms.Alert
                 }
                 else
                 {
-                    if (!isAppearing)
+                    if(!isAppearing)
                     {
                         frmPopup.Size = Size;
-                        if (Scroll)
+                        if(Scroll)
                         {
                             posStart = frmPopup.Top;
                             posStop = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
@@ -391,7 +478,7 @@ namespace JohnBPearson.Windows.Forms.Alert
             tmrAnimation.Stop();
             tmrWait.Stop();
             frmPopup.Hide();
-            if (markedForDisposed)
+            if(markedForDisposed)
             {
                 Dispose();
             }
@@ -406,7 +493,7 @@ namespace JohnBPearson.Windows.Forms.Alert
         private void frmPopup_ContextMenuClosed(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Menu closed.");
-            if (!mouseIsOn)
+            if(!mouseIsOn)
             {
                 tmrWait.Interval = Delay;
                 tmrWait.Start();
@@ -435,7 +522,7 @@ namespace JohnBPearson.Windows.Forms.Alert
         /// <param name="e"></param>
         private void frmPopup_LinkClick(object sender, EventArgs e)
         {
-            if (Click != null)
+            if(Click != null)
             {
                 Click(this, EventArgs.Empty);
             }
@@ -450,7 +537,7 @@ namespace JohnBPearson.Windows.Forms.Alert
         private void frmPopup_CloseClick(object sender, EventArgs e)
         {
             Hide();
-            if (Close != null)
+            if(Close != null)
             {
                 Close(this, EventArgs.Empty);
             }
@@ -463,13 +550,15 @@ namespace JohnBPearson.Windows.Forms.Alert
         /// <param name="e"></param>
         private void frmPopup_VisibleChanged(object sender, EventArgs e)
         {
-            if (frmPopup.Visible)
+            if(frmPopup.Visible)
             {
-                if (Appear != null) Appear(this, EventArgs.Empty);
+                if(Appear != null)
+                    Appear(this, EventArgs.Empty);
             }
             else
             {
-                if (Disappear != null) Disappear(this, EventArgs.Empty);
+                if(Disappear != null)
+                    Disappear(this, EventArgs.Empty);
             }
         }
 
@@ -484,7 +573,7 @@ namespace JohnBPearson.Windows.Forms.Alert
 
             int posCurrent = (int)(posStart + ((posStop - posStart) * elapsed / realAnimationDuration));
             bool neg = (posStop - posStart) < 0;
-            if ((neg && posCurrent < posStop) ||
+            if((neg && posCurrent < posStop) ||
                 (!neg && posCurrent > posStop))
             {
                 posCurrent = posStop;
@@ -492,7 +581,7 @@ namespace JohnBPearson.Windows.Forms.Alert
 
             double opacityCurrent = opacityStart + ((opacityStop - opacityStart) * elapsed / realAnimationDuration);
             neg = (opacityStop - opacityStart) < 0;
-            if ((neg && opacityCurrent < opacityStop) ||
+            if((neg && opacityCurrent < opacityStop) ||
                 (!neg && opacityCurrent > opacityStop))
             {
                 opacityCurrent = opacityStop;
@@ -502,16 +591,16 @@ namespace JohnBPearson.Windows.Forms.Alert
             frmPopup.Opacity = opacityCurrent;
 
             // animation has ended
-            if (elapsed > realAnimationDuration)
+            if(elapsed > realAnimationDuration)
             {
 
                 sw.Reset();
                 tmrAnimation.Stop();
                 System.Diagnostics.Debug.WriteLine("Animation stopped.");
 
-                if (isAppearing)
+                if(isAppearing)
                 {
-                    if (Scroll)
+                    if(Scroll)
                     {
                         posStart = Screen.PrimaryScreen.WorkingArea.Bottom - frmPopup.Height;
                         posStop = Screen.PrimaryScreen.WorkingArea.Bottom;
@@ -529,7 +618,7 @@ namespace JohnBPearson.Windows.Forms.Alert
                     isAppearing = false;
                     maxPosition = frmPopup.Top;
                     maxOpacity = frmPopup.Opacity;
-                    if (!mouseIsOn)
+                    if(!mouseIsOn)
                     {
                         tmrWait.Stop();
                         tmrWait.Start();
@@ -539,7 +628,7 @@ namespace JohnBPearson.Windows.Forms.Alert
                 else
                 {
                     frmPopup.Hide();
-                    if (markedForDisposed)
+                    if(markedForDisposed)
                         Dispose();
                 }
             }
@@ -568,7 +657,7 @@ namespace JohnBPearson.Windows.Forms.Alert
         private void frmPopup_MouseLeave(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("MouseLeave");
-            if (frmPopup.Visible && (OptionsMenu == null || !OptionsMenu.Visible))
+            if(frmPopup.Visible && (OptionsMenu == null || !OptionsMenu.Visible))
             {
                 tmrWait.Interval = Delay;
                 tmrWait.Start();
@@ -585,7 +674,7 @@ namespace JohnBPearson.Windows.Forms.Alert
         private void frmPopup_MouseEnter(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("MouseEnter");
-            if (!isAppearing)
+            if(!isAppearing)
             {
                 frmPopup.Top = maxPosition;
                 frmPopup.Opacity = maxOpacity;
@@ -605,17 +694,17 @@ namespace JohnBPearson.Windows.Forms.Alert
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (!disposed)
+            if(!disposed)
             {
-                if (isAppearing)
+                if(isAppearing)
                 {
                     markedForDisposed = true;
                     return;
                 }
 
-                if (disposing)
+                if(disposing)
                 {
-                    if (frmPopup != null)
+                    if(frmPopup != null)
                         frmPopup.Dispose();
                     tmrAnimation.Tick -= tmAnimation_Tick;
                     tmrWait.Tick -= tmWait_Tick;
@@ -626,6 +715,11 @@ namespace JohnBPearson.Windows.Forms.Alert
                 disposed = true;
             }
             base.Dispose(disposing);
+            base.Dispose(disposing);
+        }
+        public new void Dispose()
+        {
+            this.Dispose(false);
         }
     }
 }

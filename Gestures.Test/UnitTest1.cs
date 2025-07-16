@@ -23,9 +23,9 @@ namespace JohnBPearson.Butler.Test
         {
 
 
-            var testData = new KeyAndDataStringLiterals() { Descriptions = goodDescString, Keys = goodKeys, Values = goodDataString };
+            var testData = new Dto() { Descriptions = goodDescString, Keys = goodKeys, Values = goodDataString };
 
-            var lists = new EntityFactory(testData);
+            var lists = new GestureFactory(testData);
 
             var result = lists.Items;
 
@@ -58,14 +58,14 @@ namespace JohnBPearson.Butler.Test
             Assert.IsTrue(result.Rows.Count > 0);
             // test
             // SqliteDataAcces           s.ExecuteReader("select * from Application inner join Version on Application.Id = Version.Application");
-            object[] parms = new object[4];
-            parms[0] = 0;
-            parms[1] = 0;
-            parms[2] = 0;
-            parms[3] = 25;
-            parms[4] = 1;
-            SqliteDataAccess.ExecuteNonQuery("UPDATE Version    SET   Major = ?,        Minor = ?,        Build = ?,  Revision = ?  WHERE VersionId = ? ",
-                parms );
+            //object[] parms = new object[4];
+            //parms[0] = 0;
+            //parms[1] = 0;
+            //parms[2] = 0;
+            //parms[3] = 25;
+            //parms[4] = 1;
+            //SqliteDataAccess.ExecuteNonQuery("UPDATE Version    SET   Major = ?,        Minor = ?,        Build = ?,  Revision = ?  WHERE VersionId = ? ",
+            //    parms );
                                        
         }
 

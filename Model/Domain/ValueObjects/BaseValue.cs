@@ -9,15 +9,32 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
     public abstract class BaseValue : ValueObject<BaseValue>, IBaseValue
     {
-        protected IValueObjectFactory _parent;
-        protected BaseValue(IValueObjectFactory parent) { this._parent = parent; }
-        protected BaseValue(string value, IValueObjectFactory parent)
+        protected IGestureObject _parent;
+        protected BaseValue(IGestureObject parent)
         {
-            if (value == null) value = string.Empty;
+            this._parent = parent;
+        }
+        protected BaseValue(string value, IGestureObject parent)
+        {
+            if(value == null)
+                value = string.Empty;
             this._value = value;
             this._parent = parent;
         }
-      
+        private bool _isModified;
+
+        public bool IsModified
+        {
+            get
+            {
+                return _isModified;
+            }
+          private set
+            {
+                _isModified = value;
+            }
+        }
+
 
         #region hashcode
         string sSourceData;
@@ -30,12 +47,12 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         protected override int GetHashCodeCore()
         {
-            sSourceData =this.Value;
+            sSourceData = this.Value;
             //Create a byte array from source data.
             tmpSource = ASCIIEncoding.ASCII.GetBytes(sSourceData);
 
             tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpSource);
-          return tmpHash.GetHashCode();
+            return tmpHash.GetHashCode();
 
         }
 
@@ -54,27 +71,38 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         private string _value = "";
         public virtual string Value
         {
-            get { return _value; }
-             set
+            get
             {
-            _value = value; }   
-        //private    set
-        //    {
-        //        if (!string.IsNullOrWhiteSpace(value))
-        //        {
-        //            this._value = value;
-        //        }
-        //    }
-       // }
-       
+                return _value;
+            }
+            set
+            {
+                if(value != _value)
+                {
+                    _value = value;
+                    this._isModified = true;
+                }
+            }
+            //private    set
+            //    {
+            //        if (!string.IsNullOrWhiteSpace(value))
+            //        {
+            //            this._value = value;
+            //        }
+            //    }
+            // }
+
         }
 
         public static string Delimiter
         {
-            get { return BaseValue._delimiter; }
+            get
+            {
+                return BaseValue._delimiter;
+            }
             private set
             {
-                if (!String.IsNullOrWhiteSpace(value))
+                if(!String.IsNullOrWhiteSpace(value))
                 {
                     _delimiter = value;
                 }
@@ -99,8 +127,8 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         private static string _delimiter = "|";
 
 
-       
-       
+
+
         public override string ToString()
         {
             return Value;
@@ -123,7 +151,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
 
         public string GetDeliminated(char delim)
         {
-            switch (delim)
+            switch(delim)
             {
                 case ',':
 
@@ -177,7 +205,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         public bool Equals(BaseValue other)
         {
             return this == other;
-           // if (other != null && other.Value == this.Value) { return true; } else { return false; }
+            // if (other != null && other.Value == this.Value) { return true; } else { return false; }
         }
 
         public bool Equals(IBaseValue other)
@@ -186,31 +214,49 @@ namespace JohnBPearson.Application.Gestures.Model.Domain
         }
 
 
-        public static  bool operator ==(BaseValue lhs, BaseValue rhs)
+        public static bool operator ==(BaseValue lhs, BaseValue rhs)
         {        // public abstract bool Equals(IBaseValue other);
-            if (lhs is null || rhs is null)
+            if(lhs is null || rhs is null)
             {
-                if (lhs is null && rhs is null) { return true; } else { return false; }
+                if(lhs is null && rhs is null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
 
             }
-            if (lhs.Value == rhs.Value) { return true; }
+            if(lhs.Value == rhs.Value)
+            {
+                return true;
+            }
             else
             {
                 return false;
             }
-            
+
         }
 
         public static bool operator !=(BaseValue lhs, BaseValue rhs)
         {
-            if (lhs is null || rhs is null)
+            if(lhs is null || rhs is null)
             {
-                if (lhs is null && rhs is null) { return false; } else { return true; }
+                if(lhs is null && rhs is null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
 
-      
+
             }
-            if (!lhs.Equals(rhs)) return true;
+            if(!lhs.Equals(rhs))
+                return true;
             return false;
         }
     }

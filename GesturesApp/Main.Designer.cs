@@ -85,7 +85,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(674, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(706, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -135,9 +135,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelUpper
             // 
-            this.panelUpper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelUpper.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelUpper.AutoSize = true;
+            this.panelUpper.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelUpper.Controls.Add(this.lblHotKeySelected);
             this.panelUpper.Controls.Add(this.lblKey);
             this.panelUpper.Controls.Add(this.cbHotkeySelection);
@@ -148,10 +148,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Controls.Add(this.tbValue);
             this.panelUpper.Controls.Add(this.label1);
             this.panelUpper.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelUpper.Location = new System.Drawing.Point(6, 6);
+            this.panelUpper.Location = new System.Drawing.Point(59, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
-            this.panelUpper.Size = new System.Drawing.Size(625, 421);
+            this.panelUpper.Size = new System.Drawing.Size(510, 421);
             this.panelUpper.TabIndex = 2;
             // 
             // lblHotKeySelected
@@ -224,7 +224,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tbDesc.Margin = new System.Windows.Forms.Padding(10, 10, 3, 0);
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
-            this.tbDesc.Size = new System.Drawing.Size(309, 68);
+            this.tbDesc.Size = new System.Drawing.Size(453, 68);
             this.tbDesc.TabIndex = 1;
             this.tbDesc.Leave += new System.EventHandler(this.tbDesc_Leave);
             // 
@@ -249,7 +249,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tbValue.MinimumSize = new System.Drawing.Size(9, 50);
             this.tbValue.Multiline = true;
             this.tbValue.Name = "tbValue";
-            this.tbValue.Size = new System.Drawing.Size(329, 93);
+            this.tbValue.Size = new System.Drawing.Size(500, 93);
             this.tbValue.TabIndex = 2;
             this.tbValue.Leave += new System.EventHandler(this.tbValue_Leave);
             // 
@@ -257,7 +257,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Image = global::JohnBPearson.Windows.Forms.Gestures.Properties.Resources.alt_key;
             this.label1.Location = new System.Drawing.Point(0, 397);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
@@ -266,8 +265,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelButtons
             // 
+            this.panelButtons.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelButtons.AutoSize = true;
             this.panelButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.btnReload);
             this.panelButtons.Controls.Add(this.btnSaveJson);
@@ -275,11 +276,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.Location = new System.Drawing.Point(3, 436);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Padding = new System.Windows.Forms.Padding(8);
-            this.panelButtons.Size = new System.Drawing.Size(631, 65);
+            this.panelButtons.Size = new System.Drawing.Size(623, 73);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
             // 
+            this.aLittleBetter_Save.AutoSize = true;
             this.aLittleBetter_Save.EndColor = System.Drawing.Color.LightSkyBlue;
             this.aLittleBetter_Save.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.aLittleBetter_Save.FlatAppearance.BorderSize = 3;
@@ -290,12 +292,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.aLittleBetter_Save.Image = ((System.Drawing.Image)(resources.GetObject("aLittleBetter_Save.Image")));
             this.aLittleBetter_Save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.aLittleBetter_Save.Location = new System.Drawing.Point(11, 11);
+            this.aLittleBetter_Save.MinimumSize = new System.Drawing.Size(98, 51);
             this.aLittleBetter_Save.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.aLittleBetter_Save.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.aLittleBetter_Save.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.aLittleBetter_Save.Name = "aLittleBetter_Save";
-            this.aLittleBetter_Save.Size = new System.Drawing.Size(98, 43);
+            this.aLittleBetter_Save.Size = new System.Drawing.Size(98, 51);
             this.aLittleBetter_Save.StartColor = System.Drawing.Color.DimGray;
             this.aLittleBetter_Save.TabIndex = 3;
             this.aLittleBetter_Save.Text = "Save";
@@ -310,7 +313,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // btnReload
             // 
-            this.btnReload.AutoEllipsis = true;
+            this.btnReload.AutoSize = true;
             this.btnReload.EndColor = System.Drawing.Color.LightSkyBlue;
             this.btnReload.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnReload.FlatAppearance.BorderSize = 3;
@@ -321,12 +324,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
             this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReload.Location = new System.Drawing.Point(115, 11);
+            this.btnReload.MinimumSize = new System.Drawing.Size(134, 51);
             this.btnReload.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.btnReload.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.btnReload.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.btnReload.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(151, 43);
+            this.btnReload.Size = new System.Drawing.Size(134, 51);
             this.btnReload.StartColor = System.Drawing.Color.DimGray;
             this.btnReload.TabIndex = 4;
             this.btnReload.Text = "Reload";
@@ -341,6 +345,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // btnSaveJson
             // 
+            this.btnSaveJson.AutoSize = true;
             this.btnSaveJson.EndColor = System.Drawing.Color.LightSkyBlue;
             this.btnSaveJson.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSaveJson.FlatAppearance.BorderSize = 3;
@@ -350,13 +355,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnSaveJson.GradientAngle = 65;
             this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
             this.btnSaveJson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveJson.Location = new System.Drawing.Point(272, 11);
+            this.btnSaveJson.Location = new System.Drawing.Point(255, 11);
+            this.btnSaveJson.MinimumSize = new System.Drawing.Size(171, 51);
             this.btnSaveJson.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.btnSaveJson.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.btnSaveJson.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.btnSaveJson.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(171, 43);
+            this.btnSaveJson.Size = new System.Drawing.Size(171, 51);
             this.btnSaveJson.StartColor = System.Drawing.Color.DimGray;
             this.btnSaveJson.TabIndex = 10;
             this.btnSaveJson.Text = "Save Json";
@@ -371,6 +377,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // notBetterButton2
             // 
+            this.notBetterButton2.AutoSize = true;
             this.notBetterButton2.EndColor = System.Drawing.Color.LightSkyBlue;
             this.notBetterButton2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.notBetterButton2.FlatAppearance.BorderSize = 3;
@@ -380,13 +387,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.GradientAngle = 65;
             this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
             this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notBetterButton2.Location = new System.Drawing.Point(449, 11);
+            this.notBetterButton2.Location = new System.Drawing.Point(432, 11);
+            this.notBetterButton2.MinimumSize = new System.Drawing.Size(180, 51);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton2.MouseClickColor2 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor1 = System.Drawing.Color.Magenta;
             this.notBetterButton2.MouseHoverColor2 = System.Drawing.Color.Transparent;
             this.notBetterButton2.Name = "notBetterButton2";
-            this.notBetterButton2.Size = new System.Drawing.Size(171, 43);
+            this.notBetterButton2.Size = new System.Drawing.Size(180, 51);
             this.notBetterButton2.StartColor = System.Drawing.Color.DimGray;
             this.notBetterButton2.TabIndex = 5;
             this.notBetterButton2.Text = "Copy payload";
@@ -401,24 +409,26 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             // panelOuter
             // 
-            this.panelOuter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelOuter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelOuter.AutoSize = true;
+            this.panelOuter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelOuter.Controls.Add(this.panelUpper);
             this.panelOuter.Controls.Add(this.panelButtons);
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(674, 530);
+            this.panelOuter.Size = new System.Drawing.Size(629, 512);
             this.panelOuter.TabIndex = 10;
+            this.panelOuter.WrapContents = false;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.AutoSize = true;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(674, 666);
+            this.ClientSize = new System.Drawing.Size(706, 666);
             this.Controls.Add(this.panelOuter);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
@@ -440,6 +450,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.ResumeLayout(false);
             this.panelUpper.PerformLayout();
             this.panelButtons.ResumeLayout(false);
+            this.panelButtons.PerformLayout();
             this.panelOuter.ResumeLayout(false);
             this.panelOuter.PerformLayout();
             this.ResumeLayout(false);
