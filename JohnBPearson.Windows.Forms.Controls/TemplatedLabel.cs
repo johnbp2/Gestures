@@ -24,7 +24,7 @@ namespace JohnBPearson.Windows.Forms.Controls
                 {
                     _template = value;
                 }
-			if(ValuesToApply != null && !string.IsNullOrWhiteSpace(_template))
+			if(ValuesToApply != null && ValuesToApply.Count >0 && !string.IsNullOrWhiteSpace(_template))
 				{
 
                     updateText();

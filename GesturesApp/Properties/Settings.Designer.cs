@@ -366,5 +366,41 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
                 this["IsProtected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastFileSaved {
+            get {
+                return ((string)(this["LastFileSaved"]));
+            }
+            set {
+                this["LastFileSaved"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size MainSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainSize"]));
+            }
+            set {
+                this["MainSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool JsonSave {
+            get {
+                return ((bool)(this["JsonSave"]));
+            }
+            set {
+                this["JsonSave"] = value;
+            }
+        }
     }
 }

@@ -41,7 +41,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 System.Diagnostics.Debugger.Log(10,"butler", cbToastOptions.SelectedItem.ToString());
 
             }
-            Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;        // Properties.Settings.Default. = 
+            Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;
+            Properties.Settings.Default.JsonSave = this.rbJsonOn.Checked;// Properties.Settings.Default. = 
             Properties.Settings.Default.Save();
             this.notify(this, "Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
             this.Close();
@@ -64,6 +65,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 rbFlashOn.Checked = true;
             }
             else { rbFlashOff.Checked = true; }
+            if(Properties.Settings.Default.JsonSave)
+            {
+                rbJsonOn.Checked = true;
+            }
+            else
+            {
+            rbJsonOff.Checked = true; 
+            }
             // "2011-03-21 13:26";
          //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
           // popupNotifier1.TitleText = Properties.Settings.Default.ServantName;

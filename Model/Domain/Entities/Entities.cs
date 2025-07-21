@@ -8,7 +8,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 
     public class Rootobject
     {
-        public ContainerEntity[] Containers
+        public GestureDTO[] Containers
         {
             get; set;
         }

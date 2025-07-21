@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal static void Export(GestureFactory sourceList)
         {
             {
-                var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>(sourceList.MapToEntities());
+                var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(sourceList.MapToEntities());
                 //  System.Windows.Clipboard.SetText(export);
 
                 // Displays a SaveFileDialog so the user can save the Image
@@ -32,6 +34,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
                 saveFileDialog1.Filter = "json text|*.json";
                 saveFileDialog1.Title = "Save all your key bindings to json File";
+                var now = System.DateTime.Now;
+                saveFileDialog1.FileName = now.Date.ToString() + "-" + now.TimeOfDay.ToString();
+
+            
+                saveFileDialog1.InitialDirectory = determineJsonDefaultPath();
+                
                 saveFileDialog1.ShowDialog();
 
                 // If the file name is not an empty string open it for saving.
@@ -60,12 +68,26 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
+        private static string determineJsonDefaultPath()
+        {
+            string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string path = Path.Combine(currentDir, "JsonObjects");
+
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            return path;
+        }
 
         internal static void Import(GestureFactory _sourceList)
         {
             var of = new System.Windows.Forms.OpenFileDialog();
+            
             of.Filter = "json text|*.json";
-
+            of.InitialDirectory = determineJsonDefaultPath();
+            of.ShowDialog();
             if(of.FileName != string.Empty)
             {
                 using(System.IO.FileStream fs =
@@ -73,9 +95,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 
                     {
 
-
+              
                     var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
+                    System.Diagnostics.Trace.TraceInformation(doc.ToString());
+                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
                     _sourceList.MapFromEntities(root);
 
                 }
