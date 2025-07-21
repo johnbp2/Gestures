@@ -35,20 +35,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // throw new Exception("TEST");
             //if(Program.IsFirstInstance())
             //{
+#if !DEBUG
+
             try
             {
-
+#endif
                 var main = new Main(new MainPresenter());
                 main.setCommandArgs(args);
                 main.BackColor = Properties.Settings.Default.BgColor;
                 System.Windows.Forms.Application.Run(main);
+#if !DEBUG
             }
             catch(Exception ex)
             {
                 Interop.Utilities.MessageBox(ex.Message, ex.Source);
             }
-
-          //  SingleInstance.Stop();
+#endif
+            //  SingleInstance.Stop();
             //}
             //else
             //{

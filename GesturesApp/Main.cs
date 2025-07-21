@@ -263,8 +263,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
             if(this._loadJson)
-            {
+            {if(this.presenter.ContainerList == null)
+                {
+                    this.presenter.ContainerList = new GestureFactory();
+                }
+                
                 JsonService.Import(this.presenter.ContainerList);
+                this.presenter.registerHotKeys(this.presenter.Containers);
             }
             else
             {

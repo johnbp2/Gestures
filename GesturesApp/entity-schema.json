@@ -1,0 +1,43 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "HexString": {
+                "type": "string"
+            },
+            "DescriptionString": {
+                "type": "string"
+            },
+            "DataString": {
+                "type": "string"
+            },
+            "Protect": {
+                "type": "boolean"
+            },
+            "IsProtected": {
+                "type": "boolean"
+            },
+            "KeyAsChar": {
+                "type": "string"
+            },
+            "Length": {
+                "type": "integer"
+            },
+            "ByteValue": {
+                "type": "array"
+            }
+        },
+        "required": [
+            "ByteValue",
+            "DataString",
+            "DescriptionString",
+            "HexString",
+            "IsProtected",
+            "KeyAsChar",
+            "Length",
+            "Protect"
+        ]
+    }
+}

@@ -21,14 +21,13 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        internal Domain.Entities.ContainerEntity MapToEntity()
+        internal Domain.Entities.GestureDTO MapToEntity()
         {
-            var entity = new Domain.Entities.ContainerEntity();
+            var entity = new Domain.Entities.GestureDTO();
             entity.DataString = this.Data.Value;
             entity.DescriptionString = this.Description.Value;
             entity.KeyAsChar = this.KeyAsChar.ToString();
-            entity.IsProtected = this.Data.isProtected;
-           // entity.Protect = this.Data.Protect;
+           
             entity.Length = this.Data.Length;
             entity.HexString = this.Data.HexString;
             var byteVslue = new List<string>();
@@ -203,7 +202,7 @@ namespace JohnBPearson.Application.Gestures.Model
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.ContainerEntity container)
+        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.GestureDTO container)
         {
             this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
@@ -236,7 +235,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.ContainerEntity entity)
+        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.GestureDTO entity)
         {
             return new GestureObject(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length, entity.ByteValue);
         }

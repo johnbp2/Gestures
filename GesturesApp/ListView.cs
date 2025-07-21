@@ -88,7 +88,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
                     //            var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.ContainerEntity>>();
+                    //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
                     //           this._sourceList.MapFromEntities( root);
                     JsonService.Import(_sourceList: this._mainPresenter.ContainerList);
                     this._mainPresenter.executeSaveAsUserSettings(true);

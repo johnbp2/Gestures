@@ -2,10 +2,10 @@
 
 namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 {
-    public class ContainerEntity
+    public class GestureDTO
     {
 
-        public ContainerEntity()
+        public GestureDTO()
         {
 
         }
@@ -27,13 +27,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
         {
             get; set;
         }
-        [Obsolete]
-        public bool Protect
-        {
-            get;
-            set;
-        }
-
+      
         public bool IsProtected
         {
             get;
@@ -54,6 +48,10 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
             get; set;
 
         }
+        public byte[] Bytes
+        {
+        
+        get; set;}
     }
 
 }

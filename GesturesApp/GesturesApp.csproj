@@ -88,6 +88,10 @@
     <Prefer32Bit>true</Prefer32Bit>
     <UseWinFormsOutOfProcDesigner>True</UseWinFormsOutOfProcDesigner>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'debug json|AnyCPU'">
+    <OutputPath>bin\debug json\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationBuildTasks" />
     <Reference Include="PresentationCore" />

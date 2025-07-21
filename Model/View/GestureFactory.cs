@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using JohnBPearson.Application.Gestures.Model.Domain;
 using JohnBPearson.Application.Gestures.Model.Utility;
@@ -11,17 +12,22 @@ namespace JohnBPearson.Application.Gestures.Model
         private Utility.Parser _userSettingsParser;
         private List<IGestureObject> _items = new List<IGestureObject>();
         private const string deliminater = "|";
-        private List<Domain.Entities.ContainerEntity> _importBackUpItems;
+        private List<Domain.Entities.GestureDTO> _importBackUpItems;
+        private List<string> _keys;
         public IEnumerable<string> Keys
         {
             get
             {
-                if(this._userSettingsParser != null)
+                if(this._items != null)
                 {
-                    return this._userSettingsParser.Keys;
+                    if(this._keys == null)
+                    {
+                        this._keys = (from item in this._items select item.Key.Value).ToList();
+                    }
+                    
                 }
-                else
-                    return null;
+                
+                    return this._keys;
             }
         }
         public IEnumerable<IGestureObject> Items
@@ -156,9 +162,9 @@ namespace JohnBPearson.Application.Gestures.Model
         
         }
 
-        public List<Domain.Entities.ContainerEntity> MapToEntities()
+        public List<Domain.Entities.GestureDTO> MapToEntities()
         {
-            var list = new List<Domain.Entities.ContainerEntity>();
+            var list = new List<Domain.Entities.GestureDTO>();
             foreach(var item in _items)
             {
                 var concreteItem = item as GestureObject;
@@ -170,7 +176,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
 
-        public void MapFromEntities(List<Domain.Entities.ContainerEntity> entities)
+        public void MapFromEntities(List<Domain.Entities.GestureDTO> entities)
         {
             // this._importBackUpItems = this.MapFromEntities(entities);
             this._items = new List<IGestureObject>();

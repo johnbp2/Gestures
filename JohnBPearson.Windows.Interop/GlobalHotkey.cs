@@ -106,45 +106,45 @@ public class GlobalHotKey : IDisposable
         window.Dispose();
     }
 
-    static GlobalHotKey()
-    {
-        //BoundKeyAction = new EventHandler<BoundKeyActionEventArgs>()
-        window.KeyPressed += (s, e) =>
-        {
-            if (registeredHotKeys.ContainsKey(e.Key.ToString()))
-            {
-                HotKeyWithAction item;
-                registeredHotKeys.TryGetValue(e.Key.ToString().ToLower(), out item);
-                if (item != null && item.Modifier == e.Modifier)
-                {
-                   if(item.Action != null)
-                    {
-                        item.Action();
-                    } else if(item.CallBack != null)
-                    {
-                        item.CallBack.Invoke(item.Data);
-                    }
-                }
+    //static GlobalHotKey()
+    //{
+    //    //BoundKeyAction = new EventHandler<BoundKeyActionEventArgs>()
+    //    window.KeyPressed += (s, e) =>
+    //    {
+    //        if (registeredHotKeys.ContainsKey(e.Key.ToString()))
+    //        {
+    //            HotKeyWithAction item;
+    //            registeredHotKeys.TryGetValue(e.Key.ToString().ToLower(), out item);
+    //            if (item != null && item.Modifier == e.Modifier)
+    //            {
+    //               if(item.Action != null)
+    //                {
+    //                    item.Action();
+    //                } else if(item.CallBack != null)
+    //                {
+    //                    item.CallBack.Invoke(item.Data);
+    //                }
+    //            }
 
-            }
-            registeredHotKeys.Values.ToList().ForEach(x =>
-            {
-                if (e.Modifier == x.Modifier && e.Key == x.Key)
-                {
-                    if (x.Action != null)
-                    {
-                        x.Action();
+    //        }
+    //        registeredHotKeys.Values.ToList().ForEach(x =>
+    //        {
+    //            if (e.Modifier == x.Modifier && e.Key == x.Key)
+    //            {
+    //                if (x.Action != null)
+    //                {
+    //                    x.Action();
 
-                    }
-                    else if (x.CallBack != null)
-                    {
-                        x.CallBack.Invoke(x.Data);
-                    }
+    //                }
+    //                else if (x.CallBack != null)
+    //                {
+    //                    x.CallBack.Invoke(x.Data);
+    //                }
 
-                }
-            });
-        };
-    }
+    //            }
+    //        });
+    //    };
+    //}
 
     private static readonly InvisibleWindowForMessages window = new InvisibleWindowForMessages();
     private static int currentID;
