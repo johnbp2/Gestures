@@ -64,7 +64,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this._mainPresenter.executeSaveAsUserSettings(true);
+            this._mainPresenter.save();
             this.notify(this, "Saved", "Saved list contents", false, ToastOptions.Save);
             var export = System.Text.Json.JsonSerializer.Serialize<IGestureFactory>(this._sourceList);
           //  System.Windows.Clipboard.SetText(export);
@@ -73,7 +73,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private void btnExport_Click(object sender, EventArgs e)
         {
             this._mainPresenter.SaveDialog = this.saveFileDialog1;
-            this._mainPresenter.executeJsonSave();
+            this._mainPresenter.save();
         }
 
         private void aLittleBetter_Import_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                     //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
                     //           this._sourceList.MapFromEntities( root);
                     JsonService.Import(_sourceList: this._mainPresenter.ContainerList);
-                    this._mainPresenter.executeSaveAsUserSettings(true);
+                    //this._mainPresenter.save();
                     this.rebindsource(this._sourceList);
              //   }
                 //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()

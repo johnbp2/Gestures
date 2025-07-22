@@ -56,7 +56,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.btnReload = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
-            this.btnSaveJson = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -148,7 +147,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Controls.Add(this.tbValue);
             this.panelUpper.Controls.Add(this.label1);
             this.panelUpper.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelUpper.Location = new System.Drawing.Point(59, 6);
+            this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
             this.panelUpper.Size = new System.Drawing.Size(510, 421);
@@ -271,12 +270,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.btnReload);
-            this.panelButtons.Controls.Add(this.btnSaveJson);
             this.panelButtons.Controls.Add(this.notBetterButton2);
-            this.panelButtons.Location = new System.Drawing.Point(3, 436);
+            this.panelButtons.Location = new System.Drawing.Point(38, 436);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Padding = new System.Windows.Forms.Padding(8);
-            this.panelButtons.Size = new System.Drawing.Size(623, 73);
+            this.panelButtons.Size = new System.Drawing.Size(446, 73);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
@@ -343,38 +341,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // btnSaveJson
-            // 
-            this.btnSaveJson.AutoSize = true;
-            this.btnSaveJson.EndColor = System.Drawing.Color.LightSkyBlue;
-            this.btnSaveJson.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSaveJson.FlatAppearance.BorderSize = 3;
-            this.btnSaveJson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveJson.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
-            this.btnSaveJson.ForeColor = System.Drawing.Color.Black;
-            this.btnSaveJson.GradientAngle = 65;
-            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
-            this.btnSaveJson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveJson.Location = new System.Drawing.Point(255, 11);
-            this.btnSaveJson.MinimumSize = new System.Drawing.Size(171, 51);
-            this.btnSaveJson.MouseClickColor1 = System.Drawing.Color.Transparent;
-            this.btnSaveJson.MouseClickColor2 = System.Drawing.Color.Magenta;
-            this.btnSaveJson.MouseHoverColor1 = System.Drawing.Color.Magenta;
-            this.btnSaveJson.MouseHoverColor2 = System.Drawing.Color.Transparent;
-            this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(171, 51);
-            this.btnSaveJson.StartColor = System.Drawing.Color.DimGray;
-            this.btnSaveJson.TabIndex = 10;
-            this.btnSaveJson.Text = "Save Json";
-            this.btnSaveJson.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSaveJson.TextLocation_X = 0;
-            this.btnSaveJson.TextLocation_Y = 0;
-            this.btnSaveJson.Transparent1 = 150;
-            this.btnSaveJson.Transparent2 = 150;
-            this.btnSaveJson.UseVisualStyleBackColor = true;
-            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
-            // 
             // notBetterButton2
             // 
             this.notBetterButton2.AutoSize = true;
@@ -387,7 +353,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.GradientAngle = 65;
             this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
             this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notBetterButton2.Location = new System.Drawing.Point(432, 11);
+            this.notBetterButton2.Location = new System.Drawing.Point(255, 11);
             this.notBetterButton2.MinimumSize = new System.Drawing.Size(180, 51);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton2.MouseClickColor2 = System.Drawing.Color.Magenta;
@@ -417,7 +383,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(629, 512);
+            this.panelOuter.Size = new System.Drawing.Size(522, 512);
             this.panelOuter.TabIndex = 10;
             this.panelOuter.WrapContents = false;
             // 
@@ -486,7 +452,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbProtect;
-        private SomewhatBetterButton btnSaveJson;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

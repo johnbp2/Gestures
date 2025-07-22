@@ -23,8 +23,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
         }
 
-        internal static void Export(GestureFactory sourceList)
+        internal static string Export(GestureFactory sourceList)
         {
+            string path = string.Empty;
+            string file = string.Empty;
             {
                 var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(sourceList.MapToEntities());
                 //  System.Windows.Clipboard.SetText(export);
@@ -35,7 +37,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 saveFileDialog1.Filter = "json text|*.json";
                 saveFileDialog1.Title = "Save all your key bindings to json File";
                 var now = System.DateTime.Now;
-                saveFileDialog1.FileName = now.Date.ToString() + "-" + now.TimeOfDay.ToString();
+                saveFileDialog1.FileName = $"{now.Date.Month}-{now.Day}-{now.Year}-{now.TimeOfDay.TotalSeconds}";
 
             
                 saveFileDialog1.InitialDirectory = determineJsonDefaultPath();
@@ -45,27 +47,35 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 // If the file name is not an empty string open it for saving.
                 if(saveFileDialog1.FileName != "")
                 {
+                    path= Path.GetFullPath(saveFileDialog1.FileName);
+                   
                     // Saves the Image via a FileStream created by the OpenFile method.
-                    using(System.IO.FileStream fs =
-                          (System.IO.FileStream)saveFileDialog1.OpenFile())
-                    {
-
-                        // Saves the Image in the appropriate ImageFormat based upon the
-                        // File type selected in the dialog box.
-                        // NOTE that the FilterIndex property is one-based.
-                        switch(saveFileDialog1.FilterIndex)
+                    //if(System.IO.Directory.Exists(sys))
+                    //{
+                        using(System.IO.FileStream fs =
+                            (System.IO.FileStream)saveFileDialog1.OpenFile())
                         {
 
-                            case 1:
-                                byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
-                                fs.Write(exportBytes, 0, exportBytes.Length);
-                                break;
-                        }
+                            // Saves the Image in the appropriate ImageFormat based upon the
+                            // File type selected in the dialog box.
+                            // NOTE that the FilterIndex property is one-based.
+                            switch(saveFileDialog1.FilterIndex)
+                            {
 
-                        fs.Close();
-                    }
+                                case 1:
+                                    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+                                    fs.Write(exportBytes, 0, exportBytes.Length);
+                                    break;
+                            }
+                            file = saveFileDialog1.FileName;
+                            fs.Close();
+                        } 
+                  //  }
+                   
                 }
             }
+            return path;
+          //  return System.IO.Path.Combine(path, file);
         }
 
         private static string determineJsonDefaultPath()
