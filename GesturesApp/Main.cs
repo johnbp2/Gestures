@@ -252,12 +252,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var actions = new List<Action<string>>();
             if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
             {
-                if(this.presenter.ContainerList == null)
-                {
-                    this.presenter.ContainerList = new GestureFactory();
-                }
+                //if(this.presenter.ContainerList == null)
+                //{
+                //    this.presenter.ContainerList = new GestureFactory();
+                //}
 
-                JsonService.Import(this.presenter.ContainerList);
+                //JsonService.Import(this.presenter.ContainerList);
                 this.presenter.registerHotKeys(this.presenter.Containers);
             }
             else

@@ -47,6 +47,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
+                if(this._containerList == null)
+                {
+                    if(this.LoadJson)
+                    {
+
+                        this._containerList = new GestureFactory();
+                      string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFileLocation : "";
+                        JsonService.Import(this._containerList, test);
+                    }
+                    else
+                    {
+                        this.mapSettingsToDto();
+                    }
+
+
+                }
                 return this._containerList;
             }
             set
@@ -237,21 +253,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
-                {
-                    if(this.LoadJson)
-                    {
-
-                        this._containerList = new GestureFactory();
-                        JsonService.Import(this._containerList);
-                    }
-                    else
-                    {
-                        this.mapSettingsToDto();
-                    }
-                    
-
-                }
+               
                 return this.ContainerList.Keys;
             }
         }
@@ -259,10 +261,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
-                {
-                    mapSettingsToDto();
-                }
+              
                 return this.ContainerList.Items;
             }
 

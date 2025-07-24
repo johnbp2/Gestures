@@ -13,6 +13,7 @@ using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
 using Microsoft.Win32;
 using Windows.Media.Protection.PlayReady;
+using Windows.Networking.Sockets;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -91,32 +92,49 @@ namespace JohnBPearson.Windows.Forms.Gestures
             return path;
         }
 
-        internal static void Import(GestureFactory _sourceList)
+        private static FileStream openDefault(string path)
         {
-            var of = new System.Windows.Forms.OpenFileDialog();
-            
-            of.Filter = "json text|*.json";
-            of.InitialDirectory = determineJsonDefaultPath();
-            of.ShowDialog();
-            if(of.FileName != string.Empty)
+            System.IO.FileStream st = new FileStream(path, FileMode.Open, FileAccess.Read);
+            return st;
+        }
+        internal static void Import(GestureFactory _sourceList, string defaultFile = "")
+        {
+            if(string.IsNullOrEmpty(defaultFile))
             {
-                using(System.IO.FileStream fs =
-                         (System.IO.FileStream)of.OpenFile())
-                
-                    {
 
-              
-                    var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    System.Diagnostics.Trace.TraceInformation(doc.ToString());
-                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
-                    _sourceList.MapFromEntities(root);
+                var of = new System.Windows.Forms.OpenFileDialog();
+
+                of.Filter = "json text|*.json";
+                of.InitialDirectory = determineJsonDefaultPath();
+                of.ShowDialog();
+
+
+                if(of.FileName != string.Empty)
+                {
+                    using(System.IO.FileStream fs =
+                             (System.IO.FileStream)of.OpenFile())
+
+                    {
+                        parseJson(_sourceList, fs);
+
+                    }
+                    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
 
                 }
-                //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
-
-
             }
-            
+            else
+            {
+                parseJson(_sourceList, openDefault(defaultFile));
+            }
+        }
+
+        private static void parseJson(GestureFactory _sourceList, FileStream fs)
+        {
+            var doc = System.Text.Json.JsonDocument.Parse(fs);
+            System.Diagnostics.Trace.TraceInformation(doc.ToString());
+            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
+            _sourceList.MapFromEntities(root);
         }
     }
 }
