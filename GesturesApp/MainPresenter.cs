@@ -47,6 +47,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
+                if(this._containerList == null)
+                {
+                    if(this.LoadJson)
+                    {
+
+                        this._containerList = new GestureFactory();
+                      string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFileLocation : "";
+                        JsonService.Import(this._containerList, test);
+                    }
+                    else
+                    {
+                        this.mapSettingsToDto();
+                    }
+
+
+                }
                 return this._containerList;
             }
             set
@@ -127,7 +143,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-        public int executeSaveAsUserSettings(bool overrideAutoSaveSetting)
+        private int executeSaveAsUserSettings(bool overrideAutoSaveSetting)
         {
             var strings = this.ContainerList.PrepareDataForSave();
             //  Properties.Settings.Default.DataValues = strings.Values;
@@ -164,11 +180,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             });
             return settingsCollection;
         }
-
-
-        public void executeJsonSave()
+        public void save()
         {
-            JsonService.Export(this.ContainerList);
+            if(Properties.Settings.Default.JsonSave)
+            {
+                this.executeJsonSave();
+            }
+            else
+            {
+                this.executeSaveAsUserSettings(false);
+            }
+        
+        }
+
+        private void executeJsonSave()
+        {
+        Properties.Settings.Default.LastSavedFileLocation =   JsonService.Export(this.ContainerList);
+            Properties.Settings.Default.Save();
         }
 
         //public void executeJsonSave()
@@ -225,21 +253,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
-                {
-                    if(this.LoadJson)
-                    {
-
-                        this._containerList = new GestureFactory();
-                        JsonService.Import(this._containerList);
-                    }
-                    else
-                    {
-                        this.mapSettingsToDto();
-                    }
-                    
-
-                }
+               
                 return this.ContainerList.Keys;
             }
         }
@@ -247,15 +261,18 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
-                {
-                    mapSettingsToDto();
-                }
+              
                 return this.ContainerList.Items;
             }
 
         }
-
+        public void setCommandArgs(string[] args)
+        {
+            if(args != null && args.Length > 0 && args[0] == "-j")
+            {
+                this._loadJson = true;
+                            }
+        }
 
         // TODO: rename to <code>setcurrent(string keyValue)</code> remove the option to not set as current
         private JohnBPearson.Application.Gestures.Model.IGestureObject findKeyBoundValue(string keyValue)

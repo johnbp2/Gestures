@@ -40,8 +40,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
             try
             {
 #endif
-                var main = new Main(new MainPresenter());
-                main.setCommandArgs(args);
+
+            var presenter = new MainPresenter();
+            presenter.setCommandArgs(args);
+                var main = new Main(presenter);
+              
                 main.BackColor = Properties.Settings.Default.BgColor;
                 System.Windows.Forms.Application.Run(main);
 #if !DEBUG

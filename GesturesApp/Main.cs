@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
 using System.Text.Json.Serialization;
+using Windows.Graphics.Printing.OptionDetails;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -67,16 +68,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.setupTryIconMenu();
         }
 
-        private bool _loadJson = false;
+ 
 
-        public void setCommandArgs(string[] args)
-        {
-            if(args != null && args.Length > 0 && args[0] == "-j")
-            {
-                this._loadJson = true;
-                this.presenter.LoadJson = true;
-            }
-        }
+      
 
 
 
@@ -94,7 +88,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblKey.ClearAndReplace(item.Key.Value.ToLower());
             this.cbHotkeySelection.SelectedItem = item.Key.Value.ToLower();
             updateUI(item as GestureObject);
-          //  this.presenter.Current=  
+            //  this.presenter.Current=  
             Settings.Default.LastBoundKeyPressed = item.Key.Value;
             Settings.Default.Save();
             base.notify(this, "Copied: ", $"{item.Description.Value} to the clipboard", Properties.Settings.Default.FlashWindow, ToastOptions.Hotkey);
@@ -120,9 +114,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
-       
 
-   
+
+
 
 
 
@@ -176,16 +170,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-        private void presenterSave(bool overrideAutoSaveSetting)
-        {
-            var result = this.presenter.executeSaveAsUserSettings(overrideAutoSaveSetting);
-           
-                notifyDerived("Success", $"Saved. Items that were modified  {result}", Properties.Settings.Default.FlashWindow);
-           
-
-
-
-        }
+      
 
         private void notifyDerived(string title, string content, bool flash = false, ToastOptions toastType = ToastOptions.None, uint flashCount = 10)
         {
@@ -203,10 +188,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             cbProtect.Checked = currentItem.Data.isProtected;
 
             this.lblKey.ClearAndReplace(currentItem.Key.Value.ToLower());
-           // this.cbHotkeySelection.SelectedItem = currentItem.Key.Value.ToLower();
-          //  this.updateUI(data.Key.Key);
+            // this.cbHotkeySelection.SelectedItem = currentItem.Key.Value.ToLower();
+            //  this.updateUI(data.Key.Key);
 
-         //   Settings.Default.LastBoundKeyPressed = currentItem.Key.Value;
+            //   Settings.Default.LastBoundKeyPressed = currentItem.Key.Value;
 
 
         }
@@ -224,13 +209,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            presenterSave(false);
+            if(Properties.Settings.Default.autoSave )
+            {
+            
+                this.presenter.save();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            presenterSave(true);
-
+            this.presenter.save();
         }
 
         private void Main_Resize(object sender, EventArgs e)
@@ -262,13 +250,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            if(this._loadJson)
-            {if(this.presenter.ContainerList == null)
-                {
-                    this.presenter.ContainerList = new GestureFactory();
-                }
-                
-                JsonService.Import(this.presenter.ContainerList);
+            if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
+            {
+                //if(this.presenter.ContainerList == null)
+                //{
+                //    this.presenter.ContainerList = new GestureFactory();
+                //}
+
+                //JsonService.Import(this.presenter.ContainerList);
                 this.presenter.registerHotKeys(this.presenter.Containers);
             }
             else
@@ -276,7 +265,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
                 this.presenter.registerHotKeys(this.presenter.Containers);
             }
-           // this.presenter.GestureFactory
+            // this.presenter.GestureFactory
             this.bindDropDownKeyValues();
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.ValuesToApply.Add("a");
@@ -359,13 +348,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             var control = (System.Windows.Forms.ComboBox)sender;
             //if (control.Text.Lengths == 1)
             //{
-           
+
             //  }
             this.lblKey.ClearAndReplace(cbHotkeySelection.Text);
         }
 
 
-         
+
 
         private void tbDesc_Leave(object sender, EventArgs e)
         {
@@ -386,7 +375,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 var item = this.cbHotkeySelection.Items[this.cbHotkeySelection.SelectedIndex];
                 if(item != null)
                 {
-                  //  var ikbv = this.presenter.findKeyBoundValue(item.ToString());
+                    //  var ikbv = this.presenter.findKeyBoundValue(item.ToString());
                     this.CopyValueToClipBoard(this.presenter.Current);
                     base.notify(this, "Copied", this.presenter.Current.Data.Value);
                     this.updateUI(this.presenter.Current as GestureObject);
@@ -418,12 +407,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             aboot.ShowDialog();
         }
 
-    
+
 
         private void cbProtect_CheckedChanged(object sender, EventArgs e)
         {
             this.handleCypher();
-           // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
+            // this.presenter.updateContainer(this.tbValue.Text, this.tbDesc.Text, this.selectedKey, this.cbProtect.Checked);
         }
 
 
@@ -440,12 +429,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 this.presenter.Current.Data.RemoveEncryption();
             }
         }
-        private void btnSaveJson_Click(object sender, EventArgs e)
-        {
-            this.presenter.SaveDialog = saveFileDialog1;
-            this.presenter.executeJsonSave();
 
-        }
 
         #endregion
 

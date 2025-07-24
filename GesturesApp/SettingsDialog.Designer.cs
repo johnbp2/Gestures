@@ -48,13 +48,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbFlashOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.rbJsonOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbJsonOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.rbJsonOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
-            this.rbJsonOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbLastSavedOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbLastSavedOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.transparentPanel1.SuspendLayout();
@@ -90,6 +92,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.rbJsonOn, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.rbJsonOff, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.rbLastSavedOn, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.rbLastSavedOff, 2, 7);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 26);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -300,7 +304,33 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(170, 13);
             this.label6.TabIndex = 18;
-            this.label6.Text = "label6";
+            this.label6.Text = "load  last saved json file on open";
+            // 
+            // rbJsonOn
+            // 
+            this.rbJsonOn.AutoSize = true;
+            this.rbJsonOn.GroupName = "json";
+            this.rbJsonOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
+            this.rbJsonOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbJsonOn.Location = new System.Drawing.Point(179, 167);
+            this.rbJsonOn.Name = "rbJsonOn";
+            this.rbJsonOn.Size = new System.Drawing.Size(38, 14);
+            this.rbJsonOn.TabIndex = 19;
+            this.rbJsonOn.Text = "on";
+            this.rbJsonOn.UseVisualStyleBackColor = true;
+            // 
+            // rbJsonOff
+            // 
+            this.rbJsonOff.AutoSize = true;
+            this.rbJsonOff.GroupName = "json";
+            this.rbJsonOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
+            this.rbJsonOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.rbJsonOff.Location = new System.Drawing.Point(351, 167);
+            this.rbJsonOff.Name = "rbJsonOff";
+            this.rbJsonOff.Size = new System.Drawing.Size(38, 14);
+            this.rbJsonOff.TabIndex = 20;
+            this.rbJsonOff.Text = "off";
+            this.rbJsonOff.UseVisualStyleBackColor = true;
             // 
             // transparentPanel1
             // 
@@ -343,31 +373,27 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.timer1.Interval = 5;
             // 
-            // rbJsonOn
+            // rbLastSavedOn
             // 
-            this.rbJsonOn.AutoSize = true;
-            this.rbJsonOn.GroupName = "json";
-            this.rbJsonOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbJsonOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbJsonOn.Location = new System.Drawing.Point(179, 167);
-            this.rbJsonOn.Name = "rbJsonOn";
-            this.rbJsonOn.Size = new System.Drawing.Size(38, 14);
-            this.rbJsonOn.TabIndex = 19;
-            this.rbJsonOn.Text = "on";
-            this.rbJsonOn.UseVisualStyleBackColor = true;
+            this.rbLastSavedOn.AutoSize = true;
+            this.rbLastSavedOn.GroupName = "LastSaved";
+            this.rbLastSavedOn.Location = new System.Drawing.Point(179, 187);
+            this.rbLastSavedOn.Name = "rbLastSavedOn";
+            this.rbLastSavedOn.Size = new System.Drawing.Size(38, 17);
+            this.rbLastSavedOn.TabIndex = 21;
+            this.rbLastSavedOn.Text = "on";
+            this.rbLastSavedOn.UseVisualStyleBackColor = true;
             // 
-            // rbJsonOff
+            // rbLastSavedOff
             // 
-            this.rbJsonOff.AutoSize = true;
-            this.rbJsonOff.GroupName = "json";
-            this.rbJsonOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbJsonOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbJsonOff.Location = new System.Drawing.Point(351, 167);
-            this.rbJsonOff.Name = "rbJsonOff";
-            this.rbJsonOff.Size = new System.Drawing.Size(38, 14);
-            this.rbJsonOff.TabIndex = 20;
-            this.rbJsonOff.Text = "off";
-            this.rbJsonOff.UseVisualStyleBackColor = true;
+            this.rbLastSavedOff.AutoSize = true;
+            this.rbLastSavedOff.GroupName = "LastSaved";
+            this.rbLastSavedOff.Location = new System.Drawing.Point(351, 187);
+            this.rbLastSavedOff.Name = "rbLastSavedOff";
+            this.rbLastSavedOff.Size = new System.Drawing.Size(38, 17);
+            this.rbLastSavedOff.TabIndex = 22;
+            this.rbLastSavedOff.Text = "off";
+            this.rbLastSavedOff.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
@@ -416,5 +442,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.Label label6;
         private AdvancedRadioButton rbJsonOn;
         private AdvancedRadioButton rbJsonOff;
+        private AdvancedRadioButton rbLastSavedOn;
+        private AdvancedRadioButton rbLastSavedOff;
     }
 }

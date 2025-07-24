@@ -43,6 +43,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
             Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;
             Properties.Settings.Default.JsonSave = this.rbJsonOn.Checked;// Properties.Settings.Default. = 
+            Properties.Settings.Default.UsedLastSavedNextSession = this.rbLastSavedOn.Checked;
             Properties.Settings.Default.Save();
             this.notify(this, "Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
             this.Close();
@@ -50,14 +51,17 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void SettingsDialog_Load(object sender, EventArgs e)
         {
+            this.somewhatBetterButton1.StartColor = Properties.Settings.Default.BgColor;
+            this.somewhatBetterButton1.ForeColor = Properties.Settings.Default.BgColor;
             this.rbAutoSaveOff.Checked = !Properties.Settings.Default.autoSave;
             this.rbAutoSaveOn.Checked = Properties.Settings.Default.autoSave;
 
             this.rbMinimizeToTrayOn.Checked = Properties.Settings.Default.MinimizeToTray;
             this.rbMinimizeToTrayOff.Checked = !Properties.Settings.Default.MinimizeToTray;
-
-          //  tbServantName.Text = Properties.Settings.Default.ServantName;
-           // popupNotifier1.ContentText = $"You settings have been. you can close settings dialog now. or it will close in 15 seconds.";
+            this.rbLastSavedOn.Checked= Properties.Settings.Default.UsedLastSavedNextSession;
+            this.rbLastSavedOff.Checked = !Properties.Settings.Default.UsedLastSavedNextSession;
+            //  tbServantName.Text = Properties.Settings.Default.ServantName;
+            // popupNotifier1.ContentText = $"You settings have been. you can close settings dialog now. or it will close in 15 seconds.";
             cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;
          
             if (Properties.Settings.Default.FlashWindow)
@@ -91,6 +95,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 Properties.Settings.Default.BgColor = this.colorDialog1.Color;
                 this.BackColor = this.colorDialog1.Color;
+                this.somewhatBetterButton1.ForeColor = this.colorDialog1.Color;
             }
 
         }

@@ -9,7 +9,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
     {
         T Form { get; }
         IEnumerable<JohnBPearson.Application.Gestures.Model.IGestureObject> Containers { get; }
-        int executeSaveAsUserSettings(bool overrideAutoSaveSetting);
+        void save();
 
         void updateContainer(string newData, string description, string key);
 
