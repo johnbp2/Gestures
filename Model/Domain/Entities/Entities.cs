@@ -8,7 +8,9 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 
     public class Rootobject
     {
-        public GestureDTO[] Containers
+        public JohnBPearson.Application.Common.SymanticVersion Version { get; set; }
+
+        public DomainGesture[] Containers
         {
             get; set;
         }

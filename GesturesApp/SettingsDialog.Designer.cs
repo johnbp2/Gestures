@@ -50,16 +50,23 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label6 = new System.Windows.Forms.Label();
             this.rbJsonOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
             this.rbJsonOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbLastSavedOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.rbLastSavedOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbFile = new System.Windows.Forms.TextBox();
+            this.somewhatBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.transparentPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.rbLastSavedOn = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
-            this.rbLastSavedOff = new JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton();
+            this.transparentFlowPanel1 = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.transparentPanel1.SuspendLayout();
+            this.transparentFlowPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -70,7 +77,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.90539F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.24056F));
@@ -94,9 +101,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.Controls.Add(this.rbJsonOff, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.rbLastSavedOn, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.rbLastSavedOff, 2, 7);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 26);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.tbFile, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.somewhatBetterButton2, 2, 8);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -105,8 +115,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(520, 218);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(502, 284);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // label1
             // 
@@ -114,7 +128,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(170, 13);
+            this.label1.Size = new System.Drawing.Size(164, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "auto save";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -125,9 +139,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbAutoSaveOn.AutoSize = true;
             this.rbAutoSaveOn.GroupName = "autosave";
             this.rbAutoSaveOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbAutoSaveOn.Location = new System.Drawing.Point(179, 4);
+            this.rbAutoSaveOn.Location = new System.Drawing.Point(173, 4);
             this.rbAutoSaveOn.Name = "rbAutoSaveOn";
-            this.rbAutoSaveOn.Size = new System.Drawing.Size(166, 17);
+            this.rbAutoSaveOn.Size = new System.Drawing.Size(160, 17);
             this.rbAutoSaveOn.TabIndex = 3;
             this.rbAutoSaveOn.Text = "on";
             this.rbAutoSaveOn.UseVisualStyleBackColor = true;
@@ -138,9 +152,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbAutoSaveOff.AutoSize = true;
             this.rbAutoSaveOff.GroupName = "autosave";
             this.rbAutoSaveOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbAutoSaveOff.Location = new System.Drawing.Point(351, 4);
+            this.rbAutoSaveOff.Location = new System.Drawing.Point(339, 4);
             this.rbAutoSaveOff.Name = "rbAutoSaveOff";
-            this.rbAutoSaveOff.Size = new System.Drawing.Size(166, 17);
+            this.rbAutoSaveOff.Size = new System.Drawing.Size(160, 17);
             this.rbAutoSaveOff.TabIndex = 4;
             this.rbAutoSaveOff.Text = "off";
             this.rbAutoSaveOff.UseVisualStyleBackColor = true;
@@ -151,7 +165,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.lblMinimizeToTray.AutoSize = true;
             this.lblMinimizeToTray.Location = new System.Drawing.Point(3, 28);
             this.lblMinimizeToTray.Name = "lblMinimizeToTray";
-            this.lblMinimizeToTray.Size = new System.Drawing.Size(170, 13);
+            this.lblMinimizeToTray.Size = new System.Drawing.Size(164, 13);
             this.lblMinimizeToTray.TabIndex = 5;
             this.lblMinimizeToTray.Text = "minimize to tray";
             this.lblMinimizeToTray.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -162,9 +176,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbMinimizeToTrayOn.AutoSize = true;
             this.rbMinimizeToTrayOn.GroupName = "minimize";
             this.rbMinimizeToTrayOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbMinimizeToTrayOn.Location = new System.Drawing.Point(179, 28);
+            this.rbMinimizeToTrayOn.Location = new System.Drawing.Point(173, 28);
             this.rbMinimizeToTrayOn.Name = "rbMinimizeToTrayOn";
-            this.rbMinimizeToTrayOn.Size = new System.Drawing.Size(166, 13);
+            this.rbMinimizeToTrayOn.Size = new System.Drawing.Size(160, 13);
             this.rbMinimizeToTrayOn.TabIndex = 6;
             this.rbMinimizeToTrayOn.Text = "on";
             this.rbMinimizeToTrayOn.UseVisualStyleBackColor = true;
@@ -175,9 +189,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbMinimizeToTrayOff.AutoSize = true;
             this.rbMinimizeToTrayOff.GroupName = "111";
             this.rbMinimizeToTrayOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
-            this.rbMinimizeToTrayOff.Location = new System.Drawing.Point(351, 28);
+            this.rbMinimizeToTrayOff.Location = new System.Drawing.Point(339, 28);
             this.rbMinimizeToTrayOff.Name = "rbMinimizeToTrayOff";
-            this.rbMinimizeToTrayOff.Size = new System.Drawing.Size(166, 13);
+            this.rbMinimizeToTrayOff.Size = new System.Drawing.Size(160, 13);
             this.rbMinimizeToTrayOff.TabIndex = 7;
             this.rbMinimizeToTrayOff.Text = "off";
             this.rbMinimizeToTrayOff.UseVisualStyleBackColor = true;
@@ -190,7 +204,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label2.Location = new System.Drawing.Point(1, 75);
             this.label2.Margin = new System.Windows.Forms.Padding(1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 13);
+            this.label2.Size = new System.Drawing.Size(168, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Bg Color";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -201,7 +215,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(3, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(170, 13);
+            this.label3.Size = new System.Drawing.Size(164, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Toast Options";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -215,7 +229,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             "Save",
             "Hotkey",
             "None"});
-            this.cbToastOptions.Location = new System.Drawing.Point(179, 47);
+            this.cbToastOptions.Location = new System.Drawing.Point(173, 47);
             this.cbToastOptions.Name = "cbToastOptions";
             this.cbToastOptions.Size = new System.Drawing.Size(165, 21);
             this.cbToastOptions.TabIndex = 12;
@@ -227,7 +241,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.somewhatBetterButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.somewhatBetterButton1.ForeColor = System.Drawing.Color.Black;
             this.somewhatBetterButton1.GradientAngle = 90;
-            this.somewhatBetterButton1.Location = new System.Drawing.Point(181, 79);
+            this.somewhatBetterButton1.Location = new System.Drawing.Point(175, 79);
             this.somewhatBetterButton1.Margin = new System.Windows.Forms.Padding(5);
             this.somewhatBetterButton1.MouseClickColor1 = System.Drawing.Color.DarkOrange;
             this.somewhatBetterButton1.MouseClickColor2 = System.Drawing.Color.Red;
@@ -251,7 +265,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbFlashOff.GroupName = "flash";
             this.rbFlashOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbFlashOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbFlashOff.Location = new System.Drawing.Point(351, 137);
+            this.rbFlashOff.Location = new System.Drawing.Point(339, 137);
             this.rbFlashOff.Name = "rbFlashOff";
             this.rbFlashOff.Size = new System.Drawing.Size(38, 17);
             this.rbFlashOff.TabIndex = 15;
@@ -267,7 +281,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(174, 13);
+            this.label4.Size = new System.Drawing.Size(168, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "flash window";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -278,7 +292,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbFlashOn.GroupName = "flash";
             this.rbFlashOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbFlashOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbFlashOn.Location = new System.Drawing.Point(179, 137);
+            this.rbFlashOn.Location = new System.Drawing.Point(173, 137);
             this.rbFlashOn.Name = "rbFlashOn";
             this.rbFlashOn.Size = new System.Drawing.Size(38, 17);
             this.rbFlashOn.TabIndex = 14;
@@ -291,7 +305,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 167);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 13);
+            this.label5.Size = new System.Drawing.Size(164, 13);
             this.label5.TabIndex = 17;
             this.label5.Text = "Save as Json";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -300,9 +314,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 194);
+            this.label6.Location = new System.Drawing.Point(3, 187);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(170, 13);
+            this.label6.Size = new System.Drawing.Size(164, 13);
             this.label6.TabIndex = 18;
             this.label6.Text = "load  last saved json file on open";
             // 
@@ -312,7 +326,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbJsonOn.GroupName = "json";
             this.rbJsonOn.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbJsonOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbJsonOn.Location = new System.Drawing.Point(179, 167);
+            this.rbJsonOn.Location = new System.Drawing.Point(173, 167);
             this.rbJsonOn.Name = "rbJsonOn";
             this.rbJsonOn.Size = new System.Drawing.Size(38, 14);
             this.rbJsonOn.TabIndex = 19;
@@ -325,22 +339,89 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.rbJsonOff.GroupName = "json";
             this.rbJsonOff.GroupNameLevel = JohnBPearson.Windows.Forms.Controls.AdvancedRadioButton.Level.Form;
             this.rbJsonOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.rbJsonOff.Location = new System.Drawing.Point(351, 167);
+            this.rbJsonOff.Location = new System.Drawing.Point(339, 167);
             this.rbJsonOff.Name = "rbJsonOff";
             this.rbJsonOff.Size = new System.Drawing.Size(38, 14);
             this.rbJsonOff.TabIndex = 20;
             this.rbJsonOff.Text = "off";
             this.rbJsonOff.UseVisualStyleBackColor = true;
             // 
+            // rbLastSavedOn
+            // 
+            this.rbLastSavedOn.AutoSize = true;
+            this.rbLastSavedOn.GroupName = "LastSaved";
+            this.rbLastSavedOn.Location = new System.Drawing.Point(173, 187);
+            this.rbLastSavedOn.Name = "rbLastSavedOn";
+            this.rbLastSavedOn.Size = new System.Drawing.Size(38, 14);
+            this.rbLastSavedOn.TabIndex = 21;
+            this.rbLastSavedOn.Text = "on";
+            this.rbLastSavedOn.UseVisualStyleBackColor = true;
+            // 
+            // rbLastSavedOff
+            // 
+            this.rbLastSavedOff.AutoSize = true;
+            this.rbLastSavedOff.GroupName = "LastSaved";
+            this.rbLastSavedOff.Location = new System.Drawing.Point(339, 187);
+            this.rbLastSavedOff.Name = "rbLastSavedOff";
+            this.rbLastSavedOff.Size = new System.Drawing.Size(38, 14);
+            this.rbLastSavedOff.TabIndex = 22;
+            this.rbLastSavedOff.Text = "off";
+            this.rbLastSavedOff.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 217);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(164, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Default File";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // tbFile
+            // 
+            this.tbFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFile.Location = new System.Drawing.Point(173, 214);
+            this.tbFile.Name = "tbFile";
+            this.tbFile.Size = new System.Drawing.Size(160, 20);
+            this.tbFile.TabIndex = 24;
+            // 
+            // somewhatBetterButton2
+            // 
+            this.somewhatBetterButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.somewhatBetterButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.somewhatBetterButton2.EndColor = System.Drawing.Color.Silver;
+            this.somewhatBetterButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.somewhatBetterButton2.ForeColor = System.Drawing.Color.Black;
+            this.somewhatBetterButton2.GradientAngle = 45;
+            this.somewhatBetterButton2.Location = new System.Drawing.Point(339, 209);
+            this.somewhatBetterButton2.MouseClickColor1 = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.MouseClickColor2 = System.Drawing.Color.Navy;
+            this.somewhatBetterButton2.MouseHoverColor1 = System.Drawing.Color.Navy;
+            this.somewhatBetterButton2.MouseHoverColor2 = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.Name = "somewhatBetterButton2";
+            this.somewhatBetterButton2.Size = new System.Drawing.Size(160, 29);
+            this.somewhatBetterButton2.StartColor = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.TabIndex = 25;
+            this.somewhatBetterButton2.Text = "Select File";
+            this.somewhatBetterButton2.TextLocation_X = 63;
+            this.somewhatBetterButton2.TextLocation_Y = 6;
+            this.somewhatBetterButton2.Transparent1 = 50;
+            this.somewhatBetterButton2.Transparent2 = 150;
+            this.somewhatBetterButton2.UseVisualStyleBackColor = true;
+            this.somewhatBetterButton2.Click += new System.EventHandler(this.somewhatBetterButton2_Click);
+            // 
             // transparentPanel1
             // 
-            this.transparentPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.transparentPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.transparentPanel1.AutoSize = true;
             this.transparentPanel1.Controls.Add(this.btnSave);
             this.transparentPanel1.Controls.Add(this.btnCancel);
-            this.transparentPanel1.Location = new System.Drawing.Point(69, 285);
+            this.transparentPanel1.Location = new System.Drawing.Point(3, 293);
             this.transparentPanel1.Name = "transparentPanel1";
-            this.transparentPanel1.Size = new System.Drawing.Size(333, 79);
+            this.transparentPanel1.Size = new System.Drawing.Size(253, 29);
             this.transparentPanel1.TabIndex = 1;
             // 
             // btnSave
@@ -373,44 +454,37 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // 
             this.timer1.Interval = 5;
             // 
-            // rbLastSavedOn
+            // transparentFlowPanel1
             // 
-            this.rbLastSavedOn.AutoSize = true;
-            this.rbLastSavedOn.GroupName = "LastSaved";
-            this.rbLastSavedOn.Location = new System.Drawing.Point(179, 187);
-            this.rbLastSavedOn.Name = "rbLastSavedOn";
-            this.rbLastSavedOn.Size = new System.Drawing.Size(38, 17);
-            this.rbLastSavedOn.TabIndex = 21;
-            this.rbLastSavedOn.Text = "on";
-            this.rbLastSavedOn.UseVisualStyleBackColor = true;
+            this.transparentFlowPanel1.Controls.Add(this.tableLayoutPanel1);
+            this.transparentFlowPanel1.Controls.Add(this.transparentPanel1);
+            this.transparentFlowPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transparentFlowPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.transparentFlowPanel1.Location = new System.Drawing.Point(0, 0);
+            this.transparentFlowPanel1.Name = "transparentFlowPanel1";
+            this.transparentFlowPanel1.Size = new System.Drawing.Size(508, 470);
+            this.transparentFlowPanel1.TabIndex = 2;
             // 
-            // rbLastSavedOff
+            // openFileDialog1
             // 
-            this.rbLastSavedOff.AutoSize = true;
-            this.rbLastSavedOff.GroupName = "LastSaved";
-            this.rbLastSavedOff.Location = new System.Drawing.Point(351, 187);
-            this.rbLastSavedOff.Name = "rbLastSavedOff";
-            this.rbLastSavedOff.Size = new System.Drawing.Size(38, 17);
-            this.rbLastSavedOff.TabIndex = 22;
-            this.rbLastSavedOff.Text = "off";
-            this.rbLastSavedOff.UseVisualStyleBackColor = true;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 409);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.transparentPanel1);
+            this.ClientSize = new System.Drawing.Size(508, 640);
+            this.Controls.Add(this.transparentFlowPanel1);
             this.Name = "SettingsDialog";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsDialog_Load);
-            this.Controls.SetChildIndex(this.transparentPanel1, 0);
-            this.Controls.SetChildIndex(this.tableLayoutPanel1, 0);
+            this.Controls.SetChildIndex(this.transparentFlowPanel1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.transparentPanel1.ResumeLayout(false);
+            this.transparentFlowPanel1.ResumeLayout(false);
+            this.transparentFlowPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,5 +518,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private AdvancedRadioButton rbJsonOff;
         private AdvancedRadioButton rbLastSavedOn;
         private AdvancedRadioButton rbLastSavedOff;
+        private TransparentFlowPanel transparentFlowPanel1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbFile;
+        private SomewhatBetterButton somewhatBetterButton2;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

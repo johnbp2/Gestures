@@ -1,11 +1,13 @@
 ﻿using System;
+using JohnBPearson.Application.Common;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 {
-    public class GestureDTO
+    public class DomainGesture
     {
+       public SymanticVersion Version { get; set; }
 
-        public GestureDTO()
+        public DomainGesture()
         {
 
         }

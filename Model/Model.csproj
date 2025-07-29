@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContainerBase.cs" />
-    <Compile Include="Domain\Entities\GestureDTO.cs" />
+    <Compile Include="Domain\Entities\DomainGesture.cs" />
     <Compile Include="Domain\Entities\Entities.cs" />
     <Compile Include="Domain\ValueObjects\Value.cs" />
     <Compile Include="Domain\ValueObjects\BaseValue.cs" />

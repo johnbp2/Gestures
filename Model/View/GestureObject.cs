@@ -21,9 +21,9 @@ namespace JohnBPearson.Application.Gestures.Model
             }
         }
 
-        internal Domain.Entities.GestureDTO MapToEntity()
+        internal Domain.Entities.DomainGesture MapToEntity()
         {
-            var entity = new Domain.Entities.GestureDTO();
+            var entity = new Domain.Entities.DomainGesture();
             entity.DataString = this.Data.Value;
             entity.DescriptionString = this.Description.Value;
             entity.KeyAsChar = this.KeyAsChar.ToString();
@@ -202,7 +202,7 @@ namespace JohnBPearson.Application.Gestures.Model
             this.CreateDescription(description);
             this._parent = parent;
         }
-        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.GestureDTO container)
+        protected GestureObject(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.DomainGesture container)
         {
             this.CreateKeyboardKey(char.Parse(container.KeyAsChar));
 
@@ -235,7 +235,7 @@ namespace JohnBPearson.Application.Gestures.Model
         }
 
 
-        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.GestureDTO entity)
+        public static GestureObject Create(JohnBPearson.Application.Gestures.Model.IGestureFactory parent, Domain.Entities.DomainGesture entity)
         {
             return new GestureObject(parent, entity.KeyAsChar.ToCharArray()[0], entity.DataString, entity.DescriptionString, entity.IsProtected, entity.HexString, entity.Length, entity.ByteValue);
         }

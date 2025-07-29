@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Web.Configuration;
 using JohnBPearson.Application.Gestures.Model.Domain;
 using JohnBPearson.Application.Gestures.Model.Utility;
 
@@ -12,7 +14,7 @@ namespace JohnBPearson.Application.Gestures.Model
         private Utility.Parser _userSettingsParser;
         private List<IGestureObject> _items = new List<IGestureObject>();
         private const string deliminater = "|";
-        private List<Domain.Entities.GestureDTO> _importBackUpItems;
+        private List<Domain.Entities.DomainGesture> _importBackUpItems;
         private List<string> _keys;
         public IEnumerable<string> Keys
         {
@@ -162,9 +164,10 @@ namespace JohnBPearson.Application.Gestures.Model
         
         }
 
-        public List<Domain.Entities.GestureDTO> MapToEntities()
+        public List<Domain.Entities.DomainGesture> MapToEntities()
         {
-            var list = new List<Domain.Entities.GestureDTO>();
+            var list = new List<Domain.Entities.DomainGesture>();
+       
             foreach(var item in _items)
             {
                 var concreteItem = item as GestureObject;
@@ -176,7 +179,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
 
 
-        public void MapFromEntities(List<Domain.Entities.GestureDTO> entities)
+        public void MapFromEntities(List<Domain.Entities.DomainGesture> entities)
         {
             // this._importBackUpItems = this.MapFromEntities(entities);
             this._items = new List<IGestureObject>();

@@ -11,6 +11,7 @@ using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
 using System.Text.Json.Serialization;
 using Windows.Graphics.Printing.OptionDetails;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -27,8 +28,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
+        private MenuItem copyFrom;
 
 
+        //  private IPresenter<Form> presenter;
+        #endregion
         public string selectedKey
         {
             get
@@ -46,9 +50,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
 
         }
-
-        //  private IPresenter<Form> presenter;
-        #endregion
 
         public Main() : base()
         {
@@ -68,15 +69,27 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.setupTryIconMenu();
         }
 
- 
 
-      
+
+
 
 
 
         #region private methods
 
+        private void handleCypher()
+        {
+            if(cbProtect.Checked && !this.presenter.Current.Data.isProtected)
+            {
 
+                this.presenter.Current.Data.encryptValue(this.presenter.Current.Data.Value);
+                return;
+            }
+            else if(!cbProtect.Checked && this.presenter.Current.Data.isProtected)
+            {
+                this.presenter.Current.Data.RemoveEncryption();
+            }
+        }
 
 
         public void hotKeyCallBack(JohnBPearson.Application.Gestures.Model.IGestureObject item)
@@ -124,7 +137,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
 
 
-
             this.cbHotkeySelection.DataSource = this.presenter.Keys;
             //1  var currentHotKeyGuildAd = Properties.Settings.Default.UserHotKeyGuildAd.ToString();
 
@@ -139,10 +151,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.components = new System.ComponentModel.Container();
             this.contextMenuIcon = new System.Windows.Forms.ContextMenu();
             this.menuItemIcon = new System.Windows.Forms.MenuItem();
-
+            this.copyFrom= new System.Windows.Forms.MenuItem();
             // Initialize contextMenu1
             this.contextMenuIcon.MenuItems.AddRange(
-                        new System.Windows.Forms.MenuItem[] { this.menuItemIcon });
+                        new System.Windows.Forms.MenuItem[] { this.menuItemIcon, copyFrom });
 
             // Initialize menuItem1
             this.menuItemIcon.Index = 0;
@@ -150,6 +162,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuItemIcon.Click += new System.EventHandler(this.menuItemIcon_Click);
 
 
+            this.copyFrom.Index = 1;
+            this.menuItemIcon.Text = "Copy from";
+            this.menuItemIcon.Click += new System.EventHandler(this.copyFrom_Click);
 
 
 
@@ -170,7 +185,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-      
+
 
         private void notifyDerived(string title, string content, bool flash = false, ToastOptions toastType = ToastOptions.None, uint flashCount = 10)
         {
@@ -206,14 +221,26 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // Close the form, which closes the application.
             this.Close();
         }
+        private void  copyFrom_Click(object Sender, EventArgs e)
+        {
+            var value = Clipboard.GetDataObject();
+
+            if(value != null)
+            {
+              
+                this.presenter.updateContainer(value.ToString(), tbDesc.Text, "p");
+                this.handleCypher();
+            }
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(Properties.Settings.Default.autoSave )
+            if(Properties.Settings.Default.autoSave)
             {
-            
+
                 this.presenter.save();
             }
+            Properties.Settings.Default.Save();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -234,7 +261,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 this.ShowInTaskbar = true;
             }
-
+            Properties.Settings.Default.MainSize = this.Size;
             //  this.Size = new Size()
         }
 
@@ -324,7 +351,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             if(this.selectedKey != null)
             {
                 this.updateUI(this.presenter.Current as GestureObject);
-
             }
 
             this.lblKey.ClearAndReplace(cbHotkeySelection.Text);
@@ -403,8 +429,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var aboot = new AboutBox1();
-            aboot.ShowDialog();
+            var about = new AboutBox1();
+            about.ShowDialog();
         }
 
 
@@ -416,21 +442,18 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        private void handleCypher()
-        {
-            if(cbProtect.Checked && !this.presenter.Current.Data.isProtected)
-            {
 
-                this.presenter.Current.Data.encryptValue(this.presenter.Current.Data.Value);
-                return;
-            }
-            else if(!cbProtect.Checked && this.presenter.Current.Data.isProtected)
-            {
-                this.presenter.Current.Data.RemoveEncryption();
-            }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JsonService.Import(this.presenter.ContainerList);
+            this.presenter.registerHotKeys(this.presenter.Containers);
         }
 
-
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion
 
         protected override void WndProc(ref Message message)
@@ -447,6 +470,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // Insert code here to make your form show itself.
             WinApi.ShowToFront(this.Handle);
         }
+
 
     }
 }
