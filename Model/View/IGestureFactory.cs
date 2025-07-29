@@ -11,8 +11,8 @@ namespace JohnBPearson.Application.Gestures.Model
         IEnumerable<string> Keys { get; }
 
         Dto PrepareDataForSave();
-        List<Domain.Entities.GestureDTO> MapToEntities();
-        void MapFromEntities(List<Domain.Entities.GestureDTO> entities);
+        List<Domain.Entities.DomainGesture> MapToEntities();
+        void MapFromEntities(List<Domain.Entities.DomainGesture> entities);
       
 
         IGestureFactory Replace(IGestureObject oldItem, IGestureObject newItem);

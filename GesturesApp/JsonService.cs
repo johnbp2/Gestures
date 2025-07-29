@@ -23,13 +23,37 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal JsonService()
         {
         }
+        internal static string Export(GestureFactory sourceList, string file)
+        {
+            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+            byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+            if(File.Exists(file) || Directory.Exists(Path.GetDirectoryName(file)))
+            {
+           var str =   FileService.OpenFile(file);
+               
+               str.Write(exportBytes, 0, exportBytes.Length);
+                str.Close();
+                return file;
+            }
+           
+            else
+            {
+
+                throw new FileNotFoundException(file);
+                    
+                    }
+
+        
+        }
+
 
         internal static string Export(GestureFactory sourceList)
         {
             string path = string.Empty;
             string file = string.Empty;
-            {
-                var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(sourceList.MapToEntities());
+            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+            
+                
                 //  System.Windows.Clipboard.SetText(export);
 
                 // Displays a SaveFileDialog so the user can save the Image
@@ -37,11 +61,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
                 saveFileDialog1.Filter = "json text|*.json";
                 saveFileDialog1.Title = "Save all your key bindings to json File";
-                var now = System.DateTime.Now;
-                saveFileDialog1.FileName = $"{now.Date.Month}-{now.Day}-{now.Year}-{now.TimeOfDay.TotalSeconds}";
 
-            
-                saveFileDialog1.InitialDirectory = determineJsonDefaultPath();
+
+
+            saveFileDialog1.InitialDirectory = FileService.determineJsonDefaultFolderPath();
                 
                 saveFileDialog1.ShowDialog();
 
@@ -70,70 +93,72 @@ namespace JohnBPearson.Windows.Forms.Gestures
                             }
                             file = saveFileDialog1.FileName;
                             fs.Close();
-                        } 
-                  //  }
-                   
-                }
+                        }
+                //  }
+
+                return path;
             }
-            return path;
+            throw new System.IO.FileNotFoundException();
           //  return System.IO.Path.Combine(path, file);
         }
 
-        private static string determineJsonDefaultPath()
+       
+      
+        internal static void Import(GestureFactory sourceList, string path)
         {
-            string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string path = Path.Combine(currentDir, "JsonObjects");
-
-            if(!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            return path;
-        }
-
-        private static FileStream openDefault(string path)
-        {
-            System.IO.FileStream st = new FileStream(path, FileMode.Open, FileAccess.Read);
-            return st;
-        }
-        internal static void Import(GestureFactory _sourceList, string defaultFile = "")
-        {
-            if(string.IsNullOrEmpty(defaultFile))
-            {
-
-                var of = new System.Windows.Forms.OpenFileDialog();
-
-                of.Filter = "json text|*.json";
-                of.InitialDirectory = determineJsonDefaultPath();
-                of.ShowDialog();
-
-
-                if(of.FileName != string.Empty)
+            
+                using(var fs = FileService.OpenFile(path))
                 {
-                    using(System.IO.FileStream fs =
-                             (System.IO.FileStream)of.OpenFile())
+                    parseJson(sourceList, fs);
+                }
+                    
+                    //var of = new System.Windows.Forms.OpenFile();
 
-                    {
-                        parseJson(_sourceList, fs);
+                //of.Filter = "json text|*.json";
+                //of.InitialDirectory = determineJsonDefaultFilePath();
+                //of.ShowDialog();
 
-                    }
-                    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
 
+                //if(of.FileName != string.Empty)
+                //{
+                //    using(System.IO.FileStream fs =
+                //             (System.IO.FileStream)of.OpenFile())
+
+                //    {
+                //        parseJson(sourceList, fs);
+
+                //    }
+                //    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
+
+                //}
+   
+        }
+
+        internal static void Import(GestureFactory sourceList)
+        {
+
+
+        FileStream fs =    FileService.OpenFile();
+                using(fs)
+
+                {
+                    parseJson(sourceList, fs);
 
                 }
+                 // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
+
             }
-            else
-            {
-                parseJson(_sourceList, openDefault(defaultFile));
-            }
-        }
+
+        
+
 
         private static void parseJson(GestureFactory _sourceList, FileStream fs)
         {
             var doc = System.Text.Json.JsonDocument.Parse(fs);
             System.Diagnostics.Trace.TraceInformation(doc.ToString());
-            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
+            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>();
             _sourceList.MapFromEntities(root);
         }
     }

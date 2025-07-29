@@ -414,5 +414,17 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
                 this["UsedLastSavedNextSession"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseCustomFilePath {
+            get {
+                return ((bool)(this["UseCustomFilePath"]));
+            }
+            set {
+                this["UseCustomFilePath"] = value;
+            }
+        }
     }
 }

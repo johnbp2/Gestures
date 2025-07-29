@@ -54,7 +54,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
                         this._containerList = new GestureFactory();
                       string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFileLocation : "";
-                        JsonService.Import(this._containerList, test);
+                        JsonService.Import(this._containerList);
                     }
                     else
                     {
@@ -201,7 +201,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         //public void executeJsonSave()
         //{
-        //            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(this._containerList.MapToEntities());
+        //            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(this._containerList.MapToEntities());
         //            //  System.Windows.Clipboard.SetText(export);
 
         //            // Displays a SaveFileDialog so the user can save the Image

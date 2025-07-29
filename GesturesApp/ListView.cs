@@ -78,7 +78,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void aLittleBetter_Import_Click(object sender, EventArgs e)
         {
-          //  using(this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog())
+          //  using(this.openFileDialog1 = new System.Windows.Forms.OpenFile())
             //{
                 //if(this.openFileDialog1.ShowDialog() == DialogResult.OK)
                 //{
@@ -88,9 +88,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
                     //            var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
-                    //           this._sourceList.MapFromEntities( root);
-                    JsonService.Import(_sourceList: this._mainPresenter.ContainerList);
+                    //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>();
+                    //           this.sourceList.MapFromEntities( root);
+                    JsonService.Import(sourceList: this._mainPresenter.ContainerList);
                     //this._mainPresenter.save();
                     this.rebindsource(this._sourceList);
              //   }

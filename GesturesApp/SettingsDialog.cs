@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
+using Windows.ApplicationModel.Background;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -17,18 +19,18 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public SettingsDialog()
         {
             InitializeComponent();
-          
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-          
-           
-        Properties.Settings.Default.autoSave = rbAutoSaveOn.Checked;
-         
 
-                Properties.Settings.Default.MinimizeToTray = rbMinimizeToTrayOn.Checked;
-          //  Properties.Settings.Default.ServantName = tbServantName.Text;
+
+            Properties.Settings.Default.autoSave = rbAutoSaveOn.Checked;
+
+
+            Properties.Settings.Default.MinimizeToTray = rbMinimizeToTrayOn.Checked;
+            //  Properties.Settings.Default.ServantName = tbServantName.Text;
             ToastOptions toastOpt;
             if(System.Enum.TryParse(cbToastOptions.SelectedItem.ToString(), out toastOpt))
             {
@@ -38,7 +40,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
             else
             {
-                System.Diagnostics.Debugger.Log(10,"butler", cbToastOptions.SelectedItem.ToString());
+                System.Diagnostics.Debugger.Log(10, "butler", cbToastOptions.SelectedItem.ToString());
 
             }
             Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;
@@ -58,28 +60,31 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             this.rbMinimizeToTrayOn.Checked = Properties.Settings.Default.MinimizeToTray;
             this.rbMinimizeToTrayOff.Checked = !Properties.Settings.Default.MinimizeToTray;
-            this.rbLastSavedOn.Checked= Properties.Settings.Default.UsedLastSavedNextSession;
+            this.rbLastSavedOn.Checked = Properties.Settings.Default.UsedLastSavedNextSession;
             this.rbLastSavedOff.Checked = !Properties.Settings.Default.UsedLastSavedNextSession;
             //  tbServantName.Text = Properties.Settings.Default.ServantName;
             // popupNotifier1.ContentText = $"You settings have been. you can close settings dialog now. or it will close in 15 seconds.";
             cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;
-         
-            if (Properties.Settings.Default.FlashWindow)
+
+            if(Properties.Settings.Default.FlashWindow)
             {
                 rbFlashOn.Checked = true;
             }
-            else { rbFlashOff.Checked = true; }
+            else
+            {
+                rbFlashOff.Checked = true;
+            }
             if(Properties.Settings.Default.JsonSave)
             {
                 rbJsonOn.Checked = true;
             }
             else
             {
-            rbJsonOff.Checked = true; 
+                rbJsonOff.Checked = true;
             }
             // "2011-03-21 13:26";
-         //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
-          // popupNotifier1.TitleText = Properties.Settings.Default.ServantName;
+            //   var test = DateTime.Now.CompareTo(DateTime.ParseExact($"{DateTime.Today.Year}-{DateTime.Today.Month}-{DateTime.Today.Day} 12:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture));
+            // popupNotifier1.TitleText = Properties.Settings.Default.ServantName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -98,6 +103,43 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 this.somewhatBetterButton1.ForeColor = this.colorDialog1.Color;
             }
 
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void somewhatBetterButton2_Click(object sender, EventArgs e)
+        {
+            using(this.openFileDialog1)
+            {
+                this.openFileDialog1.Filter = "json text|*.json";
+
+                {
+                    openFileDialog1.Filter = "json text|*.json";
+                    openFileDialog1.RestoreDirectory = true;
+                    openFileDialog1.ShowDialog();
+
+
+                    if(openFileDialog1.FileName != string.Empty)
+                    {
+                        if(File.Exists(openFileDialog1.FileName))
+                        {
+                            tbFile.Text = Path.GetDirectoryName(openFileDialog1.FileName);
+                            Properties.Settings.Default.LastSavedFileLocation = tbFile.Text;
+                            return;
+                        }
+                    }
+                    throw new System.IO.FileNotFoundException();
+
+                }
+            }
         }
     }
 }
