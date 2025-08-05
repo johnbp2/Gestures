@@ -65,7 +65,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //  tbServantName.Text = Properties.Settings.Default.ServantName;
             // popupNotifier1.ContentText = $"You settings have been. you can close settings dialog now. or it will close in 15 seconds.";
             cbToastOptions.SelectedIndex = Properties.Settings.Default.ToastOption;
-
+            tbFile.Text = Properties.Settings.Default.LastSavedFile;
             if(Properties.Settings.Default.FlashWindow)
             {
                 rbFlashOn.Checked = true;
@@ -132,7 +132,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                         if(File.Exists(openFileDialog1.FileName))
                         {
                             tbFile.Text = Path.GetDirectoryName(openFileDialog1.FileName);
-                            Properties.Settings.Default.LastSavedFileLocation = tbFile.Text;
+                            Properties.Settings.Default.LastSavedFile = tbFile.Text;
                             return;
                         }
                     }

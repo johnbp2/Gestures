@@ -94,4 +94,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
             return fs;
         }
     }
+
+    public struct FileInfo
+    {
+    
+    public string Name;
+    public FileStream FileStream;
+    }
 }

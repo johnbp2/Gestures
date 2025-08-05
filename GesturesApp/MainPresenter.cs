@@ -53,8 +53,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                     {
 
                         this._containerList = new GestureFactory();
-                      string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFileLocation : "";
-                        JsonService.Import(this._containerList);
+                      string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFile : "";
+                   this.Form.FileLabelText =   JsonService.Import(this._containerList);
                     }
                     else
                     {
@@ -195,7 +195,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void executeJsonSave()
         {
-        Properties.Settings.Default.LastSavedFileLocation =   JsonService.Export(this.ContainerList);
+        Properties.Settings.Default.LastSavedFile =   JsonService.Export(this.ContainerList);
             Properties.Settings.Default.Save();
         }
 
