@@ -394,12 +394,12 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSavedFileLocation {
+        public string LastSavedFile {
             get {
-                return ((string)(this["LastSavedFileLocation"]));
+                return ((string)(this["LastSavedFile"]));
             }
             set {
-                this["LastSavedFileLocation"] = value;
+                this["LastSavedFile"] = value;
             }
         }
         
@@ -412,18 +412,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["UsedLastSavedNextSession"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UseCustomFilePath {
-            get {
-                return ((bool)(this["UseCustomFilePath"]));
-            }
-            set {
-                this["UseCustomFilePath"] = value;
             }
         }
     }

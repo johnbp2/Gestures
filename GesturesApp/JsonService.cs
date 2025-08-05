@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
 using Microsoft.Win32;
+using Windows.Graphics.Printing3D;
 using Windows.Media.Protection.PlayReady;
 using Windows.Networking.Sockets;
 
@@ -23,28 +24,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal JsonService()
         {
         }
-        internal static string Export(GestureFactory sourceList, string file)
-        {
-            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
-            byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
-            if(File.Exists(file) || Directory.Exists(Path.GetDirectoryName(file)))
-            {
-           var str =   FileService.OpenFile(file);
+        //internal static string Export(GestureFactory sourceList, string file)
+        //{
+        //    var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+        //    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+        //    if(File.Exists(file) || Directory.Exists(Path.GetDirectoryName(file)))
+        //    {
+        //   var str =   FileService.OpenFile(file);
                
-               str.Write(exportBytes, 0, exportBytes.Length);
-                str.Close();
-                return file;
-            }
+        //       str.Write(exportBytes, 0, exportBytes.Length);
+        //        str.Close();
+        //        return file;
+        //    }
            
-            else
-            {
+        //    else
+        //    {
 
-                throw new FileNotFoundException(file);
+        //        throw new FileNotFoundException(file);
                     
-                    }
+        //            }
 
         
-        }
+        //}
 
 
         internal static string Export(GestureFactory sourceList)
@@ -62,7 +63,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 saveFileDialog1.Filter = "json text|*.json";
                 saveFileDialog1.Title = "Save all your key bindings to json File";
 
-
+            saveFileDialog1.FileName = FileService.FileNameUsingDateTime();
 
             saveFileDialog1.InitialDirectory = FileService.determineJsonDefaultFolderPath();
                 
@@ -98,7 +99,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
                 return path;
             }
-            throw new System.IO.FileNotFoundException();
+            return string.Empty;
           //  return System.IO.Path.Combine(path, file);
         }
 
@@ -135,15 +136,28 @@ namespace JohnBPearson.Windows.Forms.Gestures
    
         }
 
-        internal static void Import(GestureFactory sourceList)
+        internal static string Import(GestureFactory sourceList)
         {
+            FileStream fs;
+            string fileUsed = string.Empty;
+            if(Properties.Settings.Default.UsedLastSavedNextSession &&
+                File.Exists(Properties.Settings.Default.LastSavedFile))
+            {
+                fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
+             fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile);
+            }
+            else
+            {
+                fs = FileService.OpenFile();
+                fileUsed = fs.Name;
+            }
 
-
-        FileStream fs =    FileService.OpenFile();
+     
                 using(fs)
 
                 {
                     parseJson(sourceList, fs);
+                return fileUsed;
 
                 }
                  // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
