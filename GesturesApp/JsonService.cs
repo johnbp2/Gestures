@@ -105,43 +105,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
        
       
-        internal static void Import(GestureFactory sourceList, string path)
-        {
-            
-                using(var fs = FileService.OpenFile(path))
-                {
-                    parseJson(sourceList, fs);
-                }
-                    
-                    //var of = new System.Windows.Forms.OpenFile();
+    
 
-                //of.Filter = "json text|*.json";
-                //of.InitialDirectory = determineJsonDefaultFilePath();
-                //of.ShowDialog();
-
-
-                //if(of.FileName != string.Empty)
-                //{
-                //    using(System.IO.FileStream fs =
-                //             (System.IO.FileStream)of.OpenFile())
-
-                //    {
-                //        parseJson(sourceList, fs);
-
-                //    }
-                //    //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
-
-
-                //}
-   
-        }
-
-        internal static string Import(GestureFactory sourceList)
+        internal static string Import(GestureFactory sourceList, bool  useDialog = false )
         {
             FileStream fs;
             string fileUsed = string.Empty;
             if(Properties.Settings.Default.UsedLastSavedNextSession &&
-                File.Exists(Properties.Settings.Default.LastSavedFile))
+                File.Exists(Properties.Settings.Default.LastSavedFile) && !useDialog)
             {
                 fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
              fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile);

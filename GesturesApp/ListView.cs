@@ -90,7 +90,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                     //            var doc = System.Text.Json.JsonDocument.Parse(fs);
                     //            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>();
                     //           this.sourceList.MapFromEntities( root);
-                  base.FileLabelText= JsonService.Import(sourceList: this._mainPresenter.ContainerList);
+                  base.FileLabelText= JsonService.Import(sourceList: this._mainPresenter.ContainerList, true);
                     //this._mainPresenter.save();
                     this.rebindsource(this._sourceList);
              //   }

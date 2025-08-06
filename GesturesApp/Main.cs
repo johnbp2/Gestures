@@ -446,7 +446,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          base.FileLabelText=  JsonService.Import(this.presenter.ContainerList);
+          base.FileLabelText=  JsonService.Import(this.presenter.ContainerList, true);
             this.presenter.registerHotKeys(this.presenter.Containers);
         }
 
