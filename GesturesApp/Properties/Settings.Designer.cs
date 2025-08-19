@@ -369,18 +369,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastFileSaved {
-            get {
-                return ((string)(this["LastFileSaved"]));
-            }
-            set {
-                this["LastFileSaved"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Size MainSize {
             get {
@@ -400,6 +388,30 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["JsonSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSavedFile {
+            get {
+                return ((string)(this["LastSavedFile"]));
+            }
+            set {
+                this["LastSavedFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UsedLastSavedNextSession {
+            get {
+                return ((bool)(this["UsedLastSavedNextSession"]));
+            }
+            set {
+                this["UsedLastSavedNextSession"] = value;
             }
         }
     }

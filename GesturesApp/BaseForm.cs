@@ -18,15 +18,37 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.InitializeComponent();
         }
 
-        public ToolStripStatusLabel MyProperty
+        public ToolStripStatusLabel StatusLabel
         {
             get
             {
-                return toolStripStatusLabel1;
+                return toolStripStatusLabel3;
+            }
+
+        }
+        public ToolStripStatusLabel FileLabel
+        {
+            get
+            {
+                return toolStripStatusLabel2;
             }
 
         }
 
+        private string _fileLabelText;
+
+        public string FileLabelText
+        {
+            get
+            {
+                return _fileLabelText;
+            }
+            set
+            {
+                _fileLabelText = value;
+                this.FileLabel.Text = _fileLabelText;
+            }
+        }
 
         //public  Color BgColor
         //{
@@ -52,7 +74,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
 
             NotificationService.notify(form, title, content, flash, toastType);
-            this.toolStripStatusLabel1.Text = content;
+            this.toolStripStatusLabel3.Text = content;
             //    if (toastType == ToastOptions.None)
             //    {
             //        return;
@@ -81,7 +103,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         protected void setStatus(string text)
         {
-            this.toolStripStatusLabel1.Text = text;
+            this.toolStripStatusLabel3.Text = text;
 
         }
 

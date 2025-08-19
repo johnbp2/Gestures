@@ -52,7 +52,8 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseWinFormsOutOfProcDesigner>True</UseWinFormsOutOfProcDesigner>
@@ -136,6 +137,7 @@
     <Compile Include="Command.Designer.cs">
       <DependentUpon>Command.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileService.cs" />
     <Compile Include="InsecureMaskedTexrtbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
