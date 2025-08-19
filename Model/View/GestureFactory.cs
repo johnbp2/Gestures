@@ -159,10 +159,7 @@ namespace JohnBPearson.Application.Gestures.Model
 
         }
 
-        public void import()
-        {
-        
-        }
+      
 
         public List<Domain.Entities.DomainGesture> MapToEntities()
         {

@@ -51,8 +51,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal static string Export(GestureFactory sourceList)
         {
             string path = string.Empty;
+            
             string file = string.Empty;
-            var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+            var jsonRoot = new JsonRoot();
+            jsonRoot.Gestures = sourceList.MapToEntities();
+            jsonRoot.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var export = System.Text.Json.JsonSerializer.Serialize<JsonRoot>(jsonRoot);
             
                 
                 //  System.Windows.Clipboard.SetText(export);
@@ -131,20 +135,33 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 return fileUsed;
 
                 }
-                 // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
+          //  System.Diagnostics.Trace.TraceInformation();
+            // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
 
 
-            }
+        }
 
-        
+
 
 
         private static void parseJson(GestureFactory _sourceList, FileStream fs)
         {
+       
             var doc = System.Text.Json.JsonDocument.Parse(fs);
-            System.Diagnostics.Trace.TraceInformation(doc.ToString());
-            var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>();
-            _sourceList.MapFromEntities(root);
+     
+            if(doc.RootElement.ValueKind == JsonValueKind.Array)
+            {
+                var root = doc.Deserialize<List<DomainGesture>>();
+                _sourceList.MapFromEntities(root);
+            }
+            else
+            {
+
+              
+                var root = doc.Deserialize<JsonRoot>();
+                _sourceList.MapFromEntities(root.Gestures);
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ using log4net.Util;
 
 namespace JohnBPearson.Application.Gestures.Model.Utility
 {
+    [Obsolete()]
     internal class Parser
     {
 

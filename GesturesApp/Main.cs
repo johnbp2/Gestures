@@ -127,7 +127,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
+        public void reload()
+        {
+            this.presenter.RefreshData();
 
+            this.notifyDerived("Reload", "Completed");
+        }
 
 
 
@@ -389,9 +394,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void btnReload_Click(object sender, EventArgs e)
         {
-            this.presenter.RefreshData();
-
-            this.notifyDerived("Reload", "Completed");
+            this.reload();
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -448,6 +451,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
           base.FileLabelText=  JsonService.Import(this.presenter.ContainerList, true);
             this.presenter.registerHotKeys(this.presenter.Containers);
+            this.reload();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
