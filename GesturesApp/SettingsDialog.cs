@@ -43,7 +43,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
             Properties.Settings.Default.FlashWindow = this.rbFlashOn.Checked;
             Properties.Settings.Default.JsonSave = this.rbJsonOn.Checked;// Properties.Settings.Default. = 
+            if(File.Exists(tbFile.Text))
+            {
+
+                Properties.Settings.Default.LastSavedFile = tbFile.Text;
+            }
+                Properties.Settings.Default.UsedLastSavedNextSession = this.rbLastSavedOn.Checked;
             Properties.Settings.Default.Save();
+
             this.notify(this, "Settings save", "Was successful", this.rbFlashOn.Checked, toastOpt);
             this.Close();
         }
@@ -83,7 +90,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.Close();
         }
 
-        private void somewhatBetterButton1_Click(object sender, EventArgs e)
+        private void selectColorbutton_Click(object sender, EventArgs e)
         {
             this.colorDialog1 = new ColorDialog();
             var result = this.colorDialog1.ShowDialog();
@@ -91,8 +98,37 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 Properties.Settings.Default.BgColor = this.colorDialog1.Color;
                 this.BackColor = this.colorDialog1.Color;
+                this.somewhatBetterButton1.ForeColor = this.colorDialog1.Color;
             }
 
+        }
+
+    
+        private void somewhatBetterButton2_Click(object sender, EventArgs e)
+        {
+            using(this.openFileDialog1)
+            {
+                this.openFileDialog1.Filter = "json text|*.json";
+
+                {
+                    openFileDialog1.Filter = "json text|*.json";
+                    openFileDialog1.RestoreDirectory = true;
+                    openFileDialog1.ShowDialog();
+
+
+                    if(openFileDialog1.FileName != string.Empty)
+                    {
+                        if(File.Exists(openFileDialog1.FileName))
+                        {
+                            tbFile.Text = Path.GetDirectoryName(openFileDialog1.FileName);
+                            Properties.Settings.Default.LastSavedFile = tbFile.Text;
+                            return;
+                        }
+                    }
+                    throw new System.IO.FileNotFoundException();
+
+                }
+            }
         }
     }
 }

@@ -1,8 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using JohnBPearson.Application.Common;
 
 namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
 {
-    public class GestureDTO
+    public class JsonRoot
+    {
+        public string AssemblyVersion
+        {
+        get; set;
+        }
+        public List<DomainGesture> Gestures { get; set; }
+        public JsonRoot()
+        {
+        }
+    }
+
+    [Serializable]
+    public class DomainGesture
     {
 
         public GestureDTO()

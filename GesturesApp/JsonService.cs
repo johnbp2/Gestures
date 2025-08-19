@@ -22,11 +22,41 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal JsonService()
         {
         }
+        //internal static string Export(GestureFactory sourceList, string file)
+        //{
+        //    var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+        //    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+        //    if(File.Exists(file) || Directory.Exists(Path.GetDirectoryName(file)))
+        //    {
+        //   var str =   FileService.OpenFile(file);
+               
+        //       str.Write(exportBytes, 0, exportBytes.Length);
+        //        str.Close();
+        //        return file;
+        //    }
+           
+        //    else
+        //    {
 
-        internal static void Export(GestureFactory sourceList)
+        //        throw new FileNotFoundException(file);
+                    
+        //            }
+
+        
+        //}
+
+
+        internal static string Export(GestureFactory sourceList)
         {
-            {
-                var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(sourceList.MapToEntities());
+            string path = string.Empty;
+            
+            string file = string.Empty;
+            var jsonRoot = new JsonRoot();
+            jsonRoot.Gestures = sourceList.MapToEntities();
+            jsonRoot.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var export = System.Text.Json.JsonSerializer.Serialize<JsonRoot>(jsonRoot);
+            
+                
                 //  System.Windows.Clipboard.SetText(export);
 
                 // Displays a SaveFileDialog so the user can save the Image
@@ -95,18 +125,34 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 
                     {
 
-              
-                    var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    System.Diagnostics.Trace.TraceInformation(doc.ToString());
-                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
-                    _sourceList.MapFromEntities(root);
-
                 }
-                //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
+          //  System.Diagnostics.Trace.TraceInformation();
+            // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
 
 
+        }
+
+
+
+
+        private static void parseJson(GestureFactory _sourceList, FileStream fs)
+        {
+       
+            var doc = System.Text.Json.JsonDocument.Parse(fs);
+     
+            if(doc.RootElement.ValueKind == JsonValueKind.Array)
+            {
+                var root = doc.Deserialize<List<DomainGesture>>();
+                _sourceList.MapFromEntities(root);
             }
-            
+            else
+            {
+
+              
+                var root = doc.Deserialize<JsonRoot>();
+                _sourceList.MapFromEntities(root.Gestures);
+            }
         }
     }
 }
