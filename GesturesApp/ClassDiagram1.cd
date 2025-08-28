@@ -20,5 +20,131 @@
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.AboutBox1" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kIAAAAgAACAgCAUAAACAAAADAAAAEIAAAAAAAAAAAAA=</HashCode>
+      <FileName>AboutBox1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.BaseForm" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAgAAgAAAAgAACAAAACAAAAAEgAAAIBQQAACAE=</HashCode>
+      <FileName>BaseForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.Command" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Command.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.FileService" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAIAAAAAAAAQAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.InsecureMaskedTexrtbox" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>InsecureMaskedTexrtbox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.JsonService" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAIAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JsonService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.ListView" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAIAEAAAACBkEAAQAACAQAgCAAgAAhAAAAAAgAIAAAA=</HashCode>
+      <FileName>ListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.Main" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RQCCFQhxICAIAFRIAAiyA1mCCGhwgRAAggUJQJhAkAE=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.MainPresenter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAMAQAAAAKAAAAACICJAYAAAAYAAEAACAgGBAEAAAA=</HashCode>
+      <FileName>MainPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.NotificationService" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>NotificationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.Program" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAEAAAAAAAAAAAAAAAAAAAAAAIIAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.SettingsDialog" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BkRAAIwAACQAgRMAAQCAQEACAAIAAlEpAAAACAKAACA=</HashCode>
+      <FileName>SettingsDialog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.TestLayout" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TestLayout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.Properties.Resources" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAIIAAAAAAAAAABEAAAAQAAIBAAAAAABAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JohnBPearson.Windows.Forms.Gestures.Properties.Settings" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQACAkAAAgABgEEQICIAAAgAABANQABQAABAAACBA=</HashCode>
+      <FileName>Properties\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="JohnBPearson.Windows.Forms.Gestures.FileInfo" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>FileService.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="JohnBPearson.Windows.Forms.Gestures.IPresenter&lt;T&gt;" Collapsed="true">
+    <Position X="11.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAIAAAAAAAAQAAAAAAAgAAAEAAAA=</HashCode>
+      <FileName>IPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JohnBPearson.Windows.Forms.Gestures.IPresenterBase" Collapsed="true">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

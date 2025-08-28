@@ -4,6 +4,8 @@ using JohnBPearson.Windows.Forms.Controls;
 using JohnBPearson.Windows.Interop;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Windows.Forms.Gestures.Properties;
+using System.Reflection;
+using System.IO;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -24,7 +26,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             if (Properties.Settings.Default.ToastOption == ((int)toastType) || Properties.Settings.Default.ToastOption == (int)ToastOptions.All)
             {
-                Bitmap bmp = new Bitmap("s:\\source\\repos\\Gestures\\GesturesApp\\Resources\\ok.bmp");
+
+                
+                Bitmap bmp = new Bitmap(Path.Combine(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ok.bmp")));
 
                 var popupNotifier = Notification.Create(title, content, bmp);
                 

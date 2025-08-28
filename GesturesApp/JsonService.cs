@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
 using Microsoft.Win32;
-using Windows.Media.Protection.PlayReady;
+
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -22,11 +22,41 @@ namespace JohnBPearson.Windows.Forms.Gestures
         internal JsonService()
         {
         }
+        //internal static string Export(GestureFactory sourceList, string file)
+        //{
+        //    var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.DomainGesture>>(sourceList.MapToEntities());
+        //    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+        //    if(File.Exists(file) || Directory.Exists(Path.GetDirectoryName(file)))
+        //    {
+        //   var str =   FileService.OpenFile(file);
+               
+        //       str.Write(exportBytes, 0, exportBytes.Length);
+        //        str.Close();
+        //        return file;
+        //    }
+           
+        //    else
+        //    {
 
-        internal static void Export(GestureFactory sourceList)
+        //        throw new FileNotFoundException(file);
+                    
+        //            }
+
+        
+        //}
+
+
+        internal static string Export(GestureFactory sourceList)
         {
-            {
-                var export = System.Text.Json.JsonSerializer.Serialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>(sourceList.MapToEntities());
+            string path = string.Empty;
+            
+            string file = string.Empty;
+            var jsonRoot = new JsonRoot();
+            jsonRoot.Gestures = sourceList.MapToEntities();
+            jsonRoot.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var export = System.Text.Json.JsonSerializer.Serialize<JsonRoot>(jsonRoot);
+            
+                
                 //  System.Windows.Clipboard.SetText(export);
 
                 // Displays a SaveFileDialog so the user can save the Image
@@ -34,79 +64,102 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
                 saveFileDialog1.Filter = "json text|*.json";
                 saveFileDialog1.Title = "Save all your key bindings to json File";
-                var now = System.DateTime.Now;
-                saveFileDialog1.FileName = now.Date.ToString() + "-" + now.TimeOfDay.ToString();
 
-            
-                saveFileDialog1.InitialDirectory = determineJsonDefaultPath();
+            saveFileDialog1.FileName = FileService.FileNameUsingDateTime();
+
+            saveFileDialog1.InitialDirectory = FileService.determineJsonDefaultFolderPath();
                 
                 saveFileDialog1.ShowDialog();
 
                 // If the file name is not an empty string open it for saving.
                 if(saveFileDialog1.FileName != "")
                 {
+                    path= Path.GetFullPath(saveFileDialog1.FileName);
+                   
                     // Saves the Image via a FileStream created by the OpenFile method.
-                    using(System.IO.FileStream fs =
-                          (System.IO.FileStream)saveFileDialog1.OpenFile())
-                    {
-
-                        // Saves the Image in the appropriate ImageFormat based upon the
-                        // File type selected in the dialog box.
-                        // NOTE that the FilterIndex property is one-based.
-                        switch(saveFileDialog1.FilterIndex)
+                    //if(System.IO.Directory.Exists(sys))
+                    //{
+                        using(System.IO.FileStream fs =
+                            (System.IO.FileStream)saveFileDialog1.OpenFile())
                         {
 
-                            case 1:
-                                byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
-                                fs.Write(exportBytes, 0, exportBytes.Length);
-                                break;
+                            // Saves the Image in the appropriate ImageFormat based upon the
+                            // File type selected in the dialog box.
+                            // NOTE that the FilterIndex property is one-based.
+                            switch(saveFileDialog1.FilterIndex)
+                            {
+
+                                case 1:
+                                    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+                                    fs.Write(exportBytes, 0, exportBytes.Length);
+                                    break;
+                            }
+                            file = saveFileDialog1.FileName;
+                            fs.Close();
                         }
+                //  }
 
-                        fs.Close();
-                    }
+                return path;
+            }
+            return string.Empty;
+          //  return System.IO.Path.Combine(path, file);
+        }
+
+       
+      
+    
+
+        internal static string Import(GestureFactory sourceList, bool  useDialog = false )
+        {
+            FileStream fs;
+            string fileUsed = string.Empty;
+            if(Properties.Settings.Default.UsedLastSavedNextSession &&
+                File.Exists(Properties.Settings.Default.LastSavedFile) && !useDialog)
+            {
+                fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
+             fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile);
+            }
+            else
+            {
+                fs = FileService.OpenFile();
+                fileUsed = fs.Name;
+            }
+
+     
+                using(fs)
+
+                {
+                    parseJson(sourceList, fs);
+                return fileUsed;
+
                 }
-            }
+
+          //  System.Diagnostics.Trace.TraceInformation();
+            // System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
+
+
         }
 
-        private static string determineJsonDefaultPath()
-        {
-            string currentDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string path = Path.Combine(currentDir, "JsonObjects");
 
-            if(!Directory.Exists(path))
+
+
+        private static void parseJson(GestureFactory _sourceList, FileStream fs)
+        {
+       
+            var doc = System.Text.Json.JsonDocument.Parse(fs);
+     
+            if(doc.RootElement.ValueKind == JsonValueKind.Array)
             {
-                Directory.CreateDirectory(path);
+                var root = doc.Deserialize<List<DomainGesture>>();
+                _sourceList.MapFromEntities(root);
             }
-
-            return path;
-        }
-
-        internal static void Import(GestureFactory _sourceList)
-        {
-            var of = new System.Windows.Forms.OpenFileDialog();
-            
-            of.Filter = "json text|*.json";
-            of.InitialDirectory = determineJsonDefaultPath();
-            of.ShowDialog();
-            if(of.FileName != string.Empty)
+            else
             {
-                using(System.IO.FileStream fs =
-                         (System.IO.FileStream)of.OpenFile())
-                
-                    {
 
               
-                    var doc = System.Text.Json.JsonDocument.Parse(fs);
-                    System.Diagnostics.Trace.TraceInformation(doc.ToString());
-                    var root = doc.Deserialize<List<JohnBPearson.Application.Gestures.Model.Domain.Entities.GestureDTO>>();
-                    _sourceList.MapFromEntities(root);
-
-                }
-                //  System.Text.Json.JsonSerializer.Deserialize<Containers[]>()
-
-
+                var root = doc.Deserialize<JsonRoot>();
+                _sourceList.MapFromEntities(root.Gestures);
             }
-            
         }
     }
 }
