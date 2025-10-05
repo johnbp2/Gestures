@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -99,7 +100,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                             fs.Close();
                         }
                 //  }
-
+                Properties.Settings.Default.LastSavedFile = path;
                 return path;
             }
             return string.Empty;
@@ -118,7 +119,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 File.Exists(Properties.Settings.Default.LastSavedFile) && !useDialog)
             {
                 fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
-             fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile);
+             fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile) + " auto import";
+                ;
             }
             else
             {

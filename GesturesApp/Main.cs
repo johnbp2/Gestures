@@ -237,20 +237,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
         #region Events
-        private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                base.FileLabelText = JsonService.Import(this.presenter.ContainerList, true);
-                this.presenter.registerHotKeys(this.presenter.Containers);
-                this.reload();
-            }
-            catch(Exception ex)
-            {
-
-             this.displayMessage(ex.Message, Messaging.MessageType.Error);
-            }
-        }
+                   
 
         private void menuItemIcon_Click(object Sender, EventArgs e)
         {
@@ -313,23 +300,25 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
-            {
-                //if(this.presenter.ContainerList == null)
-                //{
-                //    this.presenter.ContainerList = new GestureFactory();
-                //}
+            //if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
+            //{
+            //    //if(this.presenter.ContainerList == null)
+            //    //{
+            //    //    this.presenter.ContainerList = new GestureFactory();
+            //    //}
 
-                //JsonService.Import(this.presenter.ContainerList);
-                this.presenter.registerHotKeys(this.presenter.Containers);
-            }
-            else
-            {
+            //    //JsonService.Import(this.presenter.ContainerList);
+            //    this.presenter.registerHotKeys(this.presenter.Containers);
+            //}
+            //else
+            //{
 
-                this.presenter.registerHotKeys(this.presenter.Containers);
-            }
+            //    this.presenter.registerHotKeys(this.presenter.Containers);
+            //}
             // this.presenter.GestureFactory
+            this.presenter.registerHotKeys(this.presenter.Containers);
             this.bindDropDownKeyValues();
+
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.ValuesToApply.Add("a");
 
@@ -480,9 +469,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          base.FileLabelText=  JsonService.Import(this.presenter.ContainerList, true);
-            this.presenter.registerHotKeys(this.presenter.Containers);
-            this.reload();
+
+            try
+            {
+                base.FileLabelText = JsonService.Import(this.presenter.ContainerList, true);
+                this.presenter.registerHotKeys(this.presenter.Containers);
+                this.reload();
+            }
+            catch(Exception ex)
+            {
+
+                this.displayMessage(ex.Message, Messaging.MessageType.Error);
+            }
+            
+           
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

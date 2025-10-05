@@ -125,16 +125,6 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"Data Source=your_database.db;Version=3;\"")]
-        public string connectionString {
-            get {
-                return ((string)(this["connectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Exception LastExceptionUser {
@@ -159,132 +149,12 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection DataLength {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["DataLength"]));
-            }
-            set {
-                this["DataLength"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public global::System.Drawing.Color BgColor {
             get {
                 return ((global::System.Drawing.Color)(this["BgColor"]));
             }
             set {
                 this["BgColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection HexStrings {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
-            }
-            set {
-                this["HexStrings"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>Test a</string>
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Data {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
-            }
-            set {
-                this["Data"] = value;
             }
         }
         
@@ -412,6 +282,136 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["UsedLastSavedNextSession"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"Data Source=your_database.db;Version=3;\"")]
+        public string connectionString {
+            get {
+                return ((string)(this["connectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DataLength {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DataLength"]));
+            }
+            set {
+                this["DataLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection HexStrings {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
+            }
+            set {
+                this["HexStrings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>Test a</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Data {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
+            }
+            set {
+                this["Data"] = value;
             }
         }
     }
