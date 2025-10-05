@@ -10,11 +10,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
 using System.Text.Json.Serialization;
-using Windows.Graphics.Printing.OptionDetails;
-using Windows.UI.Xaml.Controls.Primitives;
+using System.Security.Permissions;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
+
     public partial class Main : BaseForm
     {
 
@@ -24,7 +24,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private IGestureObject currentItem;
+     //   private IGestureObject currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -33,6 +33,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         //  private IPresenter<Form> presenter;
         #endregion
+
+       
+
         public string selectedKey
         {
             get
@@ -51,15 +54,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
+        private void initializeMessages()
+        {
+            this.listMessages.View = View.List;
+            this.panelMessages.Visible = false;
+        }
         public Main() : base()
         {
+            InitializeComponent();
+  this.initializeMessages();
         }
         public Main(MainPresenter presenter) : base()
         {
             this.presenter = presenter;
             presenter.Form = this;
             InitializeComponent();
-
+            this.initializeMessages();
             // var reminderForm = new RemindersForm();
             //this.presenter = presenter;
             //this.presenter.Form = this;
@@ -70,7 +80,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-
+        public void displayMessage(string message, Messaging.MessageType type)
+        {
+           var listViewItem = this.presenter.createMessage( message, type );
+            listMessages.Items.Add(listViewItem.message);
+            panelMessages.Visible = true;
+            base.setStatus(type.ToString());
+           
+        }
 
 
 
@@ -185,7 +202,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-
+      
 
 
 
@@ -220,6 +237,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
         #region Events
+        private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                base.FileLabelText = JsonService.Import(this.presenter.ContainerList, true);
+                this.presenter.registerHotKeys(this.presenter.Containers);
+                this.reload();
+            }
+            catch(Exception ex)
+            {
+
+             this.displayMessage(ex.Message, Messaging.MessageType.Error);
+            }
+        }
 
         private void menuItemIcon_Click(object Sender, EventArgs e)
         {
@@ -475,6 +506,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             WinApi.ShowToFront(this.Handle);
         }
 
-
+        private void btnDismiss_Click(object sender, EventArgs e)
+        {
+            this.listMessages.Clear();
+            this.panelMessages.Visible = false;
+        }
     }
 }

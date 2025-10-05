@@ -128,6 +128,25 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
+       // public List<Message> Messages = new List<Message>();
+
+        public Messaging.Message createMessage(string message, Messaging.MessageType type)
+        {
+            message = $"{type.ToString()} - {message} - {DateTime.Now}";
+        return new Messaging.Message { type = type, message = message };
+        }
+      
+
+        public void setCommandArgs(string[] args)
+        {
+            if(args != null && args.Length > 0 && args[0] == "-j")
+            {
+                this._loadJson = true;
+            
+            }
+        }
+
+
         private void updateContainerInner(JohnBPearson.Application.Gestures.Model.IGestureObject oldItem, string newData, string description)
         {
             //var newItem = JohnBPearson.Application.Gestures.Model.GestureObject.Create(this.ContainerList, oldItem.KeyAsChar,
@@ -182,7 +201,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
-        public void executeJsonSave()
+        public void save()
         {
             JsonService.Export(this.ContainerList);
         }
