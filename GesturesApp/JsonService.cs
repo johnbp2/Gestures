@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
 using Microsoft.Win32;
+using Windows.Networking.Sockets;
 
 
 namespace JohnBPearson.Windows.Forms.Gestures

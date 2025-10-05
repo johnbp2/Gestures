@@ -413,6 +413,60 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.somewhatBetterButton2.UseVisualStyleBackColor = true;
             this.somewhatBetterButton2.Click += new System.EventHandler(this.somewhatBetterButton2_Click);
             // 
+            this.rbLastSavedOff.AutoSize = true;
+            this.rbLastSavedOff.GroupName = "LastSaved";
+            this.rbLastSavedOff.Location = new System.Drawing.Point(339, 187);
+            this.rbLastSavedOff.Name = "rbLastSavedOff";
+            this.rbLastSavedOff.Size = new System.Drawing.Size(38, 14);
+            this.rbLastSavedOff.TabIndex = 22;
+            this.rbLastSavedOff.Text = "off";
+            this.rbLastSavedOff.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 217);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(164, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Default File";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+           // this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // tbFile
+            // 
+            this.tbFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFile.Location = new System.Drawing.Point(173, 214);
+            this.tbFile.Name = "tbFile";
+            this.tbFile.Size = new System.Drawing.Size(160, 20);
+            this.tbFile.TabIndex = 24;
+            // 
+            // somewhatBetterButton2
+            // 
+            this.somewhatBetterButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.somewhatBetterButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.somewhatBetterButton2.EndColor = System.Drawing.Color.Silver;
+            this.somewhatBetterButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.somewhatBetterButton2.ForeColor = System.Drawing.Color.Black;
+            this.somewhatBetterButton2.GradientAngle = 45;
+            this.somewhatBetterButton2.Location = new System.Drawing.Point(339, 209);
+            this.somewhatBetterButton2.MouseClickColor1 = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.MouseClickColor2 = System.Drawing.Color.Navy;
+            this.somewhatBetterButton2.MouseHoverColor1 = System.Drawing.Color.Navy;
+            this.somewhatBetterButton2.MouseHoverColor2 = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.Name = "somewhatBetterButton2";
+            this.somewhatBetterButton2.Size = new System.Drawing.Size(160, 29);
+            this.somewhatBetterButton2.StartColor = System.Drawing.Color.Orange;
+            this.somewhatBetterButton2.TabIndex = 25;
+            this.somewhatBetterButton2.Text = "Select File";
+            this.somewhatBetterButton2.TextLocation_X = 63;
+            this.somewhatBetterButton2.TextLocation_Y = 6;
+            this.somewhatBetterButton2.Transparent1 = 50;
+            this.somewhatBetterButton2.Transparent2 = 150;
+            this.somewhatBetterButton2.UseVisualStyleBackColor = true;
+            this.somewhatBetterButton2.Click += new System.EventHandler(this.somewhatBetterButton2_Click);
+            // 
             // transparentPanel1
             // 
             this.transparentPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
