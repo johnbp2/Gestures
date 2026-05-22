@@ -175,6 +175,13 @@
     <Compile Include="TestLayout.Designer.cs">
       <DependentUpon>TestLayout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test\AESRam.cs" />
+    <Compile Include="Test\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utitlities.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
@@ -210,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestLayout.resx">
       <DependentUpon>TestLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Test\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="JohnBPearson.com.snk" />

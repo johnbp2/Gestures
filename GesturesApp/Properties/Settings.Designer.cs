@@ -210,76 +210,44 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection HexStrings {
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size MainSize {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
+                return ((global::System.Drawing.Size)(this["MainSize"]));
             }
             set {
-                this["HexStrings"] = value;
+                this["MainSize"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>Test a</string>
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Data {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool JsonSave {
+            get {
+                return ((bool)(this["JsonSave"]));
+            }
+            set {
+                this["JsonSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSavedFile {
+            get {
+                return ((string)(this["LastSavedFile"]));
+            }
+            set {
+                this["LastSavedFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UsedLastSavedNextSession {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
             }
@@ -412,6 +380,85 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
             }
             set {
                 this["UsedLastSavedNextSession"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>Test a</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Description {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Description"]));
+            }
+            set {
+                this["Description"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>False</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection IsProtected {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["IsProtected"]));
+            }
+            set {
+                this["IsProtected"] = value;
             }
         }
     }
