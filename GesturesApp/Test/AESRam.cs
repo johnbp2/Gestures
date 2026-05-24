@@ -10,7 +10,7 @@ namespace JohnBPearson.Windows.Forms.Gestures.Test
 {
     internal class AESRam
     {
-        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall]
+        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
         internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
 
         [DllImport("KERNEL32.DLL", EntryPoint= "GetCurrentProcess", SetLastError= true, CallingConvention= CallingConvention.StdCall)]

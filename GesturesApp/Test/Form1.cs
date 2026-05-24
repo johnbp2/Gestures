@@ -9,9 +9,82 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.UI.Xaml.Controls;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace JohnBPearson.Windows.Forms.Gestures.Test
 {
+
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            AESRam ramClass = new AESRam();
+        }
+
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            var fetchCryptDialog = new OpenFileDialog();
+            fetchCryptDialog.CheckFileExists = true;
+            fetchCryptDialog.InitialDirectory = "C:\\";
+            fetchCryptDialog.Multiselect = false;
+            if(fetchCryptDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = fetchCryptDialog.FileName;
+            }
+        }
+
+        private void Encrypt_Click(object sender, EventArgs e)
+        {
+            var fileToEncrypt = textBox1.Text;
+            var password = "123456789ABCDEFG!@#$%^&*()_+";
+            Byte[] key = new byte[31];
+            Encoding.Default.GetBytes(password).CopyTo(key, 0);
+            var aes = new RijndaelManaged() { Mode = CipherMode.CBC, KeySize = 256, BlockSize = 256 , Padding = PaddingMode.Zeros};
+
+
+            var mnemonicData = new MemoryStream();
+            using(mnemonicData)
+            {
+                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateEncryptor(key, key), CryptoStreamMode.Write))
+                {
+                    var buffer = File.ReadAllBytes(fileToEncrypt);
+                    cStream.Write(buffer, 0, buffer.Length);
+                    var appendBuffer = mnemonicData.ToArray();
+                    var finalBuffer = new Byte[appendBuffer.Length-1];
+                    appendBuffer.CopyTo(finalBuffer, 0);
+                    File.WriteAllBytes(fileToEncrypt, finalBuffer);
+
+                }
+            }
+        }
+
+        private void Decrypt_Click(object sender, EventArgs e)
+        {
+            var fileToEncrypt = textBox1.Text;
+            var password = "123456789ABCDEFG!@#$%^&*()_+";
+            Byte[] key = new byte[31];
+            Encoding.Default.GetBytes(password).CopyTo(key, 0);
+            var aes = new RijndaelManaged() { Mode = CipherMode.CBC, KeySize = 256, BlockSize = 256, Padding = PaddingMode.Zeros };
+
+
+            var mnemonicData = new MemoryStream();
+            using(mnemonicData)
+            {
+                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateDecryptor(key, key), CryptoStreamMode.Write))
+                {
+                    var buffer = File.ReadAllBytes(fileToEncrypt);
+                    cStream.Write(buffer, 0, buffer.Length);
+                    var appendBuffer = mnemonicData.ToArray();
+                    var finalBuffer = new Byte[appendBuffer.Length - 1];
+                    appendBuffer.CopyTo(finalBuffer, 0);
+                    File.WriteAllBytes(fileToEncrypt, finalBuffer);
+
+                }
+            }
+        }
+    }
     //    Imports System.IO
     //Imports System.Security.Cryptography
     //Imports System.Text
@@ -151,11 +224,5 @@ namespace JohnBPearson.Windows.Forms.Gestures.Test
 
     //End Class
 
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-    }
+
 }
