@@ -123,13 +123,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
             }
         }
 
-        // public List<Message> Messages = new List<Message>();
+        public List<Message> Messages = new List<Message>();
 
-        //public Messaging.Message createMessage(string message, Messaging.MessageType type)
-        //{
-        //    message = $"{type.ToString()} - {message} - {DateTime.Now}";
-        //    return new Messaging.Message { type = type, message = message };
-        //}
+        public Messaging.Message createMessage(string message, Messaging.MessageType type)
+        {
+            message = $"{type.ToString()} - {message} - {DateTime.Now}";
+            return new Messaging.Message { type = type, message = message };
+        }
 
 
         public void setCommandArgs(string[] args)
