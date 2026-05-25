@@ -10,11 +10,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
 using System.Text.Json.Serialization;
-using Windows.Graphics.Printing.OptionDetails;
-using Windows.UI.Xaml.Controls.Primitives;
+using System.Security.Permissions;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
+
     public partial class Main : BaseForm
     {
 
@@ -24,7 +24,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         //  private string hotkeyModifiers = Properties.Settings.Def
 
         private MainPresenter presenter;
-        private IGestureObject currentItem;
+        //   private IGestureObject currentItem;
 
         private ContextMenu contextMenuIcon;
         private MenuItem menuItemIcon;
@@ -33,6 +33,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         //  private IPresenter<Form> presenter;
         #endregion
+
+
+
         public string selectedKey
         {
             get
@@ -51,15 +54,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         }
 
+        private void initializeMessages()
+        {
+            this.listMessages.View = View.List;
+            this.panelMessages.Visible = false;
+        }
         public Main() : base()
         {
+            InitializeComponent();
+            this.initializeMessages();
         }
         public Main(MainPresenter presenter) : base()
         {
             this.presenter = presenter;
             presenter.Form = this;
             InitializeComponent();
-
+            this.initializeMessages();
             // var reminderForm = new RemindersForm();
             //this.presenter = presenter;
             //this.presenter.Form = this;
@@ -70,7 +80,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
         }
 
 
+        public void displayMessage(string message, Messaging.MessageType type)
+        {
+            var listViewItem = this.presenter.createMessage(message, type);
+            listMessages.Items.Add(listViewItem.message);
+            panelMessages.Visible = true;
+            base.setStatus(type.ToString());
 
+        }
 
 
 
@@ -156,7 +173,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.components = new System.ComponentModel.Container();
             this.contextMenuIcon = new System.Windows.Forms.ContextMenu();
             this.menuItemIcon = new System.Windows.Forms.MenuItem();
-            this.copyFrom= new System.Windows.Forms.MenuItem();
+            this.copyFrom = new System.Windows.Forms.MenuItem();
             // Initialize contextMenu1
             this.contextMenuIcon.MenuItems.AddRange(
                         new System.Windows.Forms.MenuItem[] { this.menuItemIcon, copyFrom });
@@ -221,18 +238,19 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         #region Events
 
+
         private void menuItemIcon_Click(object Sender, EventArgs e)
         {
             // Close the form, which closes the application.
             this.Close();
         }
-        private void  copyFrom_Click(object Sender, EventArgs e)
+        private void copyFrom_Click(object Sender, EventArgs e)
         {
             var value = Clipboard.GetDataObject();
 
             if(value != null)
             {
-              
+
                 this.presenter.updateContainer(value.ToString(), tbDesc.Text, "p");
                 this.handleCypher();
             }
@@ -282,23 +300,25 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
             //.  this.cbHotkeySelection.ValueMember
             var actions = new List<Action<string>>();
-            if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
-            {
-                //if(this.presenter.ContainerList == null)
-                //{
-                //    this.presenter.ContainerList = new GestureFactory();
-                //}
+            //if(this.presenter.LoadJson || Properties.Settings.Default.JsonSave)
+            //{
+            //    //if(this.presenter.ContainerList == null)
+            //    //{
+            //    //    this.presenter.ContainerList = new GestureFactory();
+            //    //}
 
-                //JsonService.Import(this.presenter.ContainerList);
-                this.presenter.registerHotKeys(this.presenter.Containers);
-            }
-            else
-            {
+            //    //JsonService.Import(this.presenter.ContainerList);
+            //    this.presenter.registerHotKeys(this.presenter.Containers);
+            //}
+            //else
+            //{
 
-                this.presenter.registerHotKeys(this.presenter.Containers);
-            }
+            //    this.presenter.registerHotKeys(this.presenter.Containers);
+            //}
             // this.presenter.GestureFactory
+            this.presenter.registerHotKeys(this.presenter.Containers);
             this.bindDropDownKeyValues();
+
             this.lblKey.Template = "Alt + Shift + {0}";
             this.lblKey.ValuesToApply.Add("a");
 
@@ -449,9 +469,20 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          base.FileLabelText=  JsonService.Import(this.presenter.ContainerList, true);
-            this.presenter.registerHotKeys(this.presenter.Containers);
-            this.reload();
+
+            try
+            {
+                base.FileLabelText = JsonService.Import(this.presenter.ContainerList, true);
+                this.presenter.registerHotKeys(this.presenter.Containers);
+                this.reload();
+            }
+            catch(Exception ex)
+            {
+
+                this.displayMessage(ex.Message, Messaging.MessageType.Error);
+            }
+
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -475,6 +506,10 @@ namespace JohnBPearson.Windows.Forms.Gestures
             WinApi.ShowToFront(this.Handle);
         }
 
-
+        private void btnDismiss_Click(object sender, EventArgs e)
+        {
+            this.listMessages.Clear();
+            this.panelMessages.Visible = false;
+        }
     }
 }
