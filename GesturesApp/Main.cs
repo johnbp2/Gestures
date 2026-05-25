@@ -11,6 +11,7 @@ using System.Windows.Media.TextFormatting;
 using Microsoft.Win32;
 using System.Text.Json.Serialization;
 using System.Security.Permissions;
+using JohnBPearson.Windows.Forms.Gestures.Test;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
@@ -510,6 +511,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             this.listMessages.Clear();
             this.panelMessages.Visible = false;
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var test = new Form1();
+            test.Show();
         }
     }
 }
