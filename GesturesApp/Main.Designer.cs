@@ -18,7 +18,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if(disposing && (components != null))
             {
                 components.Dispose();
             }
@@ -31,7 +31,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()  
+        private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
@@ -103,10 +103,16 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -135,14 +141,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // listViewToolStripMenuItem
             // 
             this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
-            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listViewToolStripMenuItem.Text = "List View";
             this.listViewToolStripMenuItem.Click += new System.EventHandler(this.listViewToolStripMenuItem_Click);
             // 
@@ -503,9 +509,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel panelUpper;
         private System.Windows.Forms.ComboBox cbHotkeySelection;
-       // private System.Windows.Forms.Button btnCopyGuildLog;
-       // private Controls.TransparentPanel transparentPanel1;
-       // private System.Windows.Forms.ListBox lbPlanetsList;
+        // private System.Windows.Forms.Button btnCopyGuildLog;
+        // private Controls.TransparentPanel transparentPanel1;
+        // private System.Windows.Forms.ListBox lbPlanetsList;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

@@ -8,246 +8,194 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JohnBPearson.Windows.Forms.Gestures.Properties {
-    
-    
+namespace JohnBPearson.Windows.Forms.Gestures.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Alt + Shift + ")]
-        public string KeyBindingModifiers {
-            get {
+        public string KeyBindingModifiers
+        {
+            get
+            {
                 return ((string)(this["KeyBindingModifiers"]));
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int MaximumReminders {
-            get {
+        public int MaximumReminders
+        {
+            get
+            {
                 return ((int)(this["MaximumReminders"]));
             }
-            set {
+            set
+            {
                 this["MaximumReminders"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool autoSave {
-            get {
+        public bool autoSave
+        {
+            get
+            {
                 return ((bool)(this["autoSave"]));
             }
-            set {
+            set
+            {
                 this["autoSave"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool MinimizeToTray {
-            get {
+        public bool MinimizeToTray
+        {
+            get
+            {
                 return ((bool)(this["MinimizeToTray"]));
             }
-            set {
+            set
+            {
                 this["MinimizeToTray"] = value;
             }
         }
-        
+
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z")]
-        public string BindableKeysBackup {
-            get {
+        public string BindableKeysBackup
+        {
+            get
+            {
                 return ((string)(this["BindableKeysBackup"]));
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("p")]
-        public string LastBoundKeyPressed {
-            get {
+        public string LastBoundKeyPressed
+        {
+            get
+            {
                 return ((string)(this["LastBoundKeyPressed"]));
             }
-            set {
+            set
+            {
                 this["LastBoundKeyPressed"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ToastOption {
-            get {
+        public int ToastOption
+        {
+            get
+            {
                 return ((int)(this["ToastOption"]));
             }
-            set {
+            set
+            {
                 this["ToastOption"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("dir||||||||||||||||||pushd c:\\|||||||s")]
-        public string BindableCommands {
-            get {
+        public string BindableCommands
+        {
+            get
+            {
                 return ((string)(this["BindableCommands"]));
             }
-            set {
+            set
+            {
                 this["BindableCommands"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool FlashWindow {
-            get {
+        public bool FlashWindow
+        {
+            get
+            {
                 return ((bool)(this["FlashWindow"]));
             }
-            set {
+            set
+            {
                 this["FlashWindow"] = value;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"Data Source=your_database.db;Version=3;\"")]
-        public string connectionString {
-            get {
-                return ((string)(this["connectionString"]));
-            }
-        }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Exception LastExceptionUser {
-            get {
+        public global::System.Exception LastExceptionUser
+        {
+            get
+            {
                 return ((global::System.Exception)(this["LastExceptionUser"]));
             }
-            set {
+            set
+            {
                 this["LastExceptionUser"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Exception LastExceptionApplication {
-            get {
+        public global::System.Exception LastExceptionApplication
+        {
+            get
+            {
                 return ((global::System.Exception)(this["LastExceptionApplication"]));
             }
-            set {
+            set
+            {
                 this["LastExceptionApplication"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-  <string>0</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection DataLength {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["DataLength"]));
-            }
-            set {
-                this["DataLength"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color BgColor {
-            get {
+        public global::System.Drawing.Color BgColor
+        {
+            get
+            {
                 return ((global::System.Drawing.Color)(this["BgColor"]));
             }
-            set {
+            set
+            {
                 this["BgColor"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection HexStrings {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
-            }
-            set {
-                this["HexStrings"] = value;
-            }
-        }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -279,55 +227,18 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
   <string />
   <string />
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Data {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
-            }
-            set {
-                this["Data"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
-  <string>Test a</string>
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-  <string />
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection Description {
-            get {
+        public global::System.Collections.Specialized.StringCollection Description
+        {
+            get
+            {
                 return ((global::System.Collections.Specialized.StringCollection)(this["Description"]));
             }
-            set {
+            set
+            {
                 this["Description"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
@@ -358,60 +269,216 @@ namespace JohnBPearson.Windows.Forms.Gestures.Properties {
   <string />
   <string />
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection IsProtected {
-            get {
+        public global::System.Collections.Specialized.StringCollection IsProtected
+        {
+            get
+            {
                 return ((global::System.Collections.Specialized.StringCollection)(this["IsProtected"]));
             }
-            set {
+            set
+            {
                 this["IsProtected"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size MainSize {
-            get {
+        public global::System.Drawing.Size MainSize
+        {
+            get
+            {
                 return ((global::System.Drawing.Size)(this["MainSize"]));
             }
-            set {
+            set
+            {
                 this["MainSize"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool JsonSave {
-            get {
+        public bool JsonSave
+        {
+            get
+            {
                 return ((bool)(this["JsonSave"]));
             }
-            set {
+            set
+            {
                 this["JsonSave"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastSavedFile {
-            get {
+        public string LastSavedFile
+        {
+            get
+            {
                 return ((string)(this["LastSavedFile"]));
             }
-            set {
+            set
+            {
                 this["LastSavedFile"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UsedLastSavedNextSession {
-            get {
+        public bool UsedLastSavedNextSession
+        {
+            get
+            {
                 return ((bool)(this["UsedLastSavedNextSession"]));
             }
-            set {
+            set
+            {
                 this["UsedLastSavedNextSession"] = value;
+            }
+        }
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"Data Source=your_database.db;Version=3;\"")]
+        public string connectionString
+        {
+            get
+            {
+                return ((string)(this["connectionString"]));
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+  <string>0</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection DataLength
+        {
+            get
+            {
+                return ((global::System.Collections.Specialized.StringCollection)(this["DataLength"]));
+            }
+            set
+            {
+                this["DataLength"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection HexStrings
+        {
+            get
+            {
+                return ((global::System.Collections.Specialized.StringCollection)(this["HexStrings"]));
+            }
+            set
+            {
+                this["HexStrings"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">
+  <string>Test a</string>
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Data
+        {
+            get
+            {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Data"]));
+            }
+            set
+            {
+                this["Data"] = value;
             }
         }
     }

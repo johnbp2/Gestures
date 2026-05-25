@@ -49,17 +49,12 @@ namespace JohnBPearson.Windows.Forms.Gestures
             {
                 if(this._containerList == null)
                 {
-                    if(this.LoadJson)
-                    {
 
-                        this._containerList = new GestureFactory();
-                      string test =   Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFile : "";
-                   this.Form.FileLabelText =   JsonService.Import(this._containerList, test.Length == 0);
-                    }
-                    else
-                    {
-                        this.mapSettingsToDto();
-                    }
+
+                    this._containerList = new GestureFactory();
+                    string test = Properties.Settings.Default.UsedLastSavedNextSession ? Properties.Settings.Default.LastSavedFile : "";
+                    this.Form.FileLabelText = JsonService.Import(this._containerList, test.Length == 0);
+
 
 
                 }
@@ -153,7 +148,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             //    newData, description, oldItem.Data.isProtected, hexString);
             oldItem.Data.Value = newData;
             oldItem.Description.Value = description;
-           
+
             // this.GestureFactory.Replace(oldItem, newItem);
             GlobalHotKey.removeAllRegistration();
             registerHotKeys(ContainerList.Items);
@@ -164,29 +159,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
         public int executeSaveAsUserSettings(bool overrideAutoSaveSetting)
         {
-            var strings = this.ContainerList.PrepareDataForSave();
-            //  Properties.Settings.Default.DataValues = strings.Values;
-            // Properties.Settings.Default.Descriptions = strings.Descriptions;
-            //  Properties.Settings.Default.IsProtected.Clear();
-            Properties.Settings.Default.IsProtected = GestureFactory.ParseBoolsToStrings(strings.IsProtected);
-            //  Properties.Settings.Default.Protect = GestureFactory.ParseBoolsToStrings(strings.Protect);
-            //var settingsCollection = new System.Collections.Specialized.StringCollection();
-            //  settingsCollection.AddRange(strings.HexStrings.ToArray());
-            Properties.Settings.Default.HexStrings = this.copyGenericListToSpecCol<string>(strings.HexStrings); //strings.HexStrings.
-                                                                                                                // settingsCollection = new System.Collections.Specialized.StringCollection();
-                                                                                                                //var stringLengths = new 
-                                                                                                                //strings.DataLengths.ForEach(delegate (int length)                                                                                                                                                                                                                                                                                                                                                                          bb
-                                                                                                                //{
-                                                                                                                //    settingsCollection.Add(length.ToString());
-                                                                                                                //});
-            Properties.Settings.Default.DataLength = this.copyGenericListToSpecCol<int>(strings.DataLengths);
-            Properties.Settings.Default.Data = this.copyGenericListToSpecCol<string>(strings.Data);
-            Properties.Settings.Default.Description = this.copyGenericListToSpecCol<string>(strings.Description);
-            Properties.Settings.Default.Save();
-            this.mapSettingsToDto();
-            GlobalHotKey.removeAllRegistration();
-            this.registerHotKeys(this.ContainerList.Items);
-            return this.ContainerList.Modified;
+            return -1;
         }
 
         private StringCollection copyGenericListToSpecCol<T>(IList<T> arr)
@@ -260,21 +233,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
-                {
-                    if(this.LoadJson)
-                    {
 
-                        this._containerList = new GestureFactory();
-                        JsonService.Import(this._containerList);
-                    }
-                    else
-                    {
-                        this.mapSettingsToDto();
-                    }
-                    
-
-                }
                 return this.ContainerList.Keys;
             }
         }
@@ -282,9 +241,15 @@ namespace JohnBPearson.Windows.Forms.Gestures
         {
             get
             {
-                if(this.ContainerList == null)
+                if(this.ContainerList == null || this.ContainerList.Items.Count() != 26)
                 {
-                    mapSettingsToDto();
+
+
+                    this._containerList = new GestureFactory();
+                    JsonService.Import(this._containerList);
+
+
+
                 }
                 return this.ContainerList.Items;
             }
@@ -305,21 +270,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
         public void RefreshData()
         {
 
-            this.mapSettingsToDto();
+
 
             GlobalHotKey.removeAllRegistration();
             this.registerHotKeys(this.Containers);
 
             this._main.updateUI(Current as JohnBPearson.Application.Gestures.Model.GestureObject);
         }
-        private void mapSettingsToDto()
-        {
-
-            var dto = Mapper.mapToDto(Properties.Settings.Default.IsProtected, Settings.Default.DataLength, Settings.Default.HexStrings, Settings.Default.Description, Settings.Default.Data);
-            this._containerList = new GestureFactory(dto);
-            // return this.GestureFactory;
-        }
-
 
 
         public void registerHotKeys(IEnumerable<JohnBPearson.Application.Gestures.Model.IGestureObject> keys)
