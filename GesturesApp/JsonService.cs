@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
 using JohnBPearson.Application.Gestures.Model.Domain.Entities;
+using JohnBPearson.Cypher;
 using Microsoft.Win32;
 using Windows.Graphics.Printing3D;
 using Windows.Media.Protection.PlayReady;
