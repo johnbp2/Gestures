@@ -91,14 +91,22 @@ namespace JohnBPearson.Windows.Forms.Gestures
                             switch(saveFileDialog1.FilterIndex)
                             {
 
-                                case 1:
-                                    byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
-                                    fs.Write(exportBytes, 0, exportBytes.Length);
-                                    break;
-                            }
-                            file = saveFileDialog1.FileName;
-                            fs.Close();
-                        }
+                        case 1:
+                            byte[] exportBytes = new UTF8Encoding(true).GetBytes(export);
+                            fs.Write(exportBytes, 0, exportBytes.Length);
+                            break;
+                    }
+                    file = saveFileDialog1.FileName;
+                    fs.Close();
+
+                    var dp = new DataProtect();
+                    var dirinfo = new DirectoryInfo(path);
+
+                    // dp.encryptToFile(export, dirinfo, file.Replace(".json", ".dat"));
+                    string encryptedFile = path.Replace(".json", ".dat");
+                    File.Copy(path, encryptedFile);
+                    Rijandel.Encrypt(encryptedFile);
+                }
                 //  }
 
                 return path;
@@ -119,7 +127,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 File.Exists(Properties.Settings.Default.LastSavedFile) && !useDialog)
             {
                 fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
-             fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile);
+                dataFile = Properties.Settings.Default.LastSavedFile.Replace(".json", ".dat");
+                fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile) + " auto import";
+                if(File.Exists(dataFile))
+                {
+                   Rijandel.Decrypt(dataFile);
+                }
+
             }
             else
             {
