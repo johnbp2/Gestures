@@ -20,7 +20,7 @@ namespace JohnBPearson.Application.Gestures.Model.Domain.Entities
     public class DomainGesture
     {
 
-        public GestureDTO()
+        public DomainGesture()
         {
 
         }

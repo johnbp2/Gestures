@@ -18,7 +18,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if(disposing && (components != null))
             {
                 components.Dispose();
             }
@@ -31,7 +31,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()  
+        private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
@@ -39,6 +39,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,14 +57,19 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
             this.aLittleBetter_Save = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.btnReload = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
-            this.btnSaveJson = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.notBetterButton2 = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.panelOuter = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.panelMessages = new JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel();
+            this.listMessages = new System.Windows.Forms.ListView();
+            this.btnDismiss = new JohnBPearson.Windows.Forms.Controls.SomewhatBetterButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panelUpper.SuspendLayout();
             this.panelButtons.SuspendLayout();
             this.panelOuter.SuspendLayout();
+            this.panelMessages.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
@@ -92,23 +98,25 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.testToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 22);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -122,14 +130,14 @@ namespace JohnBPearson.Windows.Forms.Gestures
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // listViewToolStripMenuItem
             // 
             this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
-            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listViewToolStripMenuItem.Text = "List View";
             this.listViewToolStripMenuItem.Click += new System.EventHandler(this.listViewToolStripMenuItem_Click);
             // 
@@ -155,7 +163,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelUpper.Controls.Add(this.tbValue);
             this.panelUpper.Controls.Add(this.label1);
             this.panelUpper.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.panelUpper.Location = new System.Drawing.Point(59, 6);
+            this.panelUpper.Location = new System.Drawing.Point(6, 6);
             this.panelUpper.Margin = new System.Windows.Forms.Padding(6);
             this.panelUpper.Name = "panelUpper";
             this.panelUpper.Size = new System.Drawing.Size(510, 421);
@@ -278,12 +286,11 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelButtons.Controls.Add(this.aLittleBetter_Save);
             this.panelButtons.Controls.Add(this.btnReload);
-            this.panelButtons.Controls.Add(this.btnSaveJson);
             this.panelButtons.Controls.Add(this.notBetterButton2);
-            this.panelButtons.Location = new System.Drawing.Point(3, 436);
+            this.panelButtons.Location = new System.Drawing.Point(38, 436);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Padding = new System.Windows.Forms.Padding(8);
-            this.panelButtons.Size = new System.Drawing.Size(623, 73);
+            this.panelButtons.Size = new System.Drawing.Size(446, 73);
             this.panelButtons.TabIndex = 9;
             // 
             // aLittleBetter_Save
@@ -350,38 +357,6 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.btnReload.UseVisualStyleBackColor = true;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // btnSaveJson
-            // 
-            this.btnSaveJson.AutoSize = true;
-            this.btnSaveJson.EndColor = System.Drawing.Color.LightSkyBlue;
-            this.btnSaveJson.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSaveJson.FlatAppearance.BorderSize = 3;
-            this.btnSaveJson.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveJson.Font = new System.Drawing.Font("M+1 Nerd Font Med", 12F);
-            this.btnSaveJson.ForeColor = System.Drawing.Color.Black;
-            this.btnSaveJson.GradientAngle = 65;
-            this.btnSaveJson.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveJson.Image")));
-            this.btnSaveJson.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveJson.Location = new System.Drawing.Point(255, 11);
-            this.btnSaveJson.MinimumSize = new System.Drawing.Size(171, 51);
-            this.btnSaveJson.MouseClickColor1 = System.Drawing.Color.Transparent;
-            this.btnSaveJson.MouseClickColor2 = System.Drawing.Color.Magenta;
-            this.btnSaveJson.MouseHoverColor1 = System.Drawing.Color.Magenta;
-            this.btnSaveJson.MouseHoverColor2 = System.Drawing.Color.Transparent;
-            this.btnSaveJson.Name = "btnSaveJson";
-            this.btnSaveJson.Size = new System.Drawing.Size(171, 51);
-            this.btnSaveJson.StartColor = System.Drawing.Color.DimGray;
-            this.btnSaveJson.TabIndex = 10;
-            this.btnSaveJson.Text = "Save Json";
-            this.btnSaveJson.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSaveJson.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSaveJson.TextLocation_X = 0;
-            this.btnSaveJson.TextLocation_Y = 0;
-            this.btnSaveJson.Transparent1 = 150;
-            this.btnSaveJson.Transparent2 = 150;
-            this.btnSaveJson.UseVisualStyleBackColor = true;
-            this.btnSaveJson.Click += new System.EventHandler(this.btnSaveJson_Click);
-            // 
             // notBetterButton2
             // 
             this.notBetterButton2.AutoSize = true;
@@ -394,7 +369,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.notBetterButton2.GradientAngle = 65;
             this.notBetterButton2.Image = ((System.Drawing.Image)(resources.GetObject("notBetterButton2.Image")));
             this.notBetterButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.notBetterButton2.Location = new System.Drawing.Point(432, 11);
+            this.notBetterButton2.Location = new System.Drawing.Point(255, 11);
             this.notBetterButton2.MinimumSize = new System.Drawing.Size(180, 51);
             this.notBetterButton2.MouseClickColor1 = System.Drawing.Color.Transparent;
             this.notBetterButton2.MouseClickColor2 = System.Drawing.Color.Magenta;
@@ -421,12 +396,70 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelOuter.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelOuter.Controls.Add(this.panelUpper);
             this.panelOuter.Controls.Add(this.panelButtons);
+            this.panelOuter.Controls.Add(this.panelMessages);
             this.panelOuter.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelOuter.Location = new System.Drawing.Point(0, 27);
             this.panelOuter.Name = "panelOuter";
-            this.panelOuter.Size = new System.Drawing.Size(629, 512);
+            this.panelOuter.Size = new System.Drawing.Size(522, 618);
             this.panelOuter.TabIndex = 10;
             this.panelOuter.WrapContents = false;
+            // 
+            // panelMessages
+            // 
+            this.panelMessages.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panelMessages.Controls.Add(this.listMessages);
+            this.panelMessages.Controls.Add(this.btnDismiss);
+            this.panelMessages.Location = new System.Drawing.Point(57, 515);
+            this.panelMessages.Name = "panelMessages";
+            this.panelMessages.Size = new System.Drawing.Size(408, 100);
+            this.panelMessages.TabIndex = 10;
+            // 
+            // listMessages
+            // 
+            this.listMessages.Location = new System.Drawing.Point(3, 3);
+            this.listMessages.Name = "listMessages";
+            this.listMessages.Size = new System.Drawing.Size(269, 97);
+            this.listMessages.TabIndex = 0;
+            this.listMessages.UseCompatibleStateImageBehavior = false;
+            // 
+            // btnDismiss
+            // 
+            this.btnDismiss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDismiss.AutoSize = true;
+            this.btnDismiss.EndColor = System.Drawing.Color.LightBlue;
+            this.btnDismiss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDismiss.Font = new System.Drawing.Font("M+1 Nerd Font Propo", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDismiss.ForeColor = System.Drawing.Color.Black;
+            this.btnDismiss.GradientAngle = 65;
+            this.btnDismiss.Location = new System.Drawing.Point(278, 26);
+            this.btnDismiss.MouseClickColor1 = System.Drawing.Color.DarkOrange;
+            this.btnDismiss.MouseClickColor2 = System.Drawing.Color.Red;
+            this.btnDismiss.MouseHoverColor1 = System.Drawing.Color.Yellow;
+            this.btnDismiss.MouseHoverColor2 = System.Drawing.Color.DarkOrange;
+            this.btnDismiss.Name = "btnDismiss";
+            this.btnDismiss.Size = new System.Drawing.Size(100, 50);
+            this.btnDismiss.StartColor = System.Drawing.Color.DimGray;
+            this.btnDismiss.TabIndex = 15;
+            this.btnDismiss.Text = "Dismiss";
+            this.btnDismiss.TextLocation_X = 76;
+            this.btnDismiss.TextLocation_Y = 24;
+            this.btnDismiss.Transparent1 = 150;
+            this.btnDismiss.Transparent2 = 150;
+            this.btnDismiss.UseVisualStyleBackColor = true;
+            this.btnDismiss.Click += new System.EventHandler(this.btnDismiss_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "json";
+            this.openFileDialog1.Filter = "json files|*.json";
+            this.openFileDialog1.SupportMultiDottedExtensions = true;
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -460,6 +493,8 @@ namespace JohnBPearson.Windows.Forms.Gestures
             this.panelButtons.PerformLayout();
             this.panelOuter.ResumeLayout(false);
             this.panelOuter.PerformLayout();
+            this.panelMessages.ResumeLayout(false);
+            this.panelMessages.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,9 +505,9 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private JohnBPearson.Windows.Forms.Controls.TransparentFlowPanel panelUpper;
         private System.Windows.Forms.ComboBox cbHotkeySelection;
-       // private System.Windows.Forms.Button btnCopyGuildLog;
-       // private Controls.TransparentPanel transparentPanel1;
-       // private System.Windows.Forms.ListBox lbPlanetsList;
+        // private System.Windows.Forms.Button btnCopyGuildLog;
+        // private Controls.TransparentPanel transparentPanel1;
+        // private System.Windows.Forms.ListBox lbPlanetsList;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -493,8 +528,13 @@ namespace JohnBPearson.Windows.Forms.Gestures
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox cbProtect;
-        private SomewhatBetterButton btnSaveJson;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private TransparentFlowPanel panelMessages;
+        private System.Windows.Forms.ListView listMessages;
+        private SomewhatBetterButton btnDismiss;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

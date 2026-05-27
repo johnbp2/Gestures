@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Windows.UI.Xaml.Controls;
 using System.IO;
 using System.Security.Cryptography;
-using Extension;
 
 namespace JohnBPearson.Windows.Forms.Gestures.Test
 {
@@ -40,41 +39,30 @@ namespace JohnBPearson.Windows.Forms.Gestures.Test
         {
             var fileToEncrypt = textBox1.Text;
             var password = "123456789ABCDEFG!@#$%^&*()_+";
-
-       
-
             Byte[] key = new byte[31];
             Encoding.Default.GetBytes(password).CopyTo(key, 0);
-            var aes = new RijndaelManaged() { Mode = CipherMode.CBC, KeySize = 256, BlockSize = 256, Padding = PaddingMode.Zeros };
+            var aes = new RijndaelManaged() { Mode = CipherMode.CBC, KeySize = 256, BlockSize = 256 , Padding = PaddingMode.Zeros};
 
-          
+
             var mnemonicData = new MemoryStream();
             using(mnemonicData)
             {
-                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateEncryptor(key, getInitVecrorBytes()), CryptoStreamMode.Write))
+                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateEncryptor(key, key), CryptoStreamMode.Write))
                 {
                     var buffer = File.ReadAllBytes(fileToEncrypt);
                     cStream.Write(buffer, 0, buffer.Length);
                     var appendBuffer = mnemonicData.ToArray();
-                    var finalBuffer = new Byte[appendBuffer.Length];
+                    var finalBuffer = new Byte[appendBuffer.Length-1];
                     appendBuffer.CopyTo(finalBuffer, 0);
-                    File.WriteAllBytes(fileToEncrypt.Replace(".json", ".dat"), finalBuffer);
+                    File.WriteAllBytes(fileToEncrypt, finalBuffer);
 
                 }
             }
         }
 
-        private static byte[] getInitVecrorBytes()
-        {
-            var initVector = "HR$2pIjHR$2pIj12HR$2pIjHR$2pIj12";
-            Byte[] iv = new byte[32];
-            Encoding.Default.GetBytes(initVector).CopyTo(iv, 0);
-            return iv;
-        }
-
         private void Decrypt_Click(object sender, EventArgs e)
         {
-            var fileToDecrypt = textBox1.Text.Replace(".json", ".dat");
+            var fileToEncrypt = textBox1.Text;
             var password = "123456789ABCDEFG!@#$%^&*()_+";
             Byte[] key = new byte[31];
             Encoding.Default.GetBytes(password).CopyTo(key, 0);
@@ -84,16 +72,14 @@ namespace JohnBPearson.Windows.Forms.Gestures.Test
             var mnemonicData = new MemoryStream();
             using(mnemonicData)
             {
-                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateDecryptor(key, getInitVecrorBytes()), CryptoStreamMode.Write))
+                using(CryptoStream cStream = new CryptoStream(mnemonicData, aes.CreateDecryptor(key, key), CryptoStreamMode.Write))
                 {
-                    var buffer = File.ReadAllBytes(fileToDecrypt);
+                    var buffer = File.ReadAllBytes(fileToEncrypt);
                     cStream.Write(buffer, 0, buffer.Length);
-         
                     var appendBuffer = mnemonicData.ToArray();
                     var finalBuffer = new Byte[appendBuffer.Length - 1];
                     appendBuffer.CopyTo(finalBuffer, 0);
-                    
-                    File.WriteAllBytes(fileToDecrypt, finalBuffer);
+                    File.WriteAllBytes(fileToEncrypt, finalBuffer);
 
                 }
             }
