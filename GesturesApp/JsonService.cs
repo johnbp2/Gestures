@@ -128,7 +128,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
                 File.Exists(Properties.Settings.Default.LastSavedFile) && !useDialog)
             {
                 fs = FileService.OpenFile(Properties.Settings.Default.LastSavedFile);
-                dataFile = Properties.Settings.Default.LastSavedFile.Replace(".json", ".dat");
+              var  dataFile = Properties.Settings.Default.LastSavedFile.Replace(".json", ".dat");
                 fileUsed = Path.GetFileName(Properties.Settings.Default.LastSavedFile) + " auto import";
                 if(File.Exists(dataFile))
                 {

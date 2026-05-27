@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JohnBPearson.Application.Gestures.Model;
+using System.IO;
 
 namespace JohnBPearson.Windows.Forms.Gestures
 {
