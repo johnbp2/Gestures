@@ -17,7 +17,7 @@ namespace JohnBPearson.Application.Gestures.Model
         {
             get
             {
-                return $"Value={this.Data.Value} HexString={this.Data.HexString} Length={this.Data.Length}";
+                return $"Value={this.Data.Value} Description={this.Description.Value} HexString={this.Data.HexString} Length={this.Data.Length}";
             }
         }
 

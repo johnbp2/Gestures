@@ -80,7 +80,8 @@ namespace JohnBPearson.Cypher
         }
         public int encryptToFile(string plainText, DirectoryInfo path, string fileName, bool consoleOutput = true)
         {
-
+            Properties.Settings.Default.length = plainText.Length;
+           
             // Create the original data to be encrypted
             byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(plainText);
 
@@ -98,17 +99,22 @@ namespace JohnBPearson.Cypher
             int bytesWritten = DataProtectionService.EncryptDataToStream(toEncrypt, DataProtectionScope.CurrentUser, fStream);
 
             fStream.Close();
+            Properties.Settings.Default.Save();
             return bytesWritten;
 
         }
 
-        public string decryptFromFile(FileInfo file,int length, bool consoleOutput = true)
+        public string decryptFromFile(FileInfo file,int length = 0, bool consoleOutput = true)
         {
             Console.WriteLine("Reading data from disk and decrypting...");
 
             // Open the file.
           var  fStream = new FileStream(file.FullName, FileMode.Open);
             using(fStream) {
+                if(length == 0)
+                {
+                length = Properties.Settings.Default.length;
+                }
                 // Read from the stream and decrypt the data.
                 byte[] decryptData = DataProtectionService.DecryptDataFromStream(DataProtectionScope.CurrentUser, fStream, length);
                 fStream.Close();

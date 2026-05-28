@@ -203,7 +203,7 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
 
-
+      
 
 
 
@@ -238,6 +238,21 @@ namespace JohnBPearson.Windows.Forms.Gestures
 
 
         #region Events
+        private void openToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                base.FileLabelText = JsonService.Import(this.presenter.ContainerList, true);
+                this.presenter.registerHotKeys(this.presenter.Containers);
+                this.reload();
+            }
+            catch(Exception ex)
+            {
+
+             this.displayMessage(ex.Message, Messaging.MessageType.Error);
+            }
+        }
+
 
 
         private void menuItemIcon_Click(object Sender, EventArgs e)
