@@ -66,6 +66,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Rijandel.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="log4net">
